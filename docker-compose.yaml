@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+
+  # a fully loaded development environment to test new code
+  devbox: &devbox
+    build:
+      dockerfile: ./docker/devbox.dockerfile
+      context: .
+    image: "wayfair/columbo-devbox"
+    volumes:
+      - ./:/app
+
+  # run all the tests and linting locally
+  # - black & isort will format code to address issues
+  test:
+    <<: *devbox
+    command: docker/run_tests.sh --format-code
