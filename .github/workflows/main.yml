@@ -4,11 +4,9 @@ name: CI
 # events but only for the main branch
 on: [push, pull_request]
 
-defaults:
-  runs-on: ubuntu-latest
-
 jobs:
   black:
+    runs-on: ubuntu-latest
     container:
       image: python:3.8.5-buster
     steps:
@@ -20,6 +18,7 @@ jobs:
       - name: Run black
         run: black --check columbo tests*
   flake8:
+    runs-on: ubuntu-latest
     container:
       image: python:3.8.5-buster
     steps:
