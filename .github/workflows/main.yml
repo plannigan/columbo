@@ -6,11 +6,11 @@ on: [push, pull_request]
 
 defaults:
   runs-on: ubuntu-latest
-  container:
-    image: python:3.8.5-buster
 
 jobs:
   black:
+    container:
+      image: python:3.8.5-buster
     steps:
       - uses: actions/checkout@v2
 
@@ -20,6 +20,8 @@ jobs:
       - name: Run black
         run: black --check columbo tests*
   flake8:
+    container:
+      image: python:3.8.5-buster
     steps:
         - uses: actions/checkout@v2
 
