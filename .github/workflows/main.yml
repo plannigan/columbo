@@ -8,6 +8,22 @@ env:
   PYTHON_VERSION: "3.8.5"
 
 jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          test-requirements: "true"
+
+      - name: Run bandit
+        run: bandit --ini .bandit -r columbo tests
+
   black:
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +39,7 @@ jobs:
           test-requirements: "true"
 
       - name: Run black
-        run: black --check columbo tests*
+        run: black --check columbo tests
 
   flake8:
     runs-on: ubuntu-latest
@@ -39,4 +55,37 @@ jobs:
             test-requirements: "true"
 
         - name: Run flake8
-          run: flake8
+          run: flake8 columbo tests
+
+    isort:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v2
+        - uses: actions/setup-python@v2
+          with:
+            python-version: ${{ env.PYTHON_VERSION }}
+        - name: Install dependencies
+          uses: ./.github/actions/install-dependencies
+          with:
+            requirements: "true"
+            test-requirements: "true"
+
+        - name: Run isort
+          run: isort --recursive --check-only columbo tests
+
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Check out code
+          uses: actions/checkout@v2
+        - uses: actions/setup-python@v2
+          with:
+            python-version: ${{ env.PYTHON_VERSION }}
+        - name: Install dependencies
+          uses: ./.github/actions/install-dependencies
+          with:
+            test-requirements: "true"
+
+        - name: Run mypy
+          run: mypy columbo tests
