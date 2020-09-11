@@ -11,21 +11,20 @@ jobs:
       image: python:3.8.5-buster
     steps:
       - uses: actions/checkout@v2
-
-      - name: Setup Environment
-        run: pip install -r requirements-test.txt
+      - uses: ./.github/actions/install-dependencies
+        with:
+          install-test-requirements: "true"
 
       - name: Run black
         run: black --check columbo tests*
+
   flake8:
     runs-on: ubuntu-latest
-    container:
-      image: python:3.8.5-buster
     steps:
         - uses: actions/checkout@v2
-
-        - name: Setup Environment
-          run: pip install -r requirements-test.txt
+        - uses: ./.github/actions/install-dependencies
+          with:
+            install-test-requirements: "true"
 
         - name: Run flake8
           run: flake8
