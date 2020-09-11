@@ -11,12 +11,14 @@ jobs:
   black:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      - uses: ./.github/actions/install-dependencies
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
         with:
           test-requirements: "true"
 
@@ -26,11 +28,13 @@ jobs:
   flake8:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v2
+        - name: Check out code
+          uses: actions/checkout@v2
         - uses: actions/setup-python@v2
           with:
             python-version: ${{ env.PYTHON_VERSION }}
-        - uses: ./.github/actions/install-dependencies
+        - name: Install dependencies
+          uses: ./.github/actions/install-dependencies
           with:
             test-requirements: "true"
 
