@@ -5,12 +5,12 @@ python -m pip install --upgrade pip
 
 env | sort
 
-if [[ "${INPUT_REQUIREMENTS:-}" == "true"  ]]; then
+if [[ "${INSTALL_REQUIREMENTS}" == "true"  ]]; then
   echo "Installing code requirements"
   pip install -r requirements.txt
 fi
 
-if [[ "${INPUT_TEST_REQUIREMENTS:-}" == "true"  ]]; then
+if [[ "${INSTALL_TEST_REQUIREMENTS}" == "true"  ]]; then
   echo "Installing test requirements"
   pip install -r requirements-test.txt
 fi

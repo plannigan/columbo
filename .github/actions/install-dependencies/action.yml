@@ -15,3 +15,6 @@ runs:
     - name: "Install Python dependencies"
       run: "$GITHUB_ACTION_PATH/action.sh"
       shell: "bash"
+      env:
+        INSTALL_REQUIREMENTS: ${{ inputs.requirements }}
+        INSTALL_TEST_REQUIREMENTS: ${{ inputs.test-requirements }}
