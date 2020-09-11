@@ -1,0 +1,17 @@
+name: "Verify Python Wheel"
+description: "Build a wheel for the package and importing the package doesn't cause an error"
+inputs:
+  package-import-name:
+    description: "Name used to import the package from python code"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: "Update setuptools and wheel"
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel
+      shell: "bash"
+    - name: "Building Wheel"
+      run: "python setup.py bdist_wheel"
+      shell: "bash"
