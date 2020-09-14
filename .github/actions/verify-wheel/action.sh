@@ -21,4 +21,4 @@ pip install ${APP_DIR}/dist/*.whl
 
 echo "-----------------------------"
 echo "Attempting to import package"
-python "${APP_DIR}/${GITHUB_ACTION_PATH}/test_module_import.py" "${MODULE_NAME}"
+python "${GITHUB_ACTION_PATH}/test_module_import.py" "${MODULE_NAME}"
