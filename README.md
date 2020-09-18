@@ -1,4 +1,4 @@
-TODO: CI Badge
+[![example branch parameter](https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main)][ci]
 TODO: Coverage Badge
 TODO: PyPi Release Badge
 [![Checked with mypy](https://img.shields.io/badge/mypy-checked-blue)][mypy-home]
@@ -114,6 +114,7 @@ This will trigger the CI system to build a wheel and a source distributions of t
 TODO: Use Github Pages to host documentation.
 Check out the [project documentation][columbo-docs]
 
+[ci]: https://github.com/wayfair-incubator/columbo/actions
 [mypy-home]: http://mypy-lang.org/
 [black-home]: https://github.com/psf/black
 [install-docker]: https://docs.docker.com/install/
