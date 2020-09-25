@@ -24,6 +24,7 @@ setuptools.setup(
     packages=setuptools.find_packages(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests"]
     ),
+    package_data={"columbo": ["py.typed"]},
     python_requires=">=3.6",
     install_requires=["prompt-toolkit~=3.0"],
     classifiers=[
