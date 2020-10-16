@@ -132,7 +132,6 @@ jobs:
             file: coverage-${{ matrix.python-version }}.xml
             fail_ci_if_error: true
 
-
   verify-wheel:
     runs-on: ubuntu-latest
     steps:
@@ -145,3 +144,20 @@ jobs:
         uses: ./.github/actions/verify-wheel
         with:
           package-import-name: "columbo"
+
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build Docs
+        run: docker-compose run --rm mkdocs build --strict
+
+      - name: Upload coverage results artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs-site
+          path: site/
+        # Use always() to always run this step to publish test results when there are test failures
+        if: ${{ always() }}
