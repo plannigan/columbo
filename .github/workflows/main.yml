@@ -154,10 +154,6 @@ jobs:
       - name: Build Docs
         run: docker-compose run --rm mkdocs build --strict
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/} | sed 's/\//_/g')" >> $GITHUB_ENV
-
       # publish to a dev directory & don't clean anything
       - name: Publish (dev)
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -166,8 +162,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: site
-          TARGET_FOLDER: _dev/${{ env.BRANCH_NAME }}
-          CLEAN: false
+          TARGET_FOLDER: _dev/
 
       # publish to the root and clean everything
       - name: Publish (prod)
