@@ -1,5 +1,5 @@
-[![example branch parameter](https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main)][ci]
-[![codecov](https://codecov.io/gh/wayfair-incubator/columbo/branch/main/graph/badge.svg)](https://codecov.io/gh/wayfair-incubator/columbo)
+[![CI pipeline status](https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main)][ci]
+[![codecov](https://codecov.io/gh/wayfair-incubator/columbo/branch/main/graph/badge.svg)][codecov]
 TODO: PyPi Release Badge
 [![Checked with mypy](https://img.shields.io/badge/mypy-checked-blue)][mypy-home]
 [![Code style: black](https://img.shields.io/badge/code%20style-black-black.svg)][black-home]
@@ -115,6 +115,7 @@ TODO: Use Github Pages to host documentation.
 Check out the [project documentation][columbo-docs]
 
 [ci]: https://github.com/wayfair-incubator/columbo/actions
+[codecov]: https://codecov.io/gh/wayfair-incubator/columbo
 [mypy-home]: http://mypy-lang.org/
 [black-home]: https://github.com/psf/black
 [install-docker]: https://docs.docker.com/install/

@@ -15,3 +15,12 @@ services:
   test:
     <<: *devbox
     command: docker/run_tests.sh --format-code
+
+  # generate and serve the project documentation locally
+  mkdocs:
+    image: "squidfunk/mkdocs-material:6.0.2"
+    volumes:
+      - ./:/docs
+    ports:
+      - "8000:8000"
+
