@@ -147,6 +147,7 @@ jobs:
 
   build-docs:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -154,21 +155,18 @@ jobs:
       - name: Build Docs
         run: docker-compose run --rm mkdocs build --strict
 
-      # publish to a dev directory & don't clean anything
-      - name: Publish (dev)
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+      # upload artifact for dev build
+      - name: Upload coverage results artifact
+        if: github.ref != 'refs/heads/main'
+        uses: actions/upload-artifact@v2
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: site
-          TARGET_FOLDER: _dev/
-          CLEAN: false
+          name: docs-site
+          path: site/
 
       # publish to the root and clean everything
       - name: Publish (prod)
         uses: JamesIves/github-pages-deploy-action@releases/v3
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
