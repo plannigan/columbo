@@ -180,14 +180,3 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: site
-
-      # publish to a dev directory & don't clean anything
-      - name: Publish (dev)
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: site
-          TARGET_FOLDER: _dev/
-          CLEAN: false
-
