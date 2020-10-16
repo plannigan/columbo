@@ -154,29 +154,23 @@ jobs:
       - name: Build Docs
         run: docker-compose run --rm mkdocs build --strict
 
-#      # publish to a dev directory & don't clean anything
-#      - name: Publish (dev)
-#        uses: JamesIves/github-pages-deploy-action@releases/v3
-#        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
-#        with:
-#          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#          BRANCH: gh-pages
-#          FOLDER: site
-#          TARGET_FOLDER: _dev/
-#
-#      # publish to the root and clean everything
-#      - name: Publish (prod)
-#        uses: JamesIves/github-pages-deploy-action@releases/v3
-#        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-#        with:
-#          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-#          BRANCH: gh-pages
-#          FOLDER: site
-
-      # publish to the root and clean everything
-      - name: Publish (prod)
+      # publish to a dev directory & don't clean anything
+      - name: Publish (dev)
         uses: JamesIves/github-pages-deploy-action@releases/v3
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: site
+          TARGET_FOLDER: _dev/
+          CLEAN: false
+
+      # publish to the root and clean everything
+      - name: Publish (prod)
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: site
+
