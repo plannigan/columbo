@@ -6,12 +6,25 @@ TODO: PyPi Release Badge
 
 `columbo` provides a way to specify a dynamic set of questions to ask a user and get their answers.
 
+`columbo`'s feature set allows a program to:
+
+* Ask multiple types of questions:
+    * Yes or No
+    * Multiple choice
+    * Open-ended
+* Validate the response provided by the user.
+* Use answers from earlier questions:
+    * As part of the text of a question
+    * As part of the text of a default value
+    * To decide if a question should be skipped
+* Accept answers from the command line in addition to prompting the user.
+
 ## Example
 
 ### User Prompts
 
 The primary use of `columbo` is to define a sequence of interactions that are used to prompt a user to provide answers
-using a terminal. Below is a sample which shows how this can be used.
+using a terminal. Below is a sample which shows some ways this can be used.
 
 ```python
 import columbo
