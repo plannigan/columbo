@@ -10,7 +10,7 @@ TODO: PyPi Release Badge
 
 ### User Prompts
 
-The primary use of `columbo` is to define a sequence of interaction that are used to prompt a user to provide answers
+The primary use of `columbo` is to define a sequence of interactions that are used to prompt a user to provide answers
 using a terminal. Below is a sample which shows how this can be used.
 
 ```python
