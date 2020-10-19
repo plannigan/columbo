@@ -1,0 +1,13 @@
+site_name: columbo Documentation
+repo_url: https://github.com/wayfair-incubator/columbo/
+repo_name: wayfair-incubator/columbo
+docs_dir: docs
+nav:
+  - Overview: index.md
+  - Getting Started: getting-started.md
+  - Usage Guide: usage-guide.md
+  - Reference: api.md
+  - Changelog: CHANGELOG.md
+theme: material
+markdown_extensions:
+  - codehilite
