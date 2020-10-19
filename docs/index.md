@@ -93,7 +93,7 @@ To learn more about the various ways `columbo` can be used, read the [Usage Guid
 
 ## API Reference
 
-To find specific information about a specific function or class, read the [API Reference][api_reference].
+To find detailed information about a specific function or class, read the [API Reference][api_reference].
 
 [ci]: https://github.com/wayfair-incubator/columbo/actions
 [codecov]: https://codecov.io/gh/wayfair-incubator/columbo
