@@ -408,10 +408,27 @@
 <a href="https://codecov.io/gh/wayfair-incubator/columbo"><img alt="codecov" src="https://codecov.io/gh/wayfair-incubator/columbo/branch/main/graph/badge.svg" /></a>
 TODO: PyPi Release Badge</p>
 <p><code>columbo</code> provides a way to specify a dynamic set of questions to ask a user and get their answers.</p>
+<p><code>columbo</code>'s feature set allows a program to:</p>
+<ul>
+<li>Ask multiple types of questions:<ul>
+<li>Yes or No</li>
+<li>Multiple choice</li>
+<li>Open-ended</li>
+</ul>
+</li>
+<li>Validate the response provided by the user.</li>
+<li>Use answers from earlier questions:<ul>
+<li>As part of the text of a question</li>
+<li>As part of the text of a default value</li>
+<li>To decide if a question should be skipped</li>
+</ul>
+</li>
+<li>Accept answers from the command line in addition to prompting the user.</li>
+</ul>
 <h2 id="example">Example</h2>
 <h3 id="user-prompts">User Prompts</h3>
-<p>The primary use of <code>columbo</code> is to define a sequence of interaction that are used to prompt a user to provide answers
-using a terminal. Below is a sample which shows how this can be used.</p>
+<p>The primary use of <code>columbo</code> is to define a sequence of interactions that are used to prompt a user to provide answers
+using a terminal. Below is a sample which shows some ways this can be used.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
@@ -471,7 +488,7 @@ Do you like dogs? (Y/n): y
 <h2 id="detailed-documentation">Detailed Documentation</h2>
 <p>To learn more about the various ways <code>columbo</code> can be used, read the <a href="usage-guide/">Usage Guide</a> page.</p>
 <h2 id="api-reference">API Reference</h2>
-<p>To find specific information about a specific function or class, read the <a href="api/">API Reference</a>.</p>
+<p>To find detailed information about a specific function or class, read the <a href="api/">API Reference</a>.</p>
                 
               
               
