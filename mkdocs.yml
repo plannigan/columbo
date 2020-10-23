@@ -10,4 +10,8 @@ nav:
   - Changelog: CHANGELOG.md
 theme: material
 markdown_extensions:
+  - admonition
   - codehilite
+  - pymdownx.highlight
+  - pymdownx.keys
+  - pymdownx.superfences

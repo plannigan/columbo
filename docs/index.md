@@ -53,7 +53,8 @@ interactions = [
     columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
 ]
 
-columbo.get_answers(interactions)
+answers = columbo.get_answers(interactions)
+print(answers)
 ```
 
 Below shows the output when the user accepts the default values for most of the questions. The user provides a different
@@ -76,7 +77,7 @@ Enter the number of your choice [1]:
 
 Do you like dogs? (Y/n): y
 
-{'user': 'Patrick', 'user_email': 'me@example.com', 'mood': 'happy', 'likes_dogs': True}
+{'user': 'Patrick', 'user_email': 'patrick@example.com', 'mood': 'happy', 'likes_dogs': True}
 ```
 
 ### Command Line Answers
@@ -85,18 +86,18 @@ TODO
 
 ## Where to Start?
 
-To learn the basics of how to start using `columbo`, read the [Getting Started][getting_started] page.
+To learn the basics of how to start using `columbo`, read the [Getting Started][getting-started] page.
 
 ## Detailed Documentation
 
-To learn more about the various ways `columbo` can be used, read the [Usage Guide][usage_guide] page.
+To learn more about the various ways `columbo` can be used, read the [Usage Guide][usage-guide] page.
 
 ## API Reference
 
-To find detailed information about a specific function or class, read the [API Reference][api_reference].
+To find detailed information about a specific function or class, read the [API Reference][api-reference].
 
 [ci]: https://github.com/wayfair-incubator/columbo/actions
 [codecov]: https://codecov.io/gh/wayfair-incubator/columbo
-[getting_started]: getting-started.md
-[usage_guide]: usage-guide.md
-[api_reference]: api.md
+[getting-started]: getting-started.md
+[usage-guide]: usage-guide.md
+[api-reference]: api.md
