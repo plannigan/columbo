@@ -429,7 +429,7 @@ TODO: PyPi Release Badge</p>
 <h3 id="user-prompts">User Prompts</h3>
 <p>The primary use of <code>columbo</code> is to define a sequence of interactions that are used to prompt a user to provide answers
 using a terminal. Below is a sample which shows some ways this can be used.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
@@ -455,13 +455,13 @@ using a terminal. Below is a sample which shows some ways this can be used.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Below shows the output when the user accepts the default values for most of the questions. The user provides a different
 value for the email and explicitly confirms that they like dogs.</p>
-<div class="codehilite"><pre><span></span><code>Welcome to the Columbo example
+<div class="highlight"><pre><span></span><code>Welcome to the Columbo example
 Press enter to start
 
 What is your name? [Patrick]:
@@ -477,9 +477,8 @@ Enter the number of your choice [1]:
 
 Do you like dogs? (Y/n): y
 
-{&#39;user&#39;: &#39;Patrick&#39;, &#39;user_email&#39;: &#39;me@example.com&#39;, &#39;mood&#39;: &#39;happy&#39;, &#39;likes_dogs&#39;: True}
+{&#39;user&#39;: &#39;Patrick&#39;, &#39;user_email&#39;: &#39;patrick@example.com&#39;, &#39;mood&#39;: &#39;happy&#39;, &#39;likes_dogs&#39;: True}
 </code></pre></div>
-
 
 <h3 id="command-line-answers">Command Line Answers</h3>
 <p>TODO</p>

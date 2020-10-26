@@ -214,9 +214,100 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Usage Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Usage Guide
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#static-vs-dynamic-values" class="md-nav__link">
+    Static vs Dynamic Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactions" class="md-nav__link">
+    Interactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-interactions" class="md-nav__link">
+    Creating Interactions
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Interactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#echo-acknowledge" class="md-nav__link">
+    Echo &amp; Acknowledge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-questions" class="md-nav__link">
+    All Questions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-question" class="md-nav__link">
+    Basic Question
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choice" class="md-nav__link">
+    Choice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirm" class="md-nav__link">
+    Confirm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-interface" class="md-nav__link">
+    Command Line Interface
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -262,6 +353,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#static-vs-dynamic-values" class="md-nav__link">
+    Static vs Dynamic Values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactions" class="md-nav__link">
+    Interactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-interactions" class="md-nav__link">
+    Creating Interactions
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Interactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#echo-acknowledge" class="md-nav__link">
+    Echo &amp; Acknowledge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-questions" class="md-nav__link">
+    All Questions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-question" class="md-nav__link">
+    Basic Question
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choice" class="md-nav__link">
+    Choice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirm" class="md-nav__link">
+    Confirm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line-interface" class="md-nav__link">
+    Command Line Interface
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -278,7 +446,110 @@
                 
                 
                 <h1 id="usage-guide">Usage Guide</h1>
-<p>TODO</p>
+<p>This is page provides detailed descriptions of al the ways <code>columbo</code> can be used. If you are new to <code>columbo</code>, the
+<a href="../getting-started/">Getting Started</a> page provides a gradual introduction of the basic functionality with examples.</p>
+<h3 id="static-vs-dynamic-values">Static vs Dynamic Values</h3>
+<p>Before diving into the specifics about each <code>Interaction</code> type, it is important to understand how <code>columbo</code> supports
+both static and dynamic values. A static value is a value that is known when creating an <code>Interaction</code> instance.
+Frequently this will be a value like a string literal, but that is not a requirement.</p>
+<p>In contrast, a dynamic value is one which depends on one or more answer provided by the user from a previous question.
+This is supported by accepting a function that takes an <code>Answers</code> dictionary as an argument and returns a value with
+the type of that static value would have. For example, the static value for <code>message</code> is <code>str</code>. Therefore, tye dynamic
+value would be a function that accepts <code>Answers</code> and returns a string (<code>Callable[[Answers],str]</code>).</p>
+<p>In most cases, any argument to an <code>Interaction</code>'s constructor can be dynamic. This guide will explicitly mention when
+the constructor requires an argument to be a static value.</p>
+<h2 id="interactions">Interactions</h2>
+<p><code>columbo</code> provides five types of <code>Interactions</code> that can be used to control how the program will interact with the user:</p>
+<ul>
+<li><code>Echo</code> - Print text to the terminal, but don't stop to accept any input from the user.</li>
+<li><code>Acknowledge</code> - Print text to the terminal. Wait for the user to press <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</li>
+<li><code>BasicQuestion</code> - Print text to the terminal. Allow the user to type a text response. Pressing <span class="keys"><kbd class="key-enter">Enter</kbd></span> submits the
+    response.</li>
+<li><code>Choice</code> - Print text to the terminal, followed by a numbered list of options. Allow the user to enter the number
+    of the option they wish to select. Pressing <span class="keys"><kbd class="key-enter">Enter</kbd></span> submits the response.</li>
+<li><code>Confirm</code> - Print text to the terminal which expects a Yes or No answer. Pressing <span class="keys"><kbd class="key-y">Y</kbd></span> or <span class="keys"><kbd class="key-n">N</kbd></span> submits the
+    corresponding response.</li>
+</ul>
+<h2 id="creating-interactions">Creating Interactions</h2>
+<h3 id="echo-acknowledge">Echo &amp; Acknowledge</h3>
+<p><code>Echo</code> and <code>Acknowledge</code> both accept <code>message</code> as their only argument. This is the message to be displayed to the user.</p>
+<h3 id="all-questions">All Questions</h3>
+<p><code>BasicQuestion</code>, <code>Choice</code>, &amp; <code>Confirm</code> all accept the following arguments.</p>
+<ul>
+<li><code>name</code>: The identifier that will be used as the key to access this question's answer. Each question must have a unique
+    value for <code>name</code>. <strong>Can't be dynamic</strong>.</li>
+<li><code>message</code>: The message to be displayed to the user.</li>
+<li><code>default</code>: The default answer to the question. This is used when the user does not provide an explicit value.</li>
+<li><code>should_ask</code>: Optional. When given, the argument should be a function that accepts an <code>Answers</code> dictionary and returns
+    <code>True</code> or <code>False</code>. Returning <code>True</code> indicates that the question should be asked. Returning <code>False</code> will skip the
+    question and not present it to the user. The <code>Answers</code> dictionary will contain the value for each previous question
+    that has been asked. Not providing this argument means that the question will always be asked. <strong>When  <code>columbo</code>
+    skips a question, no entry in the <code>Answers</code> dictionary will be created</strong>.</li>
+<li><code>cli_help</code>: Optional. A help message to be displayed for command line interface. See
+    <a href="#command-line-interface">CLI documentation</a> to more details. <strong>Can't be dynamic</strong>.</li>
+</ul>
+<h3 id="basic-question">Basic Question</h3>
+<p>In addition to the arguments <a href="#all-questions">mentioned above</a>, <code>BasicQuestion</code> also accepts the following argument.</p>
+<ul>
+<li><code>validator</code>: Optional. When given, the argument should be a function that accepts a string and an <code>Answers</code>
+    dictionary. The first value is the answer provided by the user. The <code>Answers</code> dictionary will contain the value for
+    each previous question that has been asked. If the value is valid, the function and should return <code>None</code>. If the
+    value is invalid, the function should return a string describing why the value is invalid. This message will be
+    displayed to the user, and the question will be re-asked. Not providing this argument means that any value provided
+    by the user will be accepted.</li>
+</ul>
+<h3 id="choice">Choice</h3>
+<p>In addition to the arguments <a href="#all-questions">mentioned above</a>, <code>Choice</code> also accepts the following argument.</p>
+<ul>
+<li><code>options</code>: The list of possible value the user can choose from.</li>
+</ul>
+<h3 id="confirm">Confirm</h3>
+<p><code>Confirm</code> doesn't take any additional arguments that weren't <a href="#all-questions">mentioned above</a>. However, the <code>default</code>
+argument takes a <code>bool</code> instead of <code>str</code>.</p>
+<h2 id="command-line-interface">Command Line Interface</h2>
+<p>In addition to providing an interactive terminal based UI to ask the user each question, <code>columbo</code> can also generate a
+command line argument parser based on the list of <code>Interaction</code>s. When used in this manor, <code>Echo</code> &amp; <code>Acknowledge</code> are
+ignored. To produce a consistent command line argument format, the value of each question's <code>name</code> will be transformed
+using the following rule:</p>
+<ul>
+<li>If the there are any upper-case characters, lower-case characters will be used.</li>
+<li>If the there are is a space character, a dash will be used in its place.</li>
+<li>If the there are is an underscore character, a dash will be used in its place.</li>
+</ul>
+<p>For example:</p>
+<table>
+<thead>
+<tr>
+<th>Original</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>user</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>user-email</td>
+</tr>
+<tr>
+<td>User Email</td>
+<td>user-email</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As a result of the transformation process, it is possible to have a sequence of question with unique <code>name</code>s for the
+<code>Answers</code> dictionary, but cause a collision when creating command line arguments.</p>
+</div>
+<p>For <code>BasicQuestion</code> &amp; <code>Choice</code>, the result will be preceded with two dashes (ex: <code>--user</code> or <code>--user-email</code>).</p>
+<p>For <code>Confirm</code>, <code>columbo</code> produces two command lines arguments. After following the transformation rules, the command
+line arguments will be <code>--{NAME}</code> &amp; <code>--no-{NAME}</code> to explicitly specify <code>True</code> or <code>False</code>, respectively (ex:
+<code>--likes-dogs</code> and <code>--no-likes-dogs</code>)</p>
+<p>Since the argument parser must be constructed before receiving any user input, all <code>Question</code>s produce arguments.
+<code>should_ask</code> is only considered when processing the given arguments.</p>
                 
               
               
