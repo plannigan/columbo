@@ -10,7 +10,7 @@ python -m pip install columbo
 
 ## Introduction
 
-The core of `columbo` is the interaction classes. They provide a way to use code to define how information should be
+The core of `columbo` are the interaction classes. They provide a way to use code to define how information should be
 displayed to the user and how the user should provide feedback to the running application.
 
 The most commonly used Interactions are the Questions.
