@@ -99,5 +99,5 @@ To find detailed information about a specific function or class, read the [API R
 [ci]: https://github.com/wayfair-incubator/columbo/actions
 [codecov]: https://codecov.io/gh/wayfair-incubator/columbo
 [getting-started]: getting-started.md
-[usage-guide]: usage-guide.md
+[usage-guide]: usage-guide/fundamentals.md
 [api-reference]: api.md
