@@ -1,7 +1,7 @@
 # Command Line Interface
 
 In addition to providing an interactive terminal based UI to ask the user each question, `columbo` can also generate a
-command line argument parser based on the list of `Interaction`s. When used in this manor, `Echo` & `Acknowledge` are
+command line argument parser based on the list of `Interaction`s. When used in this manner, `Echo` & `Acknowledge` are
 ignored. To produce a consistent command line argument format, the value of each question's `name` will be transformed
 using the following rule:
 
