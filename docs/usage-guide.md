@@ -75,7 +75,7 @@ argument takes a `bool` instead of `str`.
 
 ## Only Asking Some Questions
 
-There are situations where a question should be asked some times, but not all the time. A program that is collects
+There are situations where a question should be asked some times, but not all the time. For example, a program that collects
 information about a user's pets should not ask the user for the dog's name and breed if the user said they do not have a
 dog. The `should_ask` argument that is present on each question provides a way to achieve this functionality.
 
