@@ -1,6 +1,6 @@
 # Usage Guide
 
-This is section provides detailed descriptions of al the ways `columbo` can be used. If you are new to `columbo`, the
+This section provides detailed descriptions of all the ways `columbo` can be used. If you are new to `columbo`, the
 [Getting Started][getting-started] page provides a gradual introduction of the basic functionality with examples.
 
 ## Static vs Dynamic Values
