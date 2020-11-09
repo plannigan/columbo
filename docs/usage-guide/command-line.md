@@ -18,7 +18,7 @@ For example:
 | User Email | user-email |
 
 !!! warning
-    As a result of the transformation process, it is possible to have a sequence of question with unique `name`s for the
+    As a result of the transformation process, it is possible to have a sequence of questions with unique `name`s for the
     `Answers` dictionary, but cause a collision when creating command line arguments.
 
 For `BasicQuestion` & `Choice`, the result will be preceded with two dashes (ex: `--user` or `--user-email`).
