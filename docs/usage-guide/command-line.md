@@ -5,9 +5,9 @@ command line argument parser based on the list of `Interaction`s. When used in t
 ignored. To produce a consistent command line argument format, the value of each question's `name` will be transformed
 using the following rule:
 
-* If the there are any upper-case characters, lower-case characters will be used.
-* If the there are is a space character, a dash will be used in its place.
-* If the there are is an underscore character, a dash will be used in its place.
+* If there are any upper-case characters, lower-case characters will be used.
+* If there are is a space character, a dash will be used in its place.
+* If there are is an underscore character, a dash will be used in its place.
 
 For example:
 
