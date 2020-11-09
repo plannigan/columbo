@@ -135,7 +135,7 @@ Note that in this case, the `Answers` dictionary only has an answer to the first
 ### Branching Paths
 
 A question that is part of a branching path is very similar to an optional question. It is still a question where
-`should_ask` was given to determine if the question should be skipped our not. The branching aspect comes there being at
+the `should_ask` function was provided to determine if the question should be skipped or not. The branching aspect comes there being at
 least two sets of optional questions. Each set has a `should_ask` argument that checks for a different state for a
 single answer. In this way, only one of the sets of optional questions will ever be asked.
 
