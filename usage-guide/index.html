@@ -299,6 +299,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#only-asking-some-questions" class="md-nav__link">
+    Only Asking Some Questions
+  </a>
+  
+    <nav class="md-nav" aria-label="Only Asking Some Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-questions" class="md-nav__link">
+    Optional Questions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching-paths" class="md-nav__link">
+    Branching Paths
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#command-line-interface" class="md-nav__link">
     Command Line Interface
   </a>
@@ -422,6 +449,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#only-asking-some-questions" class="md-nav__link">
+    Only Asking Some Questions
+  </a>
+  
+    <nav class="md-nav" aria-label="Only Asking Some Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-questions" class="md-nav__link">
+    Optional Questions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching-paths" class="md-nav__link">
+    Branching Paths
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#command-line-interface" class="md-nav__link">
     Command Line Interface
   </a>
@@ -482,11 +536,10 @@ the constructor requires an argument to be a static value.</p>
 <li><code>default</code>: The default answer to the question. This is used when the user does not provide an explicit value.</li>
 <li><code>should_ask</code>: Optional. When given, the argument should be a function that accepts an <code>Answers</code> dictionary and returns
     <code>True</code> or <code>False</code>. Returning <code>True</code> indicates that the question should be asked. Returning <code>False</code> will skip the
-    question and not present it to the user. The <code>Answers</code> dictionary will contain the value for each previous question
-    that has been asked. Not providing this argument means that the question will always be asked. <strong>When  <code>columbo</code>
-    skips a question, no entry in the <code>Answers</code> dictionary will be created</strong>.</li>
+    question and not present it to the user. See <a href="#only-asking-some-questions">Only Asking Some Questions</a> for more
+    details.</li>
 <li><code>cli_help</code>: Optional. A help message to be displayed for command line interface. See
-    <a href="#command-line-interface">CLI documentation</a> to more details. <strong>Can't be dynamic</strong>.</li>
+    <a href="#command-line-interface">CLI documentation</a> for more details. <strong>Can't be dynamic</strong>.</li>
 </ul>
 <h3 id="basic-question">Basic Question</h3>
 <p>In addition to the arguments <a href="#all-questions">mentioned above</a>, <code>BasicQuestion</code> also accepts the following argument.</p>
@@ -506,6 +559,125 @@ the constructor requires an argument to be a static value.</p>
 <h3 id="confirm">Confirm</h3>
 <p><code>Confirm</code> doesn't take any additional arguments that weren't <a href="#all-questions">mentioned above</a>. However, the <code>default</code>
 argument takes a <code>bool</code> instead of <code>str</code>.</p>
+<h2 id="only-asking-some-questions">Only Asking Some Questions</h2>
+<p>There are situations where a question should be asked some times, but not all the time. For example, a program that collects
+information about a user's pets should not ask the user for the dog's name and breed if the user said they do not have a
+dog. The <code>should_ask</code> argument that is present on each question provides a way to achieve this functionality.</p>
+<p>Similarly, <code>should_ask</code> can be used to provide branching paths to the user. An example of these branching paths is a
+<a href="https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure">Choose Your Own Adventure</a> story. The story provides the reader with choices during the
+adventure. These choices introduce diverging paths of interactions that may or may not join at the end.</p>
+<div class="admonition warning be careful when skipping a question">
+<p class="admonition-title">Warning</p>
+<p>When <code>columbo</code> skips over a question, the <code>Answers</code> dictionary will <strong>NOT</strong> contain a key-value pair for the
+skipped question. The examples below will demonstrate this result.</p>
+</div>
+<h3 id="optional-questions">Optional Questions</h3>
+<p>The following is a basic example that has two optional questions that are not asked based on the answer to the first
+question.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+
+<span class="k">def</span> <span class="nf">does_user_have_a_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">does_user_have_a_dog</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">does_user_have_a_dog</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If the user accepts the default answers for each of these questions, the output will be:</p>
+<div class="highlight"><pre><span></span><code>{&quot;has_dog&quot;: True, &quot;dog_name&quot;: &quot;Kaylee&quot;, &quot;dog_breed&quot;: &quot;Basset Hound&quot;}
+</code></pre></div>
+
+<p>However, when the user answers the first question with "no", the output will be:</p>
+<div class="highlight"><pre><span></span><code>{&quot;has_dog&quot;: False}
+</code></pre></div>
+
+<p>Note that in this case, the <code>Answers</code> dictionary only has an answer to the first question.</p>
+<h3 id="branching-paths">Branching Paths</h3>
+<p>A question that is part of a branching path is very similar to an optional question. It is still a question where
+the <code>should_ask</code> function was provided to determine if the question should be skipped or not. The branching aspect comes there being at
+least two sets of optional questions. Each set has a <code>should_ask</code> argument that checks for a different state for a
+single answer. In this way, only one of the sets of optional questions will ever be asked.</p>
+<p>The following is an example of a short story that has two divergent paths that join at the end. Each individual question
+isn't different from the optional questions <a href="#optional-questions">demonstrated above</a>. The program achieves the
+branching paths by supplying different <code>should_ask</code> values that will never both evaluate to <code>True</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+
+<span class="k">def</span> <span class="nf">went_left</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span>
+
+<span class="k">def</span> <span class="nf">went_right</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span>
+
+<span class="k">def</span> <span class="nf">outcome</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_key&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;You try the the key on the lock. With a little jiggling, it finally opens. You open the gate and leave.&quot;</span>
+    <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;You hit the lock with the hammer and it falls to the ground. You open the gate and leave.&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="s2">&quot;Unable to open the gate yourself, you yell for help. A farmer in the nearby field hears you. &quot;</span>
+        <span class="s2">&quot;He reaches into his pocket and pulls out a key to unlock the gate and open it. &quot;</span>
+        <span class="s2">&quot;As you walk through the archway he says, &quot;</span>
+        <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">What I don&#39;t understand is how you got in there. This is the only key.</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
+        <span class="s2">&quot;You wake up in a room that you do not recognize. &quot;</span>
+        <span class="s2">&quot;In the dim light, you can see a large door to the left and a small door to the right.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
+        <span class="s2">&quot;which_door&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Which door do you walk through?&quot;</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">],</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
+        <span class="s2">&quot;has_key&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;You step into a short hallway and the door closes behind you, refusing to open again. &quot;</span>
+        <span class="s2">&quot;As you walk down the hallway, there is a small side table with a key on it.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Do you pick up the key before going through the door at the other end?&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">went_left</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
+        <span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;You step into smaller room and the door closes behind, refusing to open again. &quot;</span>
+        <span class="s2">&quot;The room has a single door on the opposite side of the room and a work bench with a hammer on it.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;Do you pick up the hammer before going through the door at the other side?&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">went_right</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
+        <span class="s2">&quot;You enter a small courtyard with high walls. There is an archway that would allow you to go free, &quot;</span>
+        <span class="s2">&quot;but the gate is locked.&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="n">outcome</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
+</code></pre></div>
+
+<p>For this example, the output display while iterating over the interactions is the interesting part of the program.
+However, it is important to note that is only possible for the <code>Answers</code> dictionary to have a key-value pair for
+<code>has_key</code> or <code>has_hammer</code>, not both.</p>
 <h2 id="command-line-interface">Command Line Interface</h2>
 <p>In addition to providing an interactive terminal based UI to ask the user each question, <code>columbo</code> can also generate a
 command line argument parser based on the list of <code>Interaction</code>s. When used in this manor, <code>Echo</code> &amp; <code>Acknowledge</code> are
