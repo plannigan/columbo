@@ -118,7 +118,7 @@ user_answers = columbo.get_answers(interactions)
 print(user_answers)
 ```
 
-If the user accepts the default answers for each of these questions, the output will be.
+If the user accepts the default answers for each of these questions, the output will be:
 
 ```
 {"has_dog": True, "dog_name": "Kaylee", "dog_breed": "Basset Hound"}
