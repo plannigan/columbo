@@ -194,6 +194,6 @@ Read the [Usage Guide][usage-guide] for a more detailed descriptions of the ways
 Read the [API Reference][api-reference] for specific information about all the functions and classes made available by
 `columbo`.
 
-[usage-guide]: usage-guide.md
+[usage-guide]: usage-guide/fundamentals.md
 [docs-main]: /
 [api-reference]: api.md

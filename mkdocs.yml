@@ -6,7 +6,11 @@ docs_dir: docs
 nav:
   - Overview: index.md
   - Getting Started: getting-started.md
-  - Usage Guide: usage-guide.md
+  - Usage Guide:
+    - Fundamentals: usage-guide/fundamentals.md
+    - Interactions: usage-guide/interactions.md
+    - Optional Questions & Branching: usage-guide/optional-questions-and-branching.md
+    - Command Line Interface: usage-guide/command-line.md
   - Reference: api.md
   - Changelog: CHANGELOG.md
 theme: material
@@ -16,3 +20,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.keys
   - pymdownx.superfences
+plugins:
+  - redirects:
+      redirect_maps:
+        usage-guide.md: usage-guide/fundamentals.md
