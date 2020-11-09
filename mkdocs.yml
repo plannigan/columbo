@@ -1,6 +1,7 @@
 site_name: columbo Documentation
 repo_url: https://github.com/wayfair-incubator/columbo/
 repo_name: wayfair-incubator/columbo
+edit_uri: edit/main/docs/
 docs_dir: docs
 nav:
   - Overview: index.md
@@ -8,6 +9,7 @@ nav:
   - Usage Guide:
     - Fundamentals: usage-guide/fundamentals.md
     - Interactions: usage-guide/interactions.md
+    - Optional Questions & Branching: usage-guide/optional-questions-and-branching.md
     - Command Line Interface: usage-guide/command-line.md
   - Reference: api.md
   - Changelog: CHANGELOG.md

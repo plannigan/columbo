@@ -27,11 +27,10 @@
 * `default`: The default answer to the question. This is used when the user does not provide an explicit value.
 * `should_ask`: Optional. When given, the argument should be a function that accepts an `Answers` dictionary and returns
     `True` or `False`. Returning `True` indicates that the question should be asked. Returning `False` will skip the
-    question and not present it to the user. The `Answers` dictionary will contain the value for each previous question
-    that has been asked. Not providing this argument means that the question will always be asked. **When  `columbo`
-    skips a question, no entry in the `Answers` dictionary will be created**.
+    question and not present it to the user. See [Only Asking Some Questions](#only-asking-some-questions) for more
+    details.
 * `cli_help`: Optional. A help message to be displayed for command line interface. See
-    [CLI documentation](#command-line-interface) to more details. **Can't be dynamic**.
+    [CLI documentation](#command-line-interface) for more details. **Can't be dynamic**.
 
 ### Basic Question
 
