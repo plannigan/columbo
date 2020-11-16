@@ -15,7 +15,7 @@ A `Validator` should be a function that accepts a string & an `Answers` dictiona
 (`Callable[[str,Answers],Optional[str]]`). The first value is the response provided by the user. The second value is an
 `Answers` dictionary that will contain the value for each previous question that has been asked. If the response is a
 valid answer, the function should return `None`. If the response is invalid, the function should return a string
-describing why the value is invalid. This message will be displayed to the user, and the question will be re-asked.
+describing why the value is invalid. This message will be displayed to the user and the question will be re-asked.
 
 The example below a question that asks for the user's email address. The `Validator` provides a simple check to see if
 the email address seems valid<sup>1</sup>. If the user's response doesn't contain an `@` character with at least one
