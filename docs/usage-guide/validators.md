@@ -19,7 +19,7 @@ describing why the value is invalid. This message will be displayed to the user 
 
 The example below shows a question that asks for the user's email address. The `Validator` provides a simple check to see if
 the email address seems valid<sup>1</sup>. If the user's response doesn't contain an `@` character with at least one
-word character on each side, the response will not be accepted.
+word character on each side then the response will not be accepted.
 
 ```python
 from typing import List, Optional
