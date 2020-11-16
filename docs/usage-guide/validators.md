@@ -11,11 +11,12 @@ the answer is not valid and ask them to try again.
     A `Choice` question will only continue when ++enter++ is pressed if the input matches the number `columbo` assigned
     to one of the choices.
 
-A `Validator` should be a function that accepts a string & an `Answers` dictionary and returns `None` or a string
-(`Callable[[str,Answers],Optional[str]]`). The first value is the response provided by the user. The second value is an
-`Answers` dictionary that will contain the value for each previous question that has been asked. If the response is a
-valid answer, the function should return `None`. If the response is invalid, the function should return a string
-describing why the value is invalid. This message will be displayed to the user and the question will be re-asked.
+A `Validator` must be a function that accepts a string and an `Answers` dictionary. The function must returns `None` or
+a string. To say it another way, the type signature of function must be `Callable[[str,Answers],Optional[str]]`. The
+first value is the response provided by the user. The second value is an `Answers` dictionary that will contain the
+value for each previous question that has been asked. If the response is a valid answer, the function should return
+`None`. If the response is invalid, the function should return a string describing why the value is invalid. `columbo`
+will display this message before asking the user the question again.
 
 The example below shows a question that asks for the user's email address. The `Validator` provides a simple check to see if
 the email address seems valid<sup>1</sup>. If the user's response doesn't contain an `@` character with at least one
