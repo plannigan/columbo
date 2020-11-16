@@ -20,8 +20,12 @@ the constructor requires an argument to be a static value.
 ## Detailed Sections
 
 * [Interactions][interactions]
+* [Optional Questions & Branching][optional-questions]
+* [Validators][validators]
 * [Command Line Interface][command-line]
 
 [getting-started]: ../getting-started.md
 [interactions]: interactions.md
+[optional-questions]: optional-questions-and-branching.md
+[validators]: validators.md
 [command-line]: command-line.md

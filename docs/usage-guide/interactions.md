@@ -27,21 +27,17 @@
 * `default`: The default answer to the question. This is used when the user does not provide an explicit value.
 * `should_ask`: Optional. When given, the argument should be a function that accepts an `Answers` dictionary and returns
     `True` or `False`. Returning `True` indicates that the question should be asked. Returning `False` will skip the
-    question and not present it to the user. See [Only Asking Some Questions](#only-asking-some-questions) for more
-    details.
+    question and not present it to the user. See [Optional Questions & Branching][optional-questions] for more details.
 * `cli_help`: Optional. A help message to be displayed for command line interface. See
-    [CLI documentation](#command-line-interface) for more details. **Can't be dynamic**.
+    [CLI documentation][command-line] for more details. **Can't be dynamic**.
 
 ### Basic Question
 
 In addition to the arguments [mentioned above](#all-questions), `BasicQuestion` also accepts the following argument.
 
-* `validator`: Optional. When given, the argument should be a function that accepts a string and an `Answers`
-    dictionary. The first value is the answer provided by the user. The `Answers` dictionary will contain the value for
-    each previous question that has been asked. If the value is valid, the function and should return `None`. If the
-    value is invalid, the function should return a string describing why the value is invalid. This message will be
-    displayed to the user, and the question will be re-asked. Not providing this argument means that any value provided
-    by the user will be accepted.
+* `validator`: Optional. When given, the argument should be a function that checks if the user response is valid. Not
+    providing this argument means that any value provided by the user will be accepted. See
+    [Validators][validators] for more details.
 
 ### Choice
 
@@ -53,3 +49,7 @@ In addition to the arguments [mentioned above](#all-questions), `Choice` also ac
 
 `Confirm` doesn't take any additional arguments that weren't [mentioned above](#all-questions). However, the `default`
 argument takes a `bool` instead of `str`.
+
+[optional-questions]: optional-questions-and-branching.md
+[command-line]: command-line.md
+[validators]: validators.md

@@ -10,6 +10,7 @@ nav:
     - Fundamentals: usage-guide/fundamentals.md
     - Interactions: usage-guide/interactions.md
     - Optional Questions & Branching: usage-guide/optional-questions-and-branching.md
+    - Validators: usage-guide/validators.md
     - Command Line Interface: usage-guide/command-line.md
   - Reference: api.md
   - Changelog: CHANGELOG.md
