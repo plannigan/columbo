@@ -6,7 +6,7 @@ that the text provided by the user satisfies those constraints. If the answer is
 the answer is not valid and ask them to try again.
 
 !!! Note Implicit Validators
-    While, `Choice` and `Confirm` do not expose a `validator` argument, they still ensure that the answer is valid.
+    While `Choice` and `Confirm` do not expose a `validator` argument they still ensure that the answer is valid.
     A `Confirm` question will only continue when ++y++, ++n++, or ++enter++ are pressed. Any other keys will be ignored.
     A `Choice` question will only continue when ++enter++ is pressed if the input matches the number `columbo` assigned
     to one of the choices.
