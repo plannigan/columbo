@@ -17,7 +17,7 @@ A `Validator` should be a function that accepts a string & an `Answers` dictiona
 valid answer, the function should return `None`. If the response is invalid, the function should return a string
 describing why the value is invalid. This message will be displayed to the user and the question will be re-asked.
 
-The example below a question that asks for the user's email address. The `Validator` provides a simple check to see if
+The example below shows a question that asks for the user's email address. The `Validator` provides a simple check to see if
 the email address seems valid<sup>1</sup>. If the user's response doesn't contain an `@` character with at least one
 word character on each side, the response will not be accepted.
 
