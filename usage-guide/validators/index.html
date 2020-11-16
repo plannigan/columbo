@@ -13,7 +13,7 @@
     
     
       
-        <title>Command Line Interface - columbo Documentation</title>
+        <title>Validators - columbo Documentation</title>
       
     
     
@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#command-line-interface" class="md-skip">
+        <a href="#validators" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Command Line Interface
+              Validators
             
           </span>
         </div>
@@ -233,18 +233,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../validators/" class="md-nav__link">
-      Validators
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -256,9 +244,21 @@
     
     
     <a href="./" class="md-nav__link md-nav__link--active">
-      Command Line Interface
+      Validators
     </a>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../command-line/" class="md-nav__link">
+      Command Line Interface
+    </a>
   </li>
 
         
@@ -318,55 +318,62 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wayfair-incubator/columbo/edit/main/docs/usage-guide/command-line.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/wayfair-incubator/columbo/edit/main/docs/usage-guide/validators.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="command-line-interface">Command Line Interface</h1>
-<p>In addition to providing an interactive terminal based UI to ask the user each question, <code>columbo</code> can also generate a
-command line argument parser based on the list of <code>Interaction</code>s. When used in this manner, <code>Echo</code> &amp; <code>Acknowledge</code> are
-ignored. To produce a consistent command line argument format, the value of each question's <code>name</code> will be transformed
-using the following rule:</p>
-<ul>
-<li>If there are any upper-case characters, lower-case characters will be used.</li>
-<li>If there are is a space character, a dash will be used in its place.</li>
-<li>If there are is an underscore character, a dash will be used in its place.</li>
-</ul>
-<p>For example:</p>
-<table>
-<thead>
-<tr>
-<th>Original</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>user</td>
-<td>user</td>
-</tr>
-<tr>
-<td>user_email</td>
-<td>user-email</td>
-</tr>
-<tr>
-<td>User Email</td>
-<td>user-email</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>As a result of the transformation process, it is possible to have a sequence of questions with unique <code>name</code>s for the
-<code>Answers</code> dictionary, but cause a collision when creating command line arguments.</p>
+                <h1 id="validators">Validators</h1>
+<p><code>BasicQuestion</code> allows the user to provide arbitrary text as the answer to the question. However, there are frequently
+constraints on what is considered a valid answer. Providing a <code>Validator</code> for the question allows <code>columbo</code> to verify
+that the text provided by the user satisfies those constraints. If the answer is not valid, <code>columbo</code> will tell the user that
+the answer is not valid and ask them to try again.</p>
+<div class="admonition note implicit validators">
+<p class="admonition-title">Note</p>
+<p>While <code>Choice</code> and <code>Confirm</code> do not expose a <code>validator</code> argument they still ensure that the answer is valid.
+A <code>Confirm</code> question will only continue when <span class="keys"><kbd class="key-y">Y</kbd></span>, <span class="keys"><kbd class="key-n">N</kbd></span>, or <span class="keys"><kbd class="key-enter">Enter</kbd></span> are pressed. Any other keys will be ignored.
+A <code>Choice</code> question will only continue when <span class="keys"><kbd class="key-enter">Enter</kbd></span> is pressed if the input matches the number <code>columbo</code> assigned
+to one of the choices.</p>
 </div>
-<p>For <code>BasicQuestion</code> &amp; <code>Choice</code>, the result will be preceded with two dashes (ex: <code>--user</code> or <code>--user-email</code>).</p>
-<p>For <code>Confirm</code>, <code>columbo</code> produces two command lines arguments. After following the transformation rules, the command
-line arguments will be <code>--{NAME}</code> &amp; <code>--no-{NAME}</code> to explicitly specify <code>True</code> or <code>False</code>, respectively (ex:
-<code>--likes-dogs</code> and <code>--no-likes-dogs</code>)</p>
-<p>Since the argument parser must be constructed before receiving any user input, all <code>Question</code>s produce arguments.
-<code>should_ask</code> is only considered when processing the given arguments.</p>
+<p>A <code>Validator</code> must be a function that accepts a string and an <code>Answers</code> dictionary. The function must returns <code>None</code> or
+a string. To say it another way, the type signature of function must be <code>Callable[[str,Answers],Optional[str]]</code>. The
+first value is the response provided by the user. The second value is an <code>Answers</code> dictionary that will contain the
+value for each previous question that has been asked. If the response is a valid answer, the function should return
+<code>None</code>. If the response is invalid, the function should return a string describing why the value is invalid. <code>columbo</code>
+will display this message before asking the user the question again.</p>
+<p>The example below shows a question that asks for the user's email address. The <code>Validator</code> provides a simple check to see if
+the email address seems valid<sup>1</sup>. If the user's response doesn't contain an <code>@</code> character with at least one
+word character on each side then the response will not be accepted.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">columbo</span>
+
+<span class="k">def</span> <span class="nf">is_email</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">error_message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\w+@\w+&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> is not a valid email&quot;</span>
+
+    <span class="k">return</span> <span class="n">error_message</span>
+
+<span class="n">interactions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">columbo</span><span class="o">.</span><span class="n">Interaction</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What email address should be used to contact you?&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span><span class="p">,</span>
+        <span class="n">validator</span><span class="o">=</span><span class="n">is_email</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
+</code></pre></div>
+
+<p><sup>1</sup>: The regular expression for checking for an RFC 822 compliant email address is
+<a href="http://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html">overly complicated</a>. Additionally, that only ensures that the
+text is valid. It does not confirm if the host will accept emails sent to that address or if the user is the owner of
+the email address.</p>
                 
               
               
@@ -385,7 +392,7 @@ line arguments will be <code>--{NAME}</code> &amp; <code>--no-{NAME}</code> to e
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../validators/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../optional-questions-and-branching/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -394,19 +401,19 @@ line arguments will be <code>--{NAME}</code> &amp; <code>--no-{NAME}</code> to e
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Validators
+                Optional Questions & Branching
               </div>
             </div>
           </a>
         
         
-          <a href="../../api/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../command-line/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Reference
+                Command Line Interface
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

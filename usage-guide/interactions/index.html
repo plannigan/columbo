@@ -314,6 +314,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../validators/" class="md-nav__link">
+      Validators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../command-line/" class="md-nav__link">
       Command Line Interface
     </a>
@@ -461,20 +473,16 @@
 <li><code>default</code>: The default answer to the question. This is used when the user does not provide an explicit value.</li>
 <li><code>should_ask</code>: Optional. When given, the argument should be a function that accepts an <code>Answers</code> dictionary and returns
     <code>True</code> or <code>False</code>. Returning <code>True</code> indicates that the question should be asked. Returning <code>False</code> will skip the
-    question and not present it to the user. See <a href="#only-asking-some-questions">Only Asking Some Questions</a> for more
-    details.</li>
+    question and not present it to the user. See <a href="../optional-questions-and-branching/">Optional Questions &amp; Branching</a> for more details.</li>
 <li><code>cli_help</code>: Optional. A help message to be displayed for command line interface. See
-    <a href="#command-line-interface">CLI documentation</a> for more details. <strong>Can't be dynamic</strong>.</li>
+    <a href="../command-line/">CLI documentation</a> for more details. <strong>Can't be dynamic</strong>.</li>
 </ul>
 <h3 id="basic-question">Basic Question</h3>
 <p>In addition to the arguments <a href="#all-questions">mentioned above</a>, <code>BasicQuestion</code> also accepts the following argument.</p>
 <ul>
-<li><code>validator</code>: Optional. When given, the argument should be a function that accepts a string and an <code>Answers</code>
-    dictionary. The first value is the answer provided by the user. The <code>Answers</code> dictionary will contain the value for
-    each previous question that has been asked. If the value is valid, the function and should return <code>None</code>. If the
-    value is invalid, the function should return a string describing why the value is invalid. This message will be
-    displayed to the user, and the question will be re-asked. Not providing this argument means that any value provided
-    by the user will be accepted.</li>
+<li><code>validator</code>: Optional. When given, the argument should be a function that checks if the user response is valid. Not
+    providing this argument means that any value provided by the user will be accepted. See
+    <a href="../validators/">Validators</a> for more details.</li>
 </ul>
 <h3 id="choice">Choice</h3>
 <p>In addition to the arguments <a href="#all-questions">mentioned above</a>, <code>Choice</code> also accepts the following argument.</p>
