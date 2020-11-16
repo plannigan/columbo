@@ -2,7 +2,7 @@
 
 `BasicQuestion` allows the user to provide arbitrary text as the answer to the question. However, there are frequently
 constraints on what is considered a valid answer. Providing a `Validator` for the question allows `columbo` to verify
-that the text provided by the user satisfies those constraints. If the answer is not valid, `columbo` will the user that
+that the text provided by the user satisfies those constraints. If the answer is not valid, `columbo` will tell the user that
 the answer is not valid and ask them to try again.
 
 !!! Note Implicit Validators
