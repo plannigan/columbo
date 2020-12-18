@@ -21,6 +21,7 @@ setuptools.setup(
     author_email="plannigan@wayfair.com",
     description="Specify a dynamic set of questions to ask a user and get their answers.",
     long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     packages=setuptools.find_packages(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests"]
     ),

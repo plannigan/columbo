@@ -1,8 +1,9 @@
 # Columbo
 
 [![CI pipeline status](https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main)][ci]
+[![PyPI](https://img.shields.io/pypi/v/columbo)][pypi]
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/columbo)][pypi]
 [![codecov](https://codecov.io/gh/wayfair-incubator/columbo/branch/main/graph/badge.svg)][codecov]
-TODO: PyPi Release Badge
 
 `columbo` provides a way to specify a dynamic set of questions to ask a user and get their answers.
 
@@ -97,6 +98,7 @@ To learn more about the various ways `columbo` can be used, read the [Usage Guid
 To find detailed information about a specific function or class, read the [API Reference][api-reference].
 
 [ci]: https://github.com/wayfair-incubator/columbo/actions
+[pypi]: https://pypi.org/project/columbo/
 [codecov]: https://codecov.io/gh/wayfair-incubator/columbo
 [getting-started]: getting-started.md
 [usage-guide]: usage-guide/fundamentals.md
