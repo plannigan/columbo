@@ -93,7 +93,7 @@ TODO
 Check out the [project documentation][columbo-docs].
 
 For an overview on how repository structure and how to work with the code base, read the
-[Development Guide][development-guide].
+[Development Guide][development-docs].
 
 [ci]: https://github.com/wayfair-incubator/columbo/actions
 [pypi]: https://pypi.org/project/columbo/
@@ -101,4 +101,4 @@ For an overview on how repository structure and how to work with the code base, 
 [mypy-home]: http://mypy-lang.org/
 [black-home]: https://github.com/psf/black
 [columbo-docs]: https://github.com/wayfair-incubator/columbo/
-[columbo-docs]: https://github.com/wayfair-incubator/columbo/development-guide/
+[development-docs]: https://github.com/wayfair-incubator/columbo/development-guide/
