@@ -22,7 +22,6 @@ Specify a dynamic set of questions to ask a user and get their answers.
     * To decide if a question should be skipped
 * Accept answers from the command line in addition to prompting the user.
 
-
 ## Example
 
 ### User Prompts
