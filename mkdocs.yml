@@ -13,6 +13,7 @@ nav:
     - Validators: usage-guide/validators.md
     - Command Line Interface: usage-guide/command-line.md
   - Reference: api.md
+  - Development Guide: development-guide.md
   - Changelog: CHANGELOG.md
 theme: material
 markdown_extensions:
