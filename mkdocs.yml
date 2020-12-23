@@ -26,3 +26,7 @@ plugins:
   - redirects:
       redirect_maps:
         usage-guide.md: usage-guide/fundamentals.md
+extra_css:
+  - css/version-select.css
+extra_javascript:
+  - js/version-select.js
