@@ -16,6 +16,13 @@ services:
     <<: *devbox
     command: docker/run_tests.sh --format-code
 
+  bump:
+    <<: *devbox
+    entrypoint: docker/bump_version.sh
+    volumes:
+      - ./:/app
+      - ~/.gitconfig:/home/columbo/.gitconfig # allow script to commit as user
+
   # generate and serve the project documentation locally
   mkdocs:
     image: "squidfunk/mkdocs-material:6.0.2"
