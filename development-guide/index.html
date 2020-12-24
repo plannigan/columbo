@@ -552,14 +552,23 @@ grabs the version from <code>__init__.py</code> without actually importing.</p>
 <li><strong>Requirements-test.txt</strong> - Lists all direct requirements needed to run the test suite &amp; lints.</li>
 </ul>
 <h2 id="publishing-the-package">Publishing the Package</h2>
-<p>TODO: Not currently implemented.</p>
+<p>TODO: The project currently only has parts of this process implemented. The CI pipeline does not currently publish the
+wheel and source distribution to <a href="https://pypi.org/project/columbo/">PyPI</a>. For now, this must be done manually.</p>
 <p>Once the package is ready to be released, there are a few things that need to be done:</p>
 <ol>
-<li>Create a new Pull Request that increase the version number from the previous release in <code>columbo/__init__.py</code> and
-    <code>CHANGELOG.md</code>. <a href="https://semver.org/">Semantic versioning</a> is used to make it clear to people using your package what types of
-    changes are in the new version.</li>
-<li>Ensure this change has been merged to the default branch with all the code that should be included in the release.</li>
-<li>Create a new GitHub release. The tag should be named: <code>vX.Y.Z</code></li>
+<li>Start with a local clone of the repo on the default branch with a clean working tree.</li>
+<li>
+<p>Run the version bump script with the appropriate part name (<code>major</code>, <code>minor</code>, or <code>patch</code>).
+    Example: <code>docker-compose run --rm bump minor</code></p>
+<p>This wil create a new branch, updates all affected files with the new version, and commit the changes to the branch.</p>
+</li>
+<li>
+<p>Push the new branch to create a new pull request.</p>
+</li>
+<li>Get the pull request approved.</li>
+<li>Merge the pull request to the default branch.</li>
+<li>Double check the default branch has all the code that should be included in the release.</li>
+<li>Create a new GitHub release. The tag should be named <code>vX.Y.Z</code> to match the new version number.</li>
 </ol>
 <p>This will trigger the CI system to build a wheel and a source distributions of the package and push them to
 <a href="https://pypi.org/project/columbo/">PyPI</a>.</p>
