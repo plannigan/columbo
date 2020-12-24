@@ -99,6 +99,7 @@ Once the package is ready to be released, there are a few things that need to be
     Example: `docker-compose run --rm bump minor`
     
     This wil create a new branch, updates all affected files with the new version, and commit the changes to the branch.
+
 3. Push the new branch to create a new pull request.
 4. Get the pull request approved.
 5. Merge the pull request to the default branch.
