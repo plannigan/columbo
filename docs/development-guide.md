@@ -89,15 +89,22 @@ grabs the version from `__init__.py` without actually importing.
 
 ## Publishing the Package
 
-TODO: Not currently implemented.
+TODO: The project currently only has parts of this process implemented. The CI pipeline does not currently publish the
+wheel and source distribution to [PyPI][pypi]. For now, this must be done manually.
 
 Once the package is ready to be released, there are a few things that need to be done:
 
-1. Create a new Pull Request that increase the version number from the previous release in `columbo/__init__.py` and
-    `CHANGELOG.md`. [Semantic versioning][sem-ver] is used to make it clear to people using your package what types of
-    changes are in the new version.
-2. Ensure this change has been merged to the default branch with all the code that should be included in the release.
-3. Create a new GitHub release. The tag should be named: `vX.Y.Z`
+1. Start with a local clone of the repo on the default branch with a clean working tree.
+2. Run the version bump script with the appropriate part name (`major`, `minor`, or `patch`).
+    Example: `docker-compose run --rm bump minor`
+    
+    This wil create a new branch, updates all affected files with the new version, and commit the changes to the branch.
+
+3. Push the new branch to create a new pull request.
+4. Get the pull request approved.
+5. Merge the pull request to the default branch.
+6. Double check the default branch has all the code that should be included in the release.
+7. Create a new GitHub release. The tag should be named `vX.Y.Z` to match the new version number.
 
 This will trigger the CI system to build a wheel and a source distributions of the package and push them to
 [PyPI][pypi].
