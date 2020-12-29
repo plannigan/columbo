@@ -8,8 +8,9 @@
       
       
       
+      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.2">
     
     
       
@@ -17,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.73f7c429.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -28,12 +29,14 @@
     
       
         
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
+    
+      <link rel="stylesheet" href="../../css/version-select.css">
     
     
       
@@ -50,6 +53,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
       
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -65,7 +69,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../.." title="columbo Documentation" class="md-header-nav__button md-logo" aria-label="columbo Documentation">
       
@@ -77,18 +83,20 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             columbo Documentation
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             
               Optional Questions & Branching
             
           </span>
         </div>
-      
+      </div>
     </div>
     
     
@@ -117,10 +125,16 @@
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="columbo Documentation" class="md-nav__button md-logo" aria-label="columbo Documentation">
       
@@ -151,6 +165,7 @@
       
 
 
+
   <li class="md-nav__item">
     <a href="../.." class="md-nav__link">
       Overview
@@ -161,6 +176,7 @@
       
       
       
+
 
 
   <li class="md-nav__item">
@@ -174,10 +190,13 @@
       
       
 
+
   
 
 
+  
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
     
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
@@ -198,6 +217,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="../fundamentals/" class="md-nav__link">
       Fundamentals
@@ -210,6 +230,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="../interactions/" class="md-nav__link">
       Interactions
@@ -220,6 +241,7 @@
           
           
           
+
 
   
 
@@ -295,6 +317,7 @@
           
 
 
+
   <li class="md-nav__item">
     <a href="../validators/" class="md-nav__link">
       Validators
@@ -305,6 +328,7 @@
           
           
           
+
 
 
   <li class="md-nav__item">
@@ -324,6 +348,7 @@
       
 
 
+
   <li class="md-nav__item">
     <a href="../../api/" class="md-nav__link">
       Reference
@@ -336,6 +361,7 @@
       
 
 
+
   <li class="md-nav__item">
     <a href="../../development-guide/" class="md-nav__link">
       Development Guide
@@ -346,6 +372,7 @@
       
       
       
+
 
 
   <li class="md-nav__item">
@@ -362,7 +389,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -468,15 +496,12 @@ question.</p>
 <span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
 </code></pre></div>
-
 <p>If the user accepts the default answers for each of these questions, the output will be:</p>
 <div class="highlight"><pre><span></span><code>{&quot;has_dog&quot;: True, &quot;dog_name&quot;: &quot;Kaylee&quot;, &quot;dog_breed&quot;: &quot;Basset Hound&quot;}
 </code></pre></div>
-
 <p>However, when the user answers the first question with "no", the output will be:</p>
 <div class="highlight"><pre><span></span><code>{&quot;has_dog&quot;: False}
 </code></pre></div>
-
 <p>Note that in this case, the <code>Answers</code> dictionary only has an answer to the first question.</p>
 <h3 id="branching-paths">Branching Paths</h3>
 <p>A question that is part of a branching path is very similar to an optional question. It is still a question where
@@ -544,7 +569,6 @@ branching paths by supplying different <code>should_ask</code> values that will 
 <span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
 </code></pre></div>
-
 <p>For this example, the output display while iterating over the interactions is the interesting part of the program.
 However, it is important to note that is only possible for the <code>Answers</code> dictionary to have a key-value pair for
 <code>has_key</code> or <code>has_hammer</code>, not both.</p>
@@ -658,18 +682,20 @@ line arguments will be <code>--{NAME}</code> &amp; <code>--no-{NAME}</code> to e
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
-      <script src="../../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "../../assets/javascripts/worker/search.8c7e0a7e.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../js/version-select.js"></script>
       
     
   </body>
