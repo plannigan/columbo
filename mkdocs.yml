@@ -14,7 +14,7 @@ nav:
     - Command Line Interface: usage-guide/command-line.md
   - Reference: api.md
   - Development Guide: development-guide.md
-  - Changelog: CHANGELOG.md
+  - Changelog: changelog.md
 theme: material
 markdown_extensions:
   - admonition
@@ -26,6 +26,7 @@ plugins:
   - redirects:
       redirect_maps:
         usage-guide.md: usage-guide/fundamentals.md
+        CHANGELOG.md: changelog.md
 extra_css:
   - css/version-select.css
 extra_javascript:
