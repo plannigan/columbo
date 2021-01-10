@@ -10,5 +10,5 @@ mkdocs-redirects==1.0.1
 mypy==0.790
 pytest==6.2.1
 pytest-cov==2.10.1
-pytest-mock==3.4.0
+pytest-mock==3.5.0
 pdbpp
