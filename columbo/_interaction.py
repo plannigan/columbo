@@ -93,7 +93,7 @@ class Acknowledge:
 
 class Question(ABC):
     """
-    A prompt to the user that produces an answer.
+    Base class for a prompt to the user that produces an answer.
     """
 
     def __init__(
@@ -154,6 +154,10 @@ class Question(ABC):
 
 
 class Confirm(Question):
+    """
+    A question with a yes or no answer.
+    """
+
     def __init__(
         self,
         name: str,
@@ -228,6 +232,10 @@ class Confirm(Question):
 
 
 class Choice(Question):
+    """
+    A question with a set of possible answers.
+    """
+
     def __init__(
         self,
         name: str,
@@ -322,6 +330,10 @@ class Choice(Question):
 
 
 class BasicQuestion(Question):
+    """
+    A question with an arbitrary text answer.
+    """
+
     def __init__(
         self,
         name: str,

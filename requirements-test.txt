@@ -7,8 +7,10 @@ mike==0.5.5
 mkdocs-material==6.2.3
 mkdocs-minify-plugin==0.3.0
 mkdocs-redirects==1.0.1
+mkdocstrings==0.14.0
 mypy==0.790
 pytest==6.2.1
 pytest-cov==2.10.1
 pytest-mock==3.5.0
 pdbpp
+./util/mkdocstrings_patch_type_aliases
