@@ -235,6 +235,7 @@ class Choice(Question):
     """
     A question with a set of possible answers.
     """
+
     def __init__(
         self,
         name: str,
@@ -332,6 +333,7 @@ class BasicQuestion(Question):
     """
     A question with an arbitrary text answer.
     """
+
     def __init__(
         self,
         name: str,

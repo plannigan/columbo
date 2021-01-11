@@ -11,6 +11,7 @@ class DuplicateQuestionNameException(ColumboException):
 
 class CliException(ColumboException):
     """An error occurred while processing command line arguments."""
+
     @classmethod
     def invalid_value(
         cls, value: str, argument_name: str, error_message: Optional[str] = None
