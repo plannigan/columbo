@@ -37,6 +37,7 @@ plugins:
             show_root_heading: True
             show_source: False
             show_root_full_path: False
+  - mkdocstrings_patch_type_aliases
 
 extra_css:
   - css/version-select.css
