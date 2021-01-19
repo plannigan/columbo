@@ -5,7 +5,7 @@ flake8==3.8.4
 isort==5.7.0
 mike==0.5.5
 mkdocs-material==6.2.4
-mkdocs-minify-plugin==0.3.0
+mkdocs-minify-plugin==0.4.0
 mkdocs-redirects==1.0.1
 mkdocstrings==0.14.0
 mypy==0.790
