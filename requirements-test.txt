@@ -6,11 +6,11 @@ isort==5.7.0
 mike==0.5.5
 mkdocs-material==6.2.5
 mkdocs-minify-plugin==0.4.0
-mkdocs-redirects==1.0.1
 mkdocstrings==0.14.0
 mypy==0.790
 pytest==6.2.1
 pytest-cov==2.11.0
 pytest-mock==3.5.1
 pdbpp
+./util/mkdocs-redirects
 ./util/mkdocstrings_patch_type_aliases
