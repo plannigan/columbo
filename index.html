@@ -579,7 +579,45 @@ Do you like dogs? (Y/n): y
 {&#39;user&#39;: &#39;Patrick&#39;, &#39;user_email&#39;: &#39;patrick@example.com&#39;, &#39;mood&#39;: &#39;happy&#39;, &#39;likes_dogs&#39;: True}
 </code></pre></div>
 <h3 id="command-line-answers">Command Line Answers</h3>
-<p>TODO</p>
+<p>In addition to the interactive prompts, <code>columbo</code> can also parse command line arguments for interactions. This is done by
+changing <code>columbo.get_answers()</code> to <code>columbo.parse_args()</code>. Below shows the output when using the same interactions from above.</p>
+<div class="highlight"><pre><span></span><code>$ python columbo_example.py --user-email patrick@example.com --likes-dogs
+<span class="o">{</span><span class="s1">&#39;user&#39;</span>: <span class="s1">&#39;Patrick&#39;</span>, <span class="s1">&#39;user_email&#39;</span>: <span class="s1">&#39;patrick@example.com&#39;</span>, <span class="s1">&#39;mood&#39;</span>: <span class="s1">&#39;happy&#39;</span>, <span class="s1">&#39;likes_dogs&#39;</span>: True<span class="o">}</span>
+</code></pre></div>
+<details>
+    <summary>The full example</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
+        <span class="s2">&quot;Press enter to start&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Patrick&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
+        <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;How are you feeling today?&quot;</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;sleepy&quot;</span><span class="p">,</span> <span class="s2">&quot;confused&quot;</span><span class="p">],</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
 <h2 id="where-to-start">Where to Start?</h2>
 <p>To learn the basics of how to start using <code>columbo</code>, read the <a href="getting-started/">Getting Started</a> page.</p>
 <h2 id="detailed-documentation">Detailed Documentation</h2>
