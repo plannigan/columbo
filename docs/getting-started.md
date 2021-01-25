@@ -68,7 +68,7 @@ columbo.get_answers(interactions)
 When iterating through these interactions, if the user replied "Alice" to the first question, "Hello Alice" would be
 printed next.
 
-## Walking Though a Basic Examples
+## Walking Though Basic Examples
 
 ### User Prompts
 
