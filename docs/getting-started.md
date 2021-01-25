@@ -68,7 +68,9 @@ columbo.get_answers(interactions)
 When iterating through these interactions, if the user replied "Alice" to the first question, "Hello Alice" would be
 printed next.
 
-## Walking Though a Basic Example
+## Walking Though Basic Examples
+
+### User Prompts
 
 This is the example that appears on the [main page][docs-main] of the documentation.
 
@@ -124,7 +126,7 @@ print(answers)
 * Line 27: Have `columbo` iterate over the `Interactions` prompting the user for each question.
 * Line 28: Print tha `Answers` dictionary so that the values can be seen.
 
-## Walking Though a Basic Command Line Example
+### Command Line Arguments
 
 This is the example will be just like the [previous example](#walking-though-a-basic-example), except it will
 demonstrate the Command Line functionality.
@@ -137,7 +139,7 @@ The relevant change can be seen here:
 
 answers = columbo.get_answers(interactions, args=[
     "--user-email", "patrick@example.com",
-    "--likes-docs",
+    "--likes-dogs",
 ])
 print(answers)
 ```
@@ -172,9 +174,9 @@ interactions = [
     columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
 ]
 
-answers = columbo.get_answers(interactions, args=[
+answers = columbo.parse_args(interactions, args=[
     "--user-email", "patrick@example.com",
-    "--likes-docs",
+    "--likes-dogs",
 ])
 print(answers)
 ```
@@ -195,5 +197,5 @@ Read the [API Reference][api-reference] for specific information about all the f
 `columbo`.
 
 [usage-guide]: usage-guide/fundamentals.md
-[docs-main]: /
+[docs-main]: index.md
 [api-reference]: api.md
