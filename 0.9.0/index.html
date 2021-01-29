@@ -1,0 +1,690 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.6">
+    
+    
+      
+        <title>columbo Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.39b8e14a.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/version-select.css">
+    
+      <link rel="stylesheet" href="css/mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#columbo-090" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="." title="columbo Documentation" class="md-header-nav__button md-logo" aria-label="columbo Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            columbo Documentation
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/wayfair-incubator/columbo/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    wayfair-incubator/columbo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="columbo Documentation" class="md-nav__button md-logo" aria-label="columbo Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    columbo Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/wayfair-incubator/columbo/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    wayfair-incubator/columbo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Overview
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-prompts" class="md-nav__link">
+    User Prompts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-answers" class="md-nav__link">
+    Command Line Answers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-start" class="md-nav__link">
+    Where to Start?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-documentation" class="md-nav__link">
+    Detailed Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    API Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        Usage Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Usage Guide" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Usage Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usage-guide/fundamentals/" class="md-nav__link">
+        Fundamentals
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usage-guide/interactions/" class="md-nav__link">
+        Interactions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usage-guide/optional-questions-and-branching/" class="md-nav__link">
+        Optional Questions & Branching
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usage-guide/validators/" class="md-nav__link">
+        Validators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="usage-guide/command-line/" class="md-nav__link">
+        Command Line Interface
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/" class="md-nav__link">
+        Reference
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="development-guide/" class="md-nav__link">
+        Development Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-prompts" class="md-nav__link">
+    User Prompts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-answers" class="md-nav__link">
+    Command Line Answers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-start" class="md-nav__link">
+    Where to Start?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-documentation" class="md-nav__link">
+    Detailed Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    API Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/wayfair-incubator/columbo/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="columbo-090">Columbo - 0.9.0</h1>
+<p><a href="https://github.com/wayfair-incubator/columbo/actions"><img alt="CI pipeline status" src="https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main" /></a>
+<a href="https://pypi.org/project/columbo/"><img alt="PyPI" src="https://img.shields.io/pypi/v/columbo" /></a>
+<a href="https://pypi.org/project/columbo/"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/columbo" /></a>
+<a href="https://codecov.io/gh/wayfair-incubator/columbo"><img alt="codecov" src="https://codecov.io/gh/wayfair-incubator/columbo/branch/main/graph/badge.svg" /></a></p>
+<p><code>columbo</code> provides a way to specify a dynamic set of questions to ask a user and get their answers.</p>
+<p><code>columbo</code>'s feature set allows a program to:</p>
+<ul>
+<li>Ask multiple types of questions:<ul>
+<li>Yes or No</li>
+<li>Multiple choice</li>
+<li>Open-ended</li>
+</ul>
+</li>
+<li>Validate the response provided by the user.</li>
+<li>Use answers from earlier questions:<ul>
+<li>As part of the text of a question</li>
+<li>As part of the text of a default value</li>
+<li>To decide if a question should be skipped</li>
+</ul>
+</li>
+<li>Accept answers from the command line in addition to prompting the user.</li>
+</ul>
+<h2 id="example">Example</h2>
+<h3 id="user-prompts">User Prompts</h3>
+<p>The primary use of <code>columbo</code> is to define a sequence of interactions that are used to prompt a user to provide answers
+using a terminal. Below is a sample which shows some ways this can be used.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
+        <span class="s2">&quot;Press enter to start&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Patrick&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
+        <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;How are you feeling today?&quot;</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;sleepy&quot;</span><span class="p">,</span> <span class="s2">&quot;confused&quot;</span><span class="p">],</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+</code></pre></div>
+<p>Below shows the output when the user accepts the default values for most of the questions. The user provides a different
+value for the email and explicitly confirms that they like dogs.</p>
+<div class="highlight"><pre><span></span><code>Welcome to the Columbo example
+Press enter to start
+
+What is your name? [Patrick]:
+
+What email address should be used to contact Patrick? [me@example.com]: patrick@example.com
+
+How are you feeling today?
+1 - happy
+2 - sad
+3 - sleepy
+4 - confused
+Enter the number of your choice [1]:
+
+Do you like dogs? (Y/n): y
+
+{&#39;user&#39;: &#39;Patrick&#39;, &#39;user_email&#39;: &#39;patrick@example.com&#39;, &#39;mood&#39;: &#39;happy&#39;, &#39;likes_dogs&#39;: True}
+</code></pre></div>
+<h3 id="command-line-answers">Command Line Answers</h3>
+<p>In addition to the interactive prompts, <code>columbo</code> can also parse command line arguments for interactions. This is done by
+changing <code>columbo.get_answers()</code> to <code>columbo.parse_args()</code>. Below shows the output when using the same interactions from above.</p>
+<div class="highlight"><pre><span></span><code>$ python columbo_example.py --user-email patrick@example.com --likes-dogs
+<span class="o">{</span><span class="s1">&#39;user&#39;</span>: <span class="s1">&#39;Patrick&#39;</span>, <span class="s1">&#39;user_email&#39;</span>: <span class="s1">&#39;patrick@example.com&#39;</span>, <span class="s1">&#39;mood&#39;</span>: <span class="s1">&#39;happy&#39;</span>, <span class="s1">&#39;likes_dogs&#39;</span>: True<span class="o">}</span>
+</code></pre></div>
+<details>
+    <summary>The full example</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
+        <span class="s2">&quot;Press enter to start&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Patrick&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
+        <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;How are you feeling today?&quot;</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;sleepy&quot;</span><span class="p">,</span> <span class="s2">&quot;confused&quot;</span><span class="p">],</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+<h2 id="where-to-start">Where to Start?</h2>
+<p>To learn the basics of how to start using <code>columbo</code>, read the <a href="getting-started/">Getting Started</a> page.</p>
+<h2 id="detailed-documentation">Detailed Documentation</h2>
+<p>To learn more about the various ways <code>columbo</code> can be used, read the <a href="usage-guide/fundamentals/">Usage Guide</a> page.</p>
+<h2 id="api-reference">API Reference</h2>
+<p>To find detailed information about a specific function or class, read the <a href="api/">API Reference</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="getting-started/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Getting Started
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.53cc9318.min.js"></script>
+      <script src="assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="js/version-select.js"></script>
+      
+    
+  </body>
+</html>
