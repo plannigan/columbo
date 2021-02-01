@@ -161,6 +161,7 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
+          requirements: "true"
           test-requirements: "true"
 
       - name: Build Docs
@@ -186,6 +187,7 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
         with:
+          requirements: "true"
           test-requirements: "true"
 
       - name: Push documentaiton changes
