@@ -7,7 +7,7 @@ on:
   push:
       branches: ["main"]
 env:
-  PYTHON_VERSION: "3.8.5"
+  PYTHON_VERSION: "3.9.1"
 
 jobs:
   bandit:
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
     steps:
         - name: Check out code
           uses: actions/checkout@v2
