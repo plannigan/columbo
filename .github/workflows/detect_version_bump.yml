@@ -1,0 +1,30 @@
+name: Version Bump merged
+
+on:
+  pull_request:
+    types:
+      - "closed"
+    branches:
+      - "main"
+
+jobs:
+  trigger-release:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged &&
+        startsWith(github.head_ref, 'bump_version_to_') &&
+        startsWith(github.event.pull_request.title, 'Bump version') &&
+        contains(github.event.pull_request.title, ' → ')
+    environment: Create Release
+    steps:
+      - name: Get new version
+        id: get-new-version
+        run: |
+          NEW_VERSION=$(echo ${{ github.head_ref }} | cut -d _ -f4 )
+          echo "::set-output name=version::$NEW_VERSION"
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          tag_name: v${{ steps.get-new-version.outputs.version }}
+          release_name: v${{ steps.get-new-version.outputs.version }} Release

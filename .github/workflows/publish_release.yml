@@ -1,0 +1,27 @@
+name: Publish Release
+
+env:
+  PYTHON_VERSION: "3.9"
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update_docs_for_version_bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Push documentaiton changes
+        uses: ./.github/actions/publish-docs-with-mike
+        with:
+          new_version: true
