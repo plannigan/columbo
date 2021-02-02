@@ -1187,7 +1187,7 @@ completeness.</p>
 </tr>
 <tr>
 <td><code>validator</code></td>
-<td><code>Optional[Callable[[str, Answers], Optional[str]]]</code></td>
+<td><code>Optional[Validator]</code></td>
 <td>
 <p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p>
 </td>
@@ -1316,7 +1316,7 @@ completeness.</p>
 </tr>
 <tr>
 <td><code>validator</code></td>
-<td><code>Optional[Callable[[str, Mapping[str, Possible[Union[bool, str]]], Union[str]], NoneType]]</code></td>
+<td><code>Possible[Optional[Validator]]</code></td>
 <td>
 <p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p>
 </td>
