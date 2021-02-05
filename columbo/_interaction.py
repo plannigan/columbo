@@ -483,7 +483,9 @@ def get_answers(
 
 
 def canonical_arg_name(name: str) -> str:
-    sanizized_name = f"{name.lstrip('-').lower().replace(' ', '-').replace('_', '-')}"
+    sanizized_name = (
+        f"{name.lstrip('-').rstrip('-').lower().replace(' ', '-').replace('_', '-')}"
+    )
     # remove any duplicate dashes ("foo--bar" becomes "foo-bar")
     arg_name = re.sub(r"(\-)\1+", r"\1", sanizized_name)
     return f"--{arg_name}"

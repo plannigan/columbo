@@ -85,6 +85,9 @@ DUPLICATE_QUESTION_NAME_PARAMS = [
 ]
 
 QUESTION_NAME_STANDARDIZATION_PARAMS = [
+    ["basic name", "foo", "--foo"],
+    ["name with one leading dash", "-foo", "--foo"],
+    ["name with trailing dash", "foo-", "--foo"],
     ["name with leading dashes", "--foo", "--foo"],
     ["name with spaces", "foo bar", "--foo-bar"],
     ["name with underscore", "foo_bar", "--foo-bar"],
