@@ -1,15 +1,10 @@
 set -euo pipefail
 
 MODULE_NAME=$1
+WHEEL_LOCATION=$2
 
 echo "Ensuring pip is up to date"
 python -m pip install --upgrade pip
-echo "Installing the latest setuptools & wheel"
-pip install --upgrade setuptools wheel
-
-echo "--------------"
-echo "Building wheel"
-python setup.py bdist_wheel
 
 APP_DIR=$(pwd)
 
@@ -17,7 +12,7 @@ APP_DIR=$(pwd)
 cd /
 echo "------------------"
 echo "Installing package"
-pip install ${APP_DIR}/dist/*.whl
+pip install ${APP_DIR}/${WHEEL_LOCATION}/*.whl
 
 echo "-----------------------------"
 echo "Attempting to import package"
