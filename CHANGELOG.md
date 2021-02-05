@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+* Improved validation for converting question names to command line arguments
+
 ## [0.9.0] - 2020-12-18
 
 First public release. No code changes from v0.8.0.
@@ -72,7 +76,7 @@ First public release. No code changes from v0.8.0.
 * Add support for python 3.8.
 * Use `prompt-toolkit` for user interaction instead of `click`.
 * Mark `user_io` sub-module as private.
-* Expose exception types raised by library. 
+* Expose exception types raised by library.
 
 ### Fixed
 

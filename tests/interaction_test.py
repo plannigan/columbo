@@ -8,9 +8,10 @@ from columbo import (
     DuplicateQuestionNameException,
     Echo,
 )
-from columbo._interaction import get_answers, to_value
+from columbo._interaction import canonical_arg_name, get_answers, to_value
 from tests.sample_data import (
     DUPLICATE_QUESTION_NAME_PARAMS,
+    QUESTION_NAME_STANDARDIZATION_PARAMS,
     SOME_ANSWERS,
     SOME_BOOL,
     SOME_DEFAULT,
@@ -487,3 +488,12 @@ def test_parse_args__duplicate_question_name_in_answers__exception():
             [BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT)],
             answers={SOME_NAME: "existing value"},
         )
+
+
+@pytest.mark.parametrize(
+    ["description", "name", "expected_arg"], QUESTION_NAME_STANDARDIZATION_PARAMS
+)
+def test__canonical_arg_name__nonstandard_characters__normalized(
+    description, name, expected_arg
+):
+    assert canonical_arg_name(name) == expected_arg, description

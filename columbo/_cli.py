@@ -14,6 +14,7 @@ from columbo._interaction import (
     Confirm,
     Echo,
     Interaction,
+    canonical_arg_name,
     to_value,
     validate_duplicate_question_names,
 )
@@ -180,7 +181,7 @@ def _update_answers_validate(
     error = question.validate(value, answers)
     if error:
         raise CliException.invalid_value(
-            value, _canonical_arg_name(question.name), error
+            value, canonical_arg_name(question.name), error
         )
     answers[question.name] = value
 
@@ -206,7 +207,7 @@ def _add_argument(
     **kwargs,
 ) -> None:
     parser.add_argument(
-        _canonical_arg_name(name),
+        canonical_arg_name(name),
         action=action,
         dest=dest or name,
         help=cli_help,
@@ -232,7 +233,3 @@ def _add_flag(
         const=active,
         **kwargs,
     )
-
-
-def _canonical_arg_name(name: str) -> str:
-    return f"--{name.lower().replace(' ', '-').replace('_', '-')}"
