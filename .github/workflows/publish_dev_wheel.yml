@@ -1,0 +1,26 @@
+name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+
+on: push
+
+env:
+  PYTHON_VERSION: "3.9.1"
+
+jobs:
+  build-and-publish-wheel-to-dev-pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Build wheel
+        uses: ./.github/actions/build-dist
+
+      # - name: Publish distribution 📦 to Test PyPI
+      #   uses: pypa/gh-action-pypi-publish@54b39fb9371c0b3a6f9f14bb8a67394defc7a806
+      #   with:
+      #     password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      #     repository_url: https://test.pypi.org/legacy/
