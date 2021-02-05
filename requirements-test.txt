@@ -4,7 +4,7 @@ bump2version==1.0.1
 flake8==3.8.4
 isort==5.7.0
 mike==0.5.5
-mkdocs-material==6.2.7
+mkdocs-material==6.2.8
 mkdocs-minify-plugin==0.4.0
 mkdocstrings==0.14.0
 mypy==0.800
