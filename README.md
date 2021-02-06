@@ -140,5 +140,5 @@ For an overview on how repository structure and how to work with the code base, 
 [codecov]: https://codecov.io/gh/wayfair-incubator/columbo
 [mypy-home]: http://mypy-lang.org/
 [black-home]: https://github.com/psf/black
-[columbo-docs]: https://github.com/wayfair-incubator/columbo/
-[development-docs]: https://github.com/wayfair-incubator/columbo/development-guide/
+[columbo-docs]: https://wayfair-incubator.github.io/columbo/latest/
+[development-docs]: https://wayfair-incubator.github.io/columbo/latest/development-guide/
