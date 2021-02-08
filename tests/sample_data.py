@@ -89,9 +89,12 @@ QUESTION_NAME_STANDARDIZATION_PARAMS = [
     ["name with one leading dash", "-foo", "--foo"],
     ["name with trailing dash", "foo-", "--foo"],
     ["name with trailing and leading spaces", " foo ", "--foo"],
+    ["name with trailing and leading underscores", "__foo__", "--foo"],
     ["name with leading dashes", "--foo", "--foo"],
     ["name with spaces", "foo bar", "--foo-bar"],
     ["name with underscore", "foo_bar", "--foo-bar"],
     ["name with double underscore", "foo__bar", "--foo-bar"],
     ["name with double underscore", "foo__bar", "--foo-bar"],
+    ["name with mixed capitalization", "Foo-Bar", "--foo-bar"],
+    ["name with multiple mixed dashes", "foo--bar__baz", "--foo-bar-baz"],
 ]

@@ -447,6 +447,9 @@ def test_get_answers__proper_funcs_called(
         spec=BasicQuestion,
         should_ask=mocker.Mock(return_value=basic_question_should_ask),
     )
+    # mock names must be set after mock object is created
+    echo_interaction_mock.name = "echo_interaction_mock"
+    basic_question_interaction_mock.name = "basic_question_interaction_mock"
 
     interactions = [echo_interaction_mock, basic_question_interaction_mock]
     get_answers(interactions)
