@@ -56,16 +56,20 @@ accepts a function that accepts `Answers` and returns a string.
 import columbo
 
 def dynamic_hello(answers):
-    return f"Hello {answers['name']}"
+    return f"Hello, {answers['name']}"
 
 interactions = [
-    columbo.BasicQuestion("name", "What is your name?"),
+    columbo.BasicQuestion(
+        "name",
+        "What is your name?",
+        default="Patrick",
+    ),
     columbo.Echo(dynamic_hello)
 ]
 columbo.get_answers(interactions)
 ```
 
-When iterating through these interactions, if the user replied "Alice" to the first question, "Hello Alice" would be
+When iterating through these interactions, if the user replied "Alice" to the first question, "Hello, Alice" would be
 printed next.
 
 ## Walking Though Basic Examples
@@ -137,7 +141,7 @@ The relevant change can be seen here:
     columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
 ]
 
-answers = columbo.get_answers(interactions, args=[
+answers = columbo.parse_args(interactions, args=[
     "--user-email", "patrick@example.com",
     "--likes-dogs",
 ])
@@ -187,11 +191,11 @@ print(answers)
 * Line 29: Select the value of `True` for the question asking the user if they like dogs.
 
 !!! note
-    The `arg` parameter to `get_answers()` can be omitted to use the values in `sys.argv`.
+    If you omit the `args` parameter to `parse_args()` the values in `sys.argv` will be used.
 
 ## What's Next?
 
-Read the [Usage Guide][usage-guide] for a more detailed descriptions of the ways `columbo` can be used.
+Read the [Usage Guide][usage-guide] for a more detailed descriptions of ways you can use `columbo`.
 
 Read the [API Reference][api-reference] for specific information about all the functions and classes made available by
 `columbo`.

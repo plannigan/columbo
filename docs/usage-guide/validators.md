@@ -28,20 +28,20 @@ import re
 
 import columbo
 
-def is_email(value: str, _: columbo.Answers) -> Optional[str]:
+def is_email_address(value: str, _: columbo.Answers) -> Optional[str]:
     error_message: Optional[str] = None
 
     if not re.match(r"^\w+@\w+", value):
-        error_message = f"{value} is not a valid email"
+        error_message = f"{value} is not a valid email address"
 
     return error_message
 
 interactions: List[columbo.Interaction] = [
     columbo.BasicQuestion(
-        "user_email",
+        "user_email_address",
         "What email address should be used to contact you?",
         default="me@example.com",
-        validator=is_email,
+        validator=is_email_address,
     )
 ]
 

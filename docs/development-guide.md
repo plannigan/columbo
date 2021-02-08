@@ -1,7 +1,7 @@
 # Development Guide
 
-Welcome! Thank you for wanting to make the project better. This section provides an overview on how repository structure
-and how to work with the code base.
+Welcome! Thank you for wanting to make the project better. This section provides an overview of repository
+structure and how to work with the code base.
 
 Before you dive into this, it is best to read:
 
@@ -85,7 +85,7 @@ grabs the version from `__init__.py` without actually importing.
 ### Requirements
 
 * **requirements.txt** - Lists all direct dependencies (packages imported by the library).
-* **Requirements-test.txt** - Lists all direct requirements needed to run the test suite & lints.
+* **requirements-test.txt** - Lists all direct requirements needed to run the test suite & lints.
 
 ## Publishing the Package
 
