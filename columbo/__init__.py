@@ -22,6 +22,8 @@ from columbo._types import (  # noqa: F401
     OptionList,
     ShouldAsk,
     StaticOrDynamicValue,
+    ValidationFailure,
+    ValidationSuccess,
     Validator,
 )
 

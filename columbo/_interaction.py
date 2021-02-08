@@ -14,6 +14,8 @@ from columbo._types import (
     StaticOrDynamicValue,
     V,
     Validator,
+    ValidationFailure,
+    ValidationSuccess,
 )
 
 Interaction = Union["Echo", "Acknowledge", "Question"]
@@ -275,9 +277,10 @@ class Choice(Question):
     def validate(self, value: str, answers: Answers) -> Optional[str]:
         options = to_value(self._options, answers, list)
         if value not in options:
-            return f"Chosen value: {value} not in options"
+            error_message = f"Chosen value: {value} not in options"
+            return ValidationFailure(error=error_message)
 
-        return None
+        return ValidationSuccess()
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:
         """
@@ -356,8 +359,7 @@ class BasicQuestion(Question):
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
         :param validator: Callable that will validate the response given by the user.
-            None indicates that validation was successful. Otherwise, a string containing details
-            of the error that caused the validation failure.
+            A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.
         """
         super().__init__(name, message, cli_help, should_ask)
         self._default = default
@@ -369,13 +371,16 @@ class BasicQuestion(Question):
 
     def validate(self, value: str, answers: Answers) -> Optional[str]:
         if self._validator is None:
-            return None
+            return ValidationSuccess()
         if callable(self._validator):
-            error = self._validator(value, answers)
-            if error:
-                return error
-            return None
-        raise ValueError(f"Invalid value for should_ask: {self._validator}")
+            result = self._validator(value, answers)
+            if isinstance(result, (ValidationSuccess, ValidationFailure)):
+                return result
+            else:  # handle deprecated validator responses
+                if result:
+                    return ValidationFailure(error=result)
+                return ValidationSuccess()
+        raise ValueError(f"Invalid value for validate: {self._validator}")
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:
         """
@@ -395,12 +400,12 @@ class BasicQuestion(Question):
                 no_user_input=no_user_input,
             )
 
-            error = self.validate(answer, answers)
-            if not error:
+            result = self.validate(answer, answers)
+            if result.valid:
                 break
 
             user_io.echo(
-                f"The answer you have provided is not valid:\n{error}\n\n"
+                f"The answer you have provided is not valid:\n{result.error}\n\n"
                 "We will continue asking questions until you provide a valid answer"
             )
 
