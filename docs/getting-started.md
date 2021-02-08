@@ -191,7 +191,7 @@ print(answers)
 * Line 29: Select the value of `True` for the question asking the user if they like dogs.
 
 !!! note
-    Omitting the `args` parameter to `parse_args()` will use values in `sys.argv`.
+    If you omit the `args` parameter to `parse_args()` the values in `sys.argv` will be used.
 
 ## What's Next?
 
