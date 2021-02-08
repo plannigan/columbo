@@ -5,7 +5,7 @@ command line argument parser based on the list of `Interaction`s. When used in t
 ignored. To produce a consistent command line argument format, `columbo` will do the following to the value of each
 question's `name`:
 
-* Make it lower-cased
+* Make it lowercase.
 * Replace space characters with dashes
 * Replace underscore character with dash
 
