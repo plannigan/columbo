@@ -10,7 +10,8 @@ from columbo import (
     DuplicateQuestionNameException,
     parse_args,
 )
-from columbo._cli import _canonical_arg_name, create_parser, format_cli_help, to_answers
+from columbo._cli import create_parser, format_cli_help, to_answers
+from columbo._interaction import canonical_arg_name
 from tests.sample_data import (
     DUPLICATE_QUESTION_NAME_PARAMS,
     SOME_ARG_NAME,
@@ -182,7 +183,7 @@ def test_create_parser__confirm_main_option__true():
 def test_create_parser__confirm_no_option__false():
     parser = create_parser([Confirm(SOME_NAME, SOME_STRING)])
 
-    result = parser.parse_args([_canonical_arg_name(f"no-{SOME_NAME}")])
+    result = parser.parse_args([canonical_arg_name(f"no-{SOME_NAME}")])
 
     assert vars(result)[SOME_NAME] is False
 

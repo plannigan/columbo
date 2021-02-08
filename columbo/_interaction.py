@@ -1,3 +1,4 @@
+import re
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Collection, Optional, Type, TypeVar, Union
@@ -481,6 +482,13 @@ def get_answers(
     return result
 
 
+def canonical_arg_name(name: str) -> str:
+    sanizized_name = name.lower().replace(" ", "-").replace("_", "-").strip("-")
+    # remove any duplicate dashes ("foo--bar" becomes "foo-bar")
+    arg_name = re.sub(r"(\-)\1+", r"\1", sanizized_name)
+    return f"--{arg_name}"
+
+
 def validate_duplicate_question_names(
     interactions: Collection[Interaction], answers: Optional[Answers] = None
 ) -> None:
@@ -494,8 +502,9 @@ def validate_duplicate_question_names(
     used_names = set() if answers is None else set(answers.keys())
     for interaction in interactions:
         if isinstance(interaction, Question):
-            if interaction.name in used_names:
+            name_variants = {interaction.name, canonical_arg_name(interaction.name)}
+            if name_variants.intersection(used_names):
                 raise DuplicateQuestionNameException(
                     f"{interaction.name} has already been used"
                 )
-            used_names.add(interaction.name)
+            used_names.update(name_variants)
