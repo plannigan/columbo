@@ -6,7 +6,7 @@ ignored. To produce a consistent command line argument format, `columbo` will do
 question's `name`:
 
 * Make it lower-cased
-* Replace space character with dash
+* Replace space characters with dashes
 * Replace underscore character with dash
 
 For example:
