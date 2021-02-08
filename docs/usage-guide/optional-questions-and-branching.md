@@ -130,3 +130,5 @@ print(user_answers)
 
 The import thing to note in the example above is that the `Answers` dictionary can have a key-value pair for
 `has_key` or `has_hammer`, not both.
+
+[choose-your-own-adventure]: https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure
