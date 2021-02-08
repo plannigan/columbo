@@ -439,7 +439,7 @@ both static and dynamic values. A static value is a value that is known when cre
 Frequently this will be a value like a string literal, but that is not a requirement.</p>
 <p>In contrast, a dynamic value is one which depends on one or more answer provided by the user from a previous question.
 This is supported by accepting a function that takes an <code>Answers</code> dictionary as an argument and returns a value with
-the type of that static value would have. For example, the static value for <code>message</code> is <code>str</code>. Therefore, tye dynamic
+the type of that static value would have. For example, the static value for <code>message</code> is <code>str</code>. Therefore, the dynamic
 value would be a function that accepts <code>Answers</code> and returns a string (<code>Callable[[Answers],str]</code>).</p>
 <p>In most cases, any argument to an <code>Interaction</code>'s constructor can be dynamic. This guide will explicitly mention when
 the constructor requires an argument to be a static value.</p>

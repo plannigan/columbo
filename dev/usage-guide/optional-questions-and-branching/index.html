@@ -301,13 +301,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#command-line-interface" class="md-nav__link">
-    Command Line Interface
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -440,13 +433,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#command-line-interface" class="md-nav__link">
-    Command Line Interface
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -483,7 +469,7 @@ skipped question. The examples below will demonstrate this result.</p>
 question.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
-<span class="k">def</span> <span class="nf">does_user_have_a_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
@@ -491,13 +477,13 @@ question.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
-        <span class="n">should_ask</span><span class="o">=</span><span class="n">does_user_have_a_dog</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
-        <span class="n">should_ask</span><span class="o">=</span><span class="n">does_user_have_a_dog</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span>
     <span class="p">)</span>
 <span class="p">]</span>
@@ -514,7 +500,7 @@ question.</p>
 <p>Note that in this case, the <code>Answers</code> dictionary only has an answer to the first question.</p>
 <h3 id="branching-paths">Branching Paths</h3>
 <p>A question that is part of a branching path is very similar to an optional question. It is still a question where
-the <code>should_ask</code> function was provided to determine if the question should be skipped or not. The branching aspect comes there being at
+the <code>should_ask</code> function was provided to determine if the question should be skipped or not. The branching aspect comes from there being at
 least two sets of optional questions. Each set has a <code>should_ask</code> argument that checks for a different state for a
 single answer. In this way, only one of the sets of optional questions will ever be asked.</p>
 <p>The following is an example of a short story that has two divergent paths that join at the end. Each individual question
@@ -578,53 +564,8 @@ branching paths by supplying different <code>should_ask</code> values that will 
 <span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
 </code></pre></div>
-<p>For this example, the output display while iterating over the interactions is the interesting part of the program.
-However, it is important to note that is only possible for the <code>Answers</code> dictionary to have a key-value pair for
+<p>The import thing to note in the example above is that the <code>Answers</code> dictionary can have a key-value pair for
 <code>has_key</code> or <code>has_hammer</code>, not both.</p>
-<h2 id="command-line-interface">Command Line Interface</h2>
-<p>In addition to providing an interactive terminal based UI to ask the user each question, <code>columbo</code> can also generate a
-command line argument parser based on the list of <code>Interaction</code>s. When used in this manor, <code>Echo</code> &amp; <code>Acknowledge</code> are
-ignored. To produce a consistent command line argument format, the value of each question's <code>name</code> will be transformed
-using the following rule:</p>
-<ul>
-<li>If the there are any upper-case characters, lower-case characters will be used.</li>
-<li>If the there are is a space character, a dash will be used in its place.</li>
-<li>If the there are is an underscore character, a dash will be used in its place.</li>
-</ul>
-<p>For example:</p>
-<table>
-<thead>
-<tr>
-<th>Original</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>user</td>
-<td>user</td>
-</tr>
-<tr>
-<td>user_email</td>
-<td>user-email</td>
-</tr>
-<tr>
-<td>User Email</td>
-<td>user-email</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>As a result of the transformation process, it is possible to have a sequence of question with unique <code>name</code>s for the
-<code>Answers</code> dictionary, but cause a collision when creating command line arguments.</p>
-</div>
-<p>For <code>BasicQuestion</code> &amp; <code>Choice</code>, the result will be preceded with two dashes (ex: <code>--user</code> or <code>--user-email</code>).</p>
-<p>For <code>Confirm</code>, <code>columbo</code> produces two command lines arguments. After following the transformation rules, the command
-line arguments will be <code>--{NAME}</code> &amp; <code>--no-{NAME}</code> to explicitly specify <code>True</code> or <code>False</code>, respectively (ex:
-<code>--likes-dogs</code> and <code>--no-likes-dogs</code>)</p>
-<p>Since the argument parser must be constructed before receiving any user input, all <code>Question</code>s produce arguments.
-<code>should_ask</code> is only considered when processing the given arguments.</p>
                 
               
               

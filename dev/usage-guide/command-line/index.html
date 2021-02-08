@@ -375,12 +375,12 @@
                 <h1 id="command-line-interface">Command Line Interface</h1>
 <p>In addition to providing an interactive terminal based UI to ask the user each question, <code>columbo</code> can also generate a
 command line argument parser based on the list of <code>Interaction</code>s. When used in this manner, <code>Echo</code> &amp; <code>Acknowledge</code> are
-ignored. To produce a consistent command line argument format, the value of each question's <code>name</code> will be transformed
-using the following rule:</p>
+ignored. To produce a consistent command line argument format, <code>columbo</code> will do the following to the value of each
+question's <code>name</code>:</p>
 <ul>
-<li>If there are any upper-case characters, lower-case characters will be used.</li>
-<li>If there are is a space character, a dash will be used in its place.</li>
-<li>If there are is an underscore character, a dash will be used in its place.</li>
+<li>Make it lowercase.</li>
+<li>Replace space characters with dashes</li>
+<li>Replace underscore character with dash</li>
 </ul>
 <p>For example:</p>
 <table>
