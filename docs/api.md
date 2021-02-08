@@ -9,7 +9,7 @@ library. The following table defines the aliases that are used.
 | ----- | ----- |
 | `Answer` | `Union[bool, str]` |
 | `Answers` | `Mapping[str, Answer]` |
-| `Interaction` | `Union[Echo, Acknowledge, Question]` |
+| `Interaction` | `Union["Echo", "Acknowledge", "Question"]` |
 | `MutableAnswers` | `MutableMapping[str, Answer]` |
 | `OptionList` | `List[str]` |
 | `Possible`* | `Union[T, Literal[_Sentinel]]` |

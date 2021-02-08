@@ -2,12 +2,12 @@
 
 In addition to providing an interactive terminal based UI to ask the user each question, `columbo` can also generate a
 command line argument parser based on the list of `Interaction`s. When used in this manner, `Echo` & `Acknowledge` are
-ignored. To produce a consistent command line argument format, the value of each question's `name` will be transformed
-using the following rule:
+ignored. To produce a consistent command line argument format, `columbo` will do the following to the value of each
+question's `name`:
 
-* If there are any upper-case characters, lower-case characters will be used.
-* If there are is a space character, a dash will be used in its place.
-* If there are is an underscore character, a dash will be used in its place.
+* Make it lower-cased
+* Replace space character with dash
+* Replace underscore character with dash
 
 For example:
 

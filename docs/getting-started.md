@@ -49,7 +49,7 @@ The [Usage Guide][usage-guide] provides more detailed information about the spec
 
 In most cases, an argument to an `Interaction` constructor can be dynamic (the [Usage Guide][usage-guide] details the
 cases where the argument **can't** be dynamic). A dynamic value is a function that takes the answers that have been
-provided thus far and returns the expected value as a result. For example, `message` expects a string. So it also
+provided this far and returns the expected value as a result. For example, `message` expects a string. So it also
 accepts a function that accepts `Answers` and returns a string.
 
 ```python
