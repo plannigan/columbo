@@ -11,7 +11,7 @@ Frequently this will be a value like a string literal, but that is not a require
 
 In contrast, a dynamic value is one which depends on one or more answer provided by the user from a previous question.
 This is supported by accepting a function that takes an `Answers` dictionary as an argument and returns a value with
-the type of that static value would have. For example, the static value for `message` is `str`. Therefore, tye dynamic
+the type of that static value would have. For example, the static value for `message` is `str`. Therefore, the dynamic
 value would be a function that accepts `Answers` and returns a string (`Callable[[Answers],str]`).
 
 In most cases, any argument to an `Interaction`'s constructor can be dynamic. This guide will explicitly mention when

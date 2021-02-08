@@ -20,7 +20,7 @@ question.
 ```python
 import columbo
 
-def does_user_have_a_dog(answers: columbo.Answers) -> bool:
+def user_has_dog(answers: columbo.Answers) -> bool:
     return answers["has_dog"]
 
 interactions = [
@@ -28,13 +28,13 @@ interactions = [
     columbo.BasicQuestion(
         "dog_name",
         "What is the name of the dog?",
-        should_ask=does_user_have_a_dog,
+        should_ask=user_has_dog,
         default="Kaylee"
     ),
     columbo.BasicQuestion(
         "dog_breed",
         "What is the breed of the dog?",
-        should_ask=does_user_have_a_dog,
+        should_ask=user_has_dog,
         default="Basset Hound"
     )
 ]
@@ -60,7 +60,7 @@ Note that in this case, the `Answers` dictionary only has an answer to the first
 ### Branching Paths
 
 A question that is part of a branching path is very similar to an optional question. It is still a question where
-the `should_ask` function was provided to determine if the question should be skipped or not. The branching aspect comes there being at
+the `should_ask` function was provided to determine if the question should be skipped or not. The branching aspect comes from there being at
 least two sets of optional questions. Each set has a `should_ask` argument that checks for a different state for a
 single answer. In this way, only one of the sets of optional questions will ever be asked.
 
@@ -128,20 +128,19 @@ user_answers = columbo.get_answers(interactions)
 print(user_answers)
 ```
 
-For this example, the output display while iterating over the interactions is the interesting part of the program.
-However, it is important to note that is only possible for the `Answers` dictionary to have a key-value pair for
+The import thing to note in the example above is that the `Answers` dictionary can have a key-value pair for
 `has_key` or `has_hammer`, not both.
 
 ## Command Line Interface
 
 In addition to providing an interactive terminal based UI to ask the user each question, `columbo` can also generate a
-command line argument parser based on the list of `Interaction`s. When used in this manor, `Echo` & `Acknowledge` are
-ignored. To produce a consistent command line argument format, the value of each question's `name` will be transformed
-using the following rule:
+command line argument parser based on the list of `Interaction`s. When used in this manner, `Echo` & `Acknowledge` are
+ignored. To produce a consistent command line argument format, `columbo` will do the following to the value of each 
+question's `name`:
 
-* If the there are any upper-case characters, lower-case characters will be used.
-* If the there are is a space character, a dash will be used in its place.
-* If the there are is an underscore character, a dash will be used in its place.
+* Lower-case it
+* Replace space character with dash
+* Replace underscore character with dash
 
 For example:
 
