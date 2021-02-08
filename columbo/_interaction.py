@@ -13,9 +13,10 @@ from columbo._types import (
     ShouldAsk,
     StaticOrDynamicValue,
     V,
-    Validator,
     ValidationFailure,
+    ValidationResponse,
     ValidationSuccess,
+    Validator,
 )
 
 Interaction = Union["Echo", "Acknowledge", "Question"]
@@ -274,7 +275,7 @@ class Choice(Question):
     def default(self) -> StaticOrDynamicValue[str]:
         return self._default
 
-    def validate(self, value: str, answers: Answers) -> Optional[str]:
+    def validate(self, value: str, answers: Answers) -> ValidationResponse:
         options = to_value(self._options, answers, list)
         if value not in options:
             error_message = f"Chosen value: {value} not in options"
@@ -369,7 +370,7 @@ class BasicQuestion(Question):
     def default(self) -> StaticOrDynamicValue[str]:
         return self._default
 
-    def validate(self, value: str, answers: Answers) -> Optional[str]:
+    def validate(self, value: str, answers: Answers) -> ValidationResponse:
         if self._validator is None:
             return ValidationSuccess()
         if callable(self._validator):

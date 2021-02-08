@@ -1,18 +1,27 @@
 """Type aliases used by the public API"""
 
 from dataclasses import dataclass
-from typing import Callable, List, Mapping, MutableMapping, Optional, TypeVar, Union, Literal
+from typing import (
+    Callable,
+    List,
+    Literal,
+    Mapping,
+    MutableMapping,
+    Optional,
+    TypeVar,
+    Union,
+)
 
 
 @dataclass
 class ValidationSuccess:
-   valid: Literal[True] = True
+    valid: Literal[True] = True
 
 
 @dataclass
 class ValidationFailure:
-   valid: Literal[False] = False
-   error: Optional[str] = None
+    valid: Literal[False] = False
+    error: Optional[str] = None
 
 
 Answer = Union[bool, str]

@@ -7,8 +7,8 @@ from columbo import (
     Confirm,
     DuplicateQuestionNameException,
     Echo,
-    ValidationSuccess,
     ValidationFailure,
+    ValidationSuccess,
 )
 from columbo._interaction import canonical_arg_name, get_answers, to_value
 from tests.sample_data import (
@@ -352,7 +352,8 @@ def test_basic_question_is_valid__no_validator__always_valid(value):
 
 
 @pytest.mark.parametrize(
-    ["is_valid", "validator_response"], [(True, ValidationSuccess()), (False, ValidationFailure(error="some-error"))]
+    ["is_valid", "validator_response"],
+    [(True, ValidationSuccess()), (False, ValidationFailure(error="some-error"))],
 )
 def test_basic_question_is_valid__validator__result_of_validator(
     is_valid, validator_response
