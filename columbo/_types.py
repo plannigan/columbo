@@ -20,8 +20,8 @@ class ValidationSuccess:
 
 @dataclass
 class ValidationFailure:
+    error: str
     valid: Literal[False] = False
-    error: Optional[str] = None
 
 
 Answer = Union[bool, str]
