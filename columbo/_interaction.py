@@ -287,12 +287,10 @@ class Choice(Question):
     ) -> Union[ValidationSuccess, ValidationFailure]:
         """Validate the new value and convert the result from a legacy validation result to a ValidationFailure or ValidationSuccess."""
         result = self.validate(value, answers)
-        if isinstance(result, (ValidationSuccess, ValidationFailure)):
-            return result
         # handle deprecated, legacy validator responses
-        elif isinstance(result, str):
+        if isinstance(result, str) and result:
             return ValidationFailure(error=result)
-        elif result is None:
+        else:
             return ValidationSuccess()
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:
@@ -403,9 +401,9 @@ class BasicQuestion(Question):
         if isinstance(result, (ValidationSuccess, ValidationFailure)):
             return result
         # handle deprecated, legacy validator responses
-        elif isinstance(result, str):
+        elif isinstance(result, str) and result:
             return ValidationFailure(error=result)
-        elif result is None:
+        else:
             return ValidationSuccess()
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:

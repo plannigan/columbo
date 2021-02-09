@@ -177,6 +177,17 @@ def test_choice_is_valid__dynamic_options__expected_result(value, is_valid):
     assert (error is None) == is_valid
 
 
+@pytest.mark.parametrize(
+    "value,is_valid", [(SOME_DYNAMIC_DEFAULT_RESULT, True), (SOME_STRING, False)]
+)
+def test_choice__validate__dynamic_options__expected_result(value, is_valid):
+    question = Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)
+
+    result = question._validate_and_convert(value, SOME_ANSWERS)
+
+    assert result.valid == is_valid
+
+
 def test_choice_copy__new_instance():
     original = Choice(
         SOME_NAME, some_dynamic_string, some_dynamic_options, some_dynamic_default
@@ -281,6 +292,14 @@ def test_basic_question__no_input__default_value():
     result = BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT).ask(
         SOME_ANSWERS, no_user_input=True
     )
+
+    assert result == SOME_DEFAULT
+
+
+def test_basic_question__ask__validator__default_value():
+    result = BasicQuestion(
+        SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=lambda v, a: ValidationSuccess()
+    ).ask(SOME_ANSWERS, no_user_input=True)
 
     assert result == SOME_DEFAULT
 

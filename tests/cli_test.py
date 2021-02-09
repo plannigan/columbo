@@ -8,6 +8,7 @@ from columbo import (
     CliException,
     Confirm,
     DuplicateQuestionNameException,
+    Echo,
     parse_args,
 )
 from columbo._cli import create_parser, format_cli_help, to_answers
@@ -309,6 +310,14 @@ def test_to_answer__confirm_value_set__set_value():
 
 def test_to_answer__confirm_dont_ask__value_not_stored():
     questions = [Confirm(SOME_NAME, SOME_STRING, should_ask=lambda _: False)]
+
+    result = to_answers(questions, Namespace(**{SOME_NAME: SOME_STRING}))
+
+    assert SOME_NAME not in result
+
+
+def test_to_answer__echo__value_not_stored():
+    questions = [Echo(SOME_STRING)]
 
     result = to_answers(questions, Namespace(**{SOME_NAME: SOME_STRING}))
 
