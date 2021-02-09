@@ -1,5 +1,7 @@
 # Validators
 
+## Context
+
 `BasicQuestion` allows the user to provide arbitrary text as the answer to the question. However, there are frequently
 constraints on what is considered a valid answer. Providing a `Validator` for the question allows `columbo` to verify
 that the text provided by the user satisfies those constraints. If the answer is not valid, `columbo` will tell the user that
@@ -11,30 +13,34 @@ the answer is not valid and ask them to try again.
     A `Choice` question will only continue when ++enter++ is pressed if the input matches the number `columbo` assigned
     to one of the choices.
 
-A `Validator` must be a function that accepts a string and an `Answers` dictionary. The function must returns `None` or
-a string. To say it another way, the type signature of function must be `Callable[[str,Answers],Optional[str]]`. The
-first value is the response provided by the user. The second value is an `Answers` dictionary that will contain the
-value for each previous question that has been asked. If the response is a valid answer, the function should return
-`None`. If the response is invalid, the function should return a string describing why the value is invalid. `columbo`
-will display this message before asking the user the question again.
+## Validator Structure
 
-The example below shows a question that asks for the user's email address. The `Validator` provides a simple check to see if
+A `Validator` must be a function which has the following type signature: `Callable[[str, Answers], ValidationResponse]`. We'll walk through this signature explaining each part.
+
+A `Validator` takes two arguments: a string (which is the response provided by the user to a question) and an `Answers` dictionary containing the answer for each previous question.
+
+The `Validator` must return either a `ValidationRespones` which is a type alias for: `Union[ValidationFailure, ValidationSuccess]`. Thus, a `Validator` must return either a `ValidationFailure` or a `ValidationSuccess` object. You should use a `ValidationSuccess` when the user's response is valid and `ValidationFailure` when the user's response is invalid. Both `ValidationFailure` and `ValidationSuccess` have a `valid` attribute that is `False` and `True`, respectively. A `ValidationFailure` requires that you provide an `error` which describes why the given value was invalid (`columbo` will display this message before asking users to answer the question again so users get some feedback about what they are doing wrong).
+
+## Example Validator
+
+Let's say we were asking for a user's email address.
+The `Validator` below provides a simple check to see if
 the email address seems valid<sup>1</sup>. If the user's response doesn't contain an `@` character with at least one
-word character on each side then the response will not be accepted.
+word character on each side then the response is invalid and the user will have to
+enter an email address again (hopefully a valid one this time).
 
 ```python
-from typing import List, Optional
+from typing import List
 import re
 
 import columbo
 
-def is_email_address(value: str, _: columbo.Answers) -> Optional[str]:
-    error_message: Optional[str] = None
-
+def is_email_address(value: str, _: columbo.Answers) -> columbo.ValidationResponse:
     if not re.match(r"^\w+@\w+", value):
         error_message = f"{value} is not a valid email address"
+        return columbo.ValidationFailure(error=error_message)
 
-    return error_message
+    return columbo.ValidationSuccess()
 
 interactions: List[columbo.Interaction] = [
     columbo.BasicQuestion(

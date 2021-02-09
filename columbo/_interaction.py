@@ -276,6 +276,12 @@ class Choice(Question):
         return self._default
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
+        """Validate the value (a new answer).
+
+        :param value: The identifier that will be used as the key to access the this question's answer.
+        :param answers: The answers that have been provided this far.
+        :return: A ValidationFailure or ValidationSuccess object.
+        """
         options = to_value(self._options, answers, list)
         if value not in options:
             error_message = f"Chosen value: {value} not in options"
@@ -370,6 +376,12 @@ class BasicQuestion(Question):
         return self._default
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
+        """Validate the value (a new answer).
+
+        :param value: The identifier that will be used as the key to access the this question's answer.
+        :param answers: The answers that have been provided this far.
+        :return: A ValidationFailure or ValidationSuccess object.
+        """
         if self._validator is None:
             return ValidationSuccess()
         if callable(self._validator):
