@@ -31,5 +31,8 @@ OptionList = List[str]
 V = TypeVar("V")
 StaticOrDynamicValue = Union[V, Callable[[Answers], V]]
 ShouldAsk = Callable[[Answers], bool]
-ValidationResponse = Union[ValidationSuccess, ValidationFailure]
+LegacyValidationResponse = Optional[str]
+ValidationResponse = Union[
+    ValidationSuccess, ValidationFailure, LegacyValidationResponse
+]
 Validator = Callable[[str, Answers], ValidationResponse]

@@ -178,7 +178,7 @@ def _update_answers_validate(
     value = cast(str, cli_values.get(question.name))
     if value is None:
         value = to_value(question.default, answers, str)
-    result = question.validate(value, answers)
+    result = question._validate_and_convert(value, answers)
     if not result.valid:
         raise CliException.invalid_value(
             value, canonical_arg_name(question.name), result.error

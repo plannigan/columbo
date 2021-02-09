@@ -279,9 +279,21 @@ class Choice(Question):
         options = to_value(self._options, answers, list)
         if value not in options:
             error_message = f"Chosen value: {value} not in options"
-            return ValidationFailure(error=error_message)
+            return error_message
+        return None
 
-        return ValidationSuccess()
+    def _validate_and_convert(
+        self, value: str, answers: Answers
+    ) -> Union[ValidationSuccess, ValidationFailure]:
+        """Validate the new value and convert the result from a legacy validation result to a ValidationFailure or ValidationSuccess."""
+        result = self.validate(value, answers)
+        if isinstance(result, (ValidationSuccess, ValidationFailure)):
+            return result
+        # handle deprecated, legacy validator responses
+        elif isinstance(result, str):
+            return ValidationFailure(error=result)
+        elif result is None:
+            return ValidationSuccess()
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:
         """
@@ -372,16 +384,29 @@ class BasicQuestion(Question):
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         if self._validator is None:
-            return ValidationSuccess()
+            return None
         if callable(self._validator):
             result = self._validator(value, answers)
             if isinstance(result, (ValidationSuccess, ValidationFailure)):
                 return result
-            else:  # handle deprecated validator responses
+            else:  # handle deprecated, legacy validator responses
                 if result:
-                    return ValidationFailure(error=result)
-                return ValidationSuccess()
+                    return result
+                return None
         raise ValueError(f"Invalid value for validate: {self._validator}")
+
+    def _validate_and_convert(
+        self, value: str, answers: Answers
+    ) -> Union[ValidationSuccess, ValidationFailure]:
+        """Validate the new value and convert the result from a legacy validation result to a ValidationFailure or ValidationSuccess."""
+        result = self.validate(value, answers)
+        if isinstance(result, (ValidationSuccess, ValidationFailure)):
+            return result
+        # handle deprecated, legacy validator responses
+        elif isinstance(result, str):
+            return ValidationFailure(error=result)
+        elif result is None:
+            return ValidationSuccess()
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:
         """
@@ -401,7 +426,7 @@ class BasicQuestion(Question):
                 no_user_input=no_user_input,
             )
 
-            result = self.validate(answer, answers)
+            result = self._validate_and_convert(answer, answers)
             if result.valid:
                 break
 
