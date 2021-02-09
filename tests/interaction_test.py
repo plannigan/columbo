@@ -161,9 +161,9 @@ def test_choice__dynamic_message__multiple_choice_dynamic_message(mocker):
 def test_choice_is_valid__static_options__expected_result(value, is_valid):
     question = Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)
 
-    error = question.validate(value, SOME_ANSWERS)
+    result = question.validate(value, SOME_ANSWERS)
 
-    assert (error is None) == is_valid
+    assert result.valid == is_valid
 
 
 @pytest.mark.parametrize(
@@ -172,9 +172,9 @@ def test_choice_is_valid__static_options__expected_result(value, is_valid):
 def test_choice_is_valid__dynamic_options__expected_result(value, is_valid):
     question = Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)
 
-    error = question.validate(value, SOME_ANSWERS)
+    result = question.validate(value, SOME_ANSWERS)
 
-    assert (error is None) == is_valid
+    assert result.valid == is_valid
 
 
 @pytest.mark.parametrize(
@@ -183,7 +183,7 @@ def test_choice_is_valid__dynamic_options__expected_result(value, is_valid):
 def test_choice__validate__dynamic_options__expected_result(value, is_valid):
     question = Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)
 
-    result = question._validate_and_convert(value, SOME_ANSWERS)
+    result = question.validate(value, SOME_ANSWERS)
 
     assert result.valid == is_valid
 
@@ -367,9 +367,9 @@ def test_basic_question_copy__diff_message__confirm_diff_message(mocker):
 def test_basic_question_is_valid__no_validator__always_valid(value):
     question = BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT)
 
-    error = question.validate(value, SOME_ANSWERS)
+    result = question.validate(value, SOME_ANSWERS)
 
-    assert not error
+    assert result.valid
 
 
 @pytest.mark.parametrize(
@@ -383,9 +383,9 @@ def test_basic_question_is_valid__legacy_validator__result_of_validator(
         SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=lambda v, a: validator_response
     )
 
-    error = question.validate(SOME_STRING, SOME_ANSWERS)
+    result = question.validate(SOME_STRING, SOME_ANSWERS)
 
-    assert (error is None) == is_valid
+    assert result.valid == is_valid
 
 
 @pytest.mark.parametrize(
