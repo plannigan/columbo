@@ -236,7 +236,8 @@ def test_to_answer__basic_question_value_not_valid__exception():
     ]
 
     with pytest.raises(CliException):
-        to_answers(questions, Namespace(**{SOME_NAME: SOME_STRING}))
+        with pytest.deprecated_call():
+            to_answers(questions, Namespace(**{SOME_NAME: SOME_STRING}))
 
 
 def test_to_answer__basic_question_dont_ask__value_not_stored():
