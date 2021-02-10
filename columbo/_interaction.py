@@ -1,4 +1,5 @@
 import re
+import warnings
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Collection, Optional, Type, TypeVar, Union
@@ -31,6 +32,8 @@ class _Sentinel(Enum):
 T = TypeVar("T")
 _NOT_GIVEN = _Sentinel.A
 Possible = Union[T, _Sentinel]
+
+VALIDATOR_UPGRADE_DOCS_LINK = "https://wayfair-incubator.github.io/columbo/latest/usage-guide/validators/#upgrading-validator-structure"
 
 
 # value is Possible[T]. The type is explicitly not annotated because of a conflict when T is a union. The type system
@@ -388,6 +391,11 @@ class BasicQuestion(Question):
             if isinstance(result, (ValidationFailure, ValidationSuccess)):
                 return result
             else:  # handle deprecated, legacy validator responses
+                warnings.warn(
+                    f"You are using a validator {self._validator} that returns content in a way will be deprecated at the 1.0.0 release."
+                    + f"For information on how to upgrade, please refer to the documentation here: {VALIDATOR_UPGRADE_DOCS_LINK}",
+                    DeprecationWarning,
+                )
                 if result:
                     return ValidationFailure(error=result)
                 return ValidationSuccess()
