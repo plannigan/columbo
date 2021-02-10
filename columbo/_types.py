@@ -29,4 +29,4 @@ V = TypeVar("V")
 StaticOrDynamicValue = Union[V, Callable[[Answers], V]]
 ShouldAsk = Callable[[Answers], bool]
 ValidationResponse = Union[ValidationSuccess, ValidationFailure]
-Validator = Callable[[str, Answers], ValidationResponse]
+Validator = Callable[[str, Answers], Union[ValidationResponse,  Optional[str]]
