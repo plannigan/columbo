@@ -392,7 +392,7 @@ class BasicQuestion(Question):
                 return result
             else:  # handle deprecated, legacy validator responses
                 warnings.warn(
-                    f"You are using a validator {self._validator} that returns content in a way will be deprecated at the 1.0.0 release."
+                    f"You are using a validator {self._validator} that returns content in a way is deprecated and will be removed after the 1.0.0 release."
                     + f"For information on how to upgrade, please refer to the documentation here: {VALIDATOR_UPGRADE_DOCS_LINK}",
                     DeprecationWarning,
                 )
