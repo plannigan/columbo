@@ -16,7 +16,7 @@ library. The following table defines the aliases that are used.
 | `ShouldAsk` | `Callable[[Answers], bool]` |
 | `StaticOrDynamicValue` | `Union[V, Callable[[Answers], V]]` |
 | `ValidationResponse` | `Union[ValidationSuccess, ValidationFailure]` |
-| `Validator` | `Callable[[str, Answers], ValidationResponse]` |
+| `Validator` | `Callable[[str, Answers],  Union[ValidationResponse,  Optional[str]]]` |
 
 !!! note
     `Possible` is a special construct used in `copy()` methods to indicate that a value was not
