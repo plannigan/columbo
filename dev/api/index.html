@@ -392,6 +392,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.BasicQuestion.validate" class="md-nav__link">
+    validate()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -422,6 +429,13 @@
           <li class="md-nav__item">
   <a href="#columbo._interaction.Choice.copy" class="md-nav__link">
     copy()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.Choice.validate" class="md-nav__link">
+    validate()
   </a>
   
 </li>
@@ -732,6 +746,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.BasicQuestion.validate" class="md-nav__link">
+    validate()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -762,6 +783,13 @@
           <li class="md-nav__item">
   <a href="#columbo._interaction.Choice.copy" class="md-nav__link">
     copy()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.Choice.validate" class="md-nav__link">
+    validate()
   </a>
   
 </li>
@@ -978,7 +1006,7 @@ library. The following table defines the aliases that are used.</p>
 </tr>
 <tr>
 <td><code>Interaction</code></td>
-<td><code>Union["Echo", "Acknowledge", "Question"]</code></td>
+<td><code>Interaction</code></td>
 </tr>
 <tr>
 <td><code>MutableAnswers</code></td>
@@ -1001,8 +1029,12 @@ library. The following table defines the aliases that are used.</p>
 <td><code>Union[V, Callable[[Answers], V]]</code></td>
 </tr>
 <tr>
+<td><code>ValidationResponse</code></td>
+<td><code>Union[ValidationSuccess, ValidationFailure]</code></td>
+</tr>
+<tr>
 <td><code>Validator</code></td>
-<td><code>Callable[[str, Answers], Optional[str]]</code></td>
+<td><code>Callable[[str, Answers],  Union[ValidationResponse,  Optional[str]]]</code></td>
 </tr>
 </tbody>
 </table>
@@ -1187,9 +1219,9 @@ completeness.</p>
 </tr>
 <tr>
 <td><code>validator</code></td>
-<td><code>Optional[Validator]</code></td>
+<td><code>Optional[Callable[[str, Answers], Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure, str]]]</code></td>
 <td>
-<p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p>
+<p>Callable that will validate the response given by the user. A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.</p>
 </td>
 <td><code>None</code></td>
 </tr>
@@ -1316,11 +1348,68 @@ completeness.</p>
 </tr>
 <tr>
 <td><code>validator</code></td>
-<td><code>Possible[Optional[Validator]]</code></td>
+<td><code>Optional[Callable[[str, Answers], Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure, str]], NoneType, columbo._interaction._Sentinel]</code></td>
 <td>
 <p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p>
 </td>
 <td><code>_Sentinel</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="columbo._interaction.BasicQuestion.validate">
+
+<code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span></code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Validate the value (a new answer).</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>str</code></td>
+<td>
+<p>The identifier that will be used as the key to access the this question's answer.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>answers</code></td>
+<td><code>Answers</code></td>
+<td>
+<p>The answers that have been provided this far.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure]</code></td>
+<td>
+<p>A ValidationFailure or ValidationSuccess object.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -1555,6 +1644,63 @@ completeness.</p>
 <td><code>Choice</code></td>
 <td>
 <p>A newly constructed instance with the given values in place of the values of this instance.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h4 class="doc doc-heading" id="columbo._interaction.Choice.validate">
+
+<code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span></code>
+
+
+      </h4>
+<div class="doc doc-contents ">
+<p>Validate the value (a new answer).</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>str</code></td>
+<td>
+<p>The identifier that will be used as the key to access the this question's answer.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>answers</code></td>
+<td><code>Answers</code></td>
+<td>
+<p>The answers that have been provided this far.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure]</code></td>
+<td>
+<p>A ValidationFailure or ValidationSuccess object.</p>
 </td>
 </tr>
 </tbody>
