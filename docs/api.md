@@ -9,14 +9,14 @@ library. The following table defines the aliases that are used.
 | ----- | ----- |
 | `Answer` | `Union[bool, str]` |
 | `Answers` | `Mapping[str, Answer]` |
-| `Interaction` | `Union["Echo", "Acknowledge", "Question"]` |
+| `Interaction` | `Union[Echo, Acknowledge, Question]` |
 | `MutableAnswers` | `MutableMapping[str, Answer]` |
 | `OptionList` | `List[str]` |
 | `Possible`* | `Union[T, Literal[_Sentinel]]` |
 | `ShouldAsk` | `Callable[[Answers], bool]` |
 | `StaticOrDynamicValue` | `Union[V, Callable[[Answers], V]]` |
-| `Validator` | `Callable[[str, Answers], Optional[str]]` |
-
+| `ValidationResponse` | `Union[ValidationSuccess, ValidationFailure]` |
+| `Validator` | `Callable[[str, Answers],  Union[ValidationResponse,  Optional[str]]]` |
 
 !!! note
     `Possible` is a special construct used in `copy()` methods to indicate that a value was not

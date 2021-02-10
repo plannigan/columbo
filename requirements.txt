@@ -1,1 +1,2 @@
 prompt-toolkit==3.0.14
+typing_extensions; python_version < '3.8'
