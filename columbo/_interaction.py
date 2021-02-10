@@ -284,8 +284,7 @@ class Choice(Question):
         """
         options = to_value(self._options, answers, list)
         if value not in options:
-            error_message = f"Chosen value: {value} not in options"
-            return ValidationFailure(error=error_message)
+            return ValidationFailure(error=f"Chosen value: {value} not in options")
         return ValidationSuccess()
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> str:
