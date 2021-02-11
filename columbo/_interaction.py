@@ -33,7 +33,7 @@ T = TypeVar("T")
 _NOT_GIVEN = _Sentinel.A
 Possible = Union[T, _Sentinel]
 
-VALIDATOR_UPGRADE_DOCS_LINK = "https://wayfair-incubator.github.io/columbo/latest/usage-guide/validators/#upgrading-validator-structure"
+VALIDATOR_UPGRADE_DOCS_LINK = "https://wayfair-incubator.github.io/columbo/0.10.0/usage-guide/validators/#upgrading-validator-structure"
 
 
 # value is Possible[T]. The type is explicitly not annotated because of a conflict when T is a union. The type system
