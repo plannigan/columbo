@@ -383,9 +383,9 @@ def test_basic_question_is_valid__legacy_validator__result_of_validator(
         SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=lambda v, a: validator_response
     )
 
-    result = question.validate(SOME_STRING, SOME_ANSWERS)
-
-    assert result.valid == is_valid
+    with pytest.deprecated_call():
+        result = question.validate(SOME_STRING, SOME_ANSWERS)
+        assert result.valid == is_valid
 
 
 @pytest.mark.parametrize(
@@ -424,13 +424,14 @@ def test_basic_question__invalid_asked_multiple_times(mocker, validity_responses
 
     user_io_ask_mock = mocker.patch("columbo._interaction.user_io.ask")
 
-    # validator callable will return False and then True when invoked
-    BasicQuestion(
-        SOME_NAME,
-        SOME_STRING,
-        SOME_DEFAULT,
-        validator=mocker.Mock(side_effect=validity_responses),
-    ).ask(SOME_ANSWERS)
+    with pytest.deprecated_call():
+        # validator callable will return False and then True when invoked
+        BasicQuestion(
+            SOME_NAME,
+            SOME_STRING,
+            SOME_DEFAULT,
+            validator=mocker.Mock(side_effect=validity_responses),
+        ).ask(SOME_ANSWERS)
 
     assert user_io_ask_mock.call_count == len(validity_responses)
 

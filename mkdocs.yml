@@ -19,6 +19,7 @@ theme: material
 markdown_extensions:
   - admonition
   - codehilite
+  - footnotes
   - pymdownx.highlight
   - pymdownx.keys
   - pymdownx.superfences
