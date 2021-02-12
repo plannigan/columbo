@@ -12,6 +12,7 @@ nav:
     - Optional Questions & Branching: usage-guide/optional-questions-and-branching.md
     - Validators: usage-guide/validators.md
     - Command Line Interface: usage-guide/command-line.md
+  - Why Columbo?: why-columbo.md
   - Reference: api.md
   - Development Guide: development-guide.md
   - Changelog: changelog.md
