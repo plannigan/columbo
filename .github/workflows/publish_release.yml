@@ -28,6 +28,7 @@ jobs:
 
   build-and-publish-wheel-to-pypi:
     runs-on: ubuntu-latest
+    environment: "Publish Release"
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -39,7 +40,7 @@ jobs:
       - name: Build wheel
         uses: ./.github/actions/build-dist
 
-      # - name: Publish distribution 📦 to PyPI
-      #   uses: pypa/gh-action-pypi-publish@54b39fb9371c0b3a6f9f14bb8a67394defc7a806
-      #   with:
-      #     password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Publish distribution 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.4.2
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
