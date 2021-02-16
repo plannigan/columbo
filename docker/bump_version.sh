@@ -56,7 +56,7 @@ elif [[ "${PART}" == "${PRE_RELEASE_ARG}" && "${DEV_RELEASE}" == "true" ]]; then
   usage
 fi
 
-CURRENT_BRANCH=$(git branch --show-current)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 CURRENT_STATUS=$(git status --short --untracked-files=no)
 
 if [[ "${CURRENT_BRANCH}" != "${DEFAULT_BRANCH}" ]]; then
