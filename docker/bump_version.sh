@@ -81,7 +81,7 @@ fi
 BUMP_BRANCH_NAME="bump_version_to_${NEW_VERSION}"
 echo "Creating new branch ${BUMP_BRANCH_NAME}"
 echo
-git switch --quiet -c "${BUMP_BRANCH_NAME}"
+git checkout --quiet -b "${BUMP_BRANCH_NAME}"
 # Update files
 bump2version --new-version "${NEW_VERSION}" "${PART}"
 
@@ -98,7 +98,7 @@ git commit --amend --no-edit
 # Show effected files
 git show --pretty="" --name-only
 # Back to original branch
-git switch --quiet "${DEFAULT_BRANCH}"
+git checkout --quiet "${DEFAULT_BRANCH}"
 
 echo
 echo "Run 'git push --set-upstream origin ${BUMP_BRANCH_NAME}' to create a pull request"
