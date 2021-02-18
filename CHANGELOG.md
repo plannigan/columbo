@@ -10,24 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Python 3.9 support (https://github.com/wayfair-incubator/columbo/pull/73)
-* New `Validator` signature (https://github.com/wayfair-incubator/columbo/issues/37)
-* Documentation detailing the motivation for and value of columbo (https://github.com/wayfair-incubator/columbo/pull/92)
+* Python 3.9 support ([#73](https://github.com/wayfair-incubator/columbo/pull/73))
+* New `Validator` signature ([#37](https://github.com/wayfair-incubator/columbo/issues/37))
 
 ### Changed
 
-* Improved validation for converting question names to command line arguments (https://github.com/wayfair-incubator/columbo/pull/82)
-* Converted package to pyproject.toml and setup.cfg based builds (https://github.com/wayfair-incubator/columbo/pull/70)
+* Improved validation for converting question names to command line arguments ([#82](https://github.com/wayfair-incubator/columbo/pull/82))
 
 ### Deprecated
 
-* Support for `Validator`s that return `Optional[str]` (https://github.com/wayfair-incubator/columbo/issues/39)
-
-### Fixed
-
-* Bugs in examples in the documentation (https://github.com/wayfair-incubator/columbo/pull/86)
-* Broken links in documentation (https://github.com/wayfair-incubator/columbo/commit/8724cb0e009c3f771bfecde9010dc7054c006a26)
-* Broken `git switch ...` commands when bumping columbo's version (https://github.com/wayfair-incubator/columbo/pull/96)
+* Support for `Validator`s that return `Optional[str]` ([#39](https://github.com/wayfair-incubator/columbo/issues/39))
 
 ## [0.9.0] - 2020-12-18
 
