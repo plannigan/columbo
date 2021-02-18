@@ -19,7 +19,10 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        uses: ./.github/actions/install-dependencies
+        with:
+          requirements: "true"
+          test-requirements: "true"
 
       - name: Push documentation changes
         uses: ./.github/actions/publish-docs-with-mike
