@@ -28,6 +28,6 @@ from columbo._types import (  # noqa: F401
     Validator,
 )
 
-__version__ = "0.9.0"
+__version__ = "0.10.0"
 __author__ = "Patrick Lannigan <plannigan@wayfair.com>"
 __all__ = []  # type: ignore
