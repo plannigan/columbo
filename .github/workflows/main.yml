@@ -136,12 +136,15 @@ jobs:
 
   verify-wheel:
     runs-on: ubuntu-latest
+    strategy:
+          matrix:
+            python-version: [3.6, 3.7, 3.8, 3.9]
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: ${{ matrix.python-version }}
       - name: Build wheel
         uses: ./.github/actions/build-dist
       - name: Verify wheel

@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+* `dataclasses` was not listed as a dependency for versions of Python < 3.7
+
 ## [0.10.0] - 2021-02-18
 
 ### Added
