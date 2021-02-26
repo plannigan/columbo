@@ -371,6 +371,19 @@
     [Unreleased]
   </a>
   
+    <nav class="md-nav" aria-label="[Unreleased]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -437,7 +450,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     Fixed
   </a>
   
@@ -478,7 +491,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
+  <a href="#fixed_2" class="md-nav__link">
     Fixed
   </a>
   
@@ -505,7 +518,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
+  <a href="#fixed_3" class="md-nav__link">
     Fixed
   </a>
   
@@ -539,7 +552,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_3" class="md-nav__link">
+  <a href="#fixed_4" class="md-nav__link">
     Fixed
   </a>
   
@@ -573,7 +586,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_4" class="md-nav__link">
+  <a href="#fixed_5" class="md-nav__link">
     Fixed
   </a>
   
@@ -655,6 +668,19 @@
     [Unreleased]
   </a>
   
+    <nav class="md-nav" aria-label="[Unreleased]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    Fixed
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -721,7 +747,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
+  <a href="#fixed_1" class="md-nav__link">
     Fixed
   </a>
   
@@ -762,7 +788,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
+  <a href="#fixed_2" class="md-nav__link">
     Fixed
   </a>
   
@@ -789,7 +815,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
+  <a href="#fixed_3" class="md-nav__link">
     Fixed
   </a>
   
@@ -823,7 +849,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_3" class="md-nav__link">
+  <a href="#fixed_4" class="md-nav__link">
     Fixed
   </a>
   
@@ -857,7 +883,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fixed_4" class="md-nav__link">
+  <a href="#fixed_5" class="md-nav__link">
     Fixed
   </a>
   
@@ -924,6 +950,10 @@
 <p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
 and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <h2 id="unreleased">[Unreleased]</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><code>dataclasses</code> was not listed as a dependency for versions of Python &lt; 3.7</li>
+</ul>
 <h2 id="0100-2021-02-18">[0.10.0] - 2021-02-18</h2>
 <h3 id="added">Added</h3>
 <ul>
@@ -951,7 +981,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <ul>
 <li>Stop producing universal wheels.</li>
 </ul>
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed_1">Fixed</h3>
 <ul>
 <li><code>StaticOrDynamicValue</code> enforces that the result of the callable must be the same type as the static type.</li>
 </ul>
@@ -969,7 +999,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <li>Type hints on public API. Be more restrictive when functions should not be making mutations. Be less restrictive when
     functions don't rely on specific implementations.</li>
 </ul>
-<h3 id="fixed_1">Fixed</h3>
+<h3 id="fixed_2">Fixed</h3>
 <ul>
 <li><code>CliException</code> inherits from <code>ColumboException</code>.</li>
 <li>Raise <code>DuplicateQuestionNameException</code> if a list of interactions contains multiple questions with the same name. The
@@ -980,7 +1010,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <ul>
 <li><code>parse_args()</code> function now accepts an initial dictionary of <code>answers</code>.</li>
 </ul>
-<h3 id="fixed_2">Fixed</h3>
+<h3 id="fixed_3">Fixed</h3>
 <ul>
 <li>Expose additional type hints used in signatures of public API.</li>
 </ul>
@@ -1000,7 +1030,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <li>Mark <code>user_io</code> sub-module as private.</li>
 <li>Expose exception types raised by library.</li>
 </ul>
-<h3 id="fixed_3">Fixed</h3>
+<h3 id="fixed_4">Fixed</h3>
 <ul>
 <li>Add <code>Args</code> class that <code>user_io</code> relies on.</li>
 <li>Explicit type is required for <code>singledispatch</code> on python 3.6.</li>
@@ -1017,7 +1047,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <li>return type of <code>Validator</code> return type updated from <code>bool</code> to <code>Optional[str]</code></li>
 <li><code>is_valid</code> function updated to <code>validate</code>, return type updated from <code>bool</code> to <code>Optional[str]</code></li>
 </ul>
-<h3 id="fixed_4">Fixed</h3>
+<h3 id="fixed_5">Fixed</h3>
 <ul>
 <li><code>BasicQuestion</code> constructor now respects the <code>validator</code> argument</li>
 <li>If <code>validator</code> callable provided, question will be asked until validator returns <code>True</code></li>
