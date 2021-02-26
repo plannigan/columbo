@@ -41,6 +41,9 @@ plugins:
             show_root_full_path: False
   - mkdocstrings_patch_type_aliases
 
+extra:
+  version:
+    provider: mike
 extra_css:
   - css/version-select.css
   - css/mkdocstrings.css
