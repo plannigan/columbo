@@ -1,4 +1,4 @@
-# Columbo - 0.10.0
+# Columbo - 0.10.1
 
 [![CI pipeline status](https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main)][ci]
 [![PyPI](https://img.shields.io/pypi/v/columbo)][pypi]
