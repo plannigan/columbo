@@ -45,7 +45,4 @@ extra:
   version:
     provider: mike
 extra_css:
-  - css/version-select.css
   - css/mkdocstrings.css
-extra_javascript:
-  - js/version-select.js
