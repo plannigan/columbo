@@ -70,7 +70,6 @@ $ python columbo_example.py --user-email patrick@example.com --likes-dogs
 ```python
 {!.examples/index_command_line_answers.py!}
 ```
-
 </details>
 
 ## Where to Start?

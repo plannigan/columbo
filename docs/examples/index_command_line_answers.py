@@ -24,5 +24,8 @@ interactions = [
     columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
 ]
 
-answers = columbo.parse_args(interactions)
+answers = columbo.parse_args(interactions, args=[
+    "--user-email", "patrick@example.com",
+    "--likes-dogs",
+])
 print(answers)
