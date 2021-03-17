@@ -28,34 +28,7 @@ The primary use of `columbo` is to define a sequence of interactions that are us
 using a terminal. Below is a sample which shows some ways this can be used.
 
 ```python
-import columbo
-
-interactions = [
-    columbo.Echo("Welcome to the Columbo example"),
-    columbo.Acknowledge(
-        "Press enter to start"
-    ),
-    columbo.BasicQuestion(
-        "user",
-        "What is your name?",
-        default="Patrick",
-    ),
-    columbo.BasicQuestion(
-        "user_email",
-        lambda answers: f"""What email address should be used to contact {answers["user"]}?""",
-        default="me@example.com"
-    ),
-    columbo.Choice(
-        "mood",
-        "How are you feeling today?",
-        options=["happy", "sad", "sleepy", "confused"],
-        default="happy",
-    ),
-    columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
-]
-
-answers = columbo.get_answers(interactions)
-print(answers)
+{!.examples/index_user_prompts.py!}
 ```
 
 Below shows the output when the user accepts the default values for most of the questions. The user provides a different
@@ -95,35 +68,9 @@ $ python columbo_example.py --user-email patrick@example.com --likes-dogs
     <summary>The full example</summary>
 
 ```python
-import columbo
-
-interactions = [
-    columbo.Echo("Welcome to the Columbo example"),
-    columbo.Acknowledge(
-        "Press enter to start"
-    ),
-    columbo.BasicQuestion(
-        "user",
-        "What is your name?",
-        default="Patrick",
-    ),
-    columbo.BasicQuestion(
-        "user_email",
-        lambda answers: f"""What email address should be used to contact {answers["user"]}?""",
-        default="me@example.com"
-    ),
-    columbo.Choice(
-        "mood",
-        "How are you feeling today?",
-        options=["happy", "sad", "sleepy", "confused"],
-        default="happy",
-    ),
-    columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
-]
-
-answers = columbo.parse_args(interactions)
-print(answers)
+{!.examples/index_command_line_answers.py!}
 ```
+
 </details>
 
 ## Where to Start?
