@@ -71,6 +71,7 @@ interactions = [
         "user_email",
         lambda answers: f"""What email address should be used to contact {answers["user"]}?""",
         default="me@example.com",
+        foo="bar"
     ),
     columbo.Choice(
         "mood",
