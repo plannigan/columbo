@@ -1,7 +1,8 @@
-from typing import List
 import re
+from typing import List
 
 import columbo
+
 
 def is_email_address(value: str, _: columbo.Answers) -> columbo.ValidationResponse:
     if not re.match(r"^\w+@\w+", value):
@@ -9,6 +10,7 @@ def is_email_address(value: str, _: columbo.Answers) -> columbo.ValidationRespon
         return columbo.ValidationFailure(error=error_message)
 
     return columbo.ValidationSuccess()
+
 
 interactions: List[columbo.Interaction] = [
     columbo.BasicQuestion(

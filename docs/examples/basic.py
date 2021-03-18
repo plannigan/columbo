@@ -65,18 +65,12 @@ import columbo
 
 interactions = [
     columbo.Echo("Welcome to the Columbo example"),
-    columbo.Acknowledge(
-        "Press enter to start"
-    ),
-    columbo.BasicQuestion(
-        "user",
-        "What is your name?",
-        default="Patrick"
-    ),
+    columbo.Acknowledge("Press enter to start"),
+    columbo.BasicQuestion("user", "What is your name?", default="Patrick"),
     columbo.BasicQuestion(
         "user_email",
         lambda answers: f"""What email address should be used to contact {answers["user"]}?""",
-        default="me@example.com"
+        default="me@example.com",
     ),
     columbo.Choice(
         "mood",

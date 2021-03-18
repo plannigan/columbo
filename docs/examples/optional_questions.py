@@ -11,14 +11,14 @@ interactions = [
         "dog_name",
         "What is the name of the dog?",
         should_ask=user_has_dog,
-        default="Kaylee"
+        default="Kaylee",
     ),
     columbo.BasicQuestion(
         "dog_breed",
         "What is the breed of the dog?",
         should_ask=user_has_dog,
-        default="Basset Hound"
-    )
+        default="Basset Hound",
+    ),
 ]
 
 user_answers = columbo.get_answers(interactions)
