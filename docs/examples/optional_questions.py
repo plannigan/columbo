@@ -1,7 +1,7 @@
 import columbo
 
 
-def does_user_have_a_dog(answers: columbo.Answers) -> bool:
+def user_has_dog(answers: columbo.Answers) -> bool:
     return answers["has_dog"]
 
 
@@ -10,13 +10,13 @@ interactions = [
     columbo.BasicQuestion(
         "dog_name",
         "What is the name of the dog?",
-        should_ask=does_user_have_a_dog,
+        should_ask=user_has_dog,
         default="Kaylee"
     ),
     columbo.BasicQuestion(
         "dog_breed",
         "What is the breed of the dog?",
-        should_ask=does_user_have_a_dog,
+        should_ask=user_has_dog,
         default="Basset Hound"
     )
 ]
