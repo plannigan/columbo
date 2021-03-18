@@ -62,7 +62,7 @@ coverage rather than decreasing it.
 
 We use [pytest][pytest-docs] as our testing framework.
 
-#### Stages
+### Stages
 
 To customize / override a specific testing stage, please read the documentation specific to that tool:
 
@@ -73,7 +73,19 @@ To customize / override a specific testing stage, please read the documentation 
 4. [Flake8][flake8-docs]
 5. [Bandit][bandit-docs]
 
-### `setup.py`
+## Validate Examples Used in Documentation
+
+In the `docs/examples/` directory of this repo, there are example Python scripts which we use in our documentation.
+You can validate that the examples run properly using:
+
+```bash
+docker-compose run --rm validateDocExamples
+```
+
+When running, we expect the script to produce output.
+If the script fails, it will output information about the file that we need to fix.
+
+## `setup.py`
 
 Setuptools is used to packaging the library.
 
