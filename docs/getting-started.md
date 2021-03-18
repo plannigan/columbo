@@ -79,7 +79,7 @@ printed next.
 This is the example that appears on the [main page][docs-main] of the documentation.
 
 ```python linenums="1"
-{!.examples/index_user_prompts.py!}
+{!examples/index_user_prompts.py!}
 ```
 
 * Line 1: Import the `columbo` module.
@@ -125,7 +125,7 @@ print(answers)
     <summary>The full example</summary>
 
 ```python linenums="1" hl_lines="27-30"
-{!.examples/index_command_line_answers.py!}
+{!examples/index_command_line_answers.py!}
 ```
 </details>
 

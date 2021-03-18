@@ -18,7 +18,7 @@ The following is a basic example that has two optional questions that are not as
 question.
 
 ```python
-{!.examples/optional_questions.py!}
+{!examples/optional_questions.py!}
 ```
 
 If the user accepts the default answers for each of these questions, the output will be:
@@ -47,7 +47,7 @@ isn't different from the optional questions [demonstrated above](#optional-quest
 branching paths by supplying different `should_ask` values that will never both evaluate to `True`.
 
 ```python
-{!.examples/branching_story.py!}
+{!examples/branching_story.py!}
 ```
 
 The import thing to note in the example above is that the `Answers` dictionary can have a key-value pair for

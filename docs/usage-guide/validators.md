@@ -41,7 +41,7 @@ word character on each side then the response is invalid and the user will have 
 enter an email address again (hopefully a valid one this time).
 
 ```python
-{!.examples/validators.py!}
+{!examples/validators.py!}
 ```
 
 [^1]:

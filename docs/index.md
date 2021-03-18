@@ -28,7 +28,7 @@ The primary use of `columbo` is to define a sequence of interactions that are us
 using a terminal. Below is a sample which shows some ways this can be used.
 
 ```python
-{!.examples/index_user_prompts.py!}
+{!examples/index_user_prompts.py!}
 ```
 
 Below shows the output when the user accepts the default values for most of the questions. The user provides a different
@@ -68,7 +68,7 @@ $ python columbo_example.py --user-email patrick@example.com --likes-dogs
     <summary>The full example</summary>
 
 ```python
-{!.examples/index_command_line_answers.py!}
+{!examples/index_command_line_answers.py!}
 ```
 </details>
 
