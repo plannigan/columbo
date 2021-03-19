@@ -41,10 +41,10 @@ echo "Running MyPy..."
 mypy columbo tests
 
 echo "Running black..."
-black ${BLACK_ACTION} columbo tests
+black ${BLACK_ACTION} columbo tests docs/examples/
 
 echo "Running iSort..."
-isort ${ISORT_ACTION} columbo tests
+isort ${ISORT_ACTION} columbo tests docs/examples/
 
 echo "Running flake8..."
 flake8 columbo tests

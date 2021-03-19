@@ -1,10 +1,13 @@
 import columbo
 
+
 def went_left(answers: columbo.Answers) -> bool:
     return answers["which_door"] == "left"
 
+
 def went_right(answers: columbo.Answers) -> bool:
     return answers["which_door"] == "right"
+
 
 def outcome(answers: columbo.Answers) -> str:
     if answers.get("has_key", False):
@@ -15,7 +18,7 @@ def outcome(answers: columbo.Answers) -> str:
         "Unable to open the gate yourself, you yell for help. A farmer in the nearby field hears you. "
         "He reaches into his pocket and pulls out a key to unlock the gate and open it. "
         "As you walk through the archway he says, "
-        "\"What I don't understand is how you got in there. This is the only key.\""
+        '"What I don\'t understand is how you got in there. This is the only key."'
     )
 
 
@@ -28,7 +31,7 @@ interactions = [
         "which_door",
         "Which door do you walk through?",
         options=["left", "right"],
-        default="left"
+        default="left",
     ),
     columbo.Confirm(
         "has_key",
@@ -36,7 +39,7 @@ interactions = [
         "As you walk down the hallway, there is a small side table with a key on it.\n"
         "Do you pick up the key before going through the door at the other end?",
         should_ask=went_left,
-        default=True
+        default=True,
     ),
     columbo.Confirm(
         "has_hammer",
@@ -44,7 +47,7 @@ interactions = [
         "The room has a single door on the opposite side of the room and a work bench with a hammer on it.\n"
         "Do you pick up the hammer before going through the door at the other side?",
         should_ask=went_right,
-        default=True
+        default=True,
     ),
     columbo.Echo(
         "You enter a small courtyard with high walls. There is an archway that would allow you to go free, "

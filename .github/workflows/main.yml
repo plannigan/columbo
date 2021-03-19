@@ -152,6 +152,15 @@ jobs:
         with:
           package-import-name: "columbo"
 
+  validate-doc-examples:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      
+      - name: Validate docs
+        run: ./docker/validate_docs.sh
+
   build-docs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'

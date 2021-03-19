@@ -23,6 +23,11 @@ services:
     <<: *devbox
     command: docker/run_tests.sh --format-code
 
+  # test the documentation examples to make sure they can be run with Python
+  validateDocExamples:
+    <<: *devbox
+    command: docker/validate_docs.sh
+
   bump:
     <<: *devbox
     <<: *mount-app-and-user-git-config
