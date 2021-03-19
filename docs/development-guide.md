@@ -82,8 +82,11 @@ You can validate that the examples run properly using:
 docker-compose run --rm validateDocExamples
 ```
 
-When running, we expect the script to produce output.
-If the script fails, it will output information about the file that we need to fix.
+If the script fails (exits with a non-zero status), it will output information about the file that we need to fix.
+
+Note that this script will output some content in the shell every time it runs.
+Just because the script outputs content to the shell does *not* mean it has failed;
+as long as the script finishes successfully (exits with a zero status), there are no problems we need to address.
 
 ## `setup.py`
 
