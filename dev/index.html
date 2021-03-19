@@ -542,9 +542,7 @@ using a terminal. Below is a sample which shows some ways this can be used.</p>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
-        <span class="s2">&quot;Press enter to start&quot;</span>
-    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span><span class="s2">&quot;Press enter to start&quot;</span><span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
@@ -553,7 +551,7 @@ using a terminal. Below is a sample which shows some ways this can be used.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
         <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
         <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
@@ -600,9 +598,7 @@ changing <code>columbo.get_answers()</code> to <code>columbo.parse_args()</code>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
-        <span class="s2">&quot;Press enter to start&quot;</span>
-    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span><span class="s2">&quot;Press enter to start&quot;</span><span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
@@ -611,7 +607,7 @@ changing <code>columbo.get_answers()</code> to <code>columbo.parse_args()</code>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
         <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
         <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
@@ -622,7 +618,14 @@ changing <code>columbo.get_answers()</code> to <code>columbo.parse_args()</code>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span>
+    <span class="n">interactions</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;--user-email&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;patrick@example.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--likes-dogs&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
 </code></pre></div>
 </details>

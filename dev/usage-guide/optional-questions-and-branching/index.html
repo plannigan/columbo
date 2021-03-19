@@ -484,8 +484,10 @@ skipped question. The examples below will demonstrate this result.</p>
 question.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
+
 <span class="k">def</span> <span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
+
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
@@ -493,14 +495,14 @@ question.</p>
         <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span>
-    <span class="p">)</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
 <span class="p">]</span>
 
 <span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
@@ -523,11 +525,14 @@ isn't different from the optional questions <a href="#optional-questions">demons
 branching paths by supplying different <code>should_ask</code> values that will never both evaluate to <code>True</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
+
 <span class="k">def</span> <span class="nf">went_left</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span>
 
+
 <span class="k">def</span> <span class="nf">went_right</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span>
+
 
 <span class="k">def</span> <span class="nf">outcome</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_key&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
@@ -538,7 +543,7 @@ branching paths by supplying different <code>should_ask</code> values that will 
         <span class="s2">&quot;Unable to open the gate yourself, you yell for help. A farmer in the nearby field hears you. &quot;</span>
         <span class="s2">&quot;He reaches into his pocket and pulls out a key to unlock the gate and open it. &quot;</span>
         <span class="s2">&quot;As you walk through the archway he says, &quot;</span>
-        <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">What I don&#39;t understand is how you got in there. This is the only key.</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+        <span class="s1">&#39;&quot;What I don</span><span class="se">\&#39;</span><span class="s1">t understand is how you got in there. This is the only key.&quot;&#39;</span>
     <span class="p">)</span>
 
 
@@ -551,7 +556,7 @@ branching paths by supplying different <code>should_ask</code> values that will 
         <span class="s2">&quot;which_door&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Which door do you walk through?&quot;</span><span class="p">,</span>
         <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">],</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
         <span class="s2">&quot;has_key&quot;</span><span class="p">,</span>
@@ -559,7 +564,7 @@ branching paths by supplying different <code>should_ask</code> values that will 
         <span class="s2">&quot;As you walk down the hallway, there is a small side table with a key on it.</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;Do you pick up the key before going through the door at the other end?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_left</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
         <span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span>
@@ -567,7 +572,7 @@ branching paths by supplying different <code>should_ask</code> values that will 
         <span class="s2">&quot;The room has a single door on the opposite side of the room and a work bench with a hammer on it.</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;Do you pick up the hammer before going through the door at the other side?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_right</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
         <span class="s2">&quot;You enter a small courtyard with high walls. There is an archway that would allow you to go free, &quot;</span>

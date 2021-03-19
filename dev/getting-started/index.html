@@ -638,15 +638,11 @@ printed next.</p>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
-        <span class="s2">&quot;Press enter to start&quot;</span>
-    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span><span class="s2">&quot;Press enter to start&quot;</span><span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
@@ -655,7 +651,7 @@ printed next.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
         <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
         <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
@@ -746,13 +742,13 @@ demonstrate the Command Line functionality.</p>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span>
-        <span class="s2">&quot;Press enter to start&quot;</span>
-    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Acknowledge</span><span class="p">(</span><span class="s2">&quot;Press enter to start&quot;</span><span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is your name?&quot;</span><span class="p">,</span>
@@ -761,7 +757,7 @@ demonstrate the Command Line functionality.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;user_email&quot;</span><span class="p">,</span>
         <span class="k">lambda</span> <span class="n">answers</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;What email address should be used to contact </span><span class="si">{</span><span class="n">answers</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="si">}</span><span class="s2">?&quot;&quot;&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;me@example.com&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
         <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
@@ -772,11 +768,15 @@ demonstrate the Command Line functionality.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="hll"><span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span>
-</span><span class="hll">    <span class="s2">&quot;--user-email&quot;</span><span class="p">,</span> <span class="s2">&quot;patrick@example.com&quot;</span><span class="p">,</span>
-</span><span class="hll">    <span class="s2">&quot;--likes-dogs&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="p">])</span>
-</span><span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+<span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span>
+    <span class="n">interactions</span><span class="p">,</span>
+<span class="hll">    <span class="n">args</span><span class="o">=</span><span class="p">[</span>
+</span><span class="hll">        <span class="s2">&quot;--user-email&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="s2">&quot;patrick@example.com&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="s2">&quot;--likes-dogs&quot;</span><span class="p">,</span>
+</span>    <span class="p">],</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
 </details>

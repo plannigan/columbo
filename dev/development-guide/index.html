@@ -380,12 +380,25 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validate-examples-used-in-documentation" class="md-nav__link">
+    Validate Examples Used in Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setuppy" class="md-nav__link">
     setup.py
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="setup.py">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#requirements" class="md-nav__link">
@@ -489,12 +502,25 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validate-examples-used-in-documentation" class="md-nav__link">
+    Validate Examples Used in Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setuppy" class="md-nav__link">
     setup.py
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="setup.py">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#requirements" class="md-nav__link">
@@ -578,7 +604,7 @@ when run locally, <code>black</code> and <code>isort</code> are configured to au
 <p>Generally we should endeavor to write tests for every feature. Every new feature branch should increase the test
 coverage rather than decreasing it.</p>
 <p>We use <a href="https://docs.pytest.org/en/latest/">pytest</a> as our testing framework.</p>
-<h4 id="stages">Stages</h4>
+<h3 id="stages">Stages</h3>
 <p>To customize / override a specific testing stage, please read the documentation specific to that tool:</p>
 <ol>
 <li><a href="https://docs.pytest.org/en/latest/">PyTest</a></li>
@@ -588,7 +614,16 @@ coverage rather than decreasing it.</p>
 <li><a href="http://flake8.pycqa.org/en/stable/">Flake8</a></li>
 <li><a href="https://bandit.readthedocs.io/en/stable/">Bandit</a></li>
 </ol>
-<h3 id="setuppy"><code>setup.py</code></h3>
+<h2 id="validate-examples-used-in-documentation">Validate Examples Used in Documentation</h2>
+<p>In the <code>docs/examples/</code> directory of this repo, there are example Python scripts which we use in our documentation.
+You can validate that the examples run properly using:</p>
+<div class="highlight"><pre><span></span><code>docker-compose run --rm validateDocExamples
+</code></pre></div>
+<p>If the script fails (exits with a non-zero status), it will output information about the file that we need to fix.</p>
+<p>Note that this script will output some content in the shell every time it runs.
+Just because the script outputs content to the shell does <em>not</em> mean it has failed;
+as long as the script finishes successfully (exits with a zero status), there are no problems we need to address.</p>
+<h2 id="setuppy"><code>setup.py</code></h2>
 <p>Setuptools is used to packaging the library.</p>
 <p><strong><code>setup.py</code> must not import anything from the package</strong> When installing from source, the user may not have the
 packages dependencies installed, and importing the package is likely to raise an <code>ImportError</code>. For this reason, the

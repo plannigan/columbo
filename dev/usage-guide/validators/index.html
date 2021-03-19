@@ -532,10 +532,11 @@ The <code>Validator</code> below provides a simple check to see if
 the email address seems valid<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. If the user's response doesn't contain an <code>@</code> character with at least one
 word character on each side then the response is invalid and the user will have to
 enter an email address again (hopefully a valid one this time).</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
 <span class="kn">import</span> <span class="nn">columbo</span>
+
 
 <span class="k">def</span> <span class="nf">is_email_address</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">columbo</span><span class="o">.</span><span class="n">ValidationResponse</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^\w+@\w+&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -543,6 +544,7 @@ enter an email address again (hopefully a valid one this time).</p>
         <span class="k">return</span> <span class="n">columbo</span><span class="o">.</span><span class="n">ValidationFailure</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="n">error_message</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">columbo</span><span class="o">.</span><span class="n">ValidationSuccess</span><span class="p">()</span>
+
 
 <span class="n">interactions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">columbo</span><span class="o">.</span><span class="n">Interaction</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
