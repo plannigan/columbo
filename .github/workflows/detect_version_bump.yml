@@ -21,6 +21,11 @@ jobs:
         run: |
           NEW_VERSION=$(echo ${{ github.head_ref }} | cut -d _ -f4 )
           echo "::set-output name=version::$NEW_VERSION"
+      - name: Is prerelease?
+        id: is-prerelease
+        run: |
+          IS_PRERELEASE=$([[ "${{ steps.get-new-version.outputs.version }}" == *-[a-z]* ]] && echo true || echo false)
+          echo "::set-output name=result::$IS_PRERELEASE"
       - name: Create Release
         uses: actions/create-release@v1
         env:
@@ -28,3 +33,4 @@ jobs:
         with:
           tag_name: v${{ steps.get-new-version.outputs.version }}
           release_name: v${{ steps.get-new-version.outputs.version }} Release
+          prerelease: ${{ steps.is-prerelease.outputs.result }}
