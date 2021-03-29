@@ -24,7 +24,7 @@ jobs:
       - name: Is prerelease?
         id: is-prerelease
         run: |
-          IS_PRERELEASE=$([[ "${{ steps.get-new-version.outputs.version }}" == *-* ]] && echo true || echo false)
+          IS_PRERELEASE=$([[ "${{ steps.get-new-version.outputs.version }}" == *-[a-z]* ]] && echo true || echo false)
           echo "::set-output name=result::$IS_PRERELEASE"
       - name: Create Release
         uses: actions/create-release@v1
