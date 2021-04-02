@@ -9,6 +9,7 @@ from columbo import (
     Confirm,
     DuplicateQuestionNameException,
     Echo,
+    ValidationFailure,
     parse_args,
 )
 from columbo._cli import create_parser, format_cli_help, to_answers
@@ -231,7 +232,10 @@ def test_to_answer__basic_question_value_set__set_value():
 def test_to_answer__basic_question_value_not_valid__exception():
     questions = [
         BasicQuestion(
-            SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=lambda v, a: "some-error"
+            SOME_NAME,
+            SOME_STRING,
+            SOME_DEFAULT,
+            validator=lambda v, a: ValidationFailure("some-error"),
         )
     ]
 

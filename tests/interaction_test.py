@@ -374,22 +374,6 @@ def test_basic_question_is_valid__no_validator__always_valid(value):
 
 @pytest.mark.parametrize(
     ["is_valid", "validator_response"],
-    [(True, None), (False, "some-error")],
-)
-def test_basic_question_is_valid__legacy_validator__result_of_validator(
-    is_valid, validator_response
-):
-    question = BasicQuestion(
-        SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=lambda v, a: validator_response
-    )
-
-    with pytest.deprecated_call():
-        result = question.validate(SOME_STRING, SOME_ANSWERS)
-        assert result.valid == is_valid
-
-
-@pytest.mark.parametrize(
-    ["is_valid", "validator_response"],
     [(True, ValidationSuccess()), (False, ValidationFailure(error="some-error"))],
 )
 def test_basic_question_is_valid__validator__result_of_validator(
@@ -413,7 +397,15 @@ def test_basic_question_is_valid__invalid_validator__exception():
 
 @pytest.mark.parametrize(
     "validity_responses",
-    [[None], ["some-error", None], ["some-error1", "some-error2", None]],
+    [
+        [ValidationSuccess()],
+        [ValidationFailure("some-error"), ValidationSuccess()],
+        [
+            ValidationFailure("some-error1"),
+            ValidationFailure("some-error2"),
+            ValidationSuccess(),
+        ],
+    ],
 )
 def test_basic_question__invalid_asked_multiple_times(mocker, validity_responses):
     """
@@ -424,14 +416,12 @@ def test_basic_question__invalid_asked_multiple_times(mocker, validity_responses
 
     user_io_ask_mock = mocker.patch("columbo._interaction.user_io.ask")
 
-    with pytest.deprecated_call():
-        # validator callable will return False and then True when invoked
-        BasicQuestion(
-            SOME_NAME,
-            SOME_STRING,
-            SOME_DEFAULT,
-            validator=mocker.Mock(side_effect=validity_responses),
-        ).ask(SOME_ANSWERS)
+    BasicQuestion(
+        SOME_NAME,
+        SOME_STRING,
+        SOME_DEFAULT,
+        validator=mocker.Mock(side_effect=validity_responses),
+    ).ask(SOME_ANSWERS)
 
     assert user_io_ask_mock.call_count == len(validity_responses)
 

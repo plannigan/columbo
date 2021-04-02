@@ -45,9 +45,9 @@ enter an email address again (hopefully a valid one this time).
 ```
 
 [^1]:
-    Technically, the type alias for a `Validator` is `Callable[[str, Answers], Union[ValidationResponse, Optional[str]]]` - the difference
+    Formerly, the type alias for a `Validator` was `Callable[[str, Answers], Union[ValidationResponse, Optional[str]]]` - the difference
     from the documentation above is that a `Validator` can return either a `ValidationResponse` *or* `Optional[str]`. Returning `Optional[str]`
-    is NOT recommended as we have deprecated `Optional[str]` as a valid return type in version `0.10.0` and will be removing this capability in version `1.0.0`.
+    is NOT recommended as we have deprecated `Optional[str]` as a valid return type in version `0.10.0` and have removed this capability in version `1.0.0`.
     
 [^2]:
     The regular expression for checking for an RFC 822 compliant email address is
