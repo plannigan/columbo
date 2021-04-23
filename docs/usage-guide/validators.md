@@ -23,9 +23,11 @@ The `Validator` must return a `ValidationResponse` which is a type alias for: `U
 
 ### Upgrading Validator Structure
 
+Validators could return `Optional[str]` before <`0.10.0`, this was removed in `1.0.0`.
+
 The docs in this section detail how to upgrade a `Validator` from a columbo version < `0.10.0` to the newer `Validator` structure. Feel free to skip this section if it's not pertinent to you.
 
-As described in footnote 1[^1], the desired response from a `Validator` has changed in version `0.10.0`. Previously, a `Validator` would return either an error message (as a string) if validation failed or `None` if the validation succeeded. To update a `Validator`, you should update the validator function to return `ValidationFailure` if validation fails and `ValidationSuccess` if the validation succeeds. The table below describes the old and new return values for different validation statuses. If you have questions or would like some clarification, please [raise an issue](https://github.com/wayfair-incubator/columbo/issues) and we'd be happy to help.
+Previously, a `Validator` would return either an error message (as a string) if validation failed or `None` if the validation succeeded. To update a `Validator`, you should update the validator function to return `ValidationFailure` if validation fails and `ValidationSuccess` if the validation succeeds. The table below describes the old and new return values for different validation statuses. 
 
 | Validation Status | Old Return Value (before `0.10.0`) | New Return Value (since `0.10.0`) |
 | ----- | ----- | ----- |
@@ -36,7 +38,7 @@ As described in footnote 1[^1], the desired response from a `Validator` has chan
 
 Let's say we were asking for a user's email address.
 The `Validator` below provides a simple check to see if
-the email address seems valid[^2]. If the user's response doesn't contain an `@` character with at least one
+the email address seems valid[^1]. If the user's response doesn't contain an `@` character with at least one
 word character on each side then the response is invalid and the user will have to
 enter an email address again (hopefully a valid one this time).
 
@@ -45,11 +47,6 @@ enter an email address again (hopefully a valid one this time).
 ```
 
 [^1]:
-    Technically, the type alias for a `Validator` is `Callable[[str, Answers], Union[ValidationResponse, Optional[str]]]` - the difference
-    from the documentation above is that a `Validator` can return either a `ValidationResponse` *or* `Optional[str]`. Returning `Optional[str]`
-    is NOT recommended as we have deprecated `Optional[str]` as a valid return type in version `0.10.0` and will be removing this capability in version `1.0.0`.
-    
-[^2]:
     The regular expression for checking for an RFC 822 compliant email address is
     [overly complicated](http://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html). Additionally, that only ensures that the
     text is valid. It does not confirm if the host will accept emails sent to that address or if the user is the owner of
