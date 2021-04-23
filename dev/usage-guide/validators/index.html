@@ -504,8 +504,9 @@ to one of the choices.</p>
 <p>A <code>Validator</code> takes two arguments: a string (which is the response provided by the user to a question) and an <code>Answers</code> dictionary containing the answer for each previous question.</p>
 <p>The <code>Validator</code> must return a <code>ValidationResponse</code> which is a type alias for: <code>Union[ValidationFailure, ValidationSuccess]</code><sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Thus, a <code>Validator</code> must return either a <code>ValidationFailure</code> or a <code>ValidationSuccess</code> object. You should use a <code>ValidationSuccess</code> when the user's response is valid and <code>ValidationFailure</code> when the user's response is invalid. Both <code>ValidationFailure</code> and <code>ValidationSuccess</code> have a <code>valid</code> attribute that is <code>False</code> and <code>True</code>, respectively. A <code>ValidationFailure</code> requires that you provide an <code>error</code> which describes why the given value was invalid (<code>columbo</code> will display this message before asking users to answer the question again so users get some feedback about what they are doing wrong).</p>
 <h3 id="upgrading-validator-structure">Upgrading Validator Structure</h3>
+<p>Validators could return <code>Optional[str]</code> before &lt;<code>0.10.0</code>, this was removed in <code>1.0.0</code>.</p>
 <p>The docs in this section detail how to upgrade a <code>Validator</code> from a columbo version &lt; <code>0.10.0</code> to the newer <code>Validator</code> structure. Feel free to skip this section if it's not pertinent to you.</p>
-<p>As described in footnote 1<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, the desired response from a <code>Validator</code> has changed in version <code>0.10.0</code>. Previously, a <code>Validator</code> would return either an error message (as a string) if validation failed or <code>None</code> if the validation succeeded. To update a <code>Validator</code>, you should update the validator function to return <code>ValidationFailure</code> if validation fails and <code>ValidationSuccess</code> if the validation succeeds. The table below describes the old and new return values for different validation statuses. If you have questions or would like some clarification, please <a href="https://github.com/wayfair-incubator/columbo/issues">raise an issue</a> and we'd be happy to help.</p>
+<p>Previously, a <code>Validator</code> would return either an error message (as a string) if validation failed or <code>None</code> if the validation succeeded. To update a <code>Validator</code>, you should update the validator function to return <code>ValidationFailure</code> if validation fails and <code>ValidationSuccess</code> if the validation succeeds. The table below describes the old and new return values for different validation statuses. </p>
 <table>
 <thead>
 <tr>
@@ -530,7 +531,7 @@ to one of the choices.</p>
 <h2 id="example-validator">Example Validator</h2>
 <p>Let's say we were asking for a user's email address.
 The <code>Validator</code> below provides a simple check to see if
-the email address seems valid<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. If the user's response doesn't contain an <code>@</code> character with at least one
+the email address seems valid<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. If the user's response doesn't contain an <code>@</code> character with at least one
 word character on each side then the response is invalid and the user will have to
 enter an email address again (hopefully a valid one this time).</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
@@ -563,15 +564,10 @@ enter an email address again (hopefully a valid one this time).</p>
 <hr />
 <ol>
 <li id="fn:1">
-<p>Technically, the type alias for a <code>Validator</code> is <code>Callable[[str, Answers], Union[ValidationResponse, Optional[str]]]</code> - the difference
-from the documentation above is that a <code>Validator</code> can return either a <code>ValidationResponse</code> <em>or</em> <code>Optional[str]</code>. Returning <code>Optional[str]</code>
-is NOT recommended as we have deprecated <code>Optional[str]</code> as a valid return type in version <code>0.10.0</code> and will be removing this capability in version <code>1.0.0</code>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
 <p>The regular expression for checking for an RFC 822 compliant email address is
 <a href="http://www.ex-parrot.com/~pdw/Mail-RFC822-Address.html">overly complicated</a>. Additionally, that only ensures that the
 text is valid. It does not confirm if the host will accept emails sent to that address or if the user is the owner of
-the email address.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+the email address.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
