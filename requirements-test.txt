@@ -11,7 +11,7 @@ mkdocstrings==0.15.0
 mypy==0.812
 pytest==6.2.3
 pytest-cov==2.11.1
-pytest-mock==3.5.1
+pytest-mock==3.6.1
 pdbpp
 ./util/mkdocs-redirects
 ./util/mkdocstrings_patch_type_aliases
