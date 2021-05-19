@@ -204,7 +204,7 @@ jobs:
           requirements: "true"
           test-requirements: "true"
 
-      - name: Push documentaiton changes
+      - name: Push documentation changes
         uses: ./.github/actions/publish-docs-with-mike
         with:
           version_name: dev
