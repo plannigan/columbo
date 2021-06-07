@@ -27,10 +27,11 @@ jobs:
           IS_PRERELEASE=$([[ "${{ steps.get-new-version.outputs.version }}" == *-[a-z]* ]] && echo true || echo false)
           echo "::set-output name=result::$IS_PRERELEASE"
       - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        # use hash for security since this has access to the access token
+        uses: ncipollo/release-action@880be3d0a71bc0fa98db60201d2cbdc27324f547 # v1.8.6
         with:
-          tag_name: v${{ steps.get-new-version.outputs.version }}
-          release_name: v${{ steps.get-new-version.outputs.version }} Release
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag: v${{ steps.get-new-version.outputs.version }}
+          name: v${{ steps.get-new-version.outputs.version }} Release
+          commit: main
           prerelease: ${{ steps.is-prerelease.outputs.result }}
