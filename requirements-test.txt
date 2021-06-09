@@ -5,6 +5,7 @@ flake8==3.9.2
 isort==5.8.0
 mike==0.5.5
 markdown-include==0.6.0
+mkdocs==1.1.2
 mkdocs-material==7.1.7
 mkdocs-minify-plugin==0.4.0
 mkdocstrings==0.15.1
