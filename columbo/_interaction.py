@@ -249,7 +249,7 @@ class Confirm(Question):
             _or_default(default, self._default),
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
-            _or_default(value_if_not_asked, self._value_if_not_asked),
+            value_if_not_asked=_or_default(value_if_not_asked, self._value_if_not_asked),
         )
 
 
@@ -369,7 +369,7 @@ class Choice(Question):
             _or_default(default, self._default),
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
-            _or_default(value_if_not_asked, self._value_if_not_asked),
+            value_if_not_asked=_or_default(value_if_not_asked, self._value_if_not_asked),
         )
 
 
@@ -493,7 +493,7 @@ class BasicQuestion(Question):
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
             _or_default(validator, self._validator),
-            _or_default(value_if_not_asked, self._value_if_not_asked),
+            value_if_not_asked=_or_default(value_if_not_asked, self._value_if_not_asked),
         )
 
 
@@ -541,9 +541,9 @@ def get_answers(
 
 
 def canonical_arg_name(name: str) -> str:
-    sanizized_name = name.lower().replace(" ", "-").replace("_", "-").strip("-")
+    sanitized_name = name.lower().replace(" ", "-").replace("_", "-").strip("-")
     # remove any duplicate dashes ("foo--bar" becomes "foo-bar")
-    arg_name = re.sub(r"(\-)\1+", r"\1", sanizized_name)
+    arg_name = re.sub(r"(\-)\1+", r"\1", sanitized_name)
     return f"--{arg_name}"
 
 
