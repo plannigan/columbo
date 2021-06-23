@@ -106,6 +106,7 @@ class Question(ABC):
         message: StaticOrDynamicValue[str],
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
+        value_if_not_asked: Optional[Union[str, bool]] = None,
     ) -> None:
         """
         Initialize an instance.
@@ -120,7 +121,14 @@ class Question(ABC):
         self._name = name
         self._message = message
         self._cli_help = cli_help
+
+        if value_if_not_asked is not None and should_ask is None:
+            raise ValueError(
+                "You provided a value_if_not_asked but not should_ask. You should either remove value_if_not_asked or add should_ask."
+            )
+
         self._should_ask = should_ask
+        self._value_if_not_asked = value_if_not_asked
 
     @property
     def name(self) -> str:
@@ -130,13 +138,16 @@ class Question(ABC):
     def cli_help(self) -> Optional[str]:
         return self._cli_help
 
+    @property
+    def value_if_not_asked(self) -> Optional[Union[str, bool]]:
+        return self._value_if_not_asked
+
     @abstractmethod
     def ask(self, answers: Answers, no_user_input: bool = False) -> Answer:
         """
         Prompt the user with this question.
 
         :param answers: The answers that have been provided this far.
-        :return: The answer to the question.
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
             to provide an answer. Default: False
         :return: The answer to the question.
@@ -169,6 +180,7 @@ class Confirm(Question):
         default: StaticOrDynamicValue[bool] = False,
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
+        value_if_not_asked: Optional[bool] = None,
     ) -> None:
         """
         Initialize an instance.
@@ -182,7 +194,9 @@ class Confirm(Question):
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
         """
-        super().__init__(name, message, cli_help, should_ask)
+        super().__init__(
+            name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
+        )
         self._default = default
 
     @property
@@ -248,6 +262,7 @@ class Choice(Question):
         default: StaticOrDynamicValue[str],
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
+        value_if_not_asked: Optional[str] = None,
     ) -> None:
         """
         Initialize an instance.
@@ -263,9 +278,21 @@ class Choice(Question):
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
         """
-        super().__init__(name, message, cli_help, should_ask)
+        super().__init__(
+            name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
+        )
+
         self._options = options
         self._default = default
+
+        if value_if_not_asked is not None:
+            value_is_valid = isinstance(
+                self.validate(value_if_not_asked, {}), ValidationSuccess
+            )
+            if not value_is_valid:
+                raise ValueError(
+                    "The value_if_not_asked is not one of the options. Please update it to be one of the options."
+                )
 
     @property
     def options(self) -> StaticOrDynamicValue[OptionList]:
@@ -351,6 +378,7 @@ class BasicQuestion(Question):
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
         validator: Optional[Validator] = None,
+        value_if_not_asked: Optional[str] = None,
     ) -> None:
         """
         Initialize an instance.
@@ -366,7 +394,9 @@ class BasicQuestion(Question):
         :param validator: Callable that will validate the response given by the user.
             A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.
         """
-        super().__init__(name, message, cli_help, should_ask)
+        super().__init__(
+            name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
+        )
         self._default = default
         self._validator = validator
 
@@ -489,6 +519,8 @@ def get_answers(
         elif isinstance(interaction, Question):
             if interaction.should_ask(result):
                 result[interaction.name] = interaction.ask(result, no_user_input)
+            elif interaction.value_if_not_asked is not None:
+                result[interaction.name] = interaction.value_if_not_asked
         else:
             raise ValueError(f"Unsupported interaction type: {type(interaction)}")
 

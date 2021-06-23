@@ -530,3 +530,88 @@ def test__canonical_arg_name__nonstandard_characters__normalized(
     description, name, expected_arg
 ):
     assert canonical_arg_name(name) == expected_arg, description
+
+
+@pytest.mark.parametrize(
+    ["should_ask", "value_if_not_asked", "expected_answer"],
+    [
+        (True, "z", {"a": True, "b": SOME_DEFAULT, "c": SOME_DEFAULT}),
+        (False, "z", {"a": False, "b": "z", "c": "z"}),
+    ],
+)
+def test_value_if_not_asked__BasicQuestion(
+    should_ask, value_if_not_asked, expected_answer
+):
+    interactions = [
+        Confirm(
+            "a",
+            SOME_STRING,
+            True,
+            should_ask=lambda answers: should_ask,
+            value_if_not_asked=False,
+        ),
+        Choice(
+            "b",
+            SOME_STRING,
+            SOME_OPTIONS,
+            SOME_DEFAULT,
+            should_ask=lambda answers: should_ask,
+            value_if_not_asked=value_if_not_asked,
+        ),
+        BasicQuestion(
+            "c",
+            SOME_STRING,
+            SOME_DEFAULT,
+            should_ask=lambda answers: should_ask,
+            value_if_not_asked=value_if_not_asked,
+        ),
+    ]
+
+    results = get_answers(interactions, no_user_input=True)
+
+    assert results == expected_answer
+
+
+def test_value_if_not_asked__raises_exception_without_should_ask():
+    """Declaring a Confirm, Choice, or BasicQuestion with a value_if_not_asked and without should_ask should raise an error."""
+    with pytest.raises(
+        ValueError,
+        match="You should either remove value_if_not_asked or add should_ask.",
+    ):
+        BasicQuestion(
+            SOME_NAME,
+            SOME_STRING,
+            SOME_DEFAULT,
+            value_if_not_asked="a",
+        )
+
+
+def test_value_if_not_asked__value_if_not_asked_is_not_option__raises_exception():
+    """Declaring a Choice with a value_if_not_asked that is not one of the options should raise an error."""
+    with pytest.raises(
+        ValueError,
+        match="The value_if_not_asked is not one of the options.",
+    ):
+        Choice(
+            SOME_NAME,
+            SOME_STRING,
+            SOME_OPTIONS,
+            SOME_DEFAULT,
+            should_ask=lambda answers: True,
+            value_if_not_asked="a",
+        )
+
+
+def test_should_ask__false_without_value_if_not_asked__succeeds():
+    interactions = [
+        BasicQuestion(
+            "a",
+            SOME_STRING,
+            SOME_DEFAULT,
+            should_ask=lambda answers: False,
+        ),
+    ]
+
+    results = get_answers(interactions, no_user_input=True)
+
+    assert results == {}
