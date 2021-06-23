@@ -193,6 +193,7 @@ class Confirm(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
         """
         super().__init__(
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
@@ -226,6 +227,7 @@ class Confirm(Question):
         default: Possible[StaticOrDynamicValue[bool]] = _NOT_GIVEN,
         cli_help: Possible[Optional[str]] = _NOT_GIVEN,
         should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
+        value_if_not_asked: Possible[Optional[bool]] = _NOT_GIVEN,
     ) -> "Confirm":
         """
         Create a new instance like this one, potentially with different values.
@@ -238,6 +240,7 @@ class Confirm(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return Confirm(
@@ -246,6 +249,7 @@ class Confirm(Question):
             _or_default(default, self._default),
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
+            _or_default(value_if_not_asked, self._value_if_not_asked),
         )
 
 
@@ -277,6 +281,7 @@ class Choice(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
         """
         super().__init__(
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
@@ -339,6 +344,7 @@ class Choice(Question):
         default: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
         cli_help: Possible[Optional[str]] = _NOT_GIVEN,
         should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
+        value_if_not_asked: Possible[Optional[str]] = _NOT_GIVEN,
     ) -> "Choice":
         """
         Create a new instance like this one, potentially with different values.
@@ -353,6 +359,7 @@ class Choice(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return Choice(
@@ -362,6 +369,7 @@ class Choice(Question):
             _or_default(default, self._default),
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
+            _or_default(value_if_not_asked, self._value_if_not_asked),
         )
 
 
@@ -393,6 +401,7 @@ class BasicQuestion(Question):
             have been provided this far and should return `True` if the question should be asked.
         :param validator: Callable that will validate the response given by the user.
             A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
         """
         super().__init__(
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
@@ -458,6 +467,7 @@ class BasicQuestion(Question):
         cli_help: Possible[Optional[str]] = _NOT_GIVEN,
         should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
         validator: Possible[Optional[Validator]] = _NOT_GIVEN,
+        value_if_not_asked: Possible[Optional[str]] = _NOT_GIVEN,
     ) -> "BasicQuestion":
         """
         Create a new instance like this one, potentially with different values.
@@ -473,6 +483,8 @@ class BasicQuestion(Question):
         :param validator: Callable that will validate the response given by the user.
             None indicates that validation was successful. Otherwise, a string containing details
             of the error that caused the validation failure.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return BasicQuestion(
             _or_default(name, self._name),
@@ -481,6 +493,7 @@ class BasicQuestion(Question):
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
             _or_default(validator, self._validator),
+            _or_default(value_if_not_asked, self._value_if_not_asked),
         )
 
 
