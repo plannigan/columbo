@@ -117,6 +117,7 @@ class Question(ABC):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         self._name = name
         self._message = message
@@ -193,7 +194,7 @@ class Confirm(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         super().__init__(
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
@@ -240,7 +241,7 @@ class Confirm(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return Confirm(
@@ -283,7 +284,7 @@ class Choice(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         super().__init__(
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
@@ -361,7 +362,7 @@ class Choice(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return Choice(
@@ -405,7 +406,7 @@ class BasicQuestion(Question):
             have been provided this far and should return `True` if the question should be asked.
         :param validator: Callable that will validate the response given by the user.
             A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         super().__init__(
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
@@ -487,7 +488,7 @@ class BasicQuestion(Question):
         :param validator: Callable that will validate the response given by the user.
             None indicates that validation was successful. Otherwise, a string containing details
             of the error that caused the validation failure.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask is False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return BasicQuestion(
