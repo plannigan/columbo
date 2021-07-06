@@ -129,7 +129,6 @@ class Question(ABC):
             )
 
         self._should_ask = should_ask
-        self._value_if_not_asked = value_if_not_asked
 
     @property
     def name(self) -> str:
@@ -138,10 +137,6 @@ class Question(ABC):
     @property
     def cli_help(self) -> Optional[str]:
         return self._cli_help
-
-    @property
-    def value_if_not_asked(self) -> Optional[Union[str, bool]]:
-        return self._value_if_not_asked
 
     @abstractmethod
     def ask(self, answers: Answers, no_user_input: bool = False) -> Answer:
@@ -200,10 +195,15 @@ class Confirm(Question):
             name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
         )
         self._default = default
+        self._value_if_not_asked = value_if_not_asked
 
     @property
     def default(self) -> StaticOrDynamicValue[bool]:
         return self._default
+
+    @property
+    def value_if_not_asked(self) -> Optional[bool]:
+        return self._value_if_not_asked
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> bool:
         """
@@ -301,6 +301,7 @@ class Choice(Question):
                 raise ValueError(
                     "The value_if_not_asked is not one of the options. Please update it to be one of the options."
                 )
+        self._value_if_not_asked = value_if_not_asked
 
     @property
     def options(self) -> StaticOrDynamicValue[OptionList]:
@@ -309,6 +310,10 @@ class Choice(Question):
     @property
     def default(self) -> StaticOrDynamicValue[str]:
         return self._default
+
+    @property
+    def value_if_not_asked(self) -> Optional[str]:
+        return self._value_if_not_asked
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         """Validate the value (a new answer).
@@ -413,10 +418,15 @@ class BasicQuestion(Question):
         )
         self._default = default
         self._validator = validator
+        self._value_if_not_asked = value_if_not_asked
 
     @property
     def default(self) -> StaticOrDynamicValue[str]:
         return self._default
+
+    @property
+    def value_if_not_asked(self) -> Optional[str]:
+        return self._value_if_not_asked
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         """Validate the value (a new answer).
@@ -536,7 +546,7 @@ def get_answers(
     for interaction in interactions:
         if isinstance(interaction, (Echo, Acknowledge)):
             interaction.display(result)
-        elif isinstance(interaction, Question):
+        elif isinstance(interaction, (Confirm, Choice, BasicQuestion)):
             if interaction.should_ask(result):
                 result[interaction.name] = interaction.ask(result, no_user_input)
             elif interaction.value_if_not_asked is not None:
