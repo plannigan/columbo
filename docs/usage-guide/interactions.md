@@ -30,6 +30,7 @@
     question and not present it to the user. See [Optional Questions & Branching][optional-questions] for more details.
 * `cli_help`: Optional. A help message to be displayed for command line interface. See
     [CLI documentation][command-line] for more details. **Can't be dynamic**.
+* `value_if_not_asked`: Optional. A value used as an answer if the question is not asked. **Can't be dynamic**.
 
 ### Basic Question
 
