@@ -249,7 +249,9 @@ class Confirm(Question):
             _or_default(default, self._default),
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
-            value_if_not_asked=_or_default(value_if_not_asked, self._value_if_not_asked),
+            value_if_not_asked=_or_default(
+                value_if_not_asked, self._value_if_not_asked
+            ),
         )
 
 
@@ -369,7 +371,9 @@ class Choice(Question):
             _or_default(default, self._default),
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
-            value_if_not_asked=_or_default(value_if_not_asked, self._value_if_not_asked),
+            value_if_not_asked=_or_default(
+                value_if_not_asked, self._value_if_not_asked
+            ),
         )
 
 
@@ -493,7 +497,9 @@ class BasicQuestion(Question):
             _or_default(cli_help, self._cli_help),
             _or_default(should_ask, self._should_ask),
             _or_default(validator, self._validator),
-            value_if_not_asked=_or_default(value_if_not_asked, self._value_if_not_asked),
+            value_if_not_asked=_or_default(
+                value_if_not_asked, self._value_if_not_asked
+            ),
         )
 
 
