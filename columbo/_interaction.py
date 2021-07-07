@@ -303,10 +303,7 @@ class Choice(Question):
         self._default = default
 
         if value_if_not_asked is not None:
-            value_is_valid = isinstance(
-                self.validate(value_if_not_asked, {}), ValidationSuccess
-            )
-            if not value_is_valid:
+            if not self.validate(value_if_not_asked, {}).valid:
                 raise ValueError(
                     "The value_if_not_asked is not one of the options. Please update it to be one of the options."
                 )
