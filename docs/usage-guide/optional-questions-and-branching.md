@@ -9,8 +9,9 @@ Similarly, `should_ask` can be used to provide branching paths to the user. An e
 adventure. These choices introduce diverging paths of interactions that may or may not join at the end.
 
 !!! warning Be careful when skipping a question
-    When `columbo` skips over a question, the `Answers` dictionary will **NOT** contain a key-value pair for the
-    skipped question. The examples below will demonstrate this result.
+    By default when `columbo` skips over a question, the `Answers` dictionary will **NOT** contain a key-value pair for the
+    skipped question. If you want a skipped question to have a specific answer when skipped, you can do so using the
+    `value_if_not_asked` kwarg as detailed in the section below.
 
 ### Optional Questions
 
@@ -23,17 +24,34 @@ question.
 
 If the user accepts the default answers for each of these questions, the output will be:
 
-```
+```python
 {"has_dog": True, "dog_name": "Kaylee", "dog_breed": "Basset Hound"}
 ```
 
 However, when the user answers the first question with "no", the output will be:
 
-```
+```python
 {"has_dog": False}
 ```
 
-Note that in this case, the `Answers` dictionary only has an answer to the first question.
+Note that the `Answers` dictionary in the previous example has an answer to only the first question (there are no answers for the skipped questions).
+The next section shows how to provide an answer for a skipped question.
+
+#### Providing an Answer for Skipped Questions
+
+To provide a specific answer used when a user skips a question, use the `value_if_not_asked` kwarg:
+
+```python hl_lines="14 21"
+{!examples/optional_questions_with_value_if_not_asked.py!}
+```
+
+If the user answers the first question with "no", the output will now be:
+
+```python
+{"has_dog": False, "dog_name": "n/a", "dog_breed": "n/a"}
+```
+
+Columbo will not ask the user for a dog name or breed, but the answers will have the values provided with the `value_if_not_asked` kwarg.
 
 ### Branching Paths
 

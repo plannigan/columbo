@@ -10,7 +10,7 @@ allows an engineering team to hit the ground running when starting when needing 
 Python package. That templates contain best-practice patterns and allow developers to initialize and deploy a new
 application to production in minutes.
 
-The project templates use [Ccookiecutter][cookiecutter] in order to generate the files that will be used in the new
+The project templates use [Cookiecutter][cookiecutter] in order to generate the files that will be used in the new
 project. While Cookiecutter makes many things easy for maintainers of a template, the terminal user interface it
 provides has a few issues:
 
