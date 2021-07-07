@@ -192,7 +192,11 @@ class Confirm(Question):
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         super().__init__(
-            name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
+            name,
+            message,
+            cli_help=cli_help,
+            should_ask=should_ask,
+            value_if_not_asked=value_if_not_asked,
         )
         self._default = default
         self._value_if_not_asked = value_if_not_asked
@@ -247,9 +251,9 @@ class Confirm(Question):
         return Confirm(
             _or_default(name, self._name),
             _or_default(message, self._message),
-            _or_default(default, self._default),
-            _or_default(cli_help, self._cli_help),
-            _or_default(should_ask, self._should_ask),
+            default=_or_default(default, self._default),
+            cli_help=_or_default(cli_help, self._cli_help),
+            should_ask=_or_default(should_ask, self._should_ask),
             value_if_not_asked=_or_default(
                 value_if_not_asked, self._value_if_not_asked
             ),
@@ -287,7 +291,11 @@ class Choice(Question):
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         super().__init__(
-            name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
+            name,
+            message,
+            cli_help=cli_help,
+            should_ask=should_ask,
+            value_if_not_asked=value_if_not_asked,
         )
 
         self._options = options
@@ -375,8 +383,8 @@ class Choice(Question):
             _or_default(message, self._message),
             _or_default(options, self._options),
             _or_default(default, self._default),
-            _or_default(cli_help, self._cli_help),
-            _or_default(should_ask, self._should_ask),
+            cli_help=_or_default(cli_help, self._cli_help),
+            should_ask=_or_default(should_ask, self._should_ask),
             value_if_not_asked=_or_default(
                 value_if_not_asked, self._value_if_not_asked
             ),
@@ -414,7 +422,11 @@ class BasicQuestion(Question):
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
         """
         super().__init__(
-            name, message, cli_help, should_ask, value_if_not_asked=value_if_not_asked
+            name,
+            message,
+            cli_help=cli_help,
+            should_ask=should_ask,
+            value_if_not_asked=value_if_not_asked,
         )
         self._default = default
         self._validator = validator
@@ -505,9 +517,9 @@ class BasicQuestion(Question):
             _or_default(name, self._name),
             _or_default(message, self._message),
             _or_default(default, self._default),
-            _or_default(cli_help, self._cli_help),
-            _or_default(should_ask, self._should_ask),
-            _or_default(validator, self._validator),
+            cli_help=_or_default(cli_help, self._cli_help),
+            should_ask=_or_default(should_ask, self._should_ask),
+            validator=_or_default(validator, self._validator),
             value_if_not_asked=_or_default(
                 value_if_not_asked, self._value_if_not_asked
             ),
