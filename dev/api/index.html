@@ -1259,12 +1259,13 @@ completeness.</p>
 
 
 
+
   <div class="doc doc-object doc-method">
 
 
 
 <h4 id="columbo._interaction.BasicQuestion.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
@@ -1321,6 +1322,12 @@ completeness.</p>
         <td><code>validator</code></td>
         <td><code>Optional[Callable[[str, Answers], Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure]]]</code></td>
         <td><p>Callable that will validate the response given by the user. A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
         <td><code>None</code></td>
       </tr>
   </tbody>
@@ -1396,7 +1403,7 @@ completeness.</p>
 
 
 <h4 id="columbo._interaction.BasicQuestion.copy" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">message</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">default</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">validator</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">message</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">default</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">validator</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">)</span></code>
 
 
 </h4>
@@ -1452,6 +1459,27 @@ completeness.</p>
         <td><p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p></td>
         <td><code>_Sentinel</code></td>
       </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Possible[Optional[str]]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
+        <td><code>_Sentinel</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>BasicQuestion</code></td>
+      <td><p>A newly constructed instance with the given values in place of the values of this instance.</p></td>
+    </tr>
   </tbody>
 </table>
     </div>
@@ -1560,12 +1588,13 @@ completeness.</p>
 
 
 
+
   <div class="doc doc-object doc-method">
 
 
 
 <h4 id="columbo._interaction.Choice.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
@@ -1623,6 +1652,27 @@ completeness.</p>
         <td><code>Optional[ShouldAsk]</code></td>
         <td><p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p></td>
         <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Optional[str]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ValueError</code></td>
+        <td><p>Raised if the value_if_not_asked is not one of the options.</p></td>
       </tr>
   </tbody>
 </table>
@@ -1697,7 +1747,7 @@ completeness.</p>
 
 
 <h4 id="columbo._interaction.Choice.copy" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">message</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">options</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">default</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">message</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">options</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">default</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">)</span></code>
 
 
 </h4>
@@ -1751,6 +1801,12 @@ completeness.</p>
         <td><code>should_ask</code></td>
         <td><code>Possible[Optional[ShouldAsk]]</code></td>
         <td><p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p></td>
+        <td><code>_Sentinel</code></td>
+      </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Possible[Optional[str]]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
         <td><code>_Sentinel</code></td>
       </tr>
   </tbody>
@@ -1875,12 +1931,13 @@ completeness.</p>
 
 
 
+
   <div class="doc doc-object doc-method">
 
 
 
 <h4 id="columbo._interaction.Confirm.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
@@ -1931,6 +1988,12 @@ completeness.</p>
         <td><code>should_ask</code></td>
         <td><code>Optional[ShouldAsk]</code></td>
         <td><p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Optional[bool]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
         <td><code>None</code></td>
       </tr>
   </tbody>
@@ -2006,7 +2069,7 @@ completeness.</p>
 
 
 <h4 id="columbo._interaction.Confirm.copy" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">message</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">default</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">message</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">default</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=<span class="n">_Sentinel</span></span><span class="p">)</span></code>
 
 
 </h4>
@@ -2054,6 +2117,12 @@ completeness.</p>
         <td><code>should_ask</code></td>
         <td><code>Possible[Optional[ShouldAsk]]</code></td>
         <td><p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p></td>
+        <td><code>_Sentinel</code></td>
+      </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Possible[Optional[bool]]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
         <td><code>_Sentinel</code></td>
       </tr>
   </tbody>
@@ -2259,7 +2328,7 @@ completeness.</p>
 
 
 <h4 id="columbo._interaction.Question.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
@@ -2305,6 +2374,27 @@ completeness.</p>
         <td><code>Optional[ShouldAsk]</code></td>
         <td><p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p></td>
         <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>value_if_not_asked</code></td>
+        <td><code>Union[str, bool]</code></td>
+        <td><p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ValueError</code></td>
+        <td><p>Raised if user provides a value_if_not_asked but nothing for should_ask.</p></td>
       </tr>
   </tbody>
 </table>

@@ -319,6 +319,19 @@
     Optional Questions
   </a>
   
+    <nav class="md-nav" aria-label="Optional Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providing-an-answer-for-skipped-questions" class="md-nav__link">
+    Providing an Answer for Skipped Questions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -467,6 +480,19 @@
     Optional Questions
   </a>
   
+    <nav class="md-nav" aria-label="Optional Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#providing-an-answer-for-skipped-questions" class="md-nav__link">
+    Providing an Answer for Skipped Questions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -509,8 +535,9 @@ dog. The <code>should_ask</code> argument that is present on each question provi
 adventure. These choices introduce diverging paths of interactions that may or may not join at the end.</p>
 <div class="admonition warning be careful when skipping a question">
 <p class="admonition-title">Warning</p>
-<p>When <code>columbo</code> skips over a question, the <code>Answers</code> dictionary will <strong>NOT</strong> contain a key-value pair for the
-skipped question. The examples below will demonstrate this result.</p>
+<p>By default when <code>columbo</code> skips over a question, the <code>Answers</code> dictionary will <strong>NOT</strong> contain a key-value pair for the
+skipped question. If you want a skipped question to have a specific answer when skipped, you can do so using the
+<code>value_if_not_asked</code> kwarg as detailed in the section below.</p>
 </div>
 <h3 id="optional-questions">Optional Questions</h3>
 <p>The following is a basic example that has two optional questions that are not asked based on the answer to the first
@@ -542,12 +569,47 @@ question.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
 </code></pre></div>
 <p>If the user accepts the default answers for each of these questions, the output will be:</p>
-<div class="highlight"><pre><span></span><code>{&quot;has_dog&quot;: True, &quot;dog_name&quot;: &quot;Kaylee&quot;, &quot;dog_breed&quot;: &quot;Basset Hound&quot;}
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">&quot;has_dog&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;dog_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span> <span class="s2">&quot;dog_breed&quot;</span><span class="p">:</span> <span class="s2">&quot;Basset Hound&quot;</span><span class="p">}</span>
 </code></pre></div>
 <p>However, when the user answers the first question with "no", the output will be:</p>
-<div class="highlight"><pre><span></span><code>{&quot;has_dog&quot;: False}
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">&quot;has_dog&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
 </code></pre></div>
-<p>Note that in this case, the <code>Answers</code> dictionary only has an answer to the first question.</p>
+<p>Note that the <code>Answers</code> dictionary in the previous example has an answer to only the first question (there are no answers for the skipped questions).
+The next section shows how to provide an answer for a skipped question.</p>
+<h4 id="providing-an-answer-for-skipped-questions">Providing an Answer for Skipped Questions</h4>
+<p>To provide a specific answer used when a user skips a question, use the <code>value_if_not_asked</code> kwarg:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+
+
+<span class="k">def</span> <span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
+
+
+<span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
+<span class="hll">        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+</span>        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+        <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
+<span class="hll">        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+</span>        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">user_answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
+</code></pre></div>
+<p>If the user answers the first question with "no", the output will now be:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">&quot;has_dog&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;dog_name&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">,</span> <span class="s2">&quot;dog_breed&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">}</span>
+</code></pre></div>
+<p>Columbo will not ask the user for a dog name or breed, but the answers will have the values provided with the <code>value_if_not_asked</code> kwarg.</p>
 <h3 id="branching-paths">Branching Paths</h3>
 <p>A question that is part of a branching path is very similar to an optional question. It is still a question where
 the <code>should_ask</code> function was provided to determine if the question should be skipped or not. The branching aspect comes from there being at
