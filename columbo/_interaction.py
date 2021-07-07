@@ -118,6 +118,7 @@ class Question(ABC):
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :raises ValueError: Raised if user provides a value_if_not_asked but nothing for should_ask.
         """
         self._name = name
         self._message = message
