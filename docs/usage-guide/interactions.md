@@ -49,7 +49,7 @@ In addition to the arguments [mentioned above](#all-questions), `Choice` also ac
 ### Confirm
 
 `Confirm` doesn't take any additional arguments that weren't [mentioned above](#all-questions). However, the `default`
-argument takes a `bool` instead of `str`.
+argument takes a `bool` instead of `str` and defaults to `False`.
 
 [optional-questions]: optional-questions-and-branching.md
 [command-line]: command-line.md
