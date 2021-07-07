@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Removed legacy validator signature and logic
 
+### Added
+
+- `value_if_not_asked` kwarg for `Question` interactions to set a value if the question is not asked ([#169](https://github.com/wayfair-incubator/columbo/pull/169))
+
 ## [0.10.1] - 2021-02-26
 
 ### Fixed
