@@ -458,6 +458,40 @@
     Continuous Integration Pipeline
   </a>
   
+    <nav class="md-nav" aria-label="Continuous Integration Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lints" class="md-nav__link">
+    Lints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribution-verification" class="md-nav__link">
+    Distribution Verification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -581,6 +615,40 @@
     Continuous Integration Pipeline
   </a>
   
+    <nav class="md-nav" aria-label="Continuous Integration Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lints" class="md-nav__link">
+    Lints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribution-verification" class="md-nav__link">
+    Distribution Verification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    Documentation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -691,7 +759,33 @@ wheel and source distribution to <a href="https://pypi.org/project/columbo/">PyP
 <p>This will trigger the CI system to build a wheel and a source distributions of the package and push them to
 <a href="https://pypi.org/project/columbo/">PyPI</a>.</p>
 <h2 id="continuous-integration-pipeline">Continuous Integration Pipeline</h2>
-<p>TODO: Add CI documentation.</p>
+<p>The Continuous Integration (CI) Pipeline runs to confirm that the repository is in a good state. It will run when 
+someone creates a pull request or when they push new commits to the branch for an existing pull request. The pipeline
+runs multiple different jobs that helps verify the state of the code.</p>
+<p>This same pipeline also runs on the default branch when a maintainer merges a pull request.</p>
+<h3 id="lints">Lints</h3>
+<p>The first set of jobs that run as part of the CI pipline are linters that perform static analysis on the code. This
+includes: <a href="https://mypy.readthedocs.io/en/stable/">MyPy</a>, <a href="https://black.readthedocs.io/en/stable/">Black</a>, <a href="https://pycqa.github.io/isort/">Isort</a>, <a href="http://flake8.pycqa.org/en/stable/">Flake8</a>, and <a href="https://bandit.readthedocs.io/en/stable/">Bandit</a>.</p>
+<h3 id="tests">Tests</h3>
+<p>The next set of jobs run the unit tests using <a href="https://docs.pytest.org/en/latest/">PyTest</a>. The pipeline runs the tests cases across each
+supported version of Python to ensure compatibility.</p>
+<p>For each run of the test cases, the job will record the test results and code coverage information. The pipeline uploads
+the code coverage information to <a href="https://about.codecov.io/">CodeCov</a> to ensure that a pull request doesn't significantly reduce the total
+code coverage percentage or introduce a large amount of code that is untested.</p>
+<h3 id="distribution-verification">Distribution Verification</h3>
+<p>The next set of jobs build the wheel distribution, installs in into a virtual environment, and then runs Python to
+import the library version. This works as a smoke test to ensure that the library can be packaged correctly and used.
+The pipeline runs the tests cases across each supported version of Python to ensure compatibility.</p>
+<h3 id="documentation">Documentation</h3>
+<p>The remaining jobs are all related to documentation.</p>
+<ul>
+<li>A job runs each of the code examples that are used in the documentation to verify they produce the expected results.</li>
+<li>A job builds the documentation in strict mode so that it will fail if there are any errors. The job records the
+    generated files so that the documentation website can be viewed in its rendered form.</li>
+<li>When the pipeline is running as a result of a maintainer merging a pull request to the default branch, a job runs that
+    publishes the current state of the documentation to as the <code>dev</code> version. This will allow users to view the state of
+    the documentation as it has changed since a maintainer published the <code>latest</code> version.</li>
+</ul>
                 
               
               
