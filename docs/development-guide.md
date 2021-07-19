@@ -88,19 +88,17 @@ Note that this script will output some content in the shell every time it runs.
 Just because the script outputs content to the shell does *not* mean it has failed;
 as long as the script finishes successfully (exits with a zero status), there are no problems we need to address.
 
-## `setup.py`
+## Building the Library
 
-Setuptools is used to packaging the library.
-
-**`setup.py` must not import anything from the package** When installing from source, the user may not have the
-packages dependencies installed, and importing the package is likely to raise an `ImportError`. For this reason, the
-**package version should be obtained without importing**. This is explains why `setup.py` uses a regular expression to
-grabs the version from `__init__.py` without actually importing.
+`columbo` is [PEP 517][pep-517] compliant. [build][build] is used as the frontend tool for building the library.
+Setuptools is used as the build backend. `setup.cfg` contains the library metadata. A `setup.py` is also included to
+support an editable install.
 
 ### Requirements
 
 * **requirements.txt** - Lists all direct dependencies (packages imported by the library).
-* **requirements-test.txt** - Lists all direct requirements needed to run the test suite & lints.
+* **requirements-test.txt** - Lists all direct dependencies needed for development. This primarily covers dependencies
+  needed to run the test suite & lints.
 
 ## Publishing the Package
 
@@ -178,5 +176,7 @@ The remaining jobs are all related to documentation.
 [flake8-docs]: http://flake8.pycqa.org/en/stable/
 [bandit-docs]: https://bandit.readthedocs.io/en/stable/
 [sem-ver]: https://semver.org/
+[pep-517]: https://www.python.org/dev/peps/pep-0517
+[build]: https://pypa-build.readthedocs.io/
 [pypi]: https://pypi.org/project/columbo/
 [codecov]: https://about.codecov.io/
