@@ -427,11 +427,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setuppy" class="md-nav__link">
-    setup.py
+  <a href="#building-the-library" class="md-nav__link">
+    Building the Library
   </a>
   
-    <nav class="md-nav" aria-label="setup.py">
+    <nav class="md-nav" aria-label="Building the Library">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -584,11 +584,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setuppy" class="md-nav__link">
-    setup.py
+  <a href="#building-the-library" class="md-nav__link">
+    Building the Library
   </a>
   
-    <nav class="md-nav" aria-label="setup.py">
+    <nav class="md-nav" aria-label="Building the Library">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -726,16 +726,15 @@ You can validate that the examples run properly using:</p>
 <p>Note that this script will output some content in the shell every time it runs.
 Just because the script outputs content to the shell does <em>not</em> mean it has failed;
 as long as the script finishes successfully (exits with a zero status), there are no problems we need to address.</p>
-<h2 id="setuppy"><code>setup.py</code></h2>
-<p>Setuptools is used to packaging the library.</p>
-<p><strong><code>setup.py</code> must not import anything from the package</strong> When installing from source, the user may not have the
-packages dependencies installed, and importing the package is likely to raise an <code>ImportError</code>. For this reason, the
-<strong>package version should be obtained without importing</strong>. This is explains why <code>setup.py</code> uses a regular expression to
-grabs the version from <code>__init__.py</code> without actually importing.</p>
+<h2 id="building-the-library">Building the Library</h2>
+<p><code>columbo</code> is <a href="https://www.python.org/dev/peps/pep-0517">PEP 517</a> compliant. <a href="https://pypa-build.readthedocs.io/">build</a> is used as the frontend tool for building the library.
+Setuptools is used as the build backend. <code>setup.cfg</code> contains the library metadata. A <code>setup.py</code> is also included to
+support an editable install.</p>
 <h3 id="requirements">Requirements</h3>
 <ul>
 <li><strong>requirements.txt</strong> - Lists all direct dependencies (packages imported by the library).</li>
-<li><strong>requirements-test.txt</strong> - Lists all direct requirements needed to run the test suite &amp; lints.</li>
+<li><strong>requirements-test.txt</strong> - Lists all direct dependencies needed for development. This primarily covers dependencies
+  needed to run the test suite &amp; lints.</li>
 </ul>
 <h2 id="publishing-the-package">Publishing the Package</h2>
 <p>TODO: The project currently only has parts of this process implemented. The CI pipeline does not currently publish the
