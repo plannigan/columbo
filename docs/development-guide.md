@@ -100,10 +100,7 @@ support an editable install.
 * **requirements-test.txt** - Lists all direct dependencies needed for development. This primarily covers dependencies
   needed to run the test suite & lints.
 
-## Publishing the Package
-
-TODO: The project currently only has parts of this process implemented. The CI pipeline does not currently publish the
-wheel and source distribution to [PyPI][pypi]. For now, this must be done manually.
+## Publishing a New Version
 
 Once the package is ready to be released, there are a few things that need to be done:
 
@@ -116,11 +113,17 @@ Once the package is ready to be released, there are a few things that need to be
 3. Push the new branch to create a new pull request.
 4. Get the pull request approved.
 5. Merge the pull request to the default branch.
-6. Double check the default branch has all the code that should be included in the release.
-7. Create a new GitHub release. The tag should be named `vX.Y.Z` to match the new version number.
 
-This will trigger the CI system to build a wheel and a source distributions of the package and push them to
+Merging the pull request will trigger a GitHub Action that will create a new release. The creation of this new
+release will trigger a GitHub Action that will to build a wheel & a source distributions of the package and push them to
 [PyPI][pypi].
+
+!!! warning
+    The action that uploads the files to PyPI will not run until a repository maintainer acknowledges that the job is
+    ready to run. This is to keep the PyPI publishing token secure. Otherwise, any job would have access to the token. 
+
+In addition to uploading the files to PyPI, the documentation website will be updated to include the new version. If the
+new version is a full release, it will be made the new `latest` version.
 
 ## Continuous Integration Pipeline
 
