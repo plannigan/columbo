@@ -447,8 +447,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publishing-the-package" class="md-nav__link">
-    Publishing the Package
+  <a href="#publishing-a-new-version" class="md-nav__link">
+    Publishing a New Version
   </a>
   
 </li>
@@ -604,8 +604,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#publishing-the-package" class="md-nav__link">
-    Publishing the Package
+  <a href="#publishing-a-new-version" class="md-nav__link">
+    Publishing a New Version
   </a>
   
 </li>
@@ -736,9 +736,7 @@ support an editable install.</p>
 <li><strong>requirements-test.txt</strong> - Lists all direct dependencies needed for development. This primarily covers dependencies
   needed to run the test suite &amp; lints.</li>
 </ul>
-<h2 id="publishing-the-package">Publishing the Package</h2>
-<p>TODO: The project currently only has parts of this process implemented. The CI pipeline does not currently publish the
-wheel and source distribution to <a href="https://pypi.org/project/columbo/">PyPI</a>. For now, this must be done manually.</p>
+<h2 id="publishing-a-new-version">Publishing a New Version</h2>
 <p>Once the package is ready to be released, there are a few things that need to be done:</p>
 <ol>
 <li>Start with a local clone of the repo on the default branch with a clean working tree.</li>
@@ -752,11 +750,17 @@ wheel and source distribution to <a href="https://pypi.org/project/columbo/">PyP
 </li>
 <li>Get the pull request approved.</li>
 <li>Merge the pull request to the default branch.</li>
-<li>Double check the default branch has all the code that should be included in the release.</li>
-<li>Create a new GitHub release. The tag should be named <code>vX.Y.Z</code> to match the new version number.</li>
 </ol>
-<p>This will trigger the CI system to build a wheel and a source distributions of the package and push them to
+<p>Merging the pull request will trigger a GitHub Action that will create a new release. The creation of this new
+release will trigger a GitHub Action that will to build a wheel &amp; a source distributions of the package and push them to
 <a href="https://pypi.org/project/columbo/">PyPI</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The action that uploads the files to PyPI will not run until a repository maintainer acknowledges that the job is
+ready to run. This is to keep the PyPI publishing token secure. Otherwise, any job would have access to the token. </p>
+</div>
+<p>In addition to uploading the files to PyPI, the documentation website will be updated to include the new version. If the
+new version is a full release, it will be made the new <code>latest</code> version.</p>
 <h2 id="continuous-integration-pipeline">Continuous Integration Pipeline</h2>
 <p>The Continuous Integration (CI) Pipeline runs to confirm that the repository is in a good state. It will run when 
 someone creates a pull request or when they push new commits to the branch for an existing pull request. The pipeline
