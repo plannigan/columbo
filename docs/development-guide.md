@@ -125,7 +125,7 @@ release will trigger a GitHub Action that will to build a wheel & a source distr
     ready to run. This is to keep the PyPI publishing token secure. Otherwise, any job would have access to the token. 
 
 In addition to uploading the files to PyPI, the documentation website will be updated to include the new version. If the
-new version is a full release, it will me made the new `latest` version.
+new version is a full release, it will be made the new `latest` version.
 
 ## Continuous Integration Pipeline
 
