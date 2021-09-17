@@ -11,8 +11,8 @@ inputs:
     default: ""
   new_version:
     description: |
-      If true, publish a new docs version. If an existing version uses the alias/tile "latest",
-      update the records so that the new version becomes the latest version.
+      If true, publish a new docs version. When this release is NOT a prerelease, give this newly published version the
+      alias "latest". Any existing version that currently uses the "latest" alias will have that alias removed.
       If version_name is given, that value will be used. Otherwise the release tag will be used.
     required: false
     default: "false"
@@ -34,4 +34,5 @@ runs:
         USER_EMAIL: ${{ inputs.email }}
         VERSION_NAME: ${{ inputs.version_name }}
         NEW_VERSION: ${{ inputs.new_version }}
+        IS_PRERELEASE: ${{ github.event.release.prerelease }}
         RELEASE_TAG: ${{ github.event.release.tag_name }}
