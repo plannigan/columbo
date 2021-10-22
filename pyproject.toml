@@ -20,6 +20,9 @@ exclude = '''
 )/
 '''
 
+[tool.mypy]
+ignore_missing_imports = true
+
 [tool.isort]
 line_length=88
 multi_line_output=3
