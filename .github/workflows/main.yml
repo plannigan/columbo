@@ -24,7 +24,7 @@ jobs:
           test-requirements: "true"
 
       - name: Run bandit
-        run: bandit --ini .bandit -r columbo
+        run: bandit -r columbo
 
   black:
     runs-on: ubuntu-latest
