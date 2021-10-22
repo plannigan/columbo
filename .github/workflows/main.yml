@@ -7,7 +7,7 @@ on:
   push:
       branches: ["main"]
 env:
-  PYTHON_VERSION: "3.9.1"
+  PYTHON_VERSION: "3.10"
 
 jobs:
   bandit:
