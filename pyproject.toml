@@ -32,8 +32,8 @@ include_trailing_comma=true
 max-line-length = 88
 max-complexity = 8
 ignore = ["W503", "E501"]
-builtins = unicode
-tee = True
+builtins = "unicode"
+tee = true
 exclude = ["venv", "env", ".venv", "scratch"]
 
 [tool.mypy]
