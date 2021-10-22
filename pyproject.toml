@@ -20,10 +20,24 @@ exclude = '''
 )/
 '''
 
+[tool.bandit]
+exclude: *venv*,*env*,*scratch*
+
 [tool.isort]
 line_length=88
 multi_line_output=3
 include_trailing_comma=true
+
+[tool.flake8]
+max-line-length = 88
+max-complexity = 8
+ignore = W503,E501
+builtins = unicode
+tee = True
+exclude = venv,env,.venv,scratch
+
+[tool.mypy]
+ignore_missing_imports = True
 
 [build-system]
 requires = ["setuptools >= 40.9.0", "wheel"]
