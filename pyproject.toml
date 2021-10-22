@@ -29,7 +29,7 @@ multi_line_output=3
 include_trailing_comma=true
 
 [tool.flake8]
-max-line-length = 88
+max_line_length = 88
 max-complexity = 8
 ignore = ["W503", "E501"]
 builtins = "unicode"
