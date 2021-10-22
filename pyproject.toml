@@ -28,14 +28,6 @@ line_length=88
 multi_line_output=3
 include_trailing_comma=true
 
-[tool.flake8]
-max-line-length = 88
-max-complexity = 8
-extend-ignore = ["W503", "E501"]
-builtins = "unicode"
-tee = true
-exclude = ["venv", "env", ".venv", "scratch"]
-
 [tool.mypy]
 ignore_missing_imports = true
 
