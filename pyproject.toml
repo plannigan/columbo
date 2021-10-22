@@ -20,6 +20,9 @@ exclude = '''
 )/
 '''
 
+[tool.bandit]
+exclude = ["*venv*", "*env*", "*scratch*"]
+
 [tool.isort]
 line_length=88
 multi_line_output=3
