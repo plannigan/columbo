@@ -21,7 +21,7 @@ exclude = '''
 '''
 
 [tool.bandit]
-exclude: ["*venv*", "*env*", "*scratch*"]
+exclude = ["*venv*", "*env*", "*scratch*"]
 
 [tool.isort]
 line_length=88
