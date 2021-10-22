@@ -37,7 +37,7 @@ tee = True
 exclude = ["venv", "env", ".venv", "scratch"]
 
 [tool.mypy]
-ignore_missing_imports = True
+ignore_missing_imports = true
 
 # pyproject.toml
 [tool.pytest.ini_options]
