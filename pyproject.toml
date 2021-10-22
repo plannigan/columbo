@@ -39,6 +39,11 @@ exclude = venv,env,.venv,scratch
 [tool.mypy]
 ignore_missing_imports = True
 
+# pyproject.toml
+[tool.pytest.ini_options]
+addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
+python_files = "tests/*.py"
+
 [build-system]
 requires = ["setuptools >= 40.9.0", "wheel"]
 build-backend = "setuptools.build_meta"
