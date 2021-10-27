@@ -31,9 +31,10 @@ data_file = "/tmp/columbo_coverage"
 
 [tool.coverage.report]
 fail_under = 90
-
-[tool.coverage.report.excludeLines]
-  pragma= "no cover" # Have to re-enable the standard pragma
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    "pragma: no cover"
+]
 
 [build-system]
 requires = ["setuptools >= 40.9.0", "wheel"]
