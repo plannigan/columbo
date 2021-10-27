@@ -20,6 +20,9 @@ exclude = '''
 )/
 '''
 
+[tool.mypy]
+ignore_missing_imports = true
+
 [tool.isort]
 line_length=88
 multi_line_output=3
@@ -35,6 +38,10 @@ exclude_lines = [
     # Have to re-enable the standard pragma
     "pragma: no cover"
 ]
+
+[tool.pytest.ini_options]
+addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
+python_files = "tests/*.py"
 
 [build-system]
 requires = ["setuptools >= 40.9.0", "wheel"]

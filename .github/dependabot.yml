@@ -13,3 +13,7 @@ updates:
     directory: "/" # Location of .github/ directory
     schedule:
       interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/docker"
+    schedule:
+      interval: "daily"
