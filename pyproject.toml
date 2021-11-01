@@ -28,6 +28,17 @@ line_length=88
 multi_line_output=3
 include_trailing_comma=true
 
+[tool.coverage.run]
+branch = true
+data_file = "/tmp/columbo_coverage"
+
+[tool.coverage.report]
+fail_under = 90
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    "pragma: no cover"
+]
+
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
 python_files = "tests/*.py"
