@@ -2,7 +2,7 @@ bandit==1.7.0
 black==21.10b0
 bump2version==1.0.1
 flake8==4.0.1
-isort==5.9.3
+isort==5.10.0
 mike==1.1.2
 markdown-include==0.6.0
 mkdocs==1.2.3
