@@ -6,11 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-
 ### Added
 
 - Python version `3.10` tested during CI
 - Python version `3.10` added to package classifiers
+
+### Removed
+
+* Support for Python version `3.6`.
 
 ## [0.11.0] - 2021-08-04
 
