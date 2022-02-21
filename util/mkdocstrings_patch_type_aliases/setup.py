@@ -8,7 +8,7 @@ setuptools.setup(
     packages=setuptools.find_packages(
         exclude=["*.tests", "*.tests.*", "tests.*", "tests"]
     ),
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     install_requires=[
         "mkdocs~=1.0",
     ],

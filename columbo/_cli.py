@@ -107,24 +107,28 @@ def _add_argument_for(question: Any, _: ArgumentParser) -> None:
     raise ValueError(f"Unsupported interaction type {type(question)}")
 
 
+# singledispatch for >=3.7 can use type annotations, but doesn't support Union
+# This will be supported in 3.11 https://github.com/python/cpython/pull/30017
 @_add_argument_for.register(Acknowledge)
 @_add_argument_for.register(Echo)
-def _add_argument_for_noop(question, parser: ArgumentParser) -> None:
+def _add_argument_for_noop(
+    question: Union[Acknowledge, Echo], parser: ArgumentParser
+) -> None:
     pass
 
 
-@_add_argument_for.register(BasicQuestion)
+@_add_argument_for.register
 def _add_argument_for_basic(question: BasicQuestion, parser: ArgumentParser) -> None:
     _add_argument(parser, question.name, question.cli_help)
 
 
-@_add_argument_for.register(Confirm)
+@_add_argument_for.register
 def _add_argument_for_confirm(question: Confirm, parser: ArgumentParser) -> None:
     _add_flag(parser, question.name, question.cli_help, active=True)
     _add_flag(parser, question.name, question.cli_help, active=False)
 
 
-@_add_argument_for.register(Choice)
+@_add_argument_for.register
 def _add_argument_for_choice(question: Choice, parser: ArgumentParser) -> None:
     options = question.options
     _add_argument(
@@ -161,7 +165,7 @@ def _update_answers(
 @_update_answers.register(Acknowledge)
 @_update_answers.register(Echo)
 def _update_answers_noop(
-    question, cli_values: CliResults, answers: MutableAnswers
+    question: Union[Acknowledge, Echo], cli_values: CliResults, answers: MutableAnswers
 ) -> None:
     pass
 
@@ -186,7 +190,7 @@ def _update_answers_validate(
     answers[question.name] = value
 
 
-@_update_answers.register(Confirm)
+@_update_answers.register
 def _update_answers_confirm(
     question: Confirm, cli_values: CliResults, answers: MutableAnswers
 ) -> None:

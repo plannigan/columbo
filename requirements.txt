@@ -1,3 +1,2 @@
-dataclasses~=0.8; python_version < '3.7'
 prompt-toolkit==3.0.28
 typing_extensions; python_version < '3.8'
