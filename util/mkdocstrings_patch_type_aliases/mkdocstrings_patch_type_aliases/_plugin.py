@@ -17,7 +17,6 @@ def simple_replace(look_for: str, replace_with: str) -> ReplaceFunc:
 
 def regex_replace(look_for: Pattern, replace_with: str) -> ReplaceFunc:
     def _replace(text: str) -> str:
-        # breakpoint()
         return re.sub(look_for, replace_with, text)
 
     return _replace
@@ -25,9 +24,9 @@ def regex_replace(look_for: Pattern, replace_with: str) -> ReplaceFunc:
 
 # Order is significant
 REPLACE_FUNCS = [
-    # Possible: Python flattens nested unions, so need special handling for normal and nested.
+    # Possible: Python flattens nested unions, so it needs special handling for normal and nested.
     regex_replace(
-        re.compile(r"Union\[([][\w, ]+, ([][\w, ]+)), columbo\._interaction\._Sentinel]"),
+        re.compile(r"Union\[([][\w,_. ]+, ([][\w,_. ]+)), columbo\._interaction\._Sentinel]"),
         r"Possible[Union[\1]]"
     ),
     regex_replace(
@@ -44,9 +43,13 @@ REPLACE_FUNCS = [
         r"StaticOrDynamicValue[\1]]"
     ),
     simple_replace("Callable[[Mapping[str, Union[bool, str]]], bool]", "ShouldAsk"),
-    simple_replace("Callable[[str, Mapping[str, Union[bool, str]]], Optional[str]]", "Validator"),
-    simple_replace("Union[Echo, Acknowledge, Question]", "Interaction"),
+    # Extra square brackets ensure that Type Alias definition is not also replaced
+    # This only works because there are no public functions that accept a single Interaction
+    simple_replace("[Union[Echo, Acknowledge, Question]]", "[Interaction]"),
     simple_replace("Mapping[str, Union[bool, str]]", "Answers"),
+    # Replace Validator before ValidationResponse so the Type Alias definition is not also replaced
+    simple_replace("Callable[[str, Answers], Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure]]", "Validator"),
+    simple_replace("Union[columbo._types.ValidationSuccess, columbo._types.ValidationFailure]", "ValidationResponse"),
     # Wrapped with square brackets to not replace value in type alias table
     simple_replace("[List[str]]", "[OptionList]"),
     # Any Optional values that were flattened as a nested union
