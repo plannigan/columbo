@@ -20,8 +20,8 @@ library. The following table defines the aliases that are used.
 
 !!! note
     `Possible` is a special construct used in `copy()` methods to indicate that a value was not
-    provided. `Possible` & `_Sentinel` are not exposed by `columbo`, but are documented here for
-    completeness.
+    provided. `Possible`, `_Sentinel`, & `_NOT_GIVEN` are not exposed by `columbo`, but are
+    documented here for completeness.
 
 
 ## Interactions
