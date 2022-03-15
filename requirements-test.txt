@@ -10,7 +10,7 @@ mkdocs-material==8.2.5
 mkdocs-minify-plugin==0.5.0
 mkdocs-redirects==1.0.3
 mkdocstrings[python]==0.18.1
-mypy==0.940
+mypy==0.941
 pytest==7.1.0
 pytest-cov==3.0.0
 pytest-mock==3.7.0
