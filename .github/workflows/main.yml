@@ -129,7 +129,7 @@ jobs:
           if: ${{ always() }}
 
         - name: Publish coverage results to Codecov
-          uses: codecov/codecov-action@v2.1.0
+          uses: codecov/codecov-action@v3.0.0
           with:
             file: coverage-${{ matrix.python-version }}.xml
             fail_ci_if_error: true
