@@ -1,2 +1,2 @@
-prompt-toolkit==3.0.28
+prompt-toolkit==3.0.29
 typing_extensions; python_version < '3.8'
