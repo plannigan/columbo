@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://wayfair-incubator.github.io/columbo/dev/getting-started/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.11">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
     
     
       
@@ -19,10 +19,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.8c5ef100.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
         
       
     
@@ -676,7 +676,7 @@ printed next.</p>
 <h2 id="walking-though-basic-examples">Walking Though Basic Examples</h2>
 <h3 id="user-prompts">User Prompts</h3>
 <p>This is the example that appears on the <a href="..">main page</a> of the documentation.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -701,7 +701,7 @@ printed next.</p>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
@@ -727,8 +727,7 @@ printed next.</p>
 
 <span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
 <ul>
 <li>Line 1: Import the <code>columbo</code> module.</li>
 <li>Line 3 - 25: Create a list of <code>Interactions</code> to be stored in the variable <code>interactions</code>.</li>
@@ -755,14 +754,14 @@ printed next.</p>
 <p>This is the example will be just like the <a href="#walking-though-a-basic-example">previous example</a>, except it will
 demonstrate the Command Line functionality.</p>
 <p>The relevant change can be seen here:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
 <span class="p">]</span>
 
 <span class="hll"><span class="n">answers</span> <span class="o">=</span> <span class="n">columbo</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span>
@@ -770,12 +769,11 @@ demonstrate the Command Line functionality.</p>
 </span><span class="hll">    <span class="s2">&quot;--likes-dogs&quot;</span><span class="p">,</span>
 </span><span class="hll"><span class="p">])</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
 <details>
     <summary>The full example</summary>
 
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -807,7 +805,7 @@ demonstrate the Command Line functionality.</p>
 <span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
-<span class="normal">33</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
@@ -840,8 +838,7 @@ demonstrate the Command Line functionality.</p>
 </span>    <span class="p">],</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
 </details>
 
 <ul>
@@ -925,7 +922,7 @@ demonstrate the Command Line functionality.</p>
     <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.748e2769.min.js"></script>
+      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
       
     
   </body>
