@@ -28,7 +28,7 @@ jobs:
           echo "::set-output name=result::$IS_PRERELEASE"
       - name: Create Release
         # use hash for security since this has access to the access token
-        uses: ncipollo/release-action@880be3d0a71bc0fa98db60201d2cbdc27324f547 # v1.8.6
+        uses: ncipollo/release-action@58ae73b360456532aafd58ee170c045abbeaee37 # v1.8.6
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           tag: v${{ steps.get-new-version.outputs.version }}
