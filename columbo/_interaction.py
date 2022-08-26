@@ -19,7 +19,7 @@ from columbo._types import (
     Validator,
 )
 
-Interaction = Union["Echo", "Acknowledge", "Question"]
+Interaction = Union["Displayable", "Question"]
 
 
 # Used by copy() implementations. Since some arguments can be None, None can't be used as the value to indicate that the
@@ -39,60 +39,133 @@ def _or_default(value, default: T) -> T:
     return default if isinstance(value, _Sentinel) else value
 
 
-class Echo:
-    """Display a message to the user."""
+class Displayable(ABC):
+    """
+    Base class for a message to the user that is displayed.
+    """
 
-    def __init__(self, message: StaticOrDynamicValue[str]) -> None:
+    def __init__(
+        self,
+        message: StaticOrDynamicValue[str],
+        should_ask: Optional[ShouldAsk] = None
+        ) -> None:
         """
         Initialize an instance.
 
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
+        :param should_ask: If `None`, the message is displayed to the user. Otherwise, the callable will be passed the
+            answers that have been provided this far and should return `True` if the message should be displayed.
         """
         self._message = message
+        self._should_ask = should_ask
+
+    @abstractmethod
+    def display(self, answers: Answers) -> None:
+        pass
+
+    def should_ask(self, answers: Answers) -> bool:
+        """
+        Should the user be displayed this message.
+
+        :param answers: The answers that have been provided this far.
+        :return: `True` if this message should be displayed
+        """
+        if self._should_ask is None:
+            return True
+        if callable(self._should_ask):
+            return self._should_ask(answers)
+        raise ValueError(f"Invalid value for should_ask: {self._should_ask}")
+
+
+class Echo(Displayable):
+    """Display a message to the user."""
+
+    def __init__(
+        self,
+        message: StaticOrDynamicValue[str],
+        should_ask: Optional[ShouldAsk] = None
+        ) -> None:
+        """
+        Initialize an instance.
+
+        :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
+            be the answers that have been provided this far.
+        :param should_ask: If `None`, the message is displayed to the user. Otherwise, the callable will be passed the
+            answers that have been provided this far and should return `True` if the message should be displayed.
+        """
+        super().__init__(
+            message,
+            should_ask
+        )
 
     def display(self, answers: Answers) -> None:
         user_io.echo(to_value(self._message, answers, str))
 
     def copy(
-        self, *, message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN
+        self,
+        *,
+        message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
+        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
     ) -> "Echo":
         """
         Create a new instance like this one, potentially with different values.
 
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
+        :param should_ask: If `None`, the message is displayed. Otherwise, the callable will be passed the answers that
+            have been provided this far and should return `True` if the message should be displayed.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
-        return Echo(_or_default(message, self._message))
+        return Echo(
+            _or_default(message, self._message),
+            should_ask=_or_default(should_ask, self._should_ask),
+        )
 
 
-class Acknowledge:
+
+class Acknowledge(Displayable):
     """Display a message to the user and require the user to press ENTER to continue."""
 
-    def __init__(self, message: StaticOrDynamicValue[str]) -> None:
+    def __init__( self,
+        message: StaticOrDynamicValue[str],
+        should_ask: Optional[ShouldAsk] = None
+        ) -> None:
         """
         Initialize an instance.
 
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
+        :param should_ask: If `None`, the message is displayed to the user. Otherwise, the callable will be passed the
+            answers that have been provided this far and should return `True` if the message should be displayed.
         """
-        self._message = message
+        super().__init__(
+            message,
+            should_ask
+        )
 
     def display(self, answers: Answers) -> None:
         user_io.acknowledge(to_value(self._message, answers, str))
 
     def copy(
-        self, *, message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN
+        self,
+        *,
+        message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
+        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
     ) -> "Acknowledge":
         """
         Create a new instance like this one, potentially with different values.
 
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
+        :param should_ask: If `None`, the message is displayed. Otherwise, the callable will be passed the answers that
+            have been provided this far and should return `True` if the message should be displayed.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
-        return Acknowledge(_or_default(message, self._message))
+        return Acknowledge(
+            _or_default(message, self._message),
+            should_ask=_or_default(should_ask, self._should_ask),
+        )
 
 
 class Question(ABC):
@@ -556,7 +629,8 @@ def get_answers(
 
     for interaction in interactions:
         if isinstance(interaction, (Echo, Acknowledge)):
-            interaction.display(result)
+            if interaction.should_ask(result):
+                interaction.display(result)
         elif isinstance(interaction, (Confirm, Choice, BasicQuestion)):
             if interaction.should_ask(result):
                 result[interaction.name] = interaction.ask(result, no_user_input)
