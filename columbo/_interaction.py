@@ -463,19 +463,27 @@ class BasicQuestion(Question):
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
             to provide an answer. Default: False
         :return: The answer to the question.
+        :raises ValueError: Default value does not satisfy the validator.
         """
 
+        message = to_value(self._message, answers, str)
+        default_value = to_value(self._default, answers, str)
         # ask question until answer is valid
         while True:
             answer = user_io.ask(
-                to_value(self._message, answers, str),
-                default=to_value(self._default, answers, str),
+                message,
+                default=default_value,
                 no_user_input=no_user_input,
             )
 
             result = self.validate(answer, answers)
             if result.valid:
                 break
+
+            if answer == default_value:
+                raise ValueError(
+                    f"Default value '{default_value}' must satisfy the validator."
+                )
 
             user_io.echo(
                 f"The answer you have provided is not valid:\n{result.error}\n\n"
@@ -550,6 +558,7 @@ def get_answers(
     :return: Dictionary of answers.
     :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name. This includes a
         question that was used to create `answers` if given.
+    :raises ValueError: A default value was not valid and `no_user_input` is set to `True`.
     """
     validate_duplicate_question_names(interactions, answers)
     result = {} if answers is None else dict(answers)

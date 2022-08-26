@@ -426,6 +426,23 @@ def test_basic_question__invalid_asked_multiple_times(mocker, validity_responses
     assert user_io_ask_mock.call_count == len(validity_responses)
 
 
+@pytest.mark.parametrize("no_user_input", [True, False])
+def test_basic_question__default_invalid_no_user_input__error(no_user_input, mocker):
+    """
+    Default values should be valid answers. However, if not BasicQuestion's retry loop could cause an infinite loop
+    when no_user_input is provided.
+    """
+    user_io = mocker.patch("columbo._interaction.user_io")
+    user_io.ask.return_value = SOME_DEFAULT
+    with pytest.raises(ValueError):
+        BasicQuestion(
+            SOME_NAME,
+            SOME_STRING,
+            SOME_DEFAULT,
+            validator=lambda v, a: ValidationFailure("some error"),
+        ).ask(SOME_ANSWERS, no_user_input=no_user_input)
+
+
 def test_to_value__invalid_type__exception():
     with pytest.raises(ValueError):
         to_value(object(), SOME_ANSWERS, str)

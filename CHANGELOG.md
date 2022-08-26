@@ -11,9 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Python version `3.10` tested during CI
 - Python version `3.10` added to package classifiers
 
+### Changed
+
+- `BasicQuestion.ask()` will only evaluate dynamic values for the prompt message and default value once per instead of
+  repeatedly when the response was invalid.
+
+### Fixed
+
+- Prevent infinite loop when the default value for a `BasicQuestion` does not satisfy the `Validator` and `no_user_input`
+  was set to `True`. Now raises a `ValueError` when this situation is detected.
+
+  The intent was that the default value would always satisfy the `Validator`, but that was not enforced or explicitly
+  documented.
+
 ### Removed
 
-* Support for Python version `3.6`.
+- Support for Python version `3.6`.
 
 ## [0.11.0] - 2021-08-04
 

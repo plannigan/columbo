@@ -4,8 +4,13 @@
 
 `BasicQuestion` allows the user to provide arbitrary text as the answer to the question. However, there are frequently
 constraints on what is considered a valid answer. Providing a `Validator` for the question allows `columbo` to verify
-that the text provided by the user satisfies those constraints. If the answer is not valid, `columbo` will tell the user that
-the answer is not valid and ask them to try again.
+that the text provided by the user satisfies those constraints. If the answer is not valid, `columbo` will tell the user
+that the answer is not valid and ask them to try again.
+
+The `default` value for the `BasicQuestion` **must** satisfy the `Validator`. An exception will be raised if that is not
+the case. This is because it could lead to:
+* An infinite loop when prompting a user
+* Command line parsing always failing if a value is not given
 
 !!! Note Implicit Validators
     While `Choice` and `Confirm` do not expose a `validator` argument they still ensure that the answer is valid.
