@@ -45,10 +45,8 @@ class Displayable(ABC):
     """
 
     def __init__(
-        self,
-        message: StaticOrDynamicValue[str],
-        should_ask: Optional[ShouldAsk] = None
-        ) -> None:
+        self, message: StaticOrDynamicValue[str], should_ask: Optional[ShouldAsk] = None
+    ) -> None:
         """
         Initialize an instance.
 
@@ -82,10 +80,8 @@ class Echo(Displayable):
     """Display a message to the user."""
 
     def __init__(
-        self,
-        message: StaticOrDynamicValue[str],
-        should_ask: Optional[ShouldAsk] = None
-        ) -> None:
+        self, message: StaticOrDynamicValue[str], should_ask: Optional[ShouldAsk] = None
+    ) -> None:
         """
         Initialize an instance.
 
@@ -94,10 +90,7 @@ class Echo(Displayable):
         :param should_ask: If `None`, the message is displayed to the user. Otherwise, the callable will be passed the
             answers that have been provided this far and should return `True` if the message should be displayed.
         """
-        super().__init__(
-            message,
-            should_ask
-        )
+        super().__init__(message, should_ask)
 
     def display(self, answers: Answers) -> None:
         user_io.echo(to_value(self._message, answers, str))
@@ -123,14 +116,12 @@ class Echo(Displayable):
         )
 
 
-
 class Acknowledge(Displayable):
     """Display a message to the user and require the user to press ENTER to continue."""
 
-    def __init__( self,
-        message: StaticOrDynamicValue[str],
-        should_ask: Optional[ShouldAsk] = None
-        ) -> None:
+    def __init__(
+        self, message: StaticOrDynamicValue[str], should_ask: Optional[ShouldAsk] = None
+    ) -> None:
         """
         Initialize an instance.
 
@@ -139,10 +130,7 @@ class Acknowledge(Displayable):
         :param should_ask: If `None`, the message is displayed to the user. Otherwise, the callable will be passed the
             answers that have been provided this far and should return `True` if the message should be displayed.
         """
-        super().__init__(
-            message,
-            should_ask
-        )
+        super().__init__(message, should_ask)
 
     def display(self, answers: Answers) -> None:
         user_io.acknowledge(to_value(self._message, answers, str))
