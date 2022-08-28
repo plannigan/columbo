@@ -59,7 +59,7 @@ class Displayable(ABC):
         self._should_ask = should_ask
 
     @abstractmethod
-    def display(self, answers: Answers) -> None:
+    def display(self, answers: Answers) -> None:  # pragma: no cover
         pass
 
     def should_ask(self, answers: Answers) -> bool:
@@ -201,7 +201,9 @@ class Question(ABC):
         return self._cli_help
 
     @abstractmethod
-    def ask(self, answers: Answers, no_user_input: bool = False) -> Answer:
+    def ask(
+        self, answers: Answers, no_user_input: bool = False
+    ) -> Answer:  # pragma: no cover
         """
         Prompt the user with this question.
 
