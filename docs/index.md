@@ -18,6 +18,7 @@
     * As part of the text of a question
     * As part of the text of a default value
     * To decide if a question should be skipped
+    * To decide if a message should be displayed
 * Accept answers from the command line in addition to prompting the user.
 
 ## Example

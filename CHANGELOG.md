@@ -4,12 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.12.0] - 2022-08-27
 
 ### Added
 
 - Python version `3.10` tested during CI
 - Python version `3.10` added to package classifiers
+- `should_ask` kwarg for `Echo` and `Acknowledge` interactions ([#356](https://github.com/wayfair-incubator/columbo/issues/356))
 
 ### Removed
 

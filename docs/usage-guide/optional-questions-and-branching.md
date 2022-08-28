@@ -1,8 +1,11 @@
-## Only Asking Some Questions
+## Only Prompting Some Interactions
 
-There are situations where a question should be asked some times, but not all the time. For example, a program that collects
-information about a user's pets should not ask the user for the dog's name and breed if the user said they do not have a
-dog. The `should_ask` argument that is present on each question provides a way to achieve this functionality.
+There are situations where a question should be asked some times, but not all the time. Or, a message should be displayed some times.
+For example, a program that collects information about a user's 
+pets should not ask the user for the dog's name and breed if the
+user said they do not have a dog. If the user has a dog, the program
+may want to display a special message. The `should_ask` argument that
+is present on each interaction provides a way to achieve this functionality.
 
 Similarly, `should_ask` can be used to provide branching paths to the user. An example of these branching paths is a
 [Choose Your Own Adventure][choose-your-own-adventure] story. The story provides the reader with choices during the
@@ -16,7 +19,8 @@ adventure. These choices introduce diverging paths of interactions that may or m
 ### Optional Questions
 
 The following is a basic example that has two optional questions that are not asked based on the answer to the first
-question.
+question. It also has an optional "echo" that is only displayed
+based on the answer to the first question.
 
 ```python
 {!examples/optional_questions.py!}
