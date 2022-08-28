@@ -39,6 +39,14 @@ def _or_default(value, default: T) -> T:
     return default if isinstance(value, _Sentinel) else value
 
 
+def _should_ask_or_display(should_ask: Optional[ShouldAsk], answers: Answers) -> bool:
+    if should_ask is None:
+        return True
+    if callable(should_ask):
+        return should_ask(answers)
+    raise ValueError(f"Invalid value for should_ask: {should_ask}")
+
+
 class Displayable(ABC):
     """
     Base class for a message to the user that is displayed.
@@ -69,11 +77,7 @@ class Displayable(ABC):
         :param answers: The answers that have been provided this far.
         :return: `True` if this message should be displayed
         """
-        if self._should_ask is None:
-            return True
-        if callable(self._should_ask):
-            return self._should_ask(answers)
-        raise ValueError(f"Invalid value for should_ask: {self._should_ask}")
+        return _should_ask_or_display(self._should_ask, answers)
 
 
 class Echo(Displayable):
@@ -221,11 +225,7 @@ class Question(ABC):
         :param answers: The answers that have been provided this far.
         :return: `True` if this questions should be asked
         """
-        if self._should_ask is None:
-            return True
-        if callable(self._should_ask):
-            return self._should_ask(answers)
-        raise ValueError(f"Invalid value for should_ask: {self._should_ask}")
+        return _should_ask_or_display(self._should_ask, answers)
 
 
 class Confirm(Question):
