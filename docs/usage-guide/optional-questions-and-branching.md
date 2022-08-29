@@ -19,8 +19,7 @@ adventure. These choices introduce diverging paths of interactions that may or m
 ### Optional Questions
 
 The following is a basic example that has two optional questions that are not asked based on the answer to the first
-question. It also has an optional "echo" that is only displayed
-based on the answer to the first question.
+question. It also has an optional message that is only displayed based on the answer to the first question.
 
 ```python
 {!examples/optional_questions.py!}
