@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Expand acceptable versions of `typing-extensions` to include v4
+
 ### Added
 
 - Python version `3.10` tested during CI
