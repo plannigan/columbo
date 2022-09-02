@@ -46,6 +46,9 @@ In addition to the arguments [mentioned above](#all-questions), `BasicQuestion` 
     providing this argument means that any value provided by the user will be accepted. See
     [Validators][validators] for more details.
 
+  The `default` value for the `BasicQuestion` **must** satisfy the `Validator`. An exception will be raised if that is
+  not the case.
+
 ### Choice
 
 In addition to the arguments [mentioned above](#all-questions), `Choice` also accepts the following argument.
