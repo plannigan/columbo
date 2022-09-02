@@ -558,7 +558,7 @@ def get_answers(
     :return: Dictionary of answers.
     :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name. This includes a
         question that was used to create `answers` if given.
-    :raises ValueError: A default value was not valid and `no_user_input` is set to `True`.
+    :raises ValueError: A default value did not satisfy the `Interaction`'s validator.
     """
     validate_duplicate_question_names(interactions, answers)
     result = {} if answers is None else dict(answers)

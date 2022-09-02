@@ -45,7 +45,6 @@ def parse_args(
     :raises CliException: A value passed to CLI argument was not valid and `exit_on_error` was `False`.
     :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name. This includes a
         question that was used to create `answers` if given.
-    :raises ValueError: A default value was not valid and `no_user_input` is set to `True`.
     """
     validate_duplicate_question_names(interactions, answers)
     parser = create_parser(interactions, parser_name)
