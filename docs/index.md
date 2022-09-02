@@ -13,12 +13,12 @@
     * Yes or No
     * Multiple choice
     * Open-ended
-* Validate the response provided by the user.
+* Validate the response provided by the user
 * Use answers from earlier questions:
     * As part of the text of a question
     * As part of the text of a default value
-    * To decide if a question should be skipped
-* Accept answers from the command line in addition to prompting the user.
+    * To decide if a question should be skipped or a message should be displayed
+* Accept answers from the command line in addition to prompting the user
 
 ## Example
 

@@ -10,6 +10,7 @@ from columbo._interaction import (  # noqa: F401
     BasicQuestion,
     Choice,
     Confirm,
+    Displayable,
     Echo,
     Interaction,
     Question,

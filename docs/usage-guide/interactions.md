@@ -15,7 +15,13 @@
 
 ### Echo & Acknowledge
 
-`Echo` and `Acknowledge` both accept `message` as their only argument. This is the message to be displayed to the user.
+`Echo` and `Acknowledge` both accept the following arguments.
+
+* `message`: The message to be displayed to the user.
+* `should_ask`: Optional. When given, the argument should be a function that accepts an `Answers` dictionary and returns
+    `True` or `False`. Returning `True` indicates that the message should be displayed. Returning `False` will skip the
+    message and not present it to the user. See [Optional Questions & Branching][optional-questions] for more details.
+
 
 ### All Questions
 

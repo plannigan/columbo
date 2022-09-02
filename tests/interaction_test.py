@@ -24,6 +24,7 @@ from tests.sample_data import (
     SOME_OPTIONS,
     SOME_OTHER_BOOL,
     SOME_STRING,
+    SampleDisplayable,
     SampleQuestion,
     some_dynamic_bool,
     some_dynamic_default,
@@ -450,6 +451,25 @@ def test_should_ask__invalid_type__exception():
         )
 
 
+@pytest.mark.parametrize(
+    "description,should_ask,expected_result",
+    [("not set", None, True), ("dynamic", some_dynamic_bool, SOME_OTHER_BOOL)],
+)
+def test_displayable_should_ask__expected_result(
+    should_ask, expected_result, description
+):
+    result = SampleDisplayable(SOME_STRING, should_ask=should_ask).should_ask(
+        SOME_ANSWERS
+    )
+
+    assert result == expected_result, description
+
+
+def test_displayable_should_ask__invalid_type__exception():
+    with pytest.raises(ValueError):
+        SampleDisplayable(SOME_STRING, should_ask=object()).should_ask(SOME_ANSWERS)
+
+
 def test_get_answers__unknown_interaction_provided():
     """
     An unsupported interaction type should raise a ValueError
@@ -461,18 +481,30 @@ def test_get_answers__unknown_interaction_provided():
 
 
 @pytest.mark.parametrize(
-    ["basic_question_should_ask", "expected_basic_question_ask_call_count"],
-    [(True, 1), (False, 0)],
+    [
+        "basic_question_should_ask",
+        "expected_basic_question_ask_call_count",
+        "echo_should_ask",
+        "expected_echo_display_call_count",
+    ],
+    [(True, 1, False, 0), (False, 0, True, 1)],
 )
 def test_get_answers__proper_funcs_called(
-    mocker, basic_question_should_ask, expected_basic_question_ask_call_count
+    mocker,
+    basic_question_should_ask,
+    expected_basic_question_ask_call_count,
+    echo_should_ask,
+    expected_echo_display_call_count,
 ):
     """
     Given a list of interactions of different types, validate the proper funcs should be invoked on each
 
-    The parametrization asserts that Question interactions are only 'asked' when they should be asked
+    The parametrization asserts that Question interactions are only 'asked' when they should be asked and
+    that Displayable interactions are only 'displayed' when they should be displayed.
     """
-    echo_interaction_mock = mocker.Mock(spec=Echo)
+    echo_interaction_mock = mocker.Mock(
+        spec=Echo, should_ask=mocker.Mock(return_value=echo_should_ask)
+    )
     basic_question_interaction_mock = mocker.Mock(
         spec=BasicQuestion,
         should_ask=mocker.Mock(return_value=basic_question_should_ask),
@@ -486,7 +518,9 @@ def test_get_answers__proper_funcs_called(
 
     # functions belonging to interactions should be invoked
     # in the case of a question, it either should or shouldn't be asked
-    echo_interaction_mock.display.assert_called_once()
+    # in the case of echo, it either should or shouldn't be displayed
+    echo_interaction_mock.should_ask.assert_called_once()
+    assert echo_interaction_mock.display.call_count == expected_echo_display_call_count
     basic_question_interaction_mock.should_ask.assert_called_once()
     assert (
         basic_question_interaction_mock.ask.call_count

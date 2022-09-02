@@ -4,6 +4,7 @@ from columbo._interaction import (
     BasicQuestion,
     Choice,
     Confirm,
+    Displayable,
     Question,
     canonical_arg_name,
 )
@@ -51,6 +52,21 @@ class SampleQuestion(Question):
 
     def ask(self, answers, no_user_input=False):
         raise Exception("Don't call")
+
+
+class SampleDisplayable(Displayable):
+    """Displayable for testing base class functionality"""
+
+    def __init__(self, message, should_ask=None):
+        super().__init__(message, should_ask)
+        self._display_called = False
+
+    def display(self, answers):
+        self._display_called = True
+
+    @property
+    def display_called(self) -> bool:
+        return self._display_called
 
 
 # combination of questions that reuse the same name

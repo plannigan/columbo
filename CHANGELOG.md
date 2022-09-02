@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Python version `3.10` tested during CI
 - Python version `3.10` added to package classifiers
+- `should_ask` keyword argument for `Echo` and `Acknowledge` interactions ([#356](https://github.com/wayfair-incubator/columbo/issues/356))
 
 ### Removed
 
