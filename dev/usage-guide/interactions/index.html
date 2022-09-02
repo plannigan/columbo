@@ -589,7 +589,13 @@
 </ul>
 <h2 id="creating-interactions">Creating Interactions</h2>
 <h3 id="echo-acknowledge">Echo &amp; Acknowledge</h3>
-<p><code>Echo</code> and <code>Acknowledge</code> both accept <code>message</code> as their only argument. This is the message to be displayed to the user.</p>
+<p><code>Echo</code> and <code>Acknowledge</code> both accept the following arguments.</p>
+<ul>
+<li><code>message</code>: The message to be displayed to the user.</li>
+<li><code>should_ask</code>: Optional. When given, the argument should be a function that accepts an <code>Answers</code> dictionary and returns
+    <code>True</code> or <code>False</code>. Returning <code>True</code> indicates that the message should be displayed. Returning <code>False</code> will skip the
+    message and not present it to the user. See <a href="../optional-questions-and-branching/">Optional Questions &amp; Branching</a> for more details.</li>
+</ul>
 <h3 id="all-questions">All Questions</h3>
 <p><code>BasicQuestion</code>, <code>Choice</code>, &amp; <code>Confirm</code> all accept the following arguments.</p>
 <ul>

@@ -33,18 +33,24 @@ interactions = [
         options=["left", "right"],
         default="left",
     ),
+    columbo.Echo(
+        "You step into a short hallway and the door closes behind you, refusing to open again. "
+        "As you walk down the hallway, there is a small side table with a key on it.",
+        should_ask=went_left,
+    ),
     columbo.Confirm(
         "has_key",
-        "You step into a short hallway and the door closes behind you, refusing to open again. "
-        "As you walk down the hallway, there is a small side table with a key on it.\n"
         "Do you pick up the key before going through the door at the other end?",
         should_ask=went_left,
         default=True,
     ),
+    columbo.Echo(
+        "You step into smaller room and the door closes behind, refusing to open again. "
+        "The room has a single door on the opposite side of the room and a work bench with a hammer on it.",
+        should_ask=went_right,
+    ),
     columbo.Confirm(
         "has_hammer",
-        "You step into smaller room and the door closes behind, refusing to open again. "
-        "The room has a single door on the opposite side of the room and a work bench with a hammer on it.\n"
         "Do you pick up the hammer before going through the door at the other side?",
         should_ask=went_right,
         default=True,

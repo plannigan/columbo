@@ -7,6 +7,10 @@ def user_has_dog(answers: columbo.Answers) -> bool:
 
 interactions = [
     columbo.Confirm("has_dog", "Do you have a dog?", default=True),
+    columbo.Echo(
+        "Because you have have a dog, we want to ask you some more questions.",
+        should_ask=user_has_dog,
+    ),
     columbo.BasicQuestion(
         "dog_name",
         "What is the name of the dog?",

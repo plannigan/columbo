@@ -1136,6 +1136,8 @@ documented here for completeness.</p>
 
 
   <div class="doc doc-contents first">
+      <p class="doc doc-class-bases">
+        Bases: <code><span title="columbo._interaction.Displayable">Displayable</span></code></p>
 
   
       <p>Display a message to the user and require the user to press ENTER to continue.</p>
@@ -1159,7 +1161,7 @@ documented here for completeness.</p>
 
 
 <h4 id="columbo._interaction.Acknowledge.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
@@ -1189,6 +1191,16 @@ documented here for completeness.</p>
               <em>required</em>
           </td>
         </tr>
+        <tr>
+          <td><code>should_ask</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+          </td>
+          <td><p>If <code>None</code>, the message is displayed to the user. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1201,7 +1213,7 @@ documented here for completeness.</p>
 
 
 <h4 id="columbo._interaction.Acknowledge.copy" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
@@ -1227,6 +1239,16 @@ documented here for completeness.</p>
                 <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
           </td>
           <td><p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p></td>
+          <td>
+                <code>_NOT_GIVEN</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>should_ask</code></td>
+          <td>
+                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+          </td>
+          <td><p>If <code>None</code>, the message is displayed. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p></td>
           <td>
                 <code>_NOT_GIVEN</code>
           </td>
@@ -2410,6 +2432,8 @@ documented here for completeness.</p>
 
 
   <div class="doc doc-contents first">
+      <p class="doc doc-class-bases">
+        Bases: <code><span title="columbo._interaction.Displayable">Displayable</span></code></p>
 
   
       <p>Display a message to the user.</p>
@@ -2433,7 +2457,7 @@ documented here for completeness.</p>
 
 
 <h4 id="columbo._interaction.Echo.__init__" class="doc doc-heading">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
@@ -2463,6 +2487,16 @@ documented here for completeness.</p>
               <em>required</em>
           </td>
         </tr>
+        <tr>
+          <td><code>should_ask</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+          </td>
+          <td><p>If <code>None</code>, the message is displayed to the user. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
     </tbody>
   </table>
 
@@ -2475,7 +2509,7 @@ documented here for completeness.</p>
 
 
 <h4 id="columbo._interaction.Echo.copy" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
@@ -2501,6 +2535,16 @@ documented here for completeness.</p>
                 <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
           </td>
           <td><p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p></td>
+          <td>
+                <code>_NOT_GIVEN</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>should_ask</code></td>
+          <td>
+                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+          </td>
+          <td><p>If <code>None</code>, the message is displayed. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p></td>
           <td>
                 <code>_NOT_GIVEN</code>
           </td>

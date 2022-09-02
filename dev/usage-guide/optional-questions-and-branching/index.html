@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#only-asking-some-questions" class="md-skip">
+        <a href="#only-prompting-some-interactions" class="md-skip">
           Skip to content
         </a>
       
@@ -329,11 +329,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#only-asking-some-questions" class="md-nav__link">
-    Only Asking Some Questions
+  <a href="#only-prompting-some-interactions" class="md-nav__link">
+    Only Prompting Some Interactions
   </a>
   
-    <nav class="md-nav" aria-label="Only Asking Some Questions">
+    <nav class="md-nav" aria-label="Only Prompting Some Interactions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -496,11 +496,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#only-asking-some-questions" class="md-nav__link">
-    Only Asking Some Questions
+  <a href="#only-prompting-some-interactions" class="md-nav__link">
+    Only Prompting Some Interactions
   </a>
   
-    <nav class="md-nav" aria-label="Only Asking Some Questions">
+    <nav class="md-nav" aria-label="Only Prompting Some Interactions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -555,10 +555,13 @@
 
   <h1>Optional Questions & Branching</h1>
 
-<h2 id="only-asking-some-questions">Only Asking Some Questions</h2>
-<p>There are situations where a question should be asked some times, but not all the time. For example, a program that collects
-information about a user's pets should not ask the user for the dog's name and breed if the user said they do not have a
-dog. The <code>should_ask</code> argument that is present on each question provides a way to achieve this functionality.</p>
+<h2 id="only-prompting-some-interactions">Only Prompting Some Interactions</h2>
+<p>There are situations where a question should be asked some times, but not all the time. Or, a message should be displayed some times.
+For example, a program that collects information about a user's 
+pets should not ask the user for the dog's name and breed if the
+user said they do not have a dog. If the user has a dog, the program
+may want to display a special message. The <code>should_ask</code> argument that
+is present on each interaction provides a way to achieve this functionality.</p>
 <p>Similarly, <code>should_ask</code> can be used to provide branching paths to the user. An example of these branching paths is a
 <a href="https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure">Choose Your Own Adventure</a> story. The story provides the reader with choices during the
 adventure. These choices introduce diverging paths of interactions that may or may not join at the end.</p>
@@ -570,7 +573,7 @@ skipped question. If you want a skipped question to have a specific answer when 
 </div>
 <h3 id="optional-questions">Optional Questions</h3>
 <p>The following is a basic example that has two optional questions that are not asked based on the answer to the first
-question.</p>
+question. It also has an optional message that is only displayed based on the answer to the first question.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 
@@ -580,6 +583,10 @@ question.</p>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
+        <span class="s2">&quot;Because you have have a dog, we want to ask you some more questions.&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
+    <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
         <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
@@ -616,19 +623,23 @@ The next section shows how to provide an answer for a skipped question.</p>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
-        <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
+        <span class="s2">&quot;Because you have have a dog, we want to ask you some more questions.&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="hll">    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+</span>        <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-<span class="hll">        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
-</span>        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span>
+        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span>
     <span class="p">),</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
-        <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
+</span>        <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
         <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-<span class="hll">        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
-</span>        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span><span class="p">,</span>
+        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
 
@@ -682,18 +693,24 @@ branching paths by supplying different <code>should_ask</code> values that will 
         <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">],</span>
         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
     <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
+        <span class="s2">&quot;You step into a short hallway and the door closes behind you, refusing to open again. &quot;</span>
+        <span class="s2">&quot;As you walk down the hallway, there is a small side table with a key on it.&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">went_left</span><span class="p">,</span>
+    <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
         <span class="s2">&quot;has_key&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;You step into a short hallway and the door closes behind you, refusing to open again. &quot;</span>
-        <span class="s2">&quot;As you walk down the hallway, there is a small side table with a key on it.</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;Do you pick up the key before going through the door at the other end?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_left</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
+        <span class="s2">&quot;You step into smaller room and the door closes behind, refusing to open again. &quot;</span>
+        <span class="s2">&quot;The room has a single door on the opposite side of the room and a work bench with a hammer on it.&quot;</span><span class="p">,</span>
+        <span class="n">should_ask</span><span class="o">=</span><span class="n">went_right</span><span class="p">,</span>
+    <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
         <span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;You step into smaller room and the door closes behind, refusing to open again. &quot;</span>
-        <span class="s2">&quot;The room has a single door on the opposite side of the room and a work bench with a hammer on it.</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;Do you pick up the hammer before going through the door at the other side?&quot;</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_right</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
