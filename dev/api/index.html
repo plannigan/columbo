@@ -1486,6 +1486,24 @@ documented here for completeness.</p>
     </tbody>
   </table>
 
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>Default value does not satisfy the validator.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
   </div>
 
 </div>
@@ -3017,6 +3035,12 @@ documented here for completeness.</p>
                 <code>DuplicateQuestionNameException</code>
           </td>
           <td><p>One of the given questions attempts to reuse a name. This includes a question that was used to create <code>answers</code> if given.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>A default value did not satisfy the <code>Interaction</code>'s validator.</p></td>
         </tr>
     </tbody>
   </table>
