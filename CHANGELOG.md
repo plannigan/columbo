@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- `BasicQuestion.ask()` will only evaluate dynamic values for the prompt message and default value once per instead of
+- `BasicQuestion.ask()` will only evaluate dynamic values for the prompt message and default value once instead of
   repeatedly when the response was invalid.
 
 ### Fixed
