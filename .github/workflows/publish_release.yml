@@ -23,6 +23,7 @@ jobs:
         with:
           requirements: "true"
           test-requirements: "true"
+          docs-requirements: "true"
 
       - name: Push documentation changes
         uses: ./.github/actions/publish-docs-with-mike
