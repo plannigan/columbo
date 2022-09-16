@@ -107,8 +107,7 @@ def _add_argument_for(question: Any, _: ArgumentParser) -> None:
     raise ValueError(f"Unsupported interaction type {type(question)}")
 
 
-# singledispatch for >=3.7 can use type annotations, but doesn't support Union
-# This will be supported in 3.11 https://github.com/python/cpython/pull/30017
+# singledispatch for >=3.7 can use type annotations, but support for Union requires =>3.11
 @_add_argument_for.register(Acknowledge)
 @_add_argument_for.register(Echo)
 def _add_argument_for_noop(

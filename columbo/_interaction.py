@@ -23,7 +23,7 @@ Interaction = Union["Displayable", "Question"]
 
 
 # Used by copy() implementations. Since some arguments can be None, None can't be used as the value to indicate that the
-# the argument was not given.
+# argument was not given.
 class _Sentinel(Enum):
     A = 0
 
@@ -176,13 +176,14 @@ class Question(ABC):
         """
         Initialize an instance.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         :raises ValueError: Raised if user provides a value_if_not_asked but nothing for should_ask.
         """
         self._name = name
@@ -213,7 +214,7 @@ class Question(ABC):
 
         :param answers: The answers that have been provided this far.
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
-            to provide an answer. Default: False
+            to provide an answer. Default: `False`
         :return: The answer to the question.
         """
         pass
@@ -245,7 +246,7 @@ class Confirm(Question):
         """
         Initialize an instance.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param default: The default answer to the question. If the value is callable, the argument passed in will be the
@@ -253,7 +254,8 @@ class Confirm(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         """
         super().__init__(
             name,
@@ -279,7 +281,7 @@ class Confirm(Question):
 
         :param answers: The answers that have been provided this far.
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
-            to provide an answer. Default: False
+            to provide an answer. Default: `False`
         :return: The answer to the question.
         """
         return user_io.confirm(
@@ -301,7 +303,7 @@ class Confirm(Question):
         """
         Create a new instance like this one, potentially with different values.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param default: The default answer to the question. If the value is callable, the argument passed in will be the
@@ -309,7 +311,8 @@ class Confirm(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return Confirm(
@@ -342,7 +345,7 @@ class Choice(Question):
         """
         Initialize an instance.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param options: The set of possible answers to the question. If the value is callable, the argument passed in
@@ -352,7 +355,8 @@ class Choice(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         :raises ValueError: Raised if the value_if_not_asked is not one of the options.
         """
         super().__init__(
@@ -388,7 +392,7 @@ class Choice(Question):
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         """Validate the value (a new answer).
 
-        :param value: The identifier that will be used as the key to access the this question's answer.
+        :param value: The identifier that will be used as the key to access this question's answer.
         :param answers: The answers that have been provided this far.
         :return: A ValidationFailure or ValidationSuccess object.
         """
@@ -403,7 +407,7 @@ class Choice(Question):
 
         :param answers: The answers that have been provided this far.
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
-            to provide an answer. Default: False
+            to provide an answer. Default: `False`
         :return: The answer to the question.
         """
         return user_io.multiple_choice(
@@ -427,7 +431,7 @@ class Choice(Question):
         """
         Create a new instance like this one, potentially with different values.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param options: The set of possible answers to the question. If the value is callable, the argument passed in
@@ -437,7 +441,8 @@ class Choice(Question):
         :param cli_help: Optional help message to be displayed for command line interface.
         :param should_ask: If `None`, the question is asked. Otherwise, the callable will be passed the answers that
             have been provided this far and should return `True` if the question should be asked.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return Choice(
@@ -471,7 +476,7 @@ class BasicQuestion(Question):
         """
         Initialize an instance.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param default: The default answer to the question. If the value is callable, the argument passed in will be the
@@ -481,7 +486,8 @@ class BasicQuestion(Question):
             have been provided this far and should return `True` if the question should be asked.
         :param validator: Callable that will validate the response given by the user.
             A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         """
         super().__init__(
             name,
@@ -505,7 +511,7 @@ class BasicQuestion(Question):
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         """Validate the value (a new answer).
 
-        :param value: The identifier that will be used as the key to access the this question's answer.
+        :param value: The identifier that will be used as the key to access this question's answer.
         :param answers: The answers that have been provided this far.
         :return: A ValidationFailure or ValidationSuccess object.
         """
@@ -524,7 +530,7 @@ class BasicQuestion(Question):
 
         :param answers: The answers that have been provided this far.
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
-            to provide an answer. Default: False
+            to provide an answer. Default: `False`
         :return: The answer to the question.
         :raises ValueError: Default value does not satisfy the validator.
         """
@@ -569,7 +575,7 @@ class BasicQuestion(Question):
         """
         Create a new instance like this one, potentially with different values.
 
-        :param name: The identifier that will be used as the key to access the this question's answer.
+        :param name: The identifier that will be used as the key to access this question's answer.
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param default: The default answer to the question. If the value is callable, the argument passed in will be the
@@ -580,7 +586,8 @@ class BasicQuestion(Question):
         :param validator: Callable that will validate the response given by the user.
             None indicates that validation was successful. Otherwise, a string containing details
             of the error that caused the validation failure.
-        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.
+        :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
+            if should_ask evaluates to False.
         :return: A newly constructed instance with the given values in place of the values of this instance.
         """
         return BasicQuestion(
@@ -617,7 +624,7 @@ def get_answers(
     :param interactions: Collection of interactions to present the user with.
     :param answers: An initial dictionary of answers to start from.
     :param no_user_input: If `True` the default value for the question will be used without waiting for the user
-        to provide an answer. Default: False
+        to provide an answer. Default: `False`
     :return: Dictionary of answers.
     :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name. This includes a
         question that was used to create `answers` if given.
