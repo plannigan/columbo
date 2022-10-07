@@ -43,8 +43,9 @@ def parse_args(
     :return: Answers based on the given arguments.
     :raises SystemExit: A value passed to CLI argument was not valid and `exit_on_error` was `True`.
     :raises CliException: A value passed to CLI argument was not valid and `exit_on_error` was `False`.
-    :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name. This includes a
-        question that was used to create `answers` if given.
+    :raises DuplicateQuestionNameException: One of the given questions attempted to reuse a name. When a value is
+        provided for `answers`, those are considered as well.
+    :raises ValueError: One of the given `Interaction`s was not a valid type or was misconfigured in some way.
     """
     validate_duplicate_question_names(interactions, answers)
     parser = create_parser(interactions, parser_name)
@@ -70,7 +71,8 @@ def format_cli_help(
 
     :param interactions: Interactions that should be turned into CLI arguments.
     :param parser_name: Optional name to be used in help text. If omitted, the name of the process will be used.
-    :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name.
+    :raises DuplicateQuestionNameException: One of the given questions attempted to reuse a name.
+    :raises ValueError: One of the given `Interaction`s was not a valid type.
     """
     validate_duplicate_question_names(interactions)
     return create_parser(interactions, parser_name).format_help()
