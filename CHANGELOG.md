@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- All exceptions raised by `columbo` listed in the docstrings. Improved phrasing to make messaging consistent.
 
 ## [0.12.0] - 2022-09-05
 

@@ -68,6 +68,11 @@ class Displayable(ABC):
 
     @abstractmethod
     def display(self, answers: Answers) -> None:  # pragma: no cover
+        """
+        Display a message to the user.
+
+        :param answers: The answers that have been provided this far.
+        """
         pass
 
     def should_ask(self, answers: Answers) -> bool:
@@ -76,6 +81,7 @@ class Displayable(ABC):
 
         :param answers: The answers that have been provided this far.
         :return: `True` if this message should be displayed
+        :raises ValueError: The value for `should_ask` did not have the correct type.
         """
         return _should_ask_or_display(self._should_ask, answers)
 
@@ -97,6 +103,12 @@ class Echo(Displayable):
         super().__init__(message, should_ask)
 
     def display(self, answers: Answers) -> None:
+        """
+        Display a message to the user.
+
+        :param answers: The answers that have been provided this far.
+        :raises ValueError: The value for `message` did not have the correct type.
+        """
         user_io.echo(to_value(self._message, answers, str))
 
     def copy(
@@ -137,6 +149,12 @@ class Acknowledge(Displayable):
         super().__init__(message, should_ask)
 
     def display(self, answers: Answers) -> None:
+        """
+        Display a message to the user and require the user to press ENTER to continue
+
+        :param answers: The answers that have been provided this far.
+        :raises ValueError: The value for `message` did not have the correct type.
+        """
         user_io.acknowledge(to_value(self._message, answers, str))
 
     def copy(
@@ -184,7 +202,7 @@ class Question(ABC):
             have been provided this far and should return `True` if the question should be asked.
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
             if should_ask evaluates to False.
-        :raises ValueError: Raised if user provides a value_if_not_asked but nothing for should_ask.
+        :raises ValueError: A value for `value_if_not_asked` was given without giving a value for `should_ask`.
         """
         self._name = name
         self._message = message
@@ -225,6 +243,7 @@ class Question(ABC):
 
         :param answers: The answers that have been provided this far.
         :return: `True` if this questions should be asked
+        :raises ValueError: The value for `should_ask` did not have the correct type.
         """
         return _should_ask_or_display(self._should_ask, answers)
 
@@ -256,6 +275,7 @@ class Confirm(Question):
             have been provided this far and should return `True` if the question should be asked.
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
             if should_ask evaluates to False.
+        :raises ValueError: A value for `value_if_not_asked` was given without giving a value for `should_ask`.
         """
         super().__init__(
             name,
@@ -283,6 +303,7 @@ class Confirm(Question):
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
             to provide an answer. Default: `False`
         :return: The answer to the question.
+        :raises ValueError: The instance was misconfigured in some way.
         """
         return user_io.confirm(
             to_value(self._message, answers, str),
@@ -357,7 +378,8 @@ class Choice(Question):
             have been provided this far and should return `True` if the question should be asked.
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
             if should_ask evaluates to False.
-        :raises ValueError: Raised if the value_if_not_asked is not one of the options.
+        :raises ValueError: A value for `value_if_not_asked` was given without giving a value for `should_ask`. Or the
+            given value for `value_if_not_asked` was not one of the options.
         """
         super().__init__(
             name,
@@ -395,6 +417,7 @@ class Choice(Question):
         :param value: The identifier that will be used as the key to access this question's answer.
         :param answers: The answers that have been provided this far.
         :return: A ValidationFailure or ValidationSuccess object.
+        :raises ValueError: The value for `options` did not have the correct type.
         """
         options = to_value(self._options, answers, list)
         if value not in options:
@@ -409,6 +432,7 @@ class Choice(Question):
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
             to provide an answer. Default: `False`
         :return: The answer to the question.
+        :raises ValueError: The instance was misconfigured in some way.
         """
         return user_io.multiple_choice(
             to_value(self._message, answers, str),
@@ -488,6 +512,7 @@ class BasicQuestion(Question):
             A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
             if should_ask evaluates to False.
+        :raises ValueError: A value for `value_if_not_asked` was given without giving a value for `should_ask`.
         """
         super().__init__(
             name,
@@ -514,6 +539,7 @@ class BasicQuestion(Question):
         :param value: The identifier that will be used as the key to access this question's answer.
         :param answers: The answers that have been provided this far.
         :return: A ValidationFailure or ValidationSuccess object.
+        :raises ValueError: The value for `validator` was not a callable.
         """
 
         if self._validator is None:
@@ -532,7 +558,7 @@ class BasicQuestion(Question):
         :param no_user_input: If `True` the default value for the question will be used without waiting for the user
             to provide an answer. Default: `False`
         :return: The answer to the question.
-        :raises ValueError: Default value does not satisfy the validator.
+        :raises ValueError: Default value did not satisfy the validator. Or the instance was misconfigured in some way.
         """
 
         message = to_value(self._message, answers, str)
@@ -626,9 +652,9 @@ def get_answers(
     :param no_user_input: If `True` the default value for the question will be used without waiting for the user
         to provide an answer. Default: `False`
     :return: Dictionary of answers.
-    :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name. This includes a
-        question that was used to create `answers` if given.
-    :raises ValueError: A default value did not satisfy the `Interaction`'s validator.
+    :raises DuplicateQuestionNameException: One of the given questions attempted to reuse a name. When a value is
+        provided for `answers`, those are considered as well.
+    :raises ValueError: One of the given `Interaction`s was not a valid type or was misconfigured in some way.
     """
     validate_duplicate_question_names(interactions, answers)
     result = {} if answers is None else dict(answers)
@@ -663,7 +689,7 @@ def validate_duplicate_question_names(
 
     :param interactions: Collection of interactions to check.
     :param answers: An initial dictionary of answers to treat as questions that have already been asked.
-    :raises DuplicateQuestionNameException: One of the given questions attempts to reuse a name.
+    :raises DuplicateQuestionNameException: One of the given questions attempted to reuse a name.
     """
     used_names = set() if answers is None else set(answers.keys())
     for interaction in interactions:
