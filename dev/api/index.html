@@ -434,6 +434,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.Acknowledge.display" class="md-nav__link">
+    display()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -573,6 +580,13 @@
           <li class="md-nav__item">
   <a href="#columbo._interaction.Echo.copy" class="md-nav__link">
     copy()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.Echo.display" class="md-nav__link">
+    display()
   </a>
   
 </li>
@@ -790,6 +804,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.Acknowledge.display" class="md-nav__link">
+    display()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -929,6 +950,13 @@
           <li class="md-nav__item">
   <a href="#columbo._interaction.Echo.copy" class="md-nav__link">
     copy()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columbo._interaction.Echo.display" class="md-nav__link">
+    display()
   </a>
   
 </li>
@@ -1282,6 +1310,66 @@ documented here for completeness.</p>
 
 </div>
 
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="columbo._interaction.Acknowledge.display" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span></code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Display a message to the user and require the user to press ENTER to continue</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>answers</code></td>
+          <td>
+                <code><span title="columbo._types.Answers">Answers</span></code>
+          </td>
+          <td><p>The answers that have been provided this far.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The value for <code>message</code> did not have the correct type.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
 
 
   </div>
@@ -1420,6 +1508,24 @@ documented here for completeness.</p>
     </tbody>
   </table>
 
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
   </div>
 
 </div>
@@ -1503,7 +1609,7 @@ documented here for completeness.</p>
           <td>
                 <code>ValueError</code>
           </td>
-          <td><p>Default value does not satisfy the validator.</p></td>
+          <td><p>Default value did not satisfy the validator. Or the instance was misconfigured in some way.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1698,6 +1804,24 @@ documented here for completeness.</p>
     </tbody>
   </table>
 
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The value for <code>validator</code> was not a callable.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
   </div>
 
 </div>
@@ -1853,7 +1977,7 @@ documented here for completeness.</p>
           <td>
                 <code>ValueError</code>
           </td>
-          <td><p>Raised if the value_if_not_asked is not one of the options.</p></td>
+          <td><p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>. Or the given value for <code>value_if_not_asked</code> was not one of the options.</p></td>
         </tr>
     </tbody>
   </table>
@@ -1924,6 +2048,24 @@ documented here for completeness.</p>
                 <code>str</code>
           </td>
           <td><p>The answer to the question.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The instance was misconfigured in some way.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2118,6 +2260,24 @@ documented here for completeness.</p>
     </tbody>
   </table>
 
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The value for <code>options</code> did not have the correct type.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
   </div>
 
 </div>
@@ -2250,6 +2410,24 @@ documented here for completeness.</p>
     </tbody>
   </table>
 
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
   </div>
 
 </div>
@@ -2316,6 +2494,24 @@ documented here for completeness.</p>
                 <code>bool</code>
           </td>
           <td><p>The answer to the question.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The instance was misconfigured in some way.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2596,6 +2792,66 @@ documented here for completeness.</p>
 
 </div>
 
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="columbo._interaction.Echo.display" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span></code>
+
+</h4>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Display a message to the user.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>answers</code></td>
+          <td>
+                <code><span title="columbo._types.Answers">Answers</span></code>
+          </td>
+          <td><p>The answers that have been provided this far.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The value for <code>message</code> did not have the correct type.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</div>
+
 
 
   </div>
@@ -2727,7 +2983,7 @@ documented here for completeness.</p>
           <td>
                 <code>ValueError</code>
           </td>
-          <td><p>Raised if user provides a value_if_not_asked but nothing for should_ask.</p></td>
+          <td><p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -2866,6 +3122,24 @@ documented here for completeness.</p>
     </tbody>
   </table>
 
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>The value for <code>should_ask</code> did not have the correct type.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
   </div>
 
 </div>
@@ -2940,7 +3214,13 @@ documented here for completeness.</p>
           <td>
                 <code>DuplicateQuestionNameException</code>
           </td>
-          <td><p>One of the given questions attempts to reuse a name.</p></td>
+          <td><p>One of the given questions attempted to reuse a name.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>One of the given <code>Interaction</code>s was not a valid type.</p></td>
         </tr>
     </tbody>
   </table>
@@ -3038,13 +3318,13 @@ documented here for completeness.</p>
           <td>
                 <code>DuplicateQuestionNameException</code>
           </td>
-          <td><p>One of the given questions attempts to reuse a name. This includes a question that was used to create <code>answers</code> if given.</p></td>
+          <td><p>One of the given questions attempted to reuse a name. When a value is provided for <code>answers</code>, those are considered as well.</p></td>
         </tr>
         <tr>
           <td>
                 <code>ValueError</code>
           </td>
-          <td><p>A default value did not satisfy the <code>Interaction</code>'s validator.</p></td>
+          <td><p>One of the given <code>Interaction</code>s was not a valid type or was misconfigured in some way.</p></td>
         </tr>
     </tbody>
   </table>
@@ -3174,7 +3454,13 @@ documented here for completeness.</p>
           <td>
                 <code>DuplicateQuestionNameException</code>
           </td>
-          <td><p>One of the given questions attempts to reuse a name. This includes a question that was used to create <code>answers</code> if given.</p></td>
+          <td><p>One of the given questions attempted to reuse a name. When a value is provided for <code>answers</code>, those are considered as well.</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td><p>One of the given <code>Interaction</code>s was not a valid type or was misconfigured in some way.</p></td>
         </tr>
     </tbody>
   </table>
