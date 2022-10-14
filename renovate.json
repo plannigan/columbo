@@ -4,7 +4,7 @@
   "extends": [
     "config:base"
   ]
-  "enabledManagers": [ // Manages packages for Docker, GitHub, Node
+  "enabledManagers": [
     "docker-compose",
     "github-actions",
     "pip_requirements"
