@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added support for `Mapping[str, str]` in `OptionList` which allows users to control
+    how `Choice` options are displayed ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
+
 ### Fixed
 
 - All exceptions raised by `columbo` listed in the docstrings. Improved phrasing to make messaging consistent.
