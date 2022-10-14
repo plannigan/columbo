@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  
+  "extends": [
+    "config:base"
+  ]
+  "enabledManagers": [ // Manages packages for Docker, GitHub, Node
+    "docker-compose",
+    "github-actions",
+    "pip_requirements"
+    "setup-cfg"
+  ]
+  
+}
