@@ -18,6 +18,7 @@ SOME_STRING = "hello"
 SOME_OTHER_STRING = "good-bye"
 SOME_ANSWERS = {"a": "one", "b": "two"}
 SOME_OPTIONS = ["x", "y", "z"]
+SOME_MAPPING_OPTIONS = {"x": "The Letter X", "y": "The Letter Y", "z": "The Letter Z"}
 SOME_DEFAULT = "x"
 SOME_NON_DEFAULT_OPTION = "y"
 SOME_INVALID_OPTION = "NOT_VALID_OPTION"
@@ -32,6 +33,10 @@ def some_dynamic_options(answers):
     return [f"--{x}--" for x in answers.values()]
 
 
+def some_dynamic_mapping_options(answers):
+    return {f"--{x}--": f"~~{x}~~" for x in answers.values()}
+
+
 def some_dynamic_default(answers):
     return f"--{answers['b']}--"
 
@@ -42,6 +47,7 @@ def some_dynamic_bool(_):
 
 SOME_DYNAMIC_STRING_RESULT = "--one--"
 SOME_DYNAMIC_OPTION_RESULT = ["--one--", "--two--"]
+SOME_DYNAMIC_MAPPING_OPTION_RESULT = {"--one--": "~~one~~", "--two--": "~~two~~"}
 SOME_DYNAMIC_DEFAULT_RESULT = "--two--"
 
 SOME_NAMESPACE = Namespace(**{SOME_NAME: SOME_STRING})

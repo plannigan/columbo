@@ -66,7 +66,7 @@ def test_ask__yes_user_input_no_answer__default_result(mocker):
 def test_multiple_choice__no_user_input__default_value():
     result = user_io.multiple_choice(
         "Some question?",
-        [SOME_STRING, SOME_OTHER_STRING],
+        {SOME_STRING: SOME_STRING, SOME_OTHER_STRING: SOME_OTHER_STRING},
         no_user_input=True,
         default=SOME_OTHER_STRING,
     )
@@ -79,15 +79,39 @@ def test_multiple_choice__yes_user_input__prompt_result_mapped_to_value(mocker):
     mocker.patch("prompt_toolkit.shortcuts.prompt", return_value="2")
 
     result = user_io.multiple_choice(
-        "Some question?", [SOME_STRING, SOME_OTHER_STRING], default=SOME_STRING
+        "Some question?",
+        {
+            SOME_STRING: f"Display Value for {SOME_STRING}",
+            SOME_OTHER_STRING: f"Display Value for {SOME_OTHER_STRING}",
+        },
+        default=SOME_STRING,
     )
 
     assert result == SOME_OTHER_STRING
 
 
+def test_multiple_choice__prompts_with_option_values(mocker):
+    mock_prompt = mocker.patch("prompt_toolkit.shortcuts.prompt", return_value="2")
+
+    _ = user_io.multiple_choice(
+        "Some question?",
+        {
+            f"Key Value for {SOME_STRING}": f"Display Value for {SOME_STRING}",
+            f"Key Value for {SOME_OTHER_STRING}": f"Display Value for {SOME_OTHER_STRING}",
+        },
+        default=f"Key Value for {SOME_STRING}",
+    )
+
+    prompt_text = mock_prompt.call_args[0][0]
+    assert "Display Value for" in prompt_text
+    assert "Key Value for" not in prompt_text
+
+
 def test_multiple_choice__default_not_option__value_error():
     with pytest.raises(ValueError):
-        user_io.multiple_choice("Some question?", ["1", "2", "3"], default="100")
+        user_io.multiple_choice(
+            "Some question?", {"1": "One", "2": "Two", "3": "Three"}, default="100"
+        )
 
 
 def test_multiple_choice__no_options__value_error():

@@ -1,7 +1,7 @@
 import re
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Collection, Optional, Type, TypeVar, Union
+from typing import Collection, Mapping, Optional, Type, TypeVar, Union
 
 from columbo import _user_io as user_io
 from columbo._exception import DuplicateQuestionNameException
@@ -419,7 +419,9 @@ class Choice(Question):
         :return: A ValidationFailure or ValidationSuccess object.
         :raises ValueError: The value for `options` did not have the correct type.
         """
-        options = to_value(self._options, answers, list)
+        options = to_value(
+            list(get_labeled_options(self._options, answers).keys()), answers, list
+        )
         if value not in options:
             return ValidationFailure(error=f"Chosen value: {value} not in options")
         return ValidationSuccess()
@@ -436,7 +438,7 @@ class Choice(Question):
         """
         return user_io.multiple_choice(
             to_value(self._message, answers, str),
-            to_value(self._options, answers, list),
+            get_labeled_options(self._options, answers),
             default=to_value(self._default, answers, str),
             no_user_input=no_user_input,
         )
@@ -637,6 +639,17 @@ def to_value(
     if callable(value):
         return value(answers)
     raise ValueError(f"Invalid value: {value}")
+
+
+def get_labeled_options(
+    options: StaticOrDynamicValue[OptionList], answers: Answers
+) -> Mapping[str, str]:
+    resolved_opts = options(answers) if callable(options) else options
+    if isinstance(resolved_opts, list):
+        return {v: v for v in resolved_opts}
+    if isinstance(resolved_opts, Mapping):
+        return resolved_opts
+    raise ValueError("Invalid options type")
 
 
 def get_answers(

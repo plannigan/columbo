@@ -24,7 +24,7 @@ class ValidationFailure:
 Answer = Union[bool, str]
 Answers = Mapping[str, Answer]
 MutableAnswers = MutableMapping[str, Answer]
-OptionList = List[str]
+OptionList = Union[List[str], Mapping[str, str]]
 V = TypeVar("V")
 StaticOrDynamicValue = Union[V, Callable[[Answers], V]]
 ShouldAsk = Callable[[Answers], bool]
