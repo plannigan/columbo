@@ -10,10 +10,10 @@
     "github-actions",
     "pip_requirements",
     "setup-cfg"
-  ]
+  ],
 
    "schedule": [
-    "before 2am"
+    "before 4am"
   ]
   
 }
