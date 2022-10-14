@@ -421,7 +421,7 @@ class Choice(Question):
         :raises ValueError: The value for `options` did not have the correct type.
         """
         options = to_value(
-            list(get_labeled_options(self._options, answers).keys()), answers, list
+            list(to_labeled_options(self._options, answers).keys()), answers, list
         )
         if value not in options:
             return ValidationFailure(error=f"Chosen value: {value} not in options")
@@ -439,7 +439,7 @@ class Choice(Question):
         """
         return user_io.multiple_choice(
             to_value(self._message, answers, str),
-            get_labeled_options(self._options, answers),
+            to_labeled_options(self._options, answers),
             default=to_value(self._default, answers, str),
             no_user_input=no_user_input,
         )
@@ -642,8 +642,8 @@ def to_value(
     raise ValueError(f"Invalid value: {value}")
 
 
-def get_labeled_options(
-    options: StaticOrDynamicValue[OptionList], answers: Answers
+def to_labeled_options(
+    options: StaticOrDynamicValue[Options], answers: Answers
 ) -> Mapping[str, str]:
     resolved_opts = options(answers) if callable(options) else options
     if isinstance(resolved_opts, list):

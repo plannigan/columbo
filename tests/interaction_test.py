@@ -13,7 +13,7 @@ from columbo import (
 from columbo._interaction import (
     canonical_arg_name,
     get_answers,
-    get_labeled_options,
+    to_labeled_options,
     to_value,
 )
 from tests.sample_data import (
@@ -494,9 +494,9 @@ def test_to_value__invalid_type__exception():
         to_value(object(), SOME_ANSWERS, str)
 
 
-def test_get_labeled_options__invalid_type__exception():
+def test_to_labeled_options__invalid_type__exception():
     with pytest.raises(ValueError):
-        get_labeled_options(object(), SOME_ANSWERS)
+        to_labeled_options(object(), SOME_ANSWERS)
 
 
 @pytest.mark.parametrize(
