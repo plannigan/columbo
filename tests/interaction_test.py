@@ -10,7 +10,12 @@ from columbo import (
     ValidationFailure,
     ValidationSuccess,
 )
-from columbo._interaction import canonical_arg_name, get_answers, to_value
+from columbo._interaction import (
+    canonical_arg_name,
+    get_answers,
+    get_labeled_options,
+    to_value,
+)
 from tests.sample_data import (
     DUPLICATE_QUESTION_NAME_PARAMS,
     QUESTION_NAME_STANDARDIZATION_PARAMS,
@@ -487,6 +492,11 @@ def test_basic_question__default_invalid_no_user_input__error(no_user_input, moc
 def test_to_value__invalid_type__exception():
     with pytest.raises(ValueError):
         to_value(object(), SOME_ANSWERS, str)
+
+
+def test_get_labeled_options__invalid_type__exception():
+    with pytest.raises(ValueError):
+        get_labeled_options(object(), SOME_ANSWERS)
 
 
 @pytest.mark.parametrize(
