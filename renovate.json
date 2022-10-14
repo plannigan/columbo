@@ -8,7 +8,7 @@
    "enabledManagers": [
     "docker-compose",
     "github-actions",
-    "pip_requirements"
+    "pip_requirements",
     "setup-cfg"
   ]
   
