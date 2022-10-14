@@ -9,7 +9,7 @@ from columbo._types import (
     Answer,
     Answers,
     MutableAnswers,
-    OptionList,
+    Options,
     ShouldAsk,
     StaticOrDynamicValue,
     V,
@@ -357,7 +357,7 @@ class Choice(Question):
         self,
         name: str,
         message: StaticOrDynamicValue[str],
-        options: StaticOrDynamicValue[OptionList],
+        options: StaticOrDynamicValue[Options],
         default: StaticOrDynamicValue[str],
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
@@ -401,7 +401,7 @@ class Choice(Question):
         self._value_if_not_asked = value_if_not_asked
 
     @property
-    def options(self) -> StaticOrDynamicValue[OptionList]:
+    def options(self) -> StaticOrDynamicValue[Options]:
         return self._options
 
     @property
@@ -449,7 +449,7 @@ class Choice(Question):
         *,
         name: Possible[str] = _NOT_GIVEN,
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
-        options: Possible[StaticOrDynamicValue[OptionList]] = _NOT_GIVEN,
+        options: Possible[StaticOrDynamicValue[Options]] = _NOT_GIVEN,
         default: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
         cli_help: Possible[Optional[str]] = _NOT_GIVEN,
         should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
