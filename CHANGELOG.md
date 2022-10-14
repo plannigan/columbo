@@ -6,11 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-##[0.13.0] - 2022-10-14
-
-### Added
- - Renovate configuration and replaced dependabot per OSPO recommendations
-
 ### Fixed
 
 - All exceptions raised by `columbo` listed in the docstrings. Improved phrasing to make messaging consistent.

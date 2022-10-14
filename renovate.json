@@ -11,5 +11,9 @@
     "pip_requirements",
     "setup-cfg"
   ]
+
+   "schedule": [
+    "before 2am"
+  ]
   
 }
