@@ -370,7 +370,8 @@ class Choice(Question):
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param options: The set of possible answers to the question. If the value is callable, the argument passed in
-            will be the answers that have been provided this far.
+            will be the answers that have been provided this far. If the value is a `Mapping`, the values of the mapping
+            will be displayed to the user.
         :param default: The default answer to the question. If the value is callable, the argument passed in will be the
             answers that have been provided this far.
         :param cli_help: Optional help message to be displayed for command line interface.
