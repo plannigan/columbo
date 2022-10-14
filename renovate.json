@@ -3,8 +3,9 @@
   
   "extends": [
     "config:base"
-  ]
-  "enabledManagers": [
+  ],
+   
+   "enabledManagers": [
     "docker-compose",
     "github-actions",
     "pip_requirements"
