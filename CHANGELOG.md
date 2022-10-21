@@ -8,9 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added `Options` which supports `Mapping[str, str]` for `Choice` options. This allows users to control
-    how `Choice` options are displayed ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
-
+- Ability for `Choice` to display a custom message instead of the value being selected. This includes a new type alias (`Options`) which supports both the `Mapping[str, str]` and `List[str]` forms. ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
 ### Deprecated
 
 - The `OptionList` type for `Choice` in favor of `Options` ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
