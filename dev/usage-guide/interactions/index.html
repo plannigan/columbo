@@ -626,7 +626,9 @@
 <h3 id="choice">Choice</h3>
 <p>In addition to the arguments <a href="#all-questions">mentioned above</a>, <code>Choice</code> also accepts the following argument.</p>
 <ul>
-<li><code>options</code>: The list of possible value the user can choose from.</li>
+<li><code>options</code>: The set of possible values the user can choose from. This can be provided as a list of strings, or as
+    a mapping of string to string where the key is what is recorded as the answer, and the 
+    value is what is displayed to the user.</li>
 </ul>
 <h3 id="confirm">Confirm</h3>
 <p><code>Confirm</code> doesn't take any additional arguments that weren't <a href="#all-questions">mentioned above</a>. However, the <code>default</code>

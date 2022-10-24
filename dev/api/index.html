@@ -1122,8 +1122,12 @@ library. The following table defines the aliases that are used.</p>
 <td><code>MutableMapping[str, Answer]</code></td>
 </tr>
 <tr>
-<td><code>OptionList</code></td>
+<td><code>OptionList</code>†</td>
 <td><code>List[str]</code></td>
+</tr>
+<tr>
+<td><code>Options</code></td>
+<td><code>Union[List[str], Mapping[str, str]]</code></td>
 </tr>
 <tr>
 <td><code>Possible</code>*</td>
@@ -1149,9 +1153,10 @@ library. The following table defines the aliases that are used.</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code>Possible</code> is a special construct used in <code>copy()</code> methods to indicate that a value was not
+<p>* <code>Possible</code> is a special construct used in <code>copy()</code> methods to indicate that a value was not
 provided. <code>Possible</code>, <code>_Sentinel</code>, &amp; <code>_NOT_GIVEN</code> are not exposed by <code>columbo</code>, but are
 documented here for completeness.</p>
+<p>† <code>OptionList</code> is deprecated in favor of <code>Options</code>. It will be removed in a future release.</p>
 </div>
 <h2 id="interactions">Interactions</h2>
 
@@ -1914,9 +1919,9 @@ documented here for completeness.</p>
         <tr>
           <td><code>options</code></td>
           <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.OptionList">OptionList</span>]</code>
+                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.Options">Options</span>]</code>
           </td>
-          <td><p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p></td>
+          <td><p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far. If the value is a <code>Mapping</code>, the values of the mapping will be displayed to the user &amp; the respective key will be the returned value.</p></td>
           <td>
               <em>required</em>
           </td>
@@ -2122,7 +2127,7 @@ documented here for completeness.</p>
         <tr>
           <td><code>options</code></td>
           <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.OptionList">OptionList</span>]]</code>
+                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.Options">Options</span>]]</code>
           </td>
           <td><p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p></td>
           <td>

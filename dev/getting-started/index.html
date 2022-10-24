@@ -704,7 +704,12 @@ printed next.</p>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="s2">&quot;Welcome to the Columbo example&quot;</span><span class="p">),</span>
@@ -722,7 +727,12 @@ printed next.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
         <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
         <span class="s2">&quot;How are you feeling today?&quot;</span><span class="p">,</span>
-        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;sleepy&quot;</span><span class="p">,</span> <span class="s2">&quot;confused&quot;</span><span class="p">],</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;happy&quot;</span><span class="p">:</span> <span class="s2">&quot;😀&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sad&quot;</span><span class="p">:</span> <span class="s2">&quot;😢&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sleepy&quot;</span><span class="p">:</span> <span class="s2">&quot;🥱&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;confused&quot;</span><span class="p">:</span> <span class="s2">&quot;🤔&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>

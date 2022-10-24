@@ -622,7 +622,12 @@ using a terminal. Below is a sample which shows some ways this can be used.</p>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
         <span class="s2">&quot;mood&quot;</span><span class="p">,</span>
         <span class="s2">&quot;How are you feeling today?&quot;</span><span class="p">,</span>
-        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;sad&quot;</span><span class="p">,</span> <span class="s2">&quot;sleepy&quot;</span><span class="p">,</span> <span class="s2">&quot;confused&quot;</span><span class="p">],</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;happy&quot;</span><span class="p">:</span> <span class="s2">&quot;😀&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sad&quot;</span><span class="p">:</span> <span class="s2">&quot;😢&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;sleepy&quot;</span><span class="p">:</span> <span class="s2">&quot;🥱&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;confused&quot;</span><span class="p">:</span> <span class="s2">&quot;🤔&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;likes_dogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you like dogs?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
@@ -641,10 +646,10 @@ What is your name? [Patrick]:
 What email address should be used to contact Patrick? [me@example.com]: patrick@example.com
 
 How are you feeling today?
-1 - happy
-2 - sad
-3 - sleepy
-4 - confused
+1 - 😀
+2 - 😢
+3 - 🥱
+4 - 🤔
 Enter the number of your choice [1]:
 
 Do you like dogs? (Y/n): y
