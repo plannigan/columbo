@@ -53,7 +53,9 @@ In addition to the arguments [mentioned above](#all-questions), `BasicQuestion` 
 
 In addition to the arguments [mentioned above](#all-questions), `Choice` also accepts the following argument.
 
-* `options`: The list of possible value the user can choose from.
+* `options`: The set of possible values the user can choose from. This can be provided as a list of strings, or as
+    a mapping of string to string where the key is what is recorded as the answer, and the 
+    value is what is displayed to the user.
 
 ### Confirm
 

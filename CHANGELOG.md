@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Ability for `Choice` to display a custom message instead of the value being selected. This includes a new type alias (`Options`) which supports both the `Mapping[str, str]` and `List[str]` forms. ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
+### Deprecated
+
+- The `OptionList` type for `Choice` in favor of `Options` ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
+
 ### Fixed
 
 - All exceptions raised by `columbo` listed in the docstrings. Improved phrasing to make messaging consistent.

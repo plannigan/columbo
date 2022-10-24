@@ -1,7 +1,7 @@
 import re
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Collection, Optional, Type, TypeVar, Union
+from typing import Collection, Mapping, Optional, Type, TypeVar, Union
 
 from columbo import _user_io as user_io
 from columbo._exception import DuplicateQuestionNameException
@@ -9,7 +9,7 @@ from columbo._types import (
     Answer,
     Answers,
     MutableAnswers,
-    OptionList,
+    Options,
     ShouldAsk,
     StaticOrDynamicValue,
     V,
@@ -357,7 +357,7 @@ class Choice(Question):
         self,
         name: str,
         message: StaticOrDynamicValue[str],
-        options: StaticOrDynamicValue[OptionList],
+        options: StaticOrDynamicValue[Options],
         default: StaticOrDynamicValue[str],
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
@@ -370,7 +370,8 @@ class Choice(Question):
         :param message: The message to be displayed to the user. If the value is callable, the argument passed in will
             be the answers that have been provided this far.
         :param options: The set of possible answers to the question. If the value is callable, the argument passed in
-            will be the answers that have been provided this far.
+            will be the answers that have been provided this far. If the value is a `Mapping`, the values of the mapping
+            will be displayed to the user & the respective key will be the returned value.
         :param default: The default answer to the question. If the value is callable, the argument passed in will be the
             answers that have been provided this far.
         :param cli_help: Optional help message to be displayed for command line interface.
@@ -400,7 +401,7 @@ class Choice(Question):
         self._value_if_not_asked = value_if_not_asked
 
     @property
-    def options(self) -> StaticOrDynamicValue[OptionList]:
+    def options(self) -> StaticOrDynamicValue[Options]:
         return self._options
 
     @property
@@ -419,7 +420,7 @@ class Choice(Question):
         :return: A ValidationFailure or ValidationSuccess object.
         :raises ValueError: The value for `options` did not have the correct type.
         """
-        options = to_value(self._options, answers, list)
+        options = list(to_labeled_options(self._options, answers).keys())
         if value not in options:
             return ValidationFailure(error=f"Chosen value: {value} not in options")
         return ValidationSuccess()
@@ -436,7 +437,7 @@ class Choice(Question):
         """
         return user_io.multiple_choice(
             to_value(self._message, answers, str),
-            to_value(self._options, answers, list),
+            to_labeled_options(self._options, answers),
             default=to_value(self._default, answers, str),
             no_user_input=no_user_input,
         )
@@ -446,7 +447,7 @@ class Choice(Question):
         *,
         name: Possible[str] = _NOT_GIVEN,
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
-        options: Possible[StaticOrDynamicValue[OptionList]] = _NOT_GIVEN,
+        options: Possible[StaticOrDynamicValue[Options]] = _NOT_GIVEN,
         default: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
         cli_help: Possible[Optional[str]] = _NOT_GIVEN,
         should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
@@ -637,6 +638,17 @@ def to_value(
     if callable(value):
         return value(answers)
     raise ValueError(f"Invalid value: {value}")
+
+
+def to_labeled_options(
+    options: StaticOrDynamicValue[Options], answers: Answers
+) -> Mapping[str, str]:
+    resolved_opts = options(answers) if callable(options) else options
+    if isinstance(resolved_opts, list):
+        return {v: v for v in resolved_opts}
+    if isinstance(resolved_opts, Mapping):
+        return resolved_opts
+    raise ValueError("Invalid options type")
 
 
 def get_answers(

@@ -50,7 +50,12 @@ interactions = [
     columbo.Choice(
         "mood",
         "How are you feeling today?",
-        options=["happy", "sad", "sleepy", "confused"],
+        options={
+            "happy": "😀",
+            "sad": "😢",
+            "sleepy": "🥱",
+            "confused": "🤔",
+        },
         default="happy",
     ),
     columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),
@@ -72,10 +77,10 @@ What is your name? [Patrick]:
 What email address should be used to contact Patrick? [me@example.com]: patrick@example.com
 
 How are you feeling today?
-1 - happy
-2 - sad
-3 - sleepy
-4 - confused
+1 - 😀
+2 - 😢
+3 - 🥱
+4 - 🤔
 Enter the number of your choice [1]:
 
 Do you like dogs? (Y/n): y

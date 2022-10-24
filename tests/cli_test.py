@@ -21,6 +21,7 @@ from tests.sample_data import (
     SOME_DEFAULT,
     SOME_INVALID_ARG_NAME,
     SOME_INVALID_OPTION,
+    SOME_MAPPING_OPTIONS,
     SOME_NAME,
     SOME_NAMESPACE,
     SOME_NON_DEFAULT_OPTION,
@@ -29,6 +30,7 @@ from tests.sample_data import (
     SOME_OTHER_STRING,
     SOME_STRING,
     SampleQuestion,
+    some_dynamic_mapping_options,
     some_dynamic_options,
 )
 
@@ -41,8 +43,22 @@ invalid_cli_parameterize = pytest.mark.parametrize(
             [SOME_ARG_NAME, SOME_INVALID_OPTION],
         ),
         (
+            "invalid static arg, correct arg name (mapping options)",
+            [Choice(SOME_NAME, SOME_STRING, SOME_MAPPING_OPTIONS, SOME_DEFAULT)],
+            [SOME_ARG_NAME, SOME_INVALID_OPTION],
+        ),
+        (
             "invalid dynamic arg, correct arg name",
             [Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)],
+            [SOME_ARG_NAME, SOME_INVALID_OPTION],
+        ),
+        (
+            "invalid dynamic arg, correct arg name (mapping options)",
+            [
+                Choice(
+                    SOME_NAME, SOME_STRING, some_dynamic_mapping_options, SOME_DEFAULT
+                )
+            ],
             [SOME_ARG_NAME, SOME_INVALID_OPTION],
         ),
         (
@@ -51,11 +67,30 @@ invalid_cli_parameterize = pytest.mark.parametrize(
             [SOME_INVALID_ARG_NAME, SOME_NON_DEFAULT_OPTION],
         ),
         (
+            "invalid static arg, incorrect arg name (mapping options)",
+            [Choice(SOME_NAME, SOME_STRING, SOME_MAPPING_OPTIONS, SOME_DEFAULT)],
+            [SOME_INVALID_ARG_NAME, SOME_NON_DEFAULT_OPTION],
+        ),
+        (
             "invalid dynamic arg, incorrect arg name",
             [Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)],
             [SOME_INVALID_ARG_NAME, SOME_NON_DEFAULT_OPTION],
         ),
+        (
+            "invalid dynamic arg, incorrect arg name (mapping options)",
+            [
+                Choice(
+                    SOME_NAME, SOME_STRING, some_dynamic_mapping_options, SOME_DEFAULT
+                )
+            ],
+            [SOME_INVALID_ARG_NAME, SOME_NON_DEFAULT_OPTION],
+        ),
     ],
+)
+
+
+options_parameterize = pytest.mark.parametrize(
+    "options", [(SOME_OPTIONS), (SOME_MAPPING_OPTIONS)]
 )
 
 
@@ -83,8 +118,9 @@ def test_parse_args__invalid_arg_no_exit_on_error__system_exit(
         parse_args(questions, args, exit_on_error=False)
 
 
-def test_parse_args__valid_arg__answers():
-    questions = [Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)]
+@options_parameterize
+def test_parse_args__valid_arg__answers(options):
+    questions = [Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)]
 
     answers = parse_args(questions, [SOME_ARG_NAME, SOME_NON_DEFAULT_OPTION])
 
@@ -92,10 +128,11 @@ def test_parse_args__valid_arg__answers():
     assert answers[SOME_NAME] == SOME_NON_DEFAULT_OPTION
 
 
-def test_parse_args__initial_answers__answers():
+@options_parameterize
+def test_parse_args__initial_answers__answers(options):
     initial_key = "initial-key"
     initial_answers = {initial_key: "aa-test-bb"}
-    questions = [Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)]
+    questions = [Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)]
 
     answers = parse_args(
         questions, [SOME_ARG_NAME, SOME_NON_DEFAULT_OPTION], answers=initial_answers
@@ -139,6 +176,16 @@ def test_create_parser__choice_not_given__no_value():
     assert vars(result)[SOME_NAME] is None
 
 
+def test_create_parser__mapping_choice_not_given__no_value():
+    parser = create_parser(
+        [Choice(SOME_NAME, SOME_STRING, SOME_MAPPING_OPTIONS, SOME_DEFAULT)]
+    )
+
+    result = parser.parse_args([])
+
+    assert vars(result)[SOME_NAME] is None
+
+
 @pytest.mark.parametrize("choice", SOME_OPTIONS)
 def test_create_parser__choice__choice_valid(choice):
     parser = create_parser([Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)])
@@ -148,17 +195,34 @@ def test_create_parser__choice__choice_valid(choice):
     assert vars(result)[SOME_NAME] == choice
 
 
-def test_create_parser__choice_invalid_option__exception():
-    parser = create_parser([Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)])
+@pytest.mark.parametrize("choice", SOME_MAPPING_OPTIONS.keys())
+def test_create_parser__mapping_choice__choice_valid(choice):
+    parser = create_parser(
+        [Choice(SOME_NAME, SOME_STRING, SOME_MAPPING_OPTIONS, SOME_DEFAULT)]
+    )
+
+    result = parser.parse_args([SOME_ARG_NAME, choice])
+
+    assert vars(result)[SOME_NAME] == choice
+
+
+@options_parameterize
+def test_create_parser__choice_invalid_option__exception(options):
+    parser = create_parser([Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)])
 
     with pytest.raises(SystemExit):
         parser.parse_args([SOME_ARG_NAME, SOME_INVALID_OPTION])
 
 
-def test_create_parser__choice_dynamic_options_invalid_option__value_stored():
+@pytest.mark.parametrize(
+    "dynamic_options", [(some_dynamic_options), (some_dynamic_mapping_options)]
+)
+def test_create_parser__choice_dynamic_options_invalid_option__value_stored(
+    dynamic_options,
+):
     # dynamic options can't be statically validated, so we store any value
     parser = create_parser(
-        [Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)]
+        [Choice(SOME_NAME, SOME_STRING, dynamic_options, SOME_DEFAULT)]
     )
 
     result = parser.parse_args([SOME_ARG_NAME, SOME_INVALID_OPTION])
@@ -254,8 +318,9 @@ def test_to_answer__basic_question_dont_ask__value_not_stored():
     assert SOME_NAME not in result
 
 
-def test_to_answer__choice_value_not_set__default():
-    questions = [Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)]
+@options_parameterize
+def test_to_answer__choice_value_not_set__default(options):
+    questions = [Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)]
 
     answers = to_answers(questions, Namespace())
 
@@ -263,8 +328,9 @@ def test_to_answer__choice_value_not_set__default():
     assert answers[SOME_NAME] == SOME_DEFAULT
 
 
-def test_to_answer__choice_value_set__set_value():
-    questions = [Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)]
+@options_parameterize
+def test_to_answer__choice_value_set__set_value(options):
+    questions = [Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)]
 
     answers = to_answers(questions, Namespace(**{SOME_NAME: SOME_NON_DEFAULT_OPTION}))
 
@@ -272,19 +338,21 @@ def test_to_answer__choice_value_set__set_value():
     assert answers[SOME_NAME] == SOME_NON_DEFAULT_OPTION
 
 
-def test_to_answer__choice_value_not_valid__exception():
-    questions = [Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT)]
+@options_parameterize
+def test_to_answer__choice_value_not_valid__exception(options):
+    questions = [Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)]
 
     with pytest.raises(CliException):
         to_answers(questions, Namespace(**{SOME_NAME: SOME_STRING}))
 
 
-def test_to_answer__choice_dont_ask__value_not_stored():
+@options_parameterize
+def test_to_answer__choice_dont_ask__value_not_stored(options):
     questions = [
         Choice(
             SOME_NAME,
             SOME_STRING,
-            SOME_OPTIONS,
+            options,
             SOME_DEFAULT,
             should_ask=lambda _: False,
         )
@@ -350,6 +418,15 @@ def test_to_answer__unsupported_question__exception():
         (
             "choice dynamic options, options not listed",
             [Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)],
+            "--my-test-value MY-TEST-VALUE",
+        ),
+        (
+            "choice dynamic mapping options, options not listed",
+            [
+                Choice(
+                    SOME_NAME, SOME_STRING, some_dynamic_mapping_options, SOME_DEFAULT
+                )
+            ],
             "--my-test-value MY-TEST-VALUE",
         ),
         (

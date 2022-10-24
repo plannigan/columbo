@@ -16,7 +16,12 @@ interactions = [
     columbo.Choice(
         "mood",
         "How are you feeling today?",
-        options=["happy", "sad", "sleepy", "confused"],
+        options={
+            "happy": "😀",
+            "sad": "😢",
+            "sleepy": "🥱",
+            "confused": "🤔",
+        },
         default="happy",
     ),
     columbo.Confirm("likes_dogs", "Do you like dogs?", default=True),

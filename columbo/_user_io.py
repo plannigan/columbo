@@ -2,7 +2,7 @@
 Helpful wrappers for prompt-toolkit functionality.
 """
 
-from typing import Collection
+from typing import Mapping
 
 from prompt_toolkit import shortcuts
 from prompt_toolkit.formatted_text import merge_formatted_text
@@ -54,7 +54,7 @@ def ask(question: str, default: str, no_user_input: bool = False, **kwargs) -> s
 
 def multiple_choice(
     question: str,
-    options: Collection[str],
+    options: Mapping[str, str],
     default: str,
     no_user_input: bool = False,
     **kwargs,
@@ -65,10 +65,10 @@ def multiple_choice(
     prompt_lines = [question]
     default_choice = None
     choice_map = {}
-    for i, value in enumerate(options):
+    for i, (value, label) in enumerate(options.items()):
         key = str(i + 1)
         choice_map[key] = value
-        prompt_lines.append(f"{key} - {value}")
+        prompt_lines.append(f"{key} - {label}")
 
         if default == value:
             default_choice = key

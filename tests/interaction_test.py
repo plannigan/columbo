@@ -10,7 +10,12 @@ from columbo import (
     ValidationFailure,
     ValidationSuccess,
 )
-from columbo._interaction import canonical_arg_name, get_answers, to_value
+from columbo._interaction import (
+    canonical_arg_name,
+    get_answers,
+    to_labeled_options,
+    to_value,
+)
 from tests.sample_data import (
     DUPLICATE_QUESTION_NAME_PARAMS,
     QUESTION_NAME_STANDARDIZATION_PARAMS,
@@ -18,8 +23,10 @@ from tests.sample_data import (
     SOME_BOOL,
     SOME_DEFAULT,
     SOME_DYNAMIC_DEFAULT_RESULT,
+    SOME_DYNAMIC_MAPPING_OPTION_RESULT,
     SOME_DYNAMIC_OPTION_RESULT,
     SOME_DYNAMIC_STRING_RESULT,
+    SOME_MAPPING_OPTIONS,
     SOME_NAME,
     SOME_OPTIONS,
     SOME_OTHER_BOOL,
@@ -28,6 +35,7 @@ from tests.sample_data import (
     SampleQuestion,
     some_dynamic_bool,
     some_dynamic_default,
+    some_dynamic_mapping_options,
     some_dynamic_options,
     some_dynamic_string,
 )
@@ -131,28 +139,46 @@ def test_choice__no_input__default_value():
     assert result == SOME_DEFAULT
 
 
-def test_choice__static_message__multiple_choice_called(mocker):
+@pytest.mark.parametrize(
+    "options,options_to_mc",
+    [
+        (SOME_OPTIONS, {v: v for v in SOME_OPTIONS}),
+        (SOME_MAPPING_OPTIONS, SOME_MAPPING_OPTIONS),
+    ],
+)
+def test_choice__static_message__multiple_choice_called_with_mapping_of_options(
+    options, options_to_mc, mocker
+):
     user_io = mocker.patch("columbo._interaction.user_io")
 
-    Choice(SOME_NAME, SOME_STRING, SOME_OPTIONS, SOME_DEFAULT).ask(
+    Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT).ask(
         SOME_ANSWERS, no_user_input=True
     )
 
     user_io.multiple_choice.assert_called_once_with(
-        SOME_STRING, SOME_OPTIONS, default=SOME_DEFAULT, no_user_input=True
+        SOME_STRING, options_to_mc, default=SOME_DEFAULT, no_user_input=True
     )
 
 
-def test_choice__dynamic_message__multiple_choice_dynamic_message(mocker):
+@pytest.mark.parametrize(
+    "dy_options,dy_options_to_mc",
+    [
+        (some_dynamic_options, {v: v for v in SOME_DYNAMIC_OPTION_RESULT}),
+        (some_dynamic_mapping_options, SOME_DYNAMIC_MAPPING_OPTION_RESULT),
+    ],
+)
+def test_choice__dynamic_message__multiple_choice_dynamic_message(
+    dy_options, dy_options_to_mc, mocker
+):
     user_io = mocker.patch("columbo._interaction.user_io")
 
-    Choice(
-        SOME_NAME, some_dynamic_string, some_dynamic_options, some_dynamic_default
-    ).ask(SOME_ANSWERS, no_user_input=True)
+    Choice(SOME_NAME, some_dynamic_string, dy_options, some_dynamic_default).ask(
+        SOME_ANSWERS, no_user_input=True
+    )
 
     user_io.multiple_choice.assert_called_once_with(
         SOME_DYNAMIC_STRING_RESULT,
-        SOME_DYNAMIC_OPTION_RESULT,
+        dy_options_to_mc,
         default=SOME_DYNAMIC_DEFAULT_RESULT,
         no_user_input=True,
     )
@@ -168,10 +194,16 @@ def test_choice_is_valid__static_options__expected_result(value, is_valid):
 
 
 @pytest.mark.parametrize(
-    "value,is_valid", [(SOME_DYNAMIC_DEFAULT_RESULT, True), (SOME_STRING, False)]
+    "value,is_valid,options",
+    [
+        (SOME_DYNAMIC_DEFAULT_RESULT, True, some_dynamic_options),
+        (SOME_STRING, False, some_dynamic_options),
+        (SOME_DYNAMIC_DEFAULT_RESULT, True, some_dynamic_mapping_options),
+        (SOME_STRING, False, some_dynamic_mapping_options),
+    ],
 )
-def test_choice_is_valid__dynamic_options__expected_result(value, is_valid):
-    question = Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)
+def test_choice_is_valid__dynamic_options__expected_result(value, is_valid, options):
+    question = Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)
 
     result = question.validate(value, SOME_ANSWERS)
 
@@ -179,10 +211,16 @@ def test_choice_is_valid__dynamic_options__expected_result(value, is_valid):
 
 
 @pytest.mark.parametrize(
-    "value,is_valid", [(SOME_DYNAMIC_DEFAULT_RESULT, True), (SOME_STRING, False)]
+    "value,is_valid,options",
+    [
+        (SOME_DYNAMIC_DEFAULT_RESULT, True, some_dynamic_options),
+        (SOME_STRING, False, some_dynamic_options),
+        (SOME_DYNAMIC_DEFAULT_RESULT, True, some_dynamic_mapping_options),
+        (SOME_STRING, False, some_dynamic_mapping_options),
+    ],
 )
-def test_choice__validate__dynamic_options__expected_result(value, is_valid):
-    question = Choice(SOME_NAME, SOME_STRING, some_dynamic_options, SOME_DEFAULT)
+def test_choice__validate__dynamic_options__expected_result(value, is_valid, options):
+    question = Choice(SOME_NAME, SOME_STRING, options, SOME_DEFAULT)
 
     result = question.validate(value, SOME_ANSWERS)
 
@@ -212,17 +250,24 @@ def test_choice_copy__no_args__multiple_choice_same_message(mocker):
     assert calls[0] == calls[1]
 
 
-def test_choice_copy__diff_message__multiple_choice_diff_message(mocker):
+@pytest.mark.parametrize(
+    "dy_options,dy_options_to_mc,new_options",
+    [
+        (some_dynamic_options, {v: v for v in SOME_OPTIONS}, SOME_OPTIONS),
+        (some_dynamic_mapping_options, SOME_MAPPING_OPTIONS, SOME_MAPPING_OPTIONS),
+    ],
+)
+def test_choice_copy__diff_message__multiple_choice_diff_message(
+    dy_options, dy_options_to_mc, new_options, mocker
+):
     user_io = mocker.patch("columbo._interaction.user_io")
 
-    Choice(
-        SOME_NAME, some_dynamic_string, some_dynamic_options, some_dynamic_default
-    ).copy(message=SOME_STRING, options=SOME_OPTIONS, default=SOME_DEFAULT).ask(
-        SOME_ANSWERS, no_user_input=True
-    )
+    Choice(SOME_NAME, some_dynamic_string, dy_options, some_dynamic_default).copy(
+        message=SOME_STRING, options=new_options, default=SOME_DEFAULT
+    ).ask(SOME_ANSWERS, no_user_input=True)
 
     user_io.multiple_choice.assert_called_once_with(
-        SOME_STRING, SOME_OPTIONS, default=SOME_DEFAULT, no_user_input=True
+        SOME_STRING, dy_options_to_mc, default=SOME_DEFAULT, no_user_input=True
     )
 
 
@@ -447,6 +492,11 @@ def test_basic_question__default_invalid_no_user_input__error(no_user_input, moc
 def test_to_value__invalid_type__exception():
     with pytest.raises(ValueError):
         to_value(object(), SOME_ANSWERS, str)
+
+
+def test_to_labeled_options__invalid_type__exception():
+    with pytest.raises(ValueError):
+        to_labeled_options(object(), SOME_ANSWERS)
 
 
 @pytest.mark.parametrize(

@@ -21,6 +21,7 @@ from columbo._types import (  # noqa: F401
     Answers,
     MutableAnswers,
     OptionList,
+    Options,
     ShouldAsk,
     StaticOrDynamicValue,
     ValidationFailure,
