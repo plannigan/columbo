@@ -420,9 +420,7 @@ class Choice(Question):
         :return: A ValidationFailure or ValidationSuccess object.
         :raises ValueError: The value for `options` did not have the correct type.
         """
-        options = to_value(
-            list(to_labeled_options(self._options, answers).keys()), answers, list
-        )
+        options = list(to_labeled_options(self._options, answers).keys())
         if value not in options:
             return ValidationFailure(error=f"Chosen value: {value} not in options")
         return ValidationSuccess()
