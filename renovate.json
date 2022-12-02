@@ -19,5 +19,13 @@
 
   "pip_requirements": {
     "fileMatch": ["(^|/)([\\w-]*)requirements[-\\w]*\\.(txt|pip)$"]
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Don't upgrade flake8 v5 to v6 (retained for py3.7 support)",
+      "matchPackageNames": ["flake8"],
+      "matchCurrentVersion": "<6.0.0",
+      "allowedVersions": "<6.0.0"
+    }
+  ]
 }
