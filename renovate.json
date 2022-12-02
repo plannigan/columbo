@@ -15,6 +15,9 @@
 
    "schedule": [
     "before 4am"
-  ]
-  
+  ],
+
+  "pip_requirements": {
+    "fileMatch": ["(^|/)([\\w-]*)requirements[-\\w]*\\.(txt|pip)$"]
+  }
 }
