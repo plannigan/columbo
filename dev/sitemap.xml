@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/api/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/changelog/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/development-guide/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/getting-started/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/why-columbo/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/examples/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/usage-guide/command-line/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/usage-guide/fundamentals/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/usage-guide/interactions/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/usage-guide/optional-questions-and-branching/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://wayfair-incubator.github.io/columbo/dev/usage-guide/validators/</loc>
-         <lastmod>2023-02-09</lastmod>
+         <lastmod>2023-02-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
