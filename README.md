@@ -147,3 +147,8 @@ For an overview on how repository structure and how to work with the code base, 
 [black-home]: https://github.com/psf/black
 [columbo-docs]: https://wayfair-incubator.github.io/columbo/latest/
 [development-docs]: https://wayfair-incubator.github.io/columbo/latest/development-guide/
+
+
+## Credits
+
+The development of this project was originally funded and incubated by [Wayfair](https://github.com/wayfair-incubator).  
