@@ -166,8 +166,8 @@ The remaining jobs are all related to documentation.
 
 
 [usage-guide]: usage-guide/fundamentals.md
-[code of conduct]: https://github.com/wayfair-incubator/columbo/blob/main/CODE_OF_CONDUCT.md
-[contributing]: https://github.com/wayfair-incubator/columbo/blob/main/CONTRIBUTING.md
+[code of conduct]: https://github.com/plannigan/columbo/blob/main/CODE_OF_CONDUCT.md
+[contributing]: https://github.com/plannigan/columbo/blob/main/CONTRIBUTING.md
 [install-docker]: https://docs.docker.com/install/
 [pdbpp-home]: https://github.com/pdbpp/pdbpp
 [pdb-docs]: https://docs.python.org/3/library/pdb.html

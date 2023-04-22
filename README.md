@@ -1,7 +1,7 @@
-[![CI pipeline status](https://github.com/wayfair-incubator/columbo/workflows/CI/badge.svg?branch=main)][ci]
+[![CI pipeline status](https://github.com/plannigan/columbo/workflows/CI/badge.svg?branch=main)][ci]
 [![PyPI](https://img.shields.io/pypi/v/columbo)][pypi]
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/columbo)][pypi]
-[![codecov](https://codecov.io/gh/wayfair-incubator/columbo/branch/main/graph/badge.svg)][codecov]
+[![codecov](https://codecov.io/gh/plannigan/columbo/branch/main/graph/badge.svg)][codecov]
 [![Checked with mypy](https://img.shields.io/badge/mypy-checked-blue)][mypy-home]
 [![Code style: black](https://img.shields.io/badge/code%20style-black-black.svg)][black-home]
 
@@ -140,15 +140,15 @@ Check out the [project documentation][columbo-docs].
 For an overview on how repository structure and how to work with the code base, read the
 [Development Guide][development-docs].
 
-[ci]: https://github.com/wayfair-incubator/columbo/actions
-[pypi]: https://pypi.org/project/columbo/
-[codecov]: https://codecov.io/gh/wayfair-incubator/columbo
-[mypy-home]: http://mypy-lang.org/
-[black-home]: https://github.com/psf/black
-[columbo-docs]: https://wayfair-incubator.github.io/columbo/latest/
-[development-docs]: https://wayfair-incubator.github.io/columbo/latest/development-guide/
-
 
 ## Credits
 
-The development of this project was originally funded and incubated by [Wayfair](https://github.com/wayfair-incubator).  
+The development of this project was originally funded and incubated by [Wayfair](https://github.com/wayfair-incubator).
+
+[ci]: https://github.com/plannigan/columbo/actions
+[pypi]: https://pypi.org/project/columbo/
+[codecov]: https://codecov.io/gh/plannigan/columbo
+[mypy-home]: http://mypy-lang.org/
+[black-home]: https://github.com/psf/black
+[columbo-docs]: https://plannigan.github.io/columbo/latest/
+[development-docs]: https://plannigan.github.io/columbo/latest/development-guide/

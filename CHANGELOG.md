@@ -6,14 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update project metadata for ownership change.
+
 ## [0.13.0] - 2022-10-24
 
 ### Added
 
-- Ability for `Choice` to display a custom message instead of the value being selected. This includes a new type alias (`Options`) which supports both the `Mapping[str, str]` and `List[str]` forms. ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
+- Ability for `Choice` to display a custom message instead of the value being selected. This includes a new type alias (`Options`) which supports both the `Mapping[str, str]` and `List[str]` forms. ([#389](https://github.com/plannigan/columbo/pull/389))
 ### Deprecated
 
-- The `OptionList` type for `Choice` in favor of `Options` ([#389](https://github.com/wayfair-incubator/columbo/pull/389))
+- The `OptionList` type for `Choice` in favor of `Options` ([#389](https://github.com/plannigan/columbo/pull/389))
 
 ### Fixed
 
@@ -29,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Python version `3.10` tested during CI
 - Python version `3.10` added to package classifiers
-- `should_ask` keyword argument for `Echo` and `Acknowledge` interactions ([#356](https://github.com/wayfair-incubator/columbo/issues/356))
+- `should_ask` keyword argument for `Echo` and `Acknowledge` interactions ([#356](https://github.com/plannigan/columbo/issues/356))
 
 ### Changed
 
@@ -56,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `value_if_not_asked` kwarg for `Question` interactions to set a value if the question is not asked ([#169](https://github.com/wayfair-incubator/columbo/pull/169))
+- `value_if_not_asked` kwarg for `Question` interactions to set a value if the question is not asked ([#169](https://github.com/plannigan/columbo/pull/169))
 
 ## [0.10.1] - 2021-02-26
 
@@ -68,16 +72,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Python 3.9 support ([#73](https://github.com/wayfair-incubator/columbo/pull/73))
-* New `Validator` signature ([#37](https://github.com/wayfair-incubator/columbo/issues/37))
+* Python 3.9 support ([#73](https://github.com/plannigan/columbo/pull/73))
+* New `Validator` signature ([#37](https://github.com/plannigan/columbo/issues/37))
 
 ### Changed
 
-* Improved validation for converting question names to command line arguments ([#82](https://github.com/wayfair-incubator/columbo/pull/82))
+* Improved validation for converting question names to command line arguments ([#82](https://github.com/plannigan/columbo/pull/82))
 
 ### Deprecated
 
-* Support for `Validator`s that return `Optional[str]` ([#39](https://github.com/wayfair-incubator/columbo/issues/39))
+* Support for `Validator`s that return `Optional[str]` ([#39](https://github.com/plannigan/columbo/issues/39))
 
 ## [0.9.0] - 2020-12-18
 
