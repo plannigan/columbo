@@ -144,6 +144,7 @@ jobs:
           with:
             file: coverage-${{ matrix.python-version }}.xml
             fail_ci_if_error: true
+            token: ${{ secrets.CODECOV_TOKEN }}
 
   verify-wheel:
     runs-on: ubuntu-latest

@@ -1,16 +1,16 @@
 # Why Columbo?
 
-`columbo` started as an internal library used at [Wayfair][wayfair] by the Python Platforms team. It is now an open
-source project with the hope that it will provide benefit from the greater Python community.
+`columbo` started as an internal library used at [Wayfair][wayfair] by the Python Platforms team. It is now an
+interdependently maintained open source project with the hope that it will provide benefit from the greater Python
+community.
 
 ## What problem did Columbo initially solve?
 
-One of the primary resources the Python Platforms team provides to Wayfair engineers is a set of project templates. This
-allows an engineering team to hit the ground running when starting when needing to start a new HTTP application or
-Python package. That templates contain best-practice patterns and allow developers to initialize and deploy a new
-application to production in minutes.
+One of the primary resources the Python Platforms team provided to Wayfair engineers was a set of project templates. This
+allowed an engineering team to hit the ground running when starting a new HTTP application or Python package. The templates
+contained best-practice patterns and allow developers to initialize and deploy a new application to production in minutes.
 
-The project templates use [Cookiecutter][cookiecutter] in order to generate the files that will be used in the new
+The project templates used [Cookiecutter][cookiecutter] in order to generate the files that will be used in the new
 project. While Cookiecutter makes many things easy for maintainers of a template, the terminal user interface it
 provides has a few issues:
 
@@ -25,7 +25,7 @@ provides has a few issues:
 
 Cookiecutter can be executed programmatically by passing in a dictionary of values. This allows `columbo` to handle the
 user prompts resolving the issues we experienced, while still using Cookiecutter under the covers. With this pattern,
-all project templates managed by language platform teams at Wayfair benefit from the user experience of working with
+all project templates managed by language platform teams at Wayfair benefited from the user experience of working with
 Cookiecutter templates.
 
 ## Alternatives
@@ -35,7 +35,7 @@ questions. This section compares `columbo` with some libraries which were create
 
 ### PyInquirer
 
-[PyInquirer][pyinquirer] was a major inspiration in the development of `columbo`. PyInquirer supports optional questions
+[PyInquirer][pyinquirer] was a major inspiration in the development of `columbo`. `PyInquirer` supports optional questions
 and validation in similar way to how `columbo` supports those features.
 
 `PyInquirer` has some features that `columbo` does not. It has some additional interaction types like selecting multiple

@@ -13,7 +13,7 @@ services:
     build:
       dockerfile: ./docker/devbox.dockerfile
       context: .
-    image: "wayfair/columbo-devbox"
+    image: "columbo/devbox"
     volumes:
       - ./:/app
 
