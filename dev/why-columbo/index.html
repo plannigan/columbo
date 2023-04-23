@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://wayfair-incubator.github.io/columbo/dev/why-columbo/">
+        <link rel="canonical" href="https://plannigan.github.io/columbo/dev/why-columbo/">
       
       
         <link rel="prev" href="../usage-guide/command-line/">
@@ -156,13 +156,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/wayfair-incubator/columbo/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/plannigan/columbo" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    wayfair-incubator/columbo
+    plannigan/columbo
   </div>
 </a>
       </div>
@@ -201,13 +201,13 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/wayfair-incubator/columbo/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/plannigan/columbo" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    wayfair-incubator/columbo
+    plannigan/columbo
   </div>
 </a>
     </div>
@@ -570,14 +570,14 @@
 
 
 <h1 id="why-columbo">Why Columbo?</h1>
-<p><code>columbo</code> started as an internal library used at <a href="https://www.wayfair.com/">Wayfair</a> by the Python Platforms team. It is now an open
-source project with the hope that it will provide benefit from the greater Python community.</p>
+<p><code>columbo</code> started as an internal library used at <a href="https://www.wayfair.com/">Wayfair</a> by the Python Platforms team. It is now an
+interdependently maintained open source project with the hope that it will provide benefit from the greater Python
+community.</p>
 <h2 id="what-problem-did-columbo-initially-solve">What problem did Columbo initially solve?</h2>
-<p>One of the primary resources the Python Platforms team provides to Wayfair engineers is a set of project templates. This
-allows an engineering team to hit the ground running when starting when needing to start a new HTTP application or
-Python package. That templates contain best-practice patterns and allow developers to initialize and deploy a new
-application to production in minutes.</p>
-<p>The project templates use <a href="https://cookiecutter.readthedocs.io/">Cookiecutter</a> in order to generate the files that will be used in the new
+<p>One of the primary resources the Python Platforms team provided to Wayfair engineers was a set of project templates. This
+allowed an engineering team to hit the ground running when starting a new HTTP application or Python package. The templates
+contained best-practice patterns and allow developers to initialize and deploy a new application to production in minutes.</p>
+<p>The project templates used <a href="https://cookiecutter.readthedocs.io/">Cookiecutter</a> in order to generate the files that will be used in the new
 project. While Cookiecutter makes many things easy for maintainers of a template, the terminal user interface it
 provides has a few issues:</p>
 <ul>
@@ -592,13 +592,13 @@ provides has a few issues:</p>
 </ul>
 <p>Cookiecutter can be executed programmatically by passing in a dictionary of values. This allows <code>columbo</code> to handle the
 user prompts resolving the issues we experienced, while still using Cookiecutter under the covers. With this pattern,
-all project templates managed by language platform teams at Wayfair benefit from the user experience of working with
+all project templates managed by language platform teams at Wayfair benefited from the user experience of working with
 Cookiecutter templates.</p>
 <h2 id="alternatives">Alternatives</h2>
 <p><code>columbo</code> is not the only library that exists which provides a way to codify prompting a user for answers to a set of
 questions. This section compares <code>columbo</code> with some libraries which were created to achieve this task.</p>
 <h3 id="pyinquirer">PyInquirer</h3>
-<p><a href="https://github.com/CITGuru/PyInquirer">PyInquirer</a> was a major inspiration in the development of <code>columbo</code>. PyInquirer supports optional questions
+<p><a href="https://github.com/CITGuru/PyInquirer">PyInquirer</a> was a major inspiration in the development of <code>columbo</code>. <code>PyInquirer</code> supports optional questions
 and validation in similar way to how <code>columbo</code> supports those features.</p>
 <p><code>PyInquirer</code> has some features that <code>columbo</code> does not. It has some additional interaction types like selecting multiple
 options from a list and using an external editor to provide a long form response. It also exposes more rendering options
