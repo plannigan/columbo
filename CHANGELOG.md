@@ -10,11 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update project metadata for ownership change.
 
+### Internal
+
+- Use OpenID Connect as a [trusted publisher][trusted-publishers] for uploading releases.
+
 ## [0.13.0] - 2022-10-24
 
 ### Added
 
 - Ability for `Choice` to display a custom message instead of the value being selected. This includes a new type alias (`Options`) which supports both the `Mapping[str, str]` and `List[str]` forms. ([#389](https://github.com/plannigan/columbo/pull/389))
+
 ### Deprecated
 
 - The `OptionList` type for `Choice` in favor of `Options` ([#389](https://github.com/plannigan/columbo/pull/389))
@@ -187,3 +192,5 @@ First public release. No code changes from v0.8.0.
 ## [0.1.0] - 2019-10-15
 
 Initial Release
+
+[trusted-publishers]: https://docs.pypi.org/trusted-publishers/

@@ -30,9 +30,8 @@ jobs:
         with:
           new_version: true
 
-  build-and-publish-wheel-to-pypi:
+  build-distributions:
     runs-on: ubuntu-latest
-    environment: "Publish Release"
     steps:
       - name: Check out code
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
@@ -44,9 +43,23 @@ jobs:
       - name: Build wheel
         uses: ./.github/actions/build-dist
 
-        # Using full SHA for security
-        # https://docs.github.com/en/actions/learn-github-actions/security-hardening-for-github-actions#using-third-party-actions
+      - name: Upload distribution artifacts
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+        with:
+          name: distributions
+          path: ./dist
+
+  publish-to-pypi:
+    runs-on: ubuntu-latest
+    environment: "Publish Release"
+    permissions:
+      id-token: write
+    needs: ["build-distributions"]
+    steps:
+      - uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+        with:
+            name: distributions
+            path: ./dist
+
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@a56da0b891b3dc519c7ee3284aff1fad93cc8598 # v1.8.6
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
