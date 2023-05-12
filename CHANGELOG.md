@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.0.post1] - 2023-05-12
+
 ### Changed
 
 - Update project metadata for ownership change.
