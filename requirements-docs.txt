@@ -1,7 +1,7 @@
 mike==1.1.2
 markdown-include==0.8.1
 mkdocs==1.4.3
-mkdocs-material==9.1.12
+mkdocs-material==9.1.14
 mkdocs-minify-plugin==0.6.4
 mkdocs-redirects==1.2.0
 mkdocstrings[python]==0.21.2
