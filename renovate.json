@@ -19,19 +19,5 @@
 
   "pip_requirements": {
     "fileMatch": ["(^|/)([\\w-]*)requirements[-\\w]*\\.(txt|pip)$"]
-  },
-  "packageRules": [
-    {
-      "description": "Don't upgrade flake8 v5 to v6 (retained for py3.7 support)",
-      "matchPackageNames": ["flake8"],
-      "matchCurrentVersion": "<6.0.0",
-      "allowedVersions": "<6.0.0"
-    },
-    {
-      "description": "Don't upgrade isort v5.11 to v5.12 (retained for py3.7 support)",
-      "matchPackageNames": ["isort"],
-      "matchCurrentVersion": "<5.12.0",
-      "allowedVersions": "<5.12.0"
-    }
-  ]
+  }
 }
