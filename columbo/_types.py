@@ -1,13 +1,7 @@
 """Type aliases used by the public API"""
 
-import sys
 from dataclasses import dataclass
-from typing import Callable, List, Mapping, MutableMapping, TypeVar, Union
-
-if sys.version_info < (3, 8):
-    from typing_extensions import Literal  # this supports python < 3.8
-else:
-    from typing import Literal  # this is available in python 3.8+
+from typing import Callable, List, Literal, Mapping, MutableMapping, TypeVar, Union
 
 
 @dataclass
