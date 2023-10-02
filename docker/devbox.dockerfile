@@ -1,4 +1,4 @@
-FROM python:3.11-buster
+FROM python:3.12-buster
 
 ARG _USER="columbo"
 ARG _UID="1001"
