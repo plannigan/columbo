@@ -27,6 +27,8 @@ changelog = "https://github.com/plannigan/columbo/blob/main/CHANGELOG.md"
 issues = "https://github.com/plannigan/columbo/issues"
 documentation = "https://plannigan.github.io/columbo"
 
+[project.scripts]
+
 [build-system]
 requires = ["setuptools >= 61.0.0"]
 build-backend = "setuptools.build_meta"
