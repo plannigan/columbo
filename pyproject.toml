@@ -1,13 +1,55 @@
-[tool.black]
-line-length = 88
-target-version = ["py38", "py39", "py310"]
+[project]
+name = "columbo"
+version = "0.13.0.post1"
+description = "Specify a dynamic set of questions to ask a user and get their answers."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+dependencies = [
+    "prompt-toolkit~=3.0",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+]
+authors = [
+    {name = "Patrick Lannigan", email = "p.lannigan@gmail.com"}
+]
 
+[project.urls]
+homepage = "https://github.com/plannigan/columbo"
+changelog = "https://github.com/plannigan/columbo/blob/main/CHANGELOG.md"
+issues = "https://github.com/plannigan/columbo/issues"
+documentation = "https://plannigan.github.io/columbo"
+
+[build-system]
+requires = ["setuptools >= 61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["*.tests", "*.tests.*", "tests.*", "tests"]
+
+[tool.setuptools.package-data]
+columbo = ["py.typed"]
+
+# type checking
 [tool.mypy]
 ignore_missing_imports = true
+
+# code formatting
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311", "py312"]
 
 [tool.isort]
 profile = "black"
 
+# testing
 [tool.coverage.run]
 branch = true
 data_file = "/tmp/columbo_coverage"
