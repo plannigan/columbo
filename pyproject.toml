@@ -64,7 +64,3 @@ exclude_lines = [
 [tool.pytest.ini_options]
 addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
 testpaths = ["tests"]
-
-[build-system]
-requires = ["setuptools >= 40.9.0", "wheel"]
-build-backend = "setuptools.build_meta"
