@@ -41,6 +41,10 @@ columbo = ["py.typed"]
 
 # type checking
 [tool.mypy]
+files = [
+    "columbo",
+    "tests",
+]
 ignore_missing_imports = true
 
 # code formatting

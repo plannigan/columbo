@@ -4,4 +4,4 @@ max-complexity = 8
 ignore = W503,E501
 builtins = unicode
 tee = True
-exclude = venv,env,.venv,scratch
+extend_exclude = venv,env,.venv,scratch,.mypy_cache

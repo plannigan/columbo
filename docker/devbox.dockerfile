@@ -1,7 +1,7 @@
 FROM python:3.12-bookworm
 
 ARG _USER="columbo"
-ARG _UID="1001"
+ARG _UID="1000"
 ARG _GID="100"
 ARG _SHELL="/bin/bash"
 
