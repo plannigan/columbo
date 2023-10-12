@@ -7,7 +7,24 @@ files = [
     "columbo",
     "tests",
 ]
-ignore_missing_imports = true
+show_error_codes = true
+warn_unused_configs = true
+pretty = true
+strict = true
+disallow_any_explicit = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = [
+    "tests.*",
+]
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = [
+    "tests.sample_data",
+]
+disallow_untyped_defs = true
 
 [tool.isort]
 profile = "black"

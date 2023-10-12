@@ -4,7 +4,17 @@ Produce a CLI based on a sequence of interactions.
 
 from argparse import ArgumentParser, Namespace
 from functools import singledispatch
-from typing import Any, Collection, Dict, NoReturn, Optional, Sequence, Union, cast
+from typing import (
+    Collection,
+    Dict,
+    Iterable,
+    NoReturn,
+    Optional,
+    Sequence,
+    TypedDict,
+    Union,
+    cast,
+)
 
 from columbo._exception import CliException
 from columbo._interaction import (
@@ -101,11 +111,11 @@ def _patch_parser_error(parser: ArgumentParser) -> None:
     def _raise_instead(message: str) -> NoReturn:
         raise CliException(message)
 
-    parser.error = _raise_instead  # type: ignore
+    parser.error = _raise_instead  # type: ignore[method-assign]
 
 
 @singledispatch
-def _add_argument_for(question: Any, _: ArgumentParser) -> None:
+def _add_argument_for(question: object, _: ArgumentParser) -> None:
     raise ValueError(f"Unsupported interaction type {type(question)}")
 
 
@@ -158,7 +168,7 @@ def to_answers(
 
 @singledispatch
 def _update_answers(
-    question: Any, cli_values: CliResults, answers: MutableAnswers
+    question: object, cli_values: CliResults, answers: MutableAnswers
 ) -> None:
     raise ValueError(f"Unsupported interaction type {type(question)}")
 
@@ -180,7 +190,7 @@ def _update_answers_validate(
 ) -> None:
     if not question.should_ask(answers):
         return
-    value = cast(str, cli_values.get(question.name))
+    value = cast(Optional[str], cli_values.get(question.name))
     if value is None:
         value = to_value(question.default, answers, str)
     result = question.validate(value, answers)
@@ -203,14 +213,25 @@ def _update_answers_confirm(
     answers[question.name] = value
 
 
+class _AddArgumentArgs(TypedDict, total=False):
+    choices: Iterable[str]
+    const: bool
+
+
 def _add_argument(
     parser: ArgumentParser,
     name: str,
     cli_help: Optional[str],
     dest: Optional[str] = None,
     action: str = "store",
-    **kwargs,
+    choices: Optional[Iterable[str]] = None,
+    const: Optional[bool] = None,
 ) -> None:
+    kwargs: _AddArgumentArgs = {}
+    if choices is not None:
+        kwargs["choices"] = choices
+    if const is not None:
+        kwargs["const"] = const
     parser.add_argument(
         canonical_arg_name(name),
         action=action,
@@ -225,7 +246,6 @@ def _add_flag(
     name: str,
     cli_help: Optional[str],
     active: bool = True,
-    **kwargs,
 ) -> None:
     # store_const is used for boolean values because store_true/store_false automatically set a default for the
     # argument. For consistency across all args, we don't want this.
@@ -236,5 +256,4 @@ def _add_flag(
         dest=name,
         action="store_const",
         const=active,
-        **kwargs,
     )
