@@ -116,4 +116,4 @@ def test_multiple_choice__default_not_option__value_error():
 
 def test_multiple_choice__no_options__value_error():
     with pytest.raises(ValueError):
-        user_io.multiple_choice("Some question?", [], default="100")
+        user_io.multiple_choice("Some question?", [], default="100")  # type: ignore[arg-type]

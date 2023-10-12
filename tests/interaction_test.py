@@ -435,7 +435,7 @@ def test_basic_question_is_valid__validator__result_of_validator(
 
 
 def test_basic_question_is_valid__invalid_validator__exception():
-    question = BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=object())
+    question = BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=object())  # type: ignore[arg-type]
 
     with pytest.raises(ValueError):
         question.validate(SOME_STRING, SOME_ANSWERS)
@@ -491,12 +491,12 @@ def test_basic_question__default_invalid_no_user_input__error(no_user_input, moc
 
 def test_to_value__invalid_type__exception():
     with pytest.raises(ValueError):
-        to_value(object(), SOME_ANSWERS, str)
+        to_value(object(), SOME_ANSWERS, str)  # type: ignore[arg-type]
 
 
 def test_to_labeled_options__invalid_type__exception():
     with pytest.raises(ValueError):
-        to_labeled_options(object(), SOME_ANSWERS)
+        to_labeled_options(object(), SOME_ANSWERS)  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize(
@@ -512,10 +512,9 @@ def test_should_ask__expected_result(should_ask, expected_result, description):
 
 
 def test_should_ask__invalid_type__exception():
+    question = SampleQuestion(SOME_NAME, SOME_STRING, should_ask=object())  # type: ignore[arg-type]
     with pytest.raises(ValueError):
-        SampleQuestion(SOME_NAME, SOME_STRING, should_ask=object()).should_ask(
-            SOME_ANSWERS
-        )
+        question.should_ask(SOME_ANSWERS)
 
 
 @pytest.mark.parametrize(
@@ -533,8 +532,9 @@ def test_displayable_should_ask__expected_result(
 
 
 def test_displayable_should_ask__invalid_type__exception():
+    displayable = SampleDisplayable(SOME_STRING, should_ask=object())  # type: ignore[arg-type]
     with pytest.raises(ValueError):
-        SampleDisplayable(SOME_STRING, should_ask=object()).should_ask(SOME_ANSWERS)
+        displayable.should_ask(SOME_ANSWERS)
 
 
 def test_get_answers__unknown_interaction_provided():
@@ -544,7 +544,7 @@ def test_get_answers__unknown_interaction_provided():
     # `5` is not an interaction type that is supported
     interactions = [Echo("foo"), 5]
     with pytest.raises(ValueError):
-        get_answers(interactions)
+        get_answers(interactions)  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize(
