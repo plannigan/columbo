@@ -1,7 +1,7 @@
 import re
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Collection, Mapping, Optional, Type, TypeVar, Union
+from typing import Collection, Mapping, Optional, Type, TypeVar, Union, cast
 
 from columbo import _user_io as user_io
 from columbo._exception import DuplicateQuestionNameException
@@ -33,10 +33,10 @@ _NOT_GIVEN = _Sentinel.A
 Possible = Union[T, _Sentinel]
 
 
-# value is Possible[T]. The type is explicitly not annotated because of a conflict when T is a union. The type system
-# flattens unions of unions. This causes the type system to infer that T is object instead of the nested union type.
-def _or_default(value, default: T) -> T:
-    return default if isinstance(value, _Sentinel) else value
+# The type of value is Possible[T]. object is used because of a conflict when T is a union. The type system flattens
+# unions of unions. This causes the type system to infer that T is object instead of the nested union type.
+def _or_default(value: object, default: T) -> T:
+    return default if isinstance(value, _Sentinel) else cast(T, value)
 
 
 def _should_ask_or_display(should_ask: Optional[ShouldAsk], answers: Answers) -> bool:
