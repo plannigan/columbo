@@ -35,19 +35,19 @@ while [[ $# -gt 0 ]]; do
 done
 
 # only generate html locally
-pytest tests --cov-report html
+pytest --cov-report html
 
 echo "Running MyPy..."
-mypy columbo tests
+mypy
 
 echo "Running black..."
-black ${BLACK_ACTION} columbo tests docs/examples/
+black ${BLACK_ACTION} .
 
 echo "Running iSort..."
-isort ${ISORT_ACTION} columbo tests docs/examples/
+isort ${ISORT_ACTION} .
 
 echo "Running flake8..."
-flake8 columbo tests
+flake8
 
 echo "Running bandit..."
-bandit --ini .bandit --quiet -r columbo
+bandit --ini .bandit --quiet -r .

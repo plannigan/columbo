@@ -3,6 +3,10 @@ line-length = 88
 target-version = ["py38", "py39", "py310"]
 
 [tool.mypy]
+files = [
+    "columbo",
+    "tests",
+]
 ignore_missing_imports = true
 
 [tool.isort]
