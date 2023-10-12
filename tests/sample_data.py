@@ -1,5 +1,5 @@
 from argparse import Namespace
-from typing import Mapping, NoReturn, Optional
+from typing import List, Mapping, NoReturn, Optional
 
 from columbo import Answers, ShouldAsk
 from columbo._interaction import (
@@ -31,7 +31,7 @@ def some_dynamic_string(answers: Answers) -> str:
     return f"--{answers['a']}--"
 
 
-def some_dynamic_options(answers: Answers) -> list[str]:
+def some_dynamic_options(answers: Answers) -> List[str]:
     return [f"--{x}--" for x in answers.values()]
 
 
