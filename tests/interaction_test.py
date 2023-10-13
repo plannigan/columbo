@@ -494,6 +494,11 @@ def test_to_value__invalid_type__exception():
         to_value(object(), SOME_ANSWERS, str)  # type: ignore[arg-type]
 
 
+def test_to_value__invalid_dynamic_type__exception():
+    with pytest.raises(ValueError):
+        to_value(lambda _: object(), SOME_ANSWERS, str)  # type: ignore[arg-type,return-value]
+
+
 def test_to_labeled_options__invalid_type__exception():
     with pytest.raises(ValueError):
         to_labeled_options(object(), SOME_ANSWERS)  # type: ignore[arg-type]
