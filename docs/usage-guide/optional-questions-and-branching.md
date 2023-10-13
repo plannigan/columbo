@@ -74,4 +74,11 @@ branching paths by supplying different `should_ask` values that will never both 
 The import thing to note in the example above is that the `Answers` dictionary can have a key-value pair for
 `has_key` or `has_hammer`, not both.
 
+## Complicated Situations
+
+While `should_ask` is capable of supporting complex combinations of optional questions and branching paths,
+there are times where only using that functionality can make the code harder to read and understand. There
+are [alternate strategies][advanced-usage] that can be used in order to make the code easier to follow.
+
 [choose-your-own-adventure]: https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure
+[advanced-usage]: advanced-usage.md

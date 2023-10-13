@@ -23,9 +23,11 @@ the constructor requires an argument to be a static value.
 * [Optional Questions & Branching][optional-questions]
 * [Validators][validators]
 * [Command Line Interface][command-line]
+* [Advanced Usage][advanced-usage]
 
 [getting-started]: ../getting-started.md
 [interactions]: interactions.md
 [optional-questions]: optional-questions-and-branching.md
 [validators]: validators.md
 [command-line]: command-line.md
+[advanced-usage]: advanced-usage.md
