@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Python version `3.12` tested during CI
 - Python version `3.12` added to package classifiers
 
+### Fixed
+
+- Raise `ValueError` when dynamic value returns the wrong type.
+
 ### Removed
 
 - Support for Python version `3.7`.

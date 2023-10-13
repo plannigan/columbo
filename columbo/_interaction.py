@@ -636,7 +636,10 @@ def to_value(
     if isinstance(value, value_type):
         return value
     if callable(value):
-        return value(answers)
+        result = value(answers)
+        if isinstance(result, value_type):
+            return result
+        raise ValueError(f"Invalid dynamic value: {result}")
     raise ValueError(f"Invalid value: {value}")
 
 
