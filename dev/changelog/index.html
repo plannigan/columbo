@@ -1462,6 +1462,8 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>Raise <code>ValueError</code> when dynamic value returns the wrong type.</li>
+<li><code>BasicQuestion</code> validates <code>value_if_not_asked</code> using the <code>Validator</code> if provided.</li>
+<li><code>Choice</code> validates <code>value_if_not_asked</code> for dynamic options that depend on the current <code>Answers</code>.</li>
 </ul>
 <h3 id="removed">Removed</h3>
 <ul>

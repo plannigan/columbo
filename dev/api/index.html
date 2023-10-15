@@ -1539,7 +1539,7 @@ documented here for completeness.</p>
 
   <div class="doc doc-contents first">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[str]</code></p>
 
   
       <p>A question with an arbitrary text answer.</p>
@@ -2119,7 +2119,7 @@ documented here for completeness.</p>
 
   <div class="doc doc-contents first">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[str]</code></p>
 
   
       <p>A question with a set of possible answers.</p>
@@ -2699,7 +2699,7 @@ documented here for completeness.</p>
 
   <div class="doc doc-contents first">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[bool]</code></p>
 
   
       <p>A question with a yes or no answer.</p>
@@ -2850,7 +2850,7 @@ documented here for completeness.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p>
+              <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code> or the value for <code>value_if_not_asked</code> is not a <code>bool</code>.</p>
             </div>
           </td>
         </tr>
@@ -3405,7 +3405,7 @@ documented here for completeness.</p>
 
   <div class="doc doc-contents first">
           <p class="doc doc-class-bases">
-            Bases: <code><span title="abc.ABC">ABC</span></code></p>
+            Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="columbo._interaction.QuestionValue">QuestionValue</span>]</code></p>
 
   
       <p>Base class for a prompt to the user that produces an answer.</p>
@@ -3511,7 +3511,7 @@ documented here for completeness.</p>
         <tr>
           <td><code>value_if_not_asked</code></td>
           <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[str, bool]]</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="columbo._interaction.QuestionValue">QuestionValue</span>]</code>
           </td>
           <td>
             <div class="doc-md-description">
