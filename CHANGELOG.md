@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Raise `ValueError` when dynamic value returns the wrong type.
+- `BasicQuestion` validates `value_if_not_asked` using the `Validator` if provided.
+- `Choice` validates `value_if_not_asked` for dynamic options that depend on the current `Answers`.
 
 ### Removed
 
