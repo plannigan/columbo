@@ -67,11 +67,15 @@ class Displayable(ABC):
         self._should_ask = should_ask
 
     @abstractmethod
-    def display(self, answers: Answers) -> None:  # pragma: no cover
+    def display(
+        self, answers: Answers, no_user_input: bool = False
+    ) -> None:  # pragma: no cover
         """
         Display a message to the user.
 
         :param answers: The answers that have been provided this far.
+        :param no_user_input: If `True` the message will be displayed without waiting for the user to interact.
+            Default: `False`
         """
         pass
 
@@ -102,11 +106,12 @@ class Echo(Displayable):
         """
         super().__init__(message, should_ask)
 
-    def display(self, answers: Answers) -> None:
+    def display(self, answers: Answers, no_user_input: bool = False) -> None:
         """
         Display a message to the user.
 
         :param answers: The answers that have been provided this far.
+        :param no_user_input: Has no effect because no user input is expected. Default: `False`
         :raises ValueError: The value for `message` did not have the correct type.
         """
         user_io.echo(to_value(self._message, answers, str))
@@ -148,14 +153,18 @@ class Acknowledge(Displayable):
         """
         super().__init__(message, should_ask)
 
-    def display(self, answers: Answers) -> None:
+    def display(self, answers: Answers, no_user_input: bool = False) -> None:
         """
         Display a message to the user and require the user to press ENTER to continue
 
         :param answers: The answers that have been provided this far.
+        :param no_user_input: If `True` the message will be displayed without waiting for the user to interact.
+            Default: `False`
         :raises ValueError: The value for `message` did not have the correct type.
         """
-        user_io.acknowledge(to_value(self._message, answers, str))
+        user_io.acknowledge(
+            to_value(self._message, answers, str), no_user_input=no_user_input
+        )
 
     def copy(
         self,
