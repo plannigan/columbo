@@ -1450,7 +1450,7 @@ documented here for completeness.</p>
 
 
 <h4 id="columbo.Acknowledge.display" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
@@ -1484,6 +1484,20 @@ documented here for completeness.</p>
           </td>
           <td>
               <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>no_user_input</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>True</code> the message will be displayed without waiting for the user to interact. Default: <code>False</code></p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
           </td>
         </tr>
     </tbody>
@@ -3316,7 +3330,7 @@ documented here for completeness.</p>
 
 
 <h4 id="columbo.Echo.display" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
@@ -3350,6 +3364,20 @@ documented here for completeness.</p>
           </td>
           <td>
               <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>no_user_input</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Has no effect because no user input is expected. Default: <code>False</code></p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
           </td>
         </tr>
     </tbody>
