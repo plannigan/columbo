@@ -1,7 +1,7 @@
 import re
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Collection, Mapping, Optional, Type, TypeVar, Union, cast
+from typing import Collection, Generic, Mapping, Optional, Type, TypeVar, Union, cast
 
 from columbo import _user_io as user_io
 from columbo._exception import DuplicateQuestionNameException
@@ -178,7 +178,10 @@ class Acknowledge(Displayable):
         )
 
 
-class Question(ABC):
+QuestionValue = TypeVar("QuestionValue", str, bool)
+
+
+class Question(ABC, Generic[QuestionValue]):
     """
     Base class for a prompt to the user that produces an answer.
     """
@@ -189,7 +192,7 @@ class Question(ABC):
         message: StaticOrDynamicValue[str],
         cli_help: Optional[str] = None,
         should_ask: Optional[ShouldAsk] = None,
-        value_if_not_asked: Optional[Union[str, bool]] = None,
+        value_if_not_asked: Optional[QuestionValue] = None,
     ) -> None:
         """
         Initialize an instance.
@@ -210,10 +213,12 @@ class Question(ABC):
 
         if value_if_not_asked is not None and should_ask is None:
             raise ValueError(
-                "You provided a value_if_not_asked but not should_ask. You should either remove value_if_not_asked or add should_ask."
+                "You provided a value_if_not_asked but not should_ask. "
+                "You should either remove value_if_not_asked or add should_ask."
             )
 
         self._should_ask = should_ask
+        self._value_if_not_asked: Optional[QuestionValue] = value_if_not_asked
 
     @property
     def name(self) -> str:
@@ -222,6 +227,10 @@ class Question(ABC):
     @property
     def cli_help(self) -> Optional[str]:
         return self._cli_help
+
+    @property
+    def value_if_not_asked(self) -> Optional[QuestionValue]:
+        return self._value_if_not_asked
 
     @abstractmethod
     def ask(
@@ -248,7 +257,7 @@ class Question(ABC):
         return _should_ask_or_display(self._should_ask, answers)
 
 
-class Confirm(Question):
+class Confirm(Question[bool]):
     """
     A question with a yes or no answer.
     """
@@ -275,8 +284,11 @@ class Confirm(Question):
             have been provided this far and should return `True` if the question should be asked.
         :param value_if_not_asked: If provided and if should_ask is being used, this value will be recorded as an answer
             if should_ask evaluates to False.
-        :raises ValueError: A value for `value_if_not_asked` was given without giving a value for `should_ask`.
+        :raises ValueError: A value for `value_if_not_asked` was given without giving a value for `should_ask` or the
+            value for `value_if_not_asked` is not a `bool`.
         """
+        if value_if_not_asked is not None and not isinstance(value_if_not_asked, bool):
+            raise ValueError("value_if_not_asked must be a bool")
         super().__init__(
             name,
             message,
@@ -285,15 +297,10 @@ class Confirm(Question):
             value_if_not_asked=value_if_not_asked,
         )
         self._default = default
-        self._value_if_not_asked = value_if_not_asked
 
     @property
     def default(self) -> StaticOrDynamicValue[bool]:
         return self._default
-
-    @property
-    def value_if_not_asked(self) -> Optional[bool]:
-        return self._value_if_not_asked
 
     def ask(self, answers: Answers, no_user_input: bool = False) -> bool:
         """
@@ -348,7 +355,7 @@ class Confirm(Question):
         )
 
 
-class Choice(Question):
+class Choice(Question[str]):
     """
     A question with a set of possible answers.
     """
@@ -392,12 +399,6 @@ class Choice(Question):
 
         self._options = options
         self._default = default
-
-        if value_if_not_asked is not None:
-            if not self.validate(value_if_not_asked, {}).valid:
-                raise ValueError(
-                    "The value_if_not_asked is not one of the options. Please update it to be one of the options."
-                )
         self._value_if_not_asked = value_if_not_asked
 
     @property
@@ -407,10 +408,6 @@ class Choice(Question):
     @property
     def default(self) -> StaticOrDynamicValue[str]:
         return self._default
-
-    @property
-    def value_if_not_asked(self) -> Optional[str]:
-        return self._value_if_not_asked
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         """Validate the value (a new answer).
@@ -483,7 +480,7 @@ class Choice(Question):
         )
 
 
-class BasicQuestion(Question):
+class BasicQuestion(Question[str]):
     """
     A question with an arbitrary text answer.
     """
@@ -524,15 +521,10 @@ class BasicQuestion(Question):
         )
         self._default = default
         self._validator = validator
-        self._value_if_not_asked = value_if_not_asked
 
     @property
     def default(self) -> StaticOrDynamicValue[str]:
         return self._default
-
-    @property
-    def value_if_not_asked(self) -> Optional[str]:
-        return self._value_if_not_asked
 
     def validate(self, value: str, answers: Answers) -> ValidationResponse:
         """Validate the value (a new answer).
@@ -678,15 +670,29 @@ def get_answers(
         if isinstance(interaction, (Echo, Acknowledge)):
             if interaction.should_ask(result):
                 interaction.display(result)
-        elif isinstance(interaction, (Confirm, Choice, BasicQuestion)):
+        elif isinstance(interaction, Question):
             if interaction.should_ask(result):
                 result[interaction.name] = interaction.ask(result, no_user_input)
             elif interaction.value_if_not_asked is not None:
-                result[interaction.name] = interaction.value_if_not_asked
+                result[interaction.name] = _validate_value_if_not_asked(
+                    interaction.value_if_not_asked, interaction, result
+                )
         else:
             raise ValueError(f"Unsupported interaction type: {type(interaction)}")
 
     return result
+
+
+def _validate_value_if_not_asked(
+    value_if_not_asked: QuestionValue,
+    interaction: Question[QuestionValue],
+    current_answers: MutableAnswers,
+) -> QuestionValue:
+    if isinstance(interaction, (BasicQuestion, Choice)):
+        validation_result = interaction.validate(value_if_not_asked, current_answers)
+        if not validation_result.valid:
+            raise ValueError(f"NotAsked value is not valid: {validation_result.error}")
+    return value_if_not_asked
 
 
 def canonical_arg_name(name: str) -> str:
