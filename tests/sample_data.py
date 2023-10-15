@@ -74,7 +74,7 @@ class SampleDisplayable(Displayable):
         super().__init__(message, should_ask)
         self._display_called = False
 
-    def display(self, answers: Answers) -> None:
+    def display(self, answers: Answers, no_user_input: bool = False) -> None:
         self._display_called = True
 
     @property

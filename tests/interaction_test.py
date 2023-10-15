@@ -97,7 +97,7 @@ def test_acknowledge__static_message__acknowledge_message(mocker):
 
     Acknowledge(SOME_STRING).display(SOME_ANSWERS)
 
-    user_io.acknowledge.assert_called_once_with(SOME_STRING)
+    user_io.acknowledge.assert_called_once_with(SOME_STRING, no_user_input=False)
 
 
 def test_acknowledge__dynamic_message__acknowledge_dynamic_message(mocker):
@@ -105,7 +105,17 @@ def test_acknowledge__dynamic_message__acknowledge_dynamic_message(mocker):
 
     Acknowledge(some_dynamic_string).display(SOME_ANSWERS)
 
-    user_io.acknowledge.assert_called_once_with(SOME_DYNAMIC_STRING_RESULT)
+    user_io.acknowledge.assert_called_once_with(
+        SOME_DYNAMIC_STRING_RESULT, no_user_input=False
+    )
+
+
+def test_acknowledge__no_user_imput__acknowledge_dynamic_message(mocker):
+    user_io = mocker.patch("columbo._interaction.user_io")
+
+    Acknowledge(SOME_STRING).display(SOME_ANSWERS, no_user_input=True)
+
+    user_io.acknowledge.assert_called_once_with(SOME_STRING, no_user_input=True)
 
 
 def test_acknowledge_copy__new_instance():
@@ -134,7 +144,7 @@ def test_acknowledge_copy__diff_message__acknowledge_diff_message(mocker):
 
     Acknowledge(some_dynamic_string).copy(message=SOME_STRING).display(SOME_ANSWERS)
 
-    user_io.acknowledge.assert_called_once_with(SOME_STRING)
+    user_io.acknowledge.assert_called_once_with(SOME_STRING, no_user_input=False)
 
 
 def test_choice__no_input__default_value():
