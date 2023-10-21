@@ -869,13 +869,15 @@ support an editable install.</p>
 <p>Once the package is ready to be released, there are a few things that need to be done:</p>
 <ol>
 <li>Start with a local clone of the repo on the default branch with a clean working tree.</li>
+<li>Have an environment configured for Python 3.9 or later.</li>
 <li>
-<p>Run the version bump script with the appropriate part name (<code>major</code>, <code>minor</code>, or <code>patch</code>).
-    Example: <code>docker-compose run --rm bump minor</code></p>
-<p>This wil create a new branch, updates all affected files with the new version, and commit the changes to the branch.</p>
+<p>Perform the version bump part name (<code>major</code>, <code>minor</code>, or <code>patch</code>).
+    Example: <code>hyperb-bump-it by minor</code></p>
+<p>This wil create a new branch, updates all affected files with the new version, commit the changes to the branch, and 
+push the branch.</p>
 </li>
 <li>
-<p>Push the new branch to create a new pull request.</p>
+<p>Create a new pull request for the pushed branch.</p>
 </li>
 <li>Get the pull request approved.</li>
 <li>Merge the pull request to the default branch.</li>
