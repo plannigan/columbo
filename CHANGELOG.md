@@ -23,6 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Support for Python version `3.7`.
+- `tests/` directory no longer included in distributions.
+
+### Internal
+
+- Use [hatch][hatch] for build backend.
 
 ## [0.13.0.post1] - 2023-05-12
 
@@ -214,3 +219,4 @@ First public release. No code changes from v0.8.0.
 Initial Release
 
 [trusted-publishers]: https://docs.pypi.org/trusted-publishers/
+[hatch]: https://hatch.pypa.io/latest/
