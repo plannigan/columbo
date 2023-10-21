@@ -5,12 +5,13 @@
 set -e
 
 # install columbo
-pip install . -q;
+pip install . -q
 
 for filename in docs/examples/*.py; do
+    printf "\n\n --- %s ---\n" "${filename}"
     # provide default answers if example python file asks for input
-    yes "" | python ${filename};
+    yes "" | python "${filename}";
 done
 
-# this will only get printed if all examples finish succesfully
+# this will only get printed if all examples finish successfully
 printf "\n\n\nAll of the documentation examples can be run!";

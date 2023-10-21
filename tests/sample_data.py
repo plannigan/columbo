@@ -1,5 +1,7 @@
 from argparse import Namespace
+from typing import List, Mapping, NoReturn, Optional
 
+from columbo import Answers, ShouldAsk, ValidationFailure
 from columbo._interaction import (
     BasicQuestion,
     Choice,
@@ -23,26 +25,31 @@ SOME_DEFAULT = "x"
 SOME_NON_DEFAULT_OPTION = "y"
 SOME_INVALID_OPTION = "NOT_VALID_OPTION"
 SOME_INVALID_ARG_NAME = "--NOT_VALID_OPTION"
+SOME_FAILURE_MESSAGE = "always fail"
 
 
-def some_dynamic_string(answers):
+def some_dynamic_string(answers: Answers) -> str:
     return f"--{answers['a']}--"
 
 
-def some_dynamic_options(answers):
+def some_dynamic_options(answers: Answers) -> List[str]:
     return [f"--{x}--" for x in answers.values()]
 
 
-def some_dynamic_mapping_options(answers):
+def some_dynamic_mapping_options(answers: Answers) -> Mapping[str, str]:
     return {f"--{x}--": f"~~{x}~~" for x in answers.values()}
 
 
-def some_dynamic_default(answers):
+def some_dynamic_default(answers: Answers) -> str:
     return f"--{answers['b']}--"
 
 
-def some_dynamic_bool(_):
+def some_dynamic_bool(_: Answers) -> bool:
     return SOME_OTHER_BOOL
+
+
+def always_fail_validator(value: str, answers: Answers) -> ValidationFailure:
+    return ValidationFailure(SOME_FAILURE_MESSAGE)
 
 
 SOME_DYNAMIC_STRING_RESULT = "--one--"
@@ -53,21 +60,21 @@ SOME_DYNAMIC_DEFAULT_RESULT = "--two--"
 SOME_NAMESPACE = Namespace(**{SOME_NAME: SOME_STRING})
 
 
-class SampleQuestion(Question):
+class SampleQuestion(Question[str]):
     """Question class for testing base class functionality or where subclasses need specific handling"""
 
-    def ask(self, answers, no_user_input=False):
+    def ask(self, answers: Answers, no_user_input: bool = False) -> NoReturn:
         raise Exception("Don't call")
 
 
 class SampleDisplayable(Displayable):
     """Displayable for testing base class functionality"""
 
-    def __init__(self, message, should_ask=None):
+    def __init__(self, message: str, should_ask: Optional[ShouldAsk] = None) -> None:
         super().__init__(message, should_ask)
         self._display_called = False
 
-    def display(self, answers):
+    def display(self, answers: Answers, no_user_input: bool = False) -> None:
         self._display_called = True
 
     @property

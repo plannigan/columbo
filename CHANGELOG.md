@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Python version `3.11` added to package classifiers
 - Python version `3.12` tested during CI
 - Python version `3.12` added to package classifiers
+- Support for `no_user_input` in `Acknowledge.display()` and `Echo.display()`.
+
+### Fixed
+
+- Raise `ValueError` when dynamic value returns the wrong type.
+- `BasicQuestion` validates `value_if_not_asked` using the `Validator` if provided.
+- `Choice` validates `value_if_not_asked` for dynamic options that depend on the current `Answers`.
 
 ### Removed
 

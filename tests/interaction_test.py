@@ -2,11 +2,13 @@ import pytest
 
 from columbo import (
     Acknowledge,
+    Answers,
     BasicQuestion,
     Choice,
     Confirm,
     DuplicateQuestionNameException,
     Echo,
+    Interaction,
     ValidationFailure,
     ValidationSuccess,
 )
@@ -26,13 +28,17 @@ from tests.sample_data import (
     SOME_DYNAMIC_MAPPING_OPTION_RESULT,
     SOME_DYNAMIC_OPTION_RESULT,
     SOME_DYNAMIC_STRING_RESULT,
+    SOME_FAILURE_MESSAGE,
+    SOME_INVALID_OPTION,
     SOME_MAPPING_OPTIONS,
     SOME_NAME,
+    SOME_NON_DEFAULT_OPTION,
     SOME_OPTIONS,
     SOME_OTHER_BOOL,
     SOME_STRING,
     SampleDisplayable,
     SampleQuestion,
+    always_fail_validator,
     some_dynamic_bool,
     some_dynamic_default,
     some_dynamic_mapping_options,
@@ -91,7 +97,7 @@ def test_acknowledge__static_message__acknowledge_message(mocker):
 
     Acknowledge(SOME_STRING).display(SOME_ANSWERS)
 
-    user_io.acknowledge.assert_called_once_with(SOME_STRING)
+    user_io.acknowledge.assert_called_once_with(SOME_STRING, no_user_input=False)
 
 
 def test_acknowledge__dynamic_message__acknowledge_dynamic_message(mocker):
@@ -99,7 +105,17 @@ def test_acknowledge__dynamic_message__acknowledge_dynamic_message(mocker):
 
     Acknowledge(some_dynamic_string).display(SOME_ANSWERS)
 
-    user_io.acknowledge.assert_called_once_with(SOME_DYNAMIC_STRING_RESULT)
+    user_io.acknowledge.assert_called_once_with(
+        SOME_DYNAMIC_STRING_RESULT, no_user_input=False
+    )
+
+
+def test_acknowledge__no_user_imput__acknowledge_dynamic_message(mocker):
+    user_io = mocker.patch("columbo._interaction.user_io")
+
+    Acknowledge(SOME_STRING).display(SOME_ANSWERS, no_user_input=True)
+
+    user_io.acknowledge.assert_called_once_with(SOME_STRING, no_user_input=True)
 
 
 def test_acknowledge_copy__new_instance():
@@ -128,7 +144,7 @@ def test_acknowledge_copy__diff_message__acknowledge_diff_message(mocker):
 
     Acknowledge(some_dynamic_string).copy(message=SOME_STRING).display(SOME_ANSWERS)
 
-    user_io.acknowledge.assert_called_once_with(SOME_STRING)
+    user_io.acknowledge.assert_called_once_with(SOME_STRING, no_user_input=False)
 
 
 def test_choice__no_input__default_value():
@@ -435,7 +451,7 @@ def test_basic_question_is_valid__validator__result_of_validator(
 
 
 def test_basic_question_is_valid__invalid_validator__exception():
-    question = BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=object())
+    question = BasicQuestion(SOME_NAME, SOME_STRING, SOME_DEFAULT, validator=object())  # type: ignore[arg-type]
 
     with pytest.raises(ValueError):
         question.validate(SOME_STRING, SOME_ANSWERS)
@@ -491,12 +507,17 @@ def test_basic_question__default_invalid_no_user_input__error(no_user_input, moc
 
 def test_to_value__invalid_type__exception():
     with pytest.raises(ValueError):
-        to_value(object(), SOME_ANSWERS, str)
+        to_value(object(), SOME_ANSWERS, str)  # type: ignore[arg-type]
+
+
+def test_to_value__invalid_dynamic_type__exception():
+    with pytest.raises(ValueError):
+        to_value(lambda _: object(), SOME_ANSWERS, str)  # type: ignore[arg-type,return-value]
 
 
 def test_to_labeled_options__invalid_type__exception():
     with pytest.raises(ValueError):
-        to_labeled_options(object(), SOME_ANSWERS)
+        to_labeled_options(object(), SOME_ANSWERS)  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize(
@@ -512,10 +533,9 @@ def test_should_ask__expected_result(should_ask, expected_result, description):
 
 
 def test_should_ask__invalid_type__exception():
+    question = SampleQuestion(SOME_NAME, SOME_STRING, should_ask=object())  # type: ignore[arg-type]
     with pytest.raises(ValueError):
-        SampleQuestion(SOME_NAME, SOME_STRING, should_ask=object()).should_ask(
-            SOME_ANSWERS
-        )
+        question.should_ask(SOME_ANSWERS)
 
 
 @pytest.mark.parametrize(
@@ -533,8 +553,9 @@ def test_displayable_should_ask__expected_result(
 
 
 def test_displayable_should_ask__invalid_type__exception():
+    displayable = SampleDisplayable(SOME_STRING, should_ask=object())  # type: ignore[arg-type]
     with pytest.raises(ValueError):
-        SampleDisplayable(SOME_STRING, should_ask=object()).should_ask(SOME_ANSWERS)
+        displayable.should_ask(SOME_ANSWERS)
 
 
 def test_get_answers__unknown_interaction_provided():
@@ -544,7 +565,7 @@ def test_get_answers__unknown_interaction_provided():
     # `5` is not an interaction type that is supported
     interactions = [Echo("foo"), 5]
     with pytest.raises(ValueError):
-        get_answers(interactions)
+        get_answers(interactions)  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize(
@@ -634,37 +655,44 @@ def test__canonical_arg_name__nonstandard_characters__normalized(
 
 
 @pytest.mark.parametrize(
-    ["should_ask", "value_if_not_asked", "expected_answer"],
+    ["should_ask", "expected_answer"],
     [
-        (True, "z", {"a": True, "b": SOME_DEFAULT, "c": SOME_DEFAULT}),
-        (False, "z", {"a": False, "b": "z", "c": "z"}),
+        (True, {"confirm": True, "choice": SOME_DEFAULT, "question": SOME_DEFAULT}),
+        (
+            False,
+            {
+                "confirm": False,
+                "choice": SOME_NON_DEFAULT_OPTION,
+                "question": SOME_STRING,
+            },
+        ),
     ],
 )
-def test_value_if_not_asked__BasicQuestion(
-    should_ask, value_if_not_asked, expected_answer
-):
-    interactions = [
+def test_value_if_not_asked__each_interaction__produces_expected_result(
+    should_ask: bool, expected_answer: Answers
+) -> None:
+    interactions: list[Interaction] = [
         Confirm(
-            "a",
+            "confirm",
             SOME_STRING,
             True,
             should_ask=lambda answers: should_ask,
             value_if_not_asked=False,
         ),
         Choice(
-            "b",
+            "choice",
             SOME_STRING,
             SOME_OPTIONS,
             SOME_DEFAULT,
             should_ask=lambda answers: should_ask,
-            value_if_not_asked=value_if_not_asked,
+            value_if_not_asked=SOME_NON_DEFAULT_OPTION,
         ),
         BasicQuestion(
-            "c",
+            "question",
             SOME_STRING,
             SOME_DEFAULT,
             should_ask=lambda answers: should_ask,
-            value_if_not_asked=value_if_not_asked,
+            value_if_not_asked=SOME_STRING,
         ),
     ]
 
@@ -673,8 +701,32 @@ def test_value_if_not_asked__BasicQuestion(
     assert results == expected_answer
 
 
-def test_value_if_not_asked__raises_exception_without_should_ask():
-    """Declaring a Confirm, Choice, or BasicQuestion with a value_if_not_asked and without should_ask should raise an error."""
+def test_should_ask__false_without_value_if_not_asked__no_value_in_result():
+    interactions: list[Interaction] = [
+        Confirm(
+            "confirm",
+            SOME_STRING,
+            True,
+            should_ask=lambda answers: False,
+        ),
+        Choice(
+            "choice",
+            SOME_STRING,
+            SOME_OPTIONS,
+            SOME_DEFAULT,
+            should_ask=lambda answers: False,
+        ),
+        BasicQuestion(
+            "question", SOME_STRING, SOME_DEFAULT, should_ask=lambda answers: False
+        ),
+    ]
+
+    results = get_answers(interactions, no_user_input=True)
+
+    assert results == {}
+
+
+def test_value_if_not_asked__basic_question_no_should_ask__raises_exception():
     with pytest.raises(
         ValueError,
         match="You should either remove value_if_not_asked or add should_ask.",
@@ -687,32 +739,74 @@ def test_value_if_not_asked__raises_exception_without_should_ask():
         )
 
 
-def test_value_if_not_asked__value_if_not_asked_is_not_option__raises_exception():
-    """Declaring a Choice with a value_if_not_asked that is not one of the options should raise an error."""
+def test_value_if_not_asked__confirm_no_should_ask__raises_exception():
     with pytest.raises(
         ValueError,
-        match="The value_if_not_asked is not one of the options.",
+        match="You should either remove value_if_not_asked or add should_ask.",
+    ):
+        Confirm(
+            SOME_NAME,
+            SOME_STRING,
+            default=SOME_BOOL,
+            value_if_not_asked=True,
+        )
+
+
+def test_value_if_not_asked__choice_no_should_ask__raises_exception():
+    with pytest.raises(
+        ValueError,
+        match="You should either remove value_if_not_asked or add should_ask.",
     ):
         Choice(
             SOME_NAME,
             SOME_STRING,
-            SOME_OPTIONS,
-            SOME_DEFAULT,
-            should_ask=lambda answers: True,
-            value_if_not_asked="a",
+            options=SOME_OPTIONS,
+            default=SOME_DEFAULT,
+            value_if_not_asked=SOME_NON_DEFAULT_OPTION,
         )
 
 
-def test_should_ask__false_without_value_if_not_asked__succeeds():
-    interactions = [
-        BasicQuestion(
-            "a",
+def test_value_if_not_asked__confirm_value_if_not_asked_is_not_bool__raises_exception():
+    with pytest.raises(
+        ValueError,
+        match="value_if_not_asked must be a bool",
+    ):
+        Confirm(
+            SOME_NAME,
             SOME_STRING,
-            SOME_DEFAULT,
-            should_ask=lambda answers: False,
-        ),
-    ]
+            default=True,
+            should_ask=lambda answers: True,
+            value_if_not_asked=SOME_INVALID_OPTION,  # type: ignore[arg-type]
+        )
 
-    results = get_answers(interactions, no_user_input=True)
 
-    assert results == {}
+def test_value_if_not_asked__basic_question_value_if_not_asked_is_not_valid__raises_exception():
+    question = BasicQuestion(
+        SOME_NAME,
+        SOME_STRING,
+        default=SOME_DEFAULT,
+        should_ask=lambda answers: False,
+        validator=always_fail_validator,
+        value_if_not_asked=SOME_NON_DEFAULT_OPTION,
+    )
+    with pytest.raises(
+        ValueError,
+        match=f"NotAsked value is not valid: {SOME_FAILURE_MESSAGE}",
+    ):
+        get_answers([question], no_user_input=True)
+
+
+def test_value_if_not_asked__choice_value_if_not_asked_is_not_valid__raises_exception():
+    question = Choice(
+        SOME_NAME,
+        SOME_STRING,
+        SOME_OPTIONS,
+        default=SOME_DEFAULT,
+        should_ask=lambda answers: False,
+        value_if_not_asked=SOME_INVALID_OPTION,
+    )
+    with pytest.raises(
+        ValueError,
+        match=f"NotAsked value is not valid: Chosen value: {SOME_INVALID_OPTION} not in options",
+    ):
+        get_answers([question], no_user_input=True)

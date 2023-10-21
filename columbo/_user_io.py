@@ -2,7 +2,7 @@
 Helpful wrappers for prompt-toolkit functionality.
 """
 
-from typing import Mapping
+from typing import Mapping, Optional
 
 from prompt_toolkit import shortcuts
 from prompt_toolkit.formatted_text import merge_formatted_text
@@ -14,37 +14,44 @@ from prompt_toolkit.validation import Validator
 _NO_INPUT = ""
 
 
-def echo(*args, **kwargs) -> None:
-    shortcuts.print_formatted_text(*args, **kwargs)
+def echo(
+    message: str,
+) -> None:
+    shortcuts.print_formatted_text(message)
 
 
-def acknowledge(*args, no_user_input: bool = False, **kwargs) -> None:
-    echo(*args, **kwargs)
+def acknowledge(message: str, no_user_input: bool = False) -> None:
+    echo(message)
     if no_user_input:
         return
 
-    shortcuts.prompt("", **kwargs)
+    shortcuts.prompt("")
     echo("")
 
 
-def confirm(
-    question: str, default: bool = False, no_user_input: bool = False, **kwargs
-) -> bool:
+def confirm(question: str, default: bool = False, no_user_input: bool = False) -> bool:
     if no_user_input:
         return default
 
-    answer = _confirm(question, default, **kwargs)
+    answer = _confirm(question, default)
     echo("")
 
     return answer
 
 
-def ask(question: str, default: str, no_user_input: bool = False, **kwargs) -> str:
+def ask(
+    question: str,
+    default: str,
+    no_user_input: bool = False,
+    validator: Optional[Validator] = None,
+) -> str:
     if no_user_input:
         return default
 
     # Don't pass real default to prompt as it requires the user to delete the characters to enter something custom
-    answer = shortcuts.prompt(f"{question} [{default}]: ", default=_NO_INPUT, **kwargs)
+    answer = shortcuts.prompt(
+        f"{question} [{default}]: ", default=_NO_INPUT, validator=validator
+    )
     if answer == _NO_INPUT:
         answer = default
     echo("")
@@ -57,7 +64,6 @@ def multiple_choice(
     options: Mapping[str, str],
     default: str,
     no_user_input: bool = False,
-    **kwargs,
 ) -> str:
     if len(options) == 0:
         raise ValueError("options must contain at least one value")
@@ -85,13 +91,12 @@ def multiple_choice(
         ),
         default=default_choice,
         no_user_input=no_user_input,
-        **kwargs,
     )
 
     return choice_map[user_choice]
 
 
-def _confirm(question: str, default: bool = False, **kwargs) -> bool:
+def _confirm(question: str, default: bool = False) -> bool:
     bindings = KeyBindings()
 
     @bindings.add("y")
@@ -120,6 +125,6 @@ def _confirm(question: str, default: bool = False, **kwargs) -> bool:
 
     complete_message = merge_formatted_text([question, f" ({default_indicator}): "])
     session: shortcuts.PromptSession[bool] = shortcuts.PromptSession(
-        complete_message, key_bindings=bindings, **kwargs
+        complete_message, key_bindings=bindings
     )
-    return session.prompt(complete_message, key_bindings=bindings, **kwargs)
+    return session.prompt(complete_message, key_bindings=bindings)
