@@ -47,3 +47,27 @@ testpaths = ["tests"]
 [build-system]
 requires = ["setuptools >= 40.9.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+# version bumping
+[tool.hyper-bump-it.git.actions]
+commit = "create-and-push"
+branch = "create-and-push"
+
+[[tool.hyper-bump-it.files]]
+file_glob = "setup.cfg"
+keystone = true
+search_format_pattern = "version = {version}"
+
+[[tool.hyper-bump-it.files]]
+file_glob = "columbo/__init__.py"
+
+[[tool.hyper-bump-it.files]]
+file_glob = "docs/index.md"
+search_format_pattern = "Columbo - {version}"
+
+[[tool.hyper-bump-it.files]]
+file_glob = "CHANGELOG.md"
+search_format_pattern = "## [Unreleased]"
+replace_format_pattern = """## [Unreleased]
+
+## [{version}] - {today}"""

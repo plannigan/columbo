@@ -28,10 +28,6 @@ services:
     <<: *devbox
     command: docker/validate_docs.sh
 
-  bump:
-    <<: [*devbox, *mount-app-and-user-git-config]
-    entrypoint: docker/bump_version.sh
-
   # generate and serve the project documentation locally
   mkdocs: &mkdocs
     <<: *devbox
