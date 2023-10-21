@@ -105,14 +105,16 @@ support an editable install.
 Once the package is ready to be released, there are a few things that need to be done:
 
 1. Start with a local clone of the repo on the default branch with a clean working tree.
-2. Run the version bump script with the appropriate part name (`major`, `minor`, or `patch`).
-    Example: `docker-compose run --rm bump minor`
+2. Have an environment configured for Python 3.9 or later.
+3. Perform the version bump part name (`major`, `minor`, or `patch`).
+    Example: `hyperb-bump-it by minor`
     
-    This wil create a new branch, updates all affected files with the new version, and commit the changes to the branch.
+    This wil create a new branch, updates all affected files with the new version, commit the changes to the branch, and 
+    push the branch.
 
-3. Push the new branch to create a new pull request.
-4. Get the pull request approved.
-5. Merge the pull request to the default branch.
+4. Create a new pull request for the pushed branch.
+5. Get the pull request approved.
+6. Merge the pull request to the default branch.
 
 Merging the pull request will trigger a GitHub Action that will create a new release. The creation of this new
 release will trigger a GitHub Action that will to build a wheel & a source distributions of the package and push them to
