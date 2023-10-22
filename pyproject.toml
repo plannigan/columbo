@@ -1,7 +1,44 @@
-[tool.black]
-line-length = 88
-target-version = ["py38", "py39", "py310"]
+[build-system]
+requires = ["hatchling==1.18.0"]
+build-backend = "hatchling.build"
 
+[project]
+name = "columbo"
+version = "0.13.0"
+description = "Specify a dynamic set of questions to ask a user and get their answers."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    { name = "Patrick Lannigan", email = "p.lannigan@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "prompt-toolkit~=3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/plannigan/columbo"
+changelog = "https://github.com/plannigan/columbo/blob/main/CHANGELOG.md"
+issues = "https://github.com/plannigan/columbo/issues"
+documentation = "https://plannigan.github.io/columbo"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/columbo",
+]
+
+# type checking
 [tool.mypy]
 files = [
     "columbo",
@@ -26,8 +63,10 @@ module = [
 ]
 disallow_untyped_defs = true
 
-[tool.isort]
-profile = "black"
+# testing
+[tool.pytest.ini_options]
+addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
+testpaths = ["tests"]
 
 [tool.coverage.run]
 branch = true
@@ -40,13 +79,13 @@ exclude_lines = [
     "pragma: no cover"
 ]
 
-[tool.pytest.ini_options]
-addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
-testpaths = ["tests"]
+# code formatting
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310"]
 
-[build-system]
-requires = ["setuptools >= 40.9.0", "wheel"]
-build-backend = "setuptools.build_meta"
+[tool.isort]
+profile = "black"
 
 # version bumping
 [tool.hyper-bump-it.git.actions]
@@ -54,9 +93,9 @@ commit = "create-and-push"
 branch = "create-and-push"
 
 [[tool.hyper-bump-it.files]]
-file_glob = "setup.cfg"
+file_glob = "pyproject.toml"
 keystone = true
-search_format_pattern = "version = {version}"
+search_format_pattern = "version = \"{version}\""
 
 [[tool.hyper-bump-it.files]]
 file_glob = "columbo/__init__.py"
