@@ -6,7 +6,7 @@ setuptools==68.2.2
 
 markdown-include==0.8.1
 mkdocs==1.5.3
-mkdocs-material==9.4.6
+mkdocs-material==9.4.7
 mkdocs-minify-plugin==0.7.1
 mkdocs-redirects==1.2.1
 mkdocstrings[python]==0.23.0
