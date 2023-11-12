@@ -1,4 +1,5 @@
 import re
+import sys
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Collection, Generic, Mapping, Optional, Type, TypeVar, Union, cast
@@ -19,7 +20,14 @@ from columbo._types import (
     Validator,
 )
 
-Interaction = Union["Displayable", "Question"]
+if sys.version_info < (3, 10):
+    from typing_extensions import TypeGuard
+else:
+    from typing import TypeGuard
+
+QuestionValue = TypeVar("QuestionValue", str, bool)
+# Explicitly list each possible question value to prevent making the type alias generic
+Interaction = Union["Displayable", "Question[bool]", "Question[str]"]
 
 
 # Used by copy() implementations. Since some arguments can be None, None can't be used as the value to indicate that the
@@ -185,9 +193,6 @@ class Acknowledge(Displayable):
             _or_default(message, self._message),
             should_ask=_or_default(should_ask, self._should_ask),
         )
-
-
-QuestionValue = TypeVar("QuestionValue", str, bool)
 
 
 class Question(ABC, Generic[QuestionValue]):
@@ -679,7 +684,7 @@ def get_answers(
         if isinstance(interaction, (Echo, Acknowledge)):
             if interaction.should_ask(result):
                 interaction.display(result)
-        elif isinstance(interaction, Question):
+        elif _is_question(interaction):
             if interaction.should_ask(result):
                 result[interaction.name] = interaction.ask(result, no_user_input)
             elif interaction.value_if_not_asked is not None:
@@ -690,6 +695,13 @@ def get_answers(
             raise ValueError(f"Unsupported interaction type: {type(interaction)}")
 
     return result
+
+
+def _is_question(
+    value: Union[Question[QuestionValue], object]
+) -> TypeGuard[Question[QuestionValue]]:
+    # preserve generic type information
+    return isinstance(value, Question)
 
 
 def _validate_value_if_not_asked(
