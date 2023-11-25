@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: "Install hatch"
-      run: pip install -r requirements-boostrap.txt
+      run: pip install -r requirements-bootstrap.txt
       shell: "bash"
     - name: "Create environment"
       run: "hatch env create ${{ inputs.environment-name }}"
