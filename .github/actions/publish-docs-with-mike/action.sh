@@ -2,6 +2,8 @@
 
 set -eo pipefail
 
+hatch -e docs shell
+
 echo "::group::Configure Git User"
 "${GITHUB_ACTION_PATH}/configure_git_user.sh"
 echo "::endgroup::"
