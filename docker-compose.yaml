@@ -21,12 +21,12 @@ services:
   # - black & isort will format code to address issues
   test:
     <<: *devbox
-    command: docker/run_tests.sh --format-code
+    command: ["hatch", "run", "check"]
 
   # test the documentation examples to make sure they can be run with Python
   validateDocExamples:
     <<: *devbox
-    command: docker/validate_docs.sh
+    command: ["hatch", "run", "test-docs-examples"]
 
   # generate and serve the project documentation locally
   mkdocs: &mkdocs
@@ -34,8 +34,8 @@ services:
     entrypoint: "mkdocs"
     ports:
       - "8000:8000"
-    command: ["serve", "--dev-addr=0.0.0.0:8000"]
+    command: ["hatch", "run", "docs:serve"]
 
   mike:
     <<: [*mkdocs, *mount-app-and-user-git-config]
-    entrypoint: "mike"
+    entrypoint: ["hatch", "run", "docs:mike"]

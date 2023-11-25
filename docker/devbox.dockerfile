@@ -20,9 +20,14 @@ RUN mkdir /app && chown ${UID}:${GID} /app
 
 USER ${_USER}
 
-COPY --chown=${UID}:${GID} ./requirements*.txt /app/
+COPY --chown=${UID}:${GID} ./requirements-bootstrap.txt ./pyproject.toml /app/
 WORKDIR /app
 
-RUN pip install -r requirements.txt -r requirements-test.txt -r requirements-docs.txt
+RUN pip install -r requirements-bootstrap.txt
+
+COPY --chown=${UID}:${GID} . /app/
+RUN hatch --verbose env create && \
+    hatch --verbose env create bump && \
+    hatch --verbose env create docs
 
 CMD bash
