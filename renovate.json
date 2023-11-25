@@ -10,7 +10,7 @@
     "docker-compose",
     "github-actions",
     "pip_requirements",
-    "setup-cfg"
+    "pep621"
   ],
 
    "schedule": [

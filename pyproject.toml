@@ -39,6 +39,81 @@ include = [
     "/columbo",
 ]
 
+# environment management & scripts
+[tool.hatch.envs.default]
+description = "Test and lint the project code"
+dependencies = [
+    "bandit==1.7.5",
+    "black==23.11.0",
+    "flake8==6.1.0",
+    "isort==5.12.0",
+    "mypy==1.7.0",
+    "pytest==7.4.3",
+    "pytest-cov==4.1.0",
+    "pytest-mock==3.12.0",
+    "pdbpp==0.10.3",
+]
+[tool.hatch.envs.default.scripts]
+test-no-cov = "pytest --no-cov {args}"
+test = "pytest --cov-report html {args}"
+test-ci = "pytest {args}"
+typing = "mypy"
+_fmt = [
+    "black --quiet .",
+    "isort .",
+]
+black-check = "black --check --diff ."
+isort-check = "isort --check-only ."
+flake8-check = "flake8"
+bandit-check = "bandit --ini .bandit --quiet -r ."
+check-strict = [
+    "black-check",
+    "isort-check",
+    "typing",
+    "test",
+    "flake8-check",
+    "bandit-check",
+]
+check = [
+    "_fmt",
+    "typing",
+    "test",
+    "flake8-check",
+    "bandit-check",
+]
+test-docs-examples = [
+    "./docker/validate_docs.sh"
+]
+
+[tool.hatch.envs.bump]
+description = "Release a new version"
+detached = true
+dependencies = [
+    "hyper-bump-it==0.5.2"
+]
+[tool.hatch.envs.bump.scripts]
+it = "hyper-bump-it {args}"
+
+[tool.hatch.envs.docs]
+description = "Generate documentaiton for the project"
+dependencies = [
+    "mike==1.1.2",
+    # mike implicitly depends on pkg_resources from setuptools.
+    # It has been addressed as part of the work towards 2.0, but that has not been released yet
+    # https://github.com/jimporter/mike/issues/148
+    "setuptools==68.2.2",
+
+    "markdown-include==0.8.1",
+    "mkdocs==1.5.3",
+    "mkdocs-material==9.4.9",
+    "mkdocs-minify-plugin==0.7.1",
+    "mkdocs-redirects==1.2.1",
+    "mkdocstrings[python]==0.24.0",
+]
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --strict"
+serve = "mkdocs serve --dev-addr=0.0.0.0:8000"
+
 # type checking
 [tool.mypy]
 files = [
