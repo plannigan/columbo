@@ -12,5 +12,5 @@ runs:
       run: pip install -r requirements-bootstrap.txt
       shell: "bash"
     - name: "Create environment"
-      run: "hatch env create ${{ inputs.environment-name }}"
+      run: "hatch --verbose env create ${{ inputs.environment-name }}"
       shell: "bash"
