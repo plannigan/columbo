@@ -65,7 +65,8 @@ _fmt = [
 black-check = "black --check --diff ."
 isort-check = "isort --check-only ."
 flake8-check = "flake8"
-bandit-check = "bandit --ini .bandit --quiet -r ."
+bandit-ci = "bandit --ini .bandit -r ."
+bandit-check = "bandit-ci --quiet"
 check-strict = [
     "black-check",
     "isort-check",

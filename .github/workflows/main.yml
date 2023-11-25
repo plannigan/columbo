@@ -22,7 +22,7 @@ jobs:
         uses: ./.github/actions/initialize-hatch
 
       - name: Run bandit
-        run: hatch run bandit-check
+        run: hatch run bandit-ci
 
   black:
     runs-on: ubuntu-latest
