@@ -4,6 +4,9 @@
 # this is set so that the script fails if one example fails to be executed properly
 set -e
 
+# install columbo
+pip install . -q
+
 for filename in docs/examples/*.py; do
     printf "\n\n --- %s ---\n" "${filename}"
     # provide default answers if example python file asks for input
