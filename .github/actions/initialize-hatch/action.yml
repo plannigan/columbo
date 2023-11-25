@@ -1,0 +1,16 @@
+name: "Initialize Hatch"
+description: "Install hatch & create an environment"
+inputs:
+  environment-name:
+    description: "Which environment to create"
+    default: "default"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: "Install hatch"
+      run: pip install -r requirements-bootstrap.txt
+      shell: "bash"
+    - name: "Create environment"
+      run: "hatch --verbose env create ${{ inputs.environment-name }}"
+      shell: "bash"
