@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-hatch -e docs shell
+source "$(hatch env find docs)/bin/activate"
 
 echo "::group::Configure Git User"
 "${GITHUB_ACTION_PATH}/configure_git_user.sh"
