@@ -102,7 +102,7 @@ dependencies = [
     # mike implicitly depends on pkg_resources from setuptools.
     # It has been addressed as part of the work towards 2.0, but that has not been released yet
     # https://github.com/jimporter/mike/issues/148
-    "setuptools==68.2.2",
+    "setuptools==69.0.2",
 
     "markdown-include==0.8.1",
     "mkdocs==1.5.3",
