@@ -98,7 +98,7 @@ it = "hyper-bump-it {args}"
 [tool.hatch.envs.docs]
 description = "Generate documentaiton for the project"
 dependencies = [
-    "mike==1.1.2",
+    "mike==2.0.0",
     # mike implicitly depends on pkg_resources from setuptools.
     # It has been addressed as part of the work towards 2.0, but that has not been released yet
     # https://github.com/jimporter/mike/issues/148
