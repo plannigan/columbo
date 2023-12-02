@@ -521,6 +521,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#project-environment-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project &amp; Environment management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project & Environment management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
     <span class="md-ellipsis">
       Docker
@@ -528,13 +547,9 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -549,9 +564,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stages" class="md-nav__link">
+  <a href="#writing-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      Stages
+      Writing Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linting-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linting Tools
     </span>
   </a>
   
@@ -582,9 +606,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
+      Dependencies
     </span>
   </a>
   
@@ -710,6 +734,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#project-environment-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project &amp; Environment management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project & Environment management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
     <span class="md-ellipsis">
       Docker
@@ -717,13 +760,9 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debugging
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -738,9 +777,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#stages" class="md-nav__link">
+  <a href="#writing-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      Stages
+      Writing Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linting-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linting Tools
     </span>
   </a>
   
@@ -771,9 +819,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#dependencies" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
+      Dependencies
     </span>
   </a>
   
@@ -871,40 +919,53 @@ structure and how to work with the code base.</p>
 <li>The <a href="https://github.com/plannigan/columbo/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li>The <a href="https://github.com/plannigan/columbo/blob/main/CONTRIBUTING.md">Contributing</a> guide</li>
 </ul>
-<h2 id="docker">Docker</h2>
-<p>The Columbo project uses Docker to ease setting up a consistent development environment. The Docker documentation has
-details on how to <a href="https://docs.docker.com/install/">install docker</a> on your computer.</p>
-<p>Once that is configured, the test suite can be run locally:</p>
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="nb">test</span>
-</code></pre></div>
-<p>If you want to be able to execute code in the container:</p>
+<h2 id="project-environment-management">Project &amp; Environment management</h2>
+<p>The Columbo project uses <a href="https://hatch.pypa.io/latest/">Hatch</a> to manage various aspects of the project's development life cycle. This
+includes: 
+* building the distributions
+* controlling python environments
+* executing common development tasks</p>
+<p><code>requirements-bootstrap.txt</code> can be used to install a version of <code>hatch</code> that is known to work with the project.</p>
+<h3 id="environments">Environments</h3>
+<p>There are three distinct environments that <code>hatch</code> manages:</p>
+<ul>
+<li><code>default</code>:  Testing or linting the project code</li>
+<li><code>docs</code>: Generating documentation for the project</li>
+<li><code>bump</code>: Releasing a new version of the library</li>
+</ul>
+<h3 id="docker">Docker</h3>
+<p>For those that wan to work in an even more consistent development environment, there is a Dockerfile that defines an
+images that is isolated from the host machine. The Docker documentation has details on how to
+<a href="https://docs.docker.com/install/">install docker</a> on your computer.</p>
+<p>Once that is configured, you will be able to execute code in the container:</p>
 <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>devbox
 <span class="o">(</span>your<span class="w"> </span>code<span class="w"> </span>here<span class="o">)</span>
 </code></pre></div>
-<p>In the devbox environment you'll be able to enter a python shell and import <code>columbo</code> or any dependencies.</p>
-<h2 id="debugging">Debugging</h2>
-<p>The docker container has <a href="https://github.com/pdbpp/pdbpp">pdb++</a> install that can be used as a debugger. (However, you are welcome to set up
-a different debugger if you would like.)</p>
-<p>This allows you to easily create a breakpoint anywhere in the code.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
-    <span class="nb">breakpoint</span><span class="p">()</span>
-    <span class="o">...</span>
-</code></pre></div>
-<p>When your the code, you will drop into an interactive <code>pdb++</code> debugger.</p>
-<p>See the documentation on <a href="https://docs.python.org/3/library/pdb.html">pdb</a> and <a href="https://github.com/pdbpp/pdbpp#usage">pdb++</a> for more information.</p>
-<h2 id="testing">Testing</h2>
-<p>You'll be unable to merge code unless the linting and tests pass. You can run these in your container via:</p>
+<p>The devbox container also utilizes <code>hatch</code> to manage the python environments. So you will be able to run the same
+scripts detailed below.</p>
+<p>the test suite can be run locally:</p>
 <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<h2 id="testing">Testing</h2>
+<p>You'll be unable to merge code unless the linting and tests pass. Therefore it is important to execute that
+functionality locally before pushing changes. This is so common, that it has a dedicated <code>hatch</code> scripts.</p>
+<div class="highlight"><pre><span></span><code>hatch<span class="w"> </span>run<span class="w"> </span>check
 </code></pre></div>
 <p>This will run the same tests, linting, and code coverage that are run by the CI pipeline. The only difference is that,
 when run locally, <code>black</code> and <code>isort</code> are configured to automatically correct issues they detect.</p>
+<div class="admonition tip implicit validators">
+<p class="admonition-title">Tip</p>
+<p>Since this is so common, there is also a shorthand for running this in the container</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>check
+</code></pre></div>
+</div>
+<h3 id="writing-tests">Writing Tests</h3>
 <p>Generally we should endeavor to write tests for every feature. Every new feature branch should increase the test
 coverage rather than decreasing it.</p>
 <p>We use <a href="https://docs.pytest.org/en/latest/">pytest</a> as our testing framework.</p>
-<h3 id="stages">Stages</h3>
-<p>To customize / override a specific testing stage, please read the documentation specific to that tool:</p>
+<h3 id="linting-tools">Linting Tools</h3>
+<p>To customize one of the linting tools, please read the documentation specific to that tool:</p>
 <ol>
-<li><a href="https://docs.pytest.org/en/latest/">PyTest</a></li>
 <li><a href="https://mypy.readthedocs.io/en/stable/">MyPy</a></li>
 <li><a href="https://black.readthedocs.io/en/stable/">Black</a></li>
 <li><a href="https://pycqa.github.io/isort/">Isort</a></li>
@@ -914,21 +975,24 @@ coverage rather than decreasing it.</p>
 <h2 id="validate-examples-used-in-documentation">Validate Examples Used in Documentation</h2>
 <p>In the <code>docs/examples/</code> directory of this repo, there are example Python scripts which we use in our documentation.
 You can validate that the examples run properly using:</p>
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>validateDocExamples
+<div class="highlight"><pre><span></span><code>hatch<span class="w"> </span>run<span class="w"> </span>test-docs-examples
 </code></pre></div>
 <p>If the script fails (exits with a non-zero status), it will output information about the file that we need to fix.</p>
-<p>Note that this script will output some content in the shell every time it runs.
-Just because the script outputs content to the shell does <em>not</em> mean it has failed;
-as long as the script finishes successfully (exits with a zero status), there are no problems we need to address.</p>
+<p>Note that this script will output some content in the shell every time it runs. Just because the script outputs content
+to the shell does <strong>not</strong> mean it has failed; as long as the script finishes successfully (exits with a zero status),
+there are no problems we need to address.</p>
 <h2 id="building-the-library">Building the Library</h2>
 <p><code>columbo</code> is <a href="https://www.python.org/dev/peps/pep-0517">PEP 517</a> compliant. <a href="https://pypa-build.readthedocs.io/">build</a> is used as the frontend tool for building the library.
-Setuptools is used as the build backend. <code>setup.cfg</code> contains the library metadata. A <code>setup.py</code> is also included to
-support an editable install.</p>
-<h3 id="requirements">Requirements</h3>
+<code>hatching</code> is used as the build backend. The libray metadata is defined in <code>pyproject.toml</code>.</p>
+<h3 id="dependencies">Dependencies</h3>
 <ul>
-<li><strong>requirements.txt</strong> - Lists all direct dependencies (packages imported by the library).</li>
-<li><strong>requirements-test.txt</strong> - Lists all direct dependencies needed for development. This primarily covers dependencies
-  needed to run the test suite &amp; lints.</li>
+<li><strong>Direct Library Dependencies</strong> - These are packages imported by the library. They are specified under
+    <code>project.dependencies</code> in <code>pyproject.toml</code>. These should be version ranges that specify the minimum and maximum
+    version supported for each dependency. A conservative approach to maximum version is used that disallows the next
+    major version so that an incompatible version of a direct dependency will not be considered valid. </li>
+<li><strong>Direct Development Dependencies</strong> - These all direct dependencies needed for development. This things like
+    non-library dependencies imported by tests, linting tools, and documentation tools. They are specified in
+    <code>pyproject.toml</code> under the specific <code>hatch</code> environment. </li>
 </ul>
 <h2 id="publishing-a-new-version">Publishing a New Version</h2>
 <p>Once the package is ready to be released, there are a few things that need to be done:</p>
@@ -936,8 +1000,8 @@ support an editable install.</p>
 <li>Start with a local clone of the repo on the default branch with a clean working tree.</li>
 <li>Have an environment configured for Python 3.9 or later.</li>
 <li>
-<p>Perform the version bump part name (<code>major</code>, <code>minor</code>, or <code>patch</code>).
-    Example: <code>hyperb-bump-it by minor</code></p>
+<p>Perform the version bump part name (<code>major</code>, <code>minor</code>, or <code>patch</code>).</p>
+<p>Example: <code>hatch run bump:it by minor</code></p>
 <p>This wil create a new branch, updates all affected files with the new version, commit the changes to the branch, and 
 push the branch.</p>
 </li>
@@ -953,7 +1017,7 @@ release will trigger a GitHub Action that will to build a wheel &amp; a source d
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The action that uploads the files to PyPI will not run until a repository maintainer acknowledges that the job is
-ready to run. This is to keep the PyPI publishing token secure. Otherwise, any job would have access to the token. </p>
+ready to run. This additional layer of manual action ensures that distribution are not unintentionally published. </p>
 </div>
 <p>In addition to uploading the files to PyPI, the documentation website will be updated to include the new version. If the
 new version is a full release, it will be made the new <code>latest</code> version.</p>
