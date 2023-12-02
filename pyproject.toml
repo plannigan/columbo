@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "columbo"
-version = "0.13.0"
+version = "0.14.0"
 description = "Specify a dynamic set of questions to ask a user and get their answers."
 readme = "README.md"
 license = {text = "MIT"}
