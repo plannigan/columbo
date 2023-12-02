@@ -96,7 +96,7 @@ dependencies = [
 it = "hyper-bump-it {args}"
 
 [tool.hatch.envs.docs]
-description = "Generate documentaiton for the project"
+description = "Generate documentation for the project"
 dependencies = [
     "mike==2.0.0",
     "markdown-include==0.8.1",

@@ -19,7 +19,7 @@ services:
 
   # run all the tests and linting locally
   # - black & isort will format code to address issues
-  test:
+  check:
     <<: *devbox
     command: ["hatch", "run", "check"]
 
