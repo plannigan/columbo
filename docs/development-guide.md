@@ -9,67 +9,83 @@ Before you dive into this, it is best to read:
 * The [Code of Conduct][code of conduct]
 * The [Contributing][contributing] guide
 
-## Docker
+## Project & Environment management
 
-The Columbo project uses Docker to ease setting up a consistent development environment. The Docker documentation has
-details on how to [install docker][install-docker] on your computer.
+The Columbo project uses [Hatch][hatch] to manage various aspects of the project's development life cycle. This
+includes: 
+* building the distributions
+* controlling python environments
+* executing common development tasks
 
-Once that is configured, the test suite can be run locally:
+`requirements-bootstrap.txt` can be used to install a version of `hatch` that is known to work with the project.
 
-```bash
-docker-compose run --rm test
-```
+### Environments
 
-If you want to be able to execute code in the container:
+There are three distinct environments that `hatch` manages:
+
+* `default`:  Testing or linting the project code
+* `docs`: Generating documentation for the project
+* `bump`: Releasing a new version of the library
+
+
+### Docker
+
+For those that wan to work in an even more consistent development environment, there is a Dockerfile that defines an
+images that is isolated from the host machine. The Docker documentation has details on how to
+[install docker][install-docker] on your computer.
+
+Once that is configured, you will be able to execute code in the container:
 
 ```bash
 docker-compose run --rm devbox
 (your code here)
 ```
 
-In the devbox environment you'll be able to enter a python shell and import `columbo` or any dependencies.
+The devbox container also utilizes `hatch` to manage the python environments. So you will be able to run the same
+scripts detailed below.
 
-## Debugging
 
-The docker container has [pdb++][pdbpp-home] install that can be used as a debugger. (However, you are welcome to set up
-a different debugger if you would like.)
 
-This allows you to easily create a breakpoint anywhere in the code.
-
-```python
-def my_function():
-    breakpoint()
-    ...
-```
-
-When your the code, you will drop into an interactive `pdb++` debugger.
-
-See the documentation on [pdb][pdb-docs] and [pdb++][pdbpp-docs] for more information.
-
-## Testing
-
-You'll be unable to merge code unless the linting and tests pass. You can run these in your container via:
+the test suite can be run locally:
 
 ```bash
 docker-compose run --rm test
 ```
 
+
+## Testing
+
+You'll be unable to merge code unless the linting and tests pass. Therefore it is important to execute that
+functionality locally before pushing changes. This is so common, that it has a dedicated `hatch` scripts.
+
+```bash
+hatch run check
+```
+
 This will run the same tests, linting, and code coverage that are run by the CI pipeline. The only difference is that,
 when run locally, `black` and `isort` are configured to automatically correct issues they detect.
+
+!!! tip Implicit Validators
+    Since this is so common, there is also a shorthand for running this in the container
+
+    ```bash
+    docker-compose run --rm check
+    ```
+
+### Writing Tests
 
 Generally we should endeavor to write tests for every feature. Every new feature branch should increase the test
 coverage rather than decreasing it.
 
 We use [pytest][pytest-docs] as our testing framework.
 
-### Stages
+### Linting Tools
 
-To customize / override a specific testing stage, please read the documentation specific to that tool:
+To customize one of the linting tools, please read the documentation specific to that tool:
 
-1. [PyTest][pytest-docs]
-2. [MyPy][mypy-docs]
-3. [Black][black-docs]
-4. [Isort][isort-docs]
+1. [MyPy][mypy-docs]
+2. [Black][black-docs]
+3. [Isort][isort-docs]
 4. [Flake8][flake8-docs]
 5. [Bandit][bandit-docs]
 
@@ -79,26 +95,29 @@ In the `docs/examples/` directory of this repo, there are example Python scripts
 You can validate that the examples run properly using:
 
 ```bash
-docker-compose run --rm validateDocExamples
+hatch run test-docs-examples
 ```
 
 If the script fails (exits with a non-zero status), it will output information about the file that we need to fix.
 
-Note that this script will output some content in the shell every time it runs.
-Just because the script outputs content to the shell does *not* mean it has failed;
-as long as the script finishes successfully (exits with a zero status), there are no problems we need to address.
+Note that this script will output some content in the shell every time it runs. Just because the script outputs content
+to the shell does **not** mean it has failed; as long as the script finishes successfully (exits with a zero status),
+there are no problems we need to address.
 
 ## Building the Library
 
 `columbo` is [PEP 517][pep-517] compliant. [build][build] is used as the frontend tool for building the library.
-Setuptools is used as the build backend. `setup.cfg` contains the library metadata. A `setup.py` is also included to
-support an editable install.
+`hatching` is used as the build backend. The libray metadata is defined in `pyproject.toml`.
 
-### Requirements
+### Dependencies
 
-* **requirements.txt** - Lists all direct dependencies (packages imported by the library).
-* **requirements-test.txt** - Lists all direct dependencies needed for development. This primarily covers dependencies
-  needed to run the test suite & lints.
+* **Direct Library Dependencies** - These are packages imported by the library. They are specified under
+    `project.dependencies` in `pyproject.toml`. These should be version ranges that specify the minimum and maximum
+    version supported for each dependency. A conservative approach to maximum version is used that disallows the next
+    major version so that an incompatible version of a direct dependency will not be considered valid. 
+* **Direct Development Dependencies** - These all direct dependencies needed for development. This things like
+    non-library dependencies imported by tests, linting tools, and documentation tools. They are specified in
+    `pyproject.toml` under the specific `hatch` environment. 
 
 ## Publishing a New Version
 
@@ -107,7 +126,8 @@ Once the package is ready to be released, there are a few things that need to be
 1. Start with a local clone of the repo on the default branch with a clean working tree.
 2. Have an environment configured for Python 3.9 or later.
 3. Perform the version bump part name (`major`, `minor`, or `patch`).
-    Example: `hyperb-bump-it by minor`
+
+    Example: `hatch run bump:it by minor`
     
     This wil create a new branch, updates all affected files with the new version, commit the changes to the branch, and 
     push the branch.
@@ -122,7 +142,7 @@ release will trigger a GitHub Action that will to build a wheel & a source distr
 
 !!! warning
     The action that uploads the files to PyPI will not run until a repository maintainer acknowledges that the job is
-    ready to run. This is to keep the PyPI publishing token secure. Otherwise, any job would have access to the token. 
+    ready to run. This additional layer of manual action ensures that distribution are not unintentionally published. 
 
 In addition to uploading the files to PyPI, the documentation website will be updated to include the new version. If the
 new version is a full release, it will be made the new `latest` version.
@@ -170,6 +190,7 @@ The remaining jobs are all related to documentation.
 [usage-guide]: usage-guide/fundamentals.md
 [code of conduct]: https://github.com/plannigan/columbo/blob/main/CODE_OF_CONDUCT.md
 [contributing]: https://github.com/plannigan/columbo/blob/main/CONTRIBUTING.md
+[hatch]: https://hatch.pypa.io/latest/
 [install-docker]: https://docs.docker.com/install/
 [pdbpp-home]: https://github.com/pdbpp/pdbpp
 [pdb-docs]: https://docs.python.org/3/library/pdb.html
