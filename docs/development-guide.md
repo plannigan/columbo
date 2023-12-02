@@ -12,7 +12,8 @@ Before you dive into this, it is best to read:
 ## Project & Environment management
 
 The Columbo project uses [Hatch][hatch] to manage various aspects of the project's development life cycle. This
-includes: 
+includes:
+
 * building the distributions
 * controlling python environments
 * executing common development tasks
