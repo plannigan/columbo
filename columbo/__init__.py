@@ -28,6 +28,6 @@ from columbo._types import ValidationResponse as ValidationResponse  # noqa: F40
 from columbo._types import ValidationSuccess as ValidationSuccess  # noqa: F401
 from columbo._types import Validator as Validator  # noqa: F401
 
-__version__ = "0.13.0.post1"
+__version__ = "0.14.0"
 __author__ = "Patrick Lannigan <p.lannigan@gmail.com>"
 __all__ = []  # type: ignore
