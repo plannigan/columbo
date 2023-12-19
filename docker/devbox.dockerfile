@@ -1,4 +1,4 @@
-FROM python:3.12-bookworm
+FROM python:3.12-bookworm@sha256:8c284a84bc273b858725193c1ea53192aa8cad6ca0ce3fd90b4abcfcd3cef915
 
 ARG _USER="columbo"
 ARG _UID="1000"
