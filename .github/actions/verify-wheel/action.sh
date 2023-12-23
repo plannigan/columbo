@@ -4,7 +4,7 @@ MODULE_NAME=$1
 WHEEL_LOCATION=$2
 
 echo "Ensuring pip is up to date"
-python -m pip install --upgrade pip
+python -m pip install --upgrade pip==23.3.2
 
 APP_DIR=$(pwd)
 
@@ -12,7 +12,7 @@ APP_DIR=$(pwd)
 cd /
 echo "------------------"
 echo "Installing package"
-pip install ${APP_DIR}/${WHEEL_LOCATION}/*.whl
+pip install "${APP_DIR}"/"${WHEEL_LOCATION}"/*.whl
 
 echo "-----------------------------"
 echo "Attempting to import package"
