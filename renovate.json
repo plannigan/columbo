@@ -17,10 +17,16 @@
     "before 4am"
   ],
 
-  "pip_requirements": {
-    "fileMatch": [
-      "(^|/)([\\w-]*)requirements[-\\w]*\\.(txt|pip)$",
-      "\\.github\\/actions\\/[\\w-]+\\/[\\w-]+\\.sh"
-    ]
-  }
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "pypi",
+      "fileMatch": [
+        "\\.github\\/actions\\/[\\w-]+\\/[\\w-]+\\.sh"
+      ],
+      "matchStrings": [
+        "pip\\s+install(\\s+--upgrade)?\\s+(?<depName>[^\\s]+?)==(?<currentValue>.+?)\\s"
+      ]
+    }
+  ]
 }
