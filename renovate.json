@@ -20,12 +20,12 @@
     "before 4am"
   ],
 
-  "regexManagers": [
+  "customManagers": [
     {
       "customType": "regex",
       "datasourceTemplate": "pypi",
       "fileMatch": [
-        "\\.github\\/actions\\/[\\w-]+\\/[\\w-]+\\.sh"
+        "\\.github/(?:workflows|actions)/.+\\.sh"
       ],
       "matchStrings": [
         "pip\\s+install(\\s+--upgrade)?\\s+(?<depName>[^\\s]+?)==(?<currentValue>.+?)\\s"
