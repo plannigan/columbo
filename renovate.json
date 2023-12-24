@@ -23,7 +23,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["\\.github/(?:workflows|actions)/.+\\.sh"],
+      "fileMatch": ["\\.github\/(?:workflows|actions)\/.+\\.sh"],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "pip\\s+install(\\s+--upgrade)?\\s+(?<depName>[^\\s]+?)==(?<currentValue>.+?)\\s"
