@@ -20,7 +20,7 @@
     "before 4am"
   ],
 
-  "customManagers": [
+  "regexManagers": [
     {
       "customType": "regex",
       "datasourceTemplate": "pypi",
