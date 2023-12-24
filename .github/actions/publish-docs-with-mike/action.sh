@@ -2,6 +2,7 @@
 
 set -eo pipefail
 
+python -m pip install --upgrade pip==23.3.2
 echo "::group::Configure Git User"
 "${GITHUB_ACTION_PATH}/configure_git_user.sh"
 echo "::endgroup::"
