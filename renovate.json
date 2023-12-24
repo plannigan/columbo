@@ -20,7 +20,7 @@
   "pip_requirements": {
     "fileMatch": [
       "(^|/)([\\w-]*)requirements[-\\w]*\\.(txt|pip)$",
-      "\\.github\\/[\\w\\/]*.*\\.sh"
+      "\\.github\\/actions\\/[\\w-]+\\/[\\w-]+\\.sh"
     ]
   }
 }
