@@ -8,15 +8,30 @@
     "config:recommended",
     "helpers:pinGitHubActionDigests"
   ],
-   
-   "enabledManagers": [
+
+  "enabledManagers": [
     "docker-compose",
     "github-actions",
     "pip_requirements",
-    "pep621"
+    "pep621",
+    "custom.regex"
   ],
 
    "schedule": [
     "before 4am"
+  ],
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "\\.github\/(?:workflows|actions)\/.+\\.sh"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "pip\\s+install(\\s+--upgrade)?\\s+(?<depName>[^\\s]+?)==(?<currentValue>.+?)\\s"
+      ],
+      "datasourceTemplate": "pypi"
+    }
   ]
 }
