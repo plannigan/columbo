@@ -13,7 +13,8 @@
     "docker-compose",
     "github-actions",
     "pip_requirements",
-    "pep621"
+    "pep621",
+    "regex"
   ],
 
    "schedule": [
