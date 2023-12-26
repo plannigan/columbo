@@ -14,7 +14,7 @@
     "github-actions",
     "pip_requirements",
     "pep621",
-    "regex"
+    "custom.regex"
   ],
 
    "schedule": [
