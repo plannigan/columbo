@@ -27,7 +27,6 @@ If applicable, add output from `columbo` (text is preferred over screenshots).
  - `columbo` Version [e.g. 0.5.2]
  - OS: [e.g. Linux]
  - Python Version [e.g. 3.11.1]
- - Git Version [e.g. 2.39.0]
 
 **Additional context**
 Add any other context about the problem here.
