@@ -182,3 +182,8 @@ search_format_pattern = "## [Unreleased]"
 replace_format_pattern = """## [Unreleased]
 
 ## [{version}] - {today}"""
+
+[[tool.hyper-bump-it.files]]
+file_glob = ".github/ISSUE_TEMPLATE/bug_report.md"
+search_format_pattern = "`columbo` Version [e.g. {version}]"
+

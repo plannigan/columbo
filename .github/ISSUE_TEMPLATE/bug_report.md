@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add output from `columbo` (text is preferred over screenshots).
 
 **Environment information:**
- - `columbo` Version [e.g. 0.5.2]
+ - `columbo` Version [e.g. 0.14.0]
  - OS: [e.g. Linux]
  - Python Version [e.g. 3.11.1]
 
