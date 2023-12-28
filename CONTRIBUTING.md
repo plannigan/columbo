@@ -1,13 +1,17 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue before making a change. 
+The short version appears here. However, please review the [development guide][dev-guide] for
+more details on expectation and how to work with the project.
 
-Please note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
+* Follow the [code of conduct][code-of-conduct] in all your interactions with the project.
+* Discuss any intended change by creating a new issue or commenting on an existing issue before
+    creating a pull request.
+* Ensure the CI pipeline and all checks are passing.
+* Significant changes should update the documentation.
+* Include an entry to the [CHANGELOG][changelog].
 
-## Pull Request Process
+Pull requests can be merged by a maintainer once it has approvals of a maintainer.
 
-1. Ensure the CI pipeline and all checks are passing.
-2. Update documentation with details of changes.
-3. Add an entry to the [change log](CHANGELOG.md).
-4. You may merge the Pull Request in once it has approvals of two other developers. If you do not have permission to do
-    that, you may request the second reviewer to merge it for you.
+[dev-guide]: https://plannigan.github.io/columbo/latest/development-guide/
+[code-of-conduct]: CODE_OF_CONDUCT.md
+[changelog]: CHANGELOG.md
