@@ -1,3 +1,3 @@
 # The project dependencies & environments are managed by hatch.
 # This requirements file can be used to do the initial install of hatch.
-hatch==1.9.1
+hatch==1.9.2
