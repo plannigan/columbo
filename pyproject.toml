@@ -137,8 +137,9 @@ disallow_untyped_defs = true
 
 # testing
 [tool.pytest.ini_options]
-addopts = "--verbose --cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
+addopts = "--cov=columbo --cov-report xml:/tmp/coverage.xml --cov-report term-missing"
 testpaths = ["tests"]
+verbosity_assertions = 2
 
 [tool.coverage.run]
 branch = true
