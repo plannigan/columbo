@@ -83,10 +83,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.11.0] - 2021-08-04
 
-### Changed
-
-- Removed legacy validator signature and logic
-
 ### Added
 
 - `value_if_not_asked` kwarg for `Question` interactions to set a value if the question is not asked ([#169](https://github.com/plannigan/columbo/pull/169))
@@ -96,6 +92,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 * `dataclasses` was not listed as a dependency for versions of Python < 3.7
+
+### Removed
+
+- Support for `Validator`s that return `Optional[str]`
 
 ## [0.10.0] - 2021-02-18
 
