@@ -3,10 +3,11 @@
 
   "baseBranches": ["main", "renovate-testing"],
   "useBaseBranchConfig": "merge",
-  
+
   "extends": [
     "config:recommended",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigests",
+    "schedule:earlyMondays"
   ],
 
   "enabledManagers": [
@@ -15,10 +16,6 @@
     "pip_requirements",
     "pep621",
     "custom.regex"
-  ],
-
-   "schedule": [
-    "before 4am"
   ],
 
   "customManagers": [
@@ -32,6 +29,16 @@
         "pip\\s+install(\\s+--upgrade)?\\s+(?<depName>[^\\s]+?)==(?<currentValue>.+?)\\s"
       ],
       "datasourceTemplate": "pypi"
+    }
+  ],
+
+  "packageRules": [
+    {
+      "groupName": "GitHub Upload/Download Artifacts",
+      "matchPackageNames": [
+        "actions/upload-artifact",
+        "actions/download-artifact"
+      ]
     }
   ]
 }
