@@ -90,7 +90,7 @@ test-docs-examples = [
 description = "Release a new version"
 detached = true
 dependencies = [
-    "hyper-bump-it==0.5.2"
+    "hyper-bump-it==0.5.3"
 ]
 [tool.hatch.envs.bump.scripts]
 it = "hyper-bump-it {args}"
