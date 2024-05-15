@@ -1419,21 +1419,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.Acknowledge" class="doc doc-heading">
-          <code>Acknowledge</code>
+            <code>Acknowledge</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="columbo._interaction.Displayable">Displayable</span></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="columbo._interaction.Displayable">Displayable</span></code></p>
 
-  
+
       <p>Display a message to the user and require the user to press ENTER to continue.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1445,240 +1445,229 @@ documented here for completeness.</p>
 
 
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Acknowledge.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize an instance.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the message is displayed to the user. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the message is displayed to the user. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Acknowledge.copy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create a new instance like this one, potentially with different values.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the message is displayed. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the message is displayed. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="columbo._interaction.Acknowledge" href="#columbo.Acknowledge">Acknowledge</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A newly constructed instance with the given values in place of the values of this instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="columbo._interaction.Acknowledge" href="#columbo.Acknowledge">Acknowledge</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A newly constructed instance with the given values in place of the values of this instance.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Acknowledge.display" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Display a message to the user and require the user to press ENTER to continue</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code> the message will be displayed without waiting for the user to interact. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> the message will be displayed without waiting for the user to interact. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value for <code>message</code> did not have the correct type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value for <code>message</code> did not have the correct type.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
@@ -1686,8 +1675,7 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -1696,21 +1684,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.BasicQuestion" class="doc doc-heading">
-          <code>BasicQuestion</code>
+            <code>BasicQuestion</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[str]</code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[str]</code></p>
 
-  
+
       <p>A question with an arbitrary text answer.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1722,539 +1710,521 @@ documented here for completeness.</p>
 
 
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.BasicQuestion.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize an instance.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>default</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>validator</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.Validator">Validator</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Callable that will validate the response given by the user. A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>default</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>validator</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.Validator">Validator</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Callable that will validate the response given by the user. A ValidationSuccess object indicates success and a ValidationFailure object indicates failure.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.BasicQuestion.ask" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Prompt the user with this question.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answer to the question.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answer to the question.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Default value did not satisfy the validator. Or the instance was misconfigured in some way.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Default value did not satisfy the validator. Or the instance was misconfigured in some way.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.BasicQuestion.copy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">validator</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create a new instance like this one, potentially with different values.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>default</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>validator</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.Validator">Validator</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>default</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>validator</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.Validator">Validator</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Callable that will validate the response given by the user. None indicates that validation was successful. Otherwise, a string containing details of the error that caused the validation failure.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="columbo._interaction.BasicQuestion" href="#columbo.BasicQuestion">BasicQuestion</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A newly constructed instance with the given values in place of the values of this instance.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="columbo._interaction.BasicQuestion" href="#columbo.BasicQuestion">BasicQuestion</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A newly constructed instance with the given values in place of the values of this instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.BasicQuestion.validate" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Validate the value (a new answer).</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>value</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="columbo._types.ValidationResponse">ValidationResponse</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A ValidationFailure or ValidationSuccess object.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="columbo._types.ValidationResponse">ValidationResponse</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A ValidationFailure or ValidationSuccess object.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value for <code>validator</code> was not a callable.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value for <code>validator</code> was not a callable.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
@@ -2262,8 +2232,7 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2272,21 +2241,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.Choice" class="doc doc-heading">
-          <code>Choice</code>
+            <code>Choice</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[str]</code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[str]</code></p>
 
-  
+
       <p>A question with a set of possible answers.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2298,539 +2267,521 @@ documented here for completeness.</p>
 
 
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Choice.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize an instance.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>options</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.Options">Options</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far. If the value is a <code>Mapping</code>, the values of the mapping will be displayed to the user &amp; the respective key will be the returned value.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>default</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>options</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.Options">Options</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far. If the value is a <code>Mapping</code>, the values of the mapping will be displayed to the user &amp; the respective key will be the returned value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>default</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>. Or the given value for <code>value_if_not_asked</code> was not one of the options.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>. Or the given value for <code>value_if_not_asked</code> was not one of the options.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Choice.ask" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Prompt the user with this question.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answer to the question.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answer to the question.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The instance was misconfigured in some way.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The instance was misconfigured in some way.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Choice.copy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create a new instance like this one, potentially with different values.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>options</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.Options">Options</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>default</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>options</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[<span title="columbo._types.Options">Options</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The set of possible answers to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>default</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="columbo._interaction.Choice" href="#columbo.Choice">Choice</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A newly constructed instance with the given values in place of the values of this instance.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="columbo._interaction.Choice" href="#columbo.Choice">Choice</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A newly constructed instance with the given values in place of the values of this instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Choice.validate" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">answers</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Validate the value (a new answer).</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>value</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="columbo._types.ValidationResponse">ValidationResponse</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A ValidationFailure or ValidationSuccess object.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="columbo._types.ValidationResponse">ValidationResponse</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A ValidationFailure or ValidationSuccess object.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value for <code>options</code> did not have the correct type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value for <code>options</code> did not have the correct type.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
@@ -2838,8 +2789,7 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2848,21 +2798,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.Confirm" class="doc doc-heading">
-          <code>Confirm</code>
+            <code>Confirm</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[bool]</code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="columbo._interaction.Question" href="#columbo.Question">Question</a>[bool]</code></p>
 
-  
+
       <p>A question with a yes or no answer.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2874,400 +2824,387 @@ documented here for completeness.</p>
 
 
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Confirm.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize an instance.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>default</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[bool]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[bool]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>default</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[bool]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code> or the value for <code>value_if_not_asked</code> is not a <code>bool</code>.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code> or the value for <code>value_if_not_asked</code> is not a <code>bool</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Confirm.ask" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Prompt the user with this question.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answer to the question.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answer to the question.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The instance was misconfigured in some way.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The instance was misconfigured in some way.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Confirm.copy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create a new instance like this one, potentially with different values.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>default</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[bool]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[bool]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>default</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[bool]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The default answer to the question. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[bool]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="columbo._interaction.Confirm" href="#columbo.Confirm">Confirm</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A newly constructed instance with the given values in place of the values of this instance.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="columbo._interaction.Confirm" href="#columbo.Confirm">Confirm</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A newly constructed instance with the given values in place of the values of this instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3275,8 +3212,7 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3285,21 +3221,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.Echo" class="doc doc-heading">
-          <code>Echo</code>
+            <code>Echo</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="columbo._interaction.Displayable">Displayable</span></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="columbo._interaction.Displayable">Displayable</span></code></p>
 
-  
+
       <p>Display a message to the user.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -3311,240 +3247,229 @@ documented here for completeness.</p>
 
 
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Echo.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize an instance.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the message is displayed to the user. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the message is displayed to the user. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h4 id="columbo.Echo.copy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">copy</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="n">_NOT_GIVEN</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create a new instance like this one, potentially with different values.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the message is displayed. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="columbo._interaction.Possible">Possible</span>[<span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the message is displayed. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the message should be displayed.</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="columbo._interaction._NOT_GIVEN">_NOT_GIVEN</span></code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="columbo._interaction.Echo" href="#columbo.Echo">Echo</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A newly constructed instance with the given values in place of the values of this instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="columbo._interaction.Echo" href="#columbo.Echo">Echo</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A newly constructed instance with the given values in place of the values of this instance.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Echo.display" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">display</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Display a message to the user.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Has no effect because no user input is expected. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Has no effect because no user input is expected. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value for <code>message</code> did not have the correct type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value for <code>message</code> did not have the correct type.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
@@ -3552,8 +3477,7 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3562,21 +3486,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.Question" class="doc doc-heading">
-          <code>Question</code>
+            <code>Question</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="columbo._interaction.QuestionValue">QuestionValue</span>]</code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="columbo._interaction.QuestionValue">QuestionValue</span>]</code></p>
 
-  
+
       <p>Base class for a prompt to the user that produces an answer.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -3588,143 +3512,137 @@ documented here for completeness.</p>
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Question.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">cli_help</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">should_ask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value_if_not_asked</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize an instance.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The identifier that will be used as the key to access this question's answer.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>message</code></td>
-          <td>
-                <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>cli_help</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional help message to be displayed for command line interface.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>should_ask</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>value_if_not_asked</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._interaction.QuestionValue">QuestionValue</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The identifier that will be used as the key to access this question's answer.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>message</code></td>
+            <td>
+                  <code><span title="columbo._types.StaticOrDynamicValue">StaticOrDynamicValue</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The message to be displayed to the user. If the value is callable, the argument passed in will be the answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cli_help</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional help message to be displayed for command line interface.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>should_ask</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.ShouldAsk">ShouldAsk</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>None</code>, the question is asked. Otherwise, the callable will be passed the answers that have been provided this far and should return <code>True</code> if the question should be asked.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>value_if_not_asked</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._interaction.QuestionValue">QuestionValue</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If provided and if should_ask is being used, this value will be recorded as an answer if should_ask evaluates to False.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A value for <code>value_if_not_asked</code> was given without giving a value for <code>should_ask</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Question.ask" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">ask</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
   </span>
@@ -3732,176 +3650,169 @@ documented here for completeness.</p>
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Prompt the user with this question.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="columbo._types.Answer">Answer</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answer to the question.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="columbo._types.Answer">Answer</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answer to the question.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="columbo.Question.should_ask" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">should_ask</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">should_ask</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span></code>
 
 </h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Should the user be asked this question.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="columbo._types.Answers">Answers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The answers that have been provided this far.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="columbo._types.Answers">Answers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The answers that have been provided this far.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p><code>True</code> if this questions should be asked</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>True</code> if this questions should be asked</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value for <code>should_ask</code> did not have the correct type.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value for <code>should_ask</code> did not have the correct type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3909,424 +3820,409 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div><h2 id="functions">Functions</h2>
 
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h3 id="columbo.format_cli_help" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">format_cli_help</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">parser_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">format_cli_help</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">parser_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Produce CLI help text for a given set of interactions.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>interactions</code></td>
-          <td>
-                <code><span title="typing.Collection">Collection</span>[<span title="columbo._interaction.Interaction">Interaction</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Interactions that should be turned into CLI arguments.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>parser_name</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional name to be used in help text. If omitted, the name of the process will be used.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>interactions</code></td>
+            <td>
+                  <code><span title="typing.Collection">Collection</span>[<span title="columbo._interaction.Interaction">Interaction</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Interactions that should be turned into CLI arguments.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>parser_name</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional name to be used in help text. If omitted, the name of the process will be used.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>DuplicateQuestionNameException</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>One of the given questions attempted to reuse a name.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>One of the given <code>Interaction</code>s was not a valid type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>DuplicateQuestionNameException</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>One of the given questions attempted to reuse a name.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>One of the given <code>Interaction</code>s was not a valid type.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
 
-
 <div class="doc doc-object doc-function">
-
 
 
 <h3 id="columbo.get_answers" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">answers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_answers</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">answers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">no_user_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Iterates over collection of interactions, invoking interaction specific behavior.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>interactions</code></td>
-          <td>
-                <code><span title="typing.Collection">Collection</span>[<span title="columbo._interaction.Interaction">Interaction</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Collection of interactions to present the user with.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.Answers">Answers</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An initial dictionary of answers to start from.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>interactions</code></td>
+            <td>
+                  <code><span title="typing.Collection">Collection</span>[<span title="columbo._interaction.Interaction">Interaction</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Collection of interactions to present the user with.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.Answers">Answers</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An initial dictionary of answers to start from.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>no_user_input</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>no_user_input</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code> the default value for the question will be used without waiting for the user to provide an answer. Default: <code>False</code></p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="columbo._types.MutableAnswers">MutableAnswers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Dictionary of answers.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>DuplicateQuestionNameException</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>One of the given questions attempted to reuse a name. When a value is provided for <code>answers</code>, those are considered as well.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>One of the given <code>Interaction</code>s was not a valid type or was misconfigured in some way.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="columbo._types.MutableAnswers">MutableAnswers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Dictionary of answers.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>DuplicateQuestionNameException</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>One of the given questions attempted to reuse a name. When a value is provided for <code>answers</code>, those are considered as well.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>One of the given <code>Interaction</code>s was not a valid type or was misconfigured in some way.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="columbo.parse_args" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exit_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">answers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parser_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">parse_args</span><span class="p">(</span><span class="n">interactions</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exit_on_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">answers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parser_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Parse command line argument for the given interactions.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>interactions</code></td>
-          <td>
-                <code><span title="typing.Collection">Collection</span>[<span title="columbo._interaction.Interaction">Interaction</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Interactions that should be turned into CLI arguments.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>args</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Sequence">Sequence</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Arguments to parse. If <code>None</code>, <code>sys.argv</code> will be used.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>exit_on_error</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code>, print the CLI usage and exit the application. Otherwise, raise an exception with the error information.</p>
-            </div>
-          </td>
-          <td>
-                <code>True</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>answers</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.Answers">Answers</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An initial dictionary of answers to start from.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>parser_name</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Optional name to be used in error text. If omitted, the name of the process will be used.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>interactions</code></td>
+            <td>
+                  <code><span title="typing.Collection">Collection</span>[<span title="columbo._interaction.Interaction">Interaction</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Interactions that should be turned into CLI arguments.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>args</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Sequence">Sequence</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Arguments to parse. If <code>None</code>, <code>sys.argv</code> will be used.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>exit_on_error</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code>, print the CLI usage and exit the application. Otherwise, raise an exception with the error information.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>answers</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="columbo._types.Answers">Answers</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An initial dictionary of answers to start from.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>parser_name</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional name to be used in error text. If omitted, the name of the process will be used.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="columbo._types.MutableAnswers">MutableAnswers</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Answers based on the given arguments.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="columbo._types.MutableAnswers">MutableAnswers</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Answers based on the given arguments.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>SystemExit</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A value passed to CLI argument was not valid and <code>exit_on_error</code> was <code>True</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>CliException</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A value passed to CLI argument was not valid and <code>exit_on_error</code> was <code>False</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>DuplicateQuestionNameException</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>One of the given questions attempted to reuse a name. When a value is provided for <code>answers</code>, those are considered as well.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>One of the given <code>Interaction</code>s was not a valid type or was misconfigured in some way.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>SystemExit</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A value passed to CLI argument was not valid and <code>exit_on_error</code> was <code>True</code>.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>CliException</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A value passed to CLI argument was not valid and <code>exit_on_error</code> was <code>False</code>.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>DuplicateQuestionNameException</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>One of the given questions attempted to reuse a name. When a value is provided for <code>answers</code>, those are considered as well.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>One of the given <code>Interaction</code>s was not a valid type or was misconfigured in some way.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
+    </div>
 
 </div><h2 id="exceptions">Exceptions</h2>
 
@@ -4336,21 +4232,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.CliException" class="doc doc-heading">
-          <code>CliException</code>
+            <code>CliException</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._exception.ColumboException" href="#columbo.ColumboException">ColumboException</a></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="columbo._exception.ColumboException" href="#columbo.ColumboException">ColumboException</a></code></p>
 
-  
+
       <p>An error occurred while processing command line arguments.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -4366,8 +4262,7 @@ documented here for completeness.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -4376,22 +4271,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.ColumboException" class="doc doc-heading">
-          <code>ColumboException</code>
+            <code>ColumboException</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code>Exception</code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
 
-  
+
       <p>Base exception for exceptions raised by Columbo</p>
 
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -4400,22 +4294,21 @@ documented here for completeness.</p>
 
 
 <h3 id="columbo.DuplicateQuestionNameException" class="doc doc-heading">
-          <code>DuplicateQuestionNameException</code>
+            <code>DuplicateQuestionNameException</code>
 
 
 </h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="columbo._exception.ColumboException" href="#columbo.ColumboException">ColumboException</a></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="columbo._exception.ColumboException" href="#columbo.ColumboException">ColumboException</a></code></p>
 
-  
+
       <p>Multiple questions use the same name.</p>
 
 
-  </div>
-
+    </div>
 
 </div>
 
