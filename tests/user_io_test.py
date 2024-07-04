@@ -8,7 +8,7 @@ SOME_STRING = "hello"
 SOME_OTHER_STRING = "good-bye"
 
 
-def test_acknowledge__yes_user_input__default_value(mocker):
+def test_acknowledge__yes_user_input__prompt_called(mocker):
     mock_prompt = mocker.patch("prompt_toolkit.shortcuts.prompt")
 
     user_io.acknowledge("Some question?")
@@ -16,7 +16,7 @@ def test_acknowledge__yes_user_input__default_value(mocker):
     mock_prompt.assert_called_once_with("")
 
 
-def test_acknowledge__no_user_input__default_value(mocker):
+def test_acknowledge__no_user_input__prompt_not_called(mocker):
     mock_prompt = mocker.patch("prompt_toolkit.shortcuts.prompt")
 
     user_io.acknowledge("Some question?", no_user_input=True)
