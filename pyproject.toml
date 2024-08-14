@@ -45,7 +45,7 @@ description = "Test and lint the project code"
 dependencies = [
     "bandit==1.7.9",
     "black==24.8.0",
-    "flake8==7.1.0",
+    "flake8==7.1.1",
     "isort==5.13.2",
     "mypy==1.11.1",
     "pytest==8.3.2",
