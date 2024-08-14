@@ -87,7 +87,7 @@ images that is isolated from the host machine. The Docker documentation has deta
 Once that is configured, it is possible to execute code in the container:
 
 ```bash
-docker-compose run --rm devbox
+docker compose run --rm devbox
 (custom code here)
 ```
 
@@ -110,7 +110,7 @@ when run locally, `black` and `isort` are configured to automatically correct is
     Since this is so common, there is also a shorthand for running this in the container
 
     ```bash
-    docker-compose run --rm check
+    docker compose run --rm check
     ```
 
 ### Writing Tests
