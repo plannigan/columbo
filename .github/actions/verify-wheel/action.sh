@@ -4,7 +4,7 @@ MODULE_NAME=$1
 WHEEL_LOCATION=$2
 
 echo "Ensuring pip is up to date"
-python -m pip install --upgrade pip==24.2
+python -m pip install --upgrade pip==24.3
 
 APP_DIR=$(pwd)
 
