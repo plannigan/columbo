@@ -1,4 +1,4 @@
-name: Caching Packages Dependencies
+name: Python CI
 
 on: [push, pull_request]
 
@@ -18,7 +18,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.cache/pypoetry  # or change based on the tool you use
+          path: ~/.cache/pypoetry
           key: ${{ runner.os }}-python-${{ hashFiles('**/pyproject.toml') }}
           restore-keys: |
             ${{ runner.os }}-python-
@@ -26,7 +26,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install hatch
-          hatch env create  # creates the virtual environment and installs dependencies
+          hatch env create
 
       - name: Run tests
         run: hatch run test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}  
