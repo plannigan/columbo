@@ -32,6 +32,11 @@ jobs:
       - name: Run bandit
         run: hatch run bandit-ci
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@4fe5e9b96fb9e0c318c1b94e23ae36368e3c6c07 # v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   flake8:
     runs-on: ubuntu-latest
     steps:
@@ -54,6 +59,11 @@ jobs:
 
       - name: Run flake8
         run: hatch run flake8-check
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@4fe5e9b96fb9e0c318c1b94e23ae36368e3c6c07 # v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   isort:
     runs-on: ubuntu-latest
@@ -78,6 +88,11 @@ jobs:
       - name: Run isort
         run: hatch run isort-check
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@4fe5e9b96fb9e0c318c1b94e23ae36368e3c6c07 # v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   mypy:
     runs-on: ubuntu-latest
     steps:
@@ -101,6 +116,11 @@ jobs:
       - name: Run mypy
         run: hatch run mypy-check
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@4fe5e9b96fb9e0c318c1b94e23ae36368e3c6c07 # v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
   renovate:
     runs-on: ubuntu-latest
     steps:
@@ -123,3 +143,8 @@ jobs:
 
       - name: Run renovate
         run: hatch run renovate-check
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@4fe5e9b96fb9e0c318c1b94e23ae36368e3c6c07 # v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
