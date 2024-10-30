@@ -1,37 +1,125 @@
 name: Python CI
 
-on: [push, pull_request]
+on:
+  pull_request: {}
+  push:
+    branches: ["main"]
+
+env:
+  PYTHON_VERSION: "3.12"
 
 jobs:
-  build:
+  bandit:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Cache Hatch dependencies
+        uses: actions/cache@b7c1be3642e46bf76d47072db3a4a1c330a8db62 # v3.3.2
+        with:
+          path: ~/.cache/hatch
+          key: ${{ runner.os }}-hatch-${{ hashFiles('**/*.toml') }}
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
-          python-version: '3.9'
+          python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
+      - name: Initialize Hatch
+        uses: ./.github/actions/initialize-hatch
+
+      - name: Run bandit
+        run: hatch run bandit-ci
+
+  flake8:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Cache Hatch dependencies
+        uses: actions/cache@b7c1be3642e46bf76d47072db3a4a1c330a8db62 # v3.3.2
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-python-${{ hashFiles('**/pyproject.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-python-
+          path: ~/.cache/hatch
+          key: ${{ runner.os }}-hatch-${{ hashFiles('**/*.toml') }}
 
-      - name: Install dependencies
-        run: |
-          pip install hatch
-          hatch env create
-
-      - name: Run tests
-        run: hatch run test
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}  
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Initialize Hatch
+        uses: ./.github/actions/initialize-hatch
+
+      - name: Run flake8
+        run: hatch run flake8-check
+
+  isort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Cache Hatch dependencies
+        uses: actions/cache@b7c1be3642e46bf76d47072db3a4a1c330a8db62 # v3.3.2
+        with:
+          path: ~/.cache/hatch
+          key: ${{ runner.os }}-hatch-${{ hashFiles('**/*.toml') }}
+
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Initialize Hatch
+        uses: ./.github/actions/initialize-hatch
+
+      - name: Run isort
+        run: hatch run isort-check
+
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Cache Hatch dependencies
+        uses: actions/cache@b7c1be3642e46bf76d47072db3a4a1c330a8db62 # v3.3.2
+        with:
+          path: ~/.cache/hatch
+          key: ${{ runner.os }}-hatch-${{ hashFiles('**/*.toml') }}
+
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Initialize Hatch
+        uses: ./.github/actions/initialize-hatch
+
+      - name: Run mypy
+        run: hatch run mypy-check
+
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Cache Hatch dependencies
+        uses: actions/cache@b7c1be3642e46bf76d47072db3a4a1c330a8db62 # v3.3.2
+        with:
+          path: ~/.cache/hatch
+          key: ${{ runner.os }}-hatch-${{ hashFiles('**/*.toml') }}
+
+      - name: Set up Python
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Initialize Hatch
+        uses: ./.github/actions/initialize-hatch
+
+      - name: Run renovate
+        run: hatch run renovate-check
