@@ -47,7 +47,7 @@ dependencies = [
     "black==24.10.0",
     "flake8==7.1.1",
     "isort==5.13.2",
-    "mypy==1.14.0",
+    "mypy==1.14.1",
     "pytest==8.3.4",
     "pytest-cov==6.0.0",
     "pytest-mock==3.14.0",
