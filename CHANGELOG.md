@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Support for Python version `3.8`.
 
+ ### Internal
+- 
+- Use license expression metadata ([PEP 639][pep-639])
+
 ## [0.14.0] - 2023-12-02
 
 ### Added
@@ -225,5 +229,6 @@ First public release. No code changes from v0.8.0.
 
 Initial Release
 
+[pep-639]: https://peps.python.org/pep-0639/
 [trusted-publishers]: https://docs.pypi.org/trusted-publishers/
 [hatch]: https://hatch.pypa.io/latest/

@@ -7,14 +7,13 @@ name = "columbo"
 version = "0.14.0"
 description = "Specify a dynamic set of questions to ask a user and get their answers."
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 requires-python = ">=3.9"
 authors = [
     { name = "Patrick Lannigan", email = "p.lannigan@gmail.com" },
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
