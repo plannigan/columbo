@@ -721,10 +721,10 @@ skipped question. If you want a skipped question to have a specific answer when 
 <h3 id="optional-questions">Optional Questions</h3>
 <p>The following is a basic example that has two optional questions that are not asked based on the answer to the first
 question. It also has an optional message that is only displayed based on the answer to the first question.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">columbo</span>
 
 
-<span class="k">def</span> <span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
 
 
@@ -761,10 +761,10 @@ question. It also has an optional message that is only displayed based on the an
 The next section shows how to provide an answer for a skipped question.</p>
 <h4 id="providing-an-answer-for-skipped-questions">Providing an Answer for Skipped Questions</h4>
 <p>To provide a specific answer used when a user skips a question, use the <code>value_if_not_asked</code> kwarg:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">columbo</span>
 
 
-<span class="k">def</span> <span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
 
 
@@ -805,18 +805,18 @@ single answer. In this way, only one of the sets of optional questions will ever
 <p>The following is an example of a short story that has two divergent paths that join at the end. Each individual question
 isn't different from the optional questions <a href="#optional-questions">demonstrated above</a>. The program achieves the
 branching paths by supplying different <code>should_ask</code> values that will never both evaluate to <code>True</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">columbo</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">columbo</span>
 
 
-<span class="k">def</span> <span class="nf">went_left</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">went_left</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">went_right</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">went_right</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">outcome</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">outcome</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_key&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;You try the the key on the lock. With a little jiggling, it finally opens. You open the gate and leave.&quot;</span>
     <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
