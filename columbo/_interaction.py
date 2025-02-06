@@ -698,7 +698,7 @@ def get_answers(
 
 
 def _is_question(
-    value: Union[Question[QuestionValue], object]
+    value: Union[Question[QuestionValue], object],
 ) -> TypeGuard[Question[QuestionValue]]:
     # preserve generic type information
     return isinstance(value, Question)
