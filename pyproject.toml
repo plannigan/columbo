@@ -103,7 +103,7 @@ dependencies = [
     "mkdocs-material==9.6.7",
     "mkdocs-minify-plugin==0.8.0",
     "mkdocs-redirects==1.2.2",
-    "mkdocstrings[python]==0.28.0",
+    "mkdocstrings[python]==0.28.2",
 ]
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --strict"
