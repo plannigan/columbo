@@ -29,7 +29,7 @@ jobs:
       - name: Create Release
         # Using full SHA for security
         # https://docs.github.com/en/actions/learn-github-actions/security-hardening-for-github-actions#using-third-party-actions
-        uses: ncipollo/release-action@cdcc88a9acf3ca41c16c37bb7d21b9ad48560d87 # v1.15.0
+        uses: ncipollo/release-action@440c8c1cb0ed28b9f43e4d1d670870f059653174 # v1.16.0
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           tag: v${{ steps.get-new-version.outputs.version }}
