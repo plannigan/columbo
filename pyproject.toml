@@ -50,7 +50,7 @@ dependencies = [
     "pytest==8.3.5",
     "pytest-cov==6.1.1",
     "pytest-mock==3.14.0",
-    "pdbpp==0.10.3",
+    "pdbpp==0.11.6",
 ]
 [tool.hatch.envs.default.scripts]
 test-no-cov = "pytest --no-cov {args}"
