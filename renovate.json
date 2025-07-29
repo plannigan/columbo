@@ -1,17 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "baseBranches": [
+  "baseBranchPatterns": [
     "main",
     "renovate-testing"
   ],
   "useBaseBranchConfig": "merge",
-
   "extends": [
     "config:recommended",
     "helpers:pinGitHubActionDigests",
     "schedule:earlyMondays"
   ],
-
   "enabledManagers": [
     "docker-compose",
     "github-actions",
@@ -19,7 +17,6 @@
     "pep621",
     "custom.regex"
   ],
-
   "customManagers": [
     {
       "customType": "regex",
@@ -33,7 +30,6 @@
       "datasourceTemplate": "pypi"
     }
   ],
-
   "packageRules": [
     {
       "groupName": "GitHub Upload/Download Artifacts",
