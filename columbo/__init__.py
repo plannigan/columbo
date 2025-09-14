@@ -30,4 +30,4 @@ from columbo._types import Validator as Validator  # noqa: F401
 
 __version__ = "0.14.0"
 __author__ = "Patrick Lannigan <p.lannigan@gmail.com>"
-__all__ = []  # type: ignore
+__all__ = []
