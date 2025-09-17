@@ -36,3 +36,4 @@ jobs:
           name: v${{ steps.get-new-version.outputs.version }} Release
           commit: main
           prerelease: ${{ steps.is-prerelease.outputs.result }}
+          immutableCreate: true
