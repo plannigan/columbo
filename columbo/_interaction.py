@@ -1,8 +1,17 @@
 import re
-import sys
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Collection, Generic, Mapping, Optional, Type, TypeVar, Union, cast
+from typing import (
+    Collection,
+    Generic,
+    Mapping,
+    Optional,
+    Type,
+    TypeGuard,
+    TypeVar,
+    Union,
+    cast,
+)
 
 from columbo import _user_io as user_io
 from columbo._exception import DuplicateQuestionNameException
@@ -19,11 +28,6 @@ from columbo._types import (
     ValidationSuccess,
     Validator,
 )
-
-if sys.version_info < (3, 10):
-    from typing_extensions import TypeGuard
-else:
-    from typing import TypeGuard
 
 QuestionValue = TypeVar("QuestionValue", str, bool)
 # Explicitly list each possible question value to prevent making the type alias generic
