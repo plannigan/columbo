@@ -8,7 +8,7 @@ version = "0.14.0"
 description = "Specify a dynamic set of questions to ask a user and get their answers."
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [
     { name = "Patrick Lannigan", email = "p.lannigan@gmail.com" },
 ]
@@ -16,7 +16,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -24,7 +23,6 @@ classifiers = [
 ]
 dependencies = [
     "prompt-toolkit~=3.0",
-    "typing-extensions>=4.4.0,<5; python_version < '3.10'",
 ]
 
 [project.urls]
@@ -154,7 +152,7 @@ exclude_lines = [
 # code formatting
 [tool.black]
 line-length = 88
-target-version = ["py39", "py310", "py311", "py312", "py313"]
+target-version = ["py310", "py311", "py312", "py313"]
 
 [tool.isort]
 profile = "black"
