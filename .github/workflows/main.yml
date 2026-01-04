@@ -112,7 +112,7 @@ jobs:
           run: hatch run test-ci --cov-report xml:coverage-${{ matrix.python-version }}.xml --junitxml=test-results-${{ matrix.python-version }}.xml
 
         - name: Upload pytest test results artifact
-          uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+          uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
           with:
             name: pytest-results-${{ matrix.python-version }}
             path: test-results-${{ matrix.python-version }}.xml
@@ -120,7 +120,7 @@ jobs:
           if: ${{ always() }}
 
         - name: Upload coverage results artifact
-          uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+          uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
           with:
             name: pytest-coverage-${{ matrix.python-version }}
             path: coverage-${{ matrix.python-version }}.xml
@@ -190,7 +190,7 @@ jobs:
         run: hatch run docs:build
 
       - name: Upload coverage results artifact
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: docs-site
           path: site/
