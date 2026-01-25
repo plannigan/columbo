@@ -87,7 +87,7 @@ jobs:
       # Renovate set the minimum node version to 22, but GitHub runners currently come with 20 installed
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: 24.12.0
+          node-version: 24.13.0
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: 🧼 lint renovate config # Validates changes to renovate.json config file
         uses: suzuki-shunsuke/github-action-renovate-config-validator@c22827f47f4f4a5364bdba19e1fe36907ef1318e # v1.1.1
