@@ -3,16 +3,11 @@ Produce a CLI based on a sequence of interactions.
 """
 
 from argparse import ArgumentParser, Namespace
+from collections.abc import Collection, Iterable, Sequence
 from functools import singledispatch
 from typing import (
-    Collection,
-    Dict,
-    Iterable,
     NoReturn,
-    Optional,
-    Sequence,
     TypedDict,
-    Union,
     cast,
 )
 
@@ -30,16 +25,16 @@ from columbo._interaction import (
 )
 from columbo._types import Answers, MutableAnswers
 
-CliResult = Union[str, bool]
-CliResults = Dict[str, CliResult]
+CliResult = str | bool
+CliResults = dict[str, CliResult]
 
 
 def parse_args(
     interactions: Collection[Interaction],
-    args: Optional[Sequence[str]] = None,
+    args: Sequence[str] | None = None,
     exit_on_error: bool = True,
-    answers: Optional[Answers] = None,
-    parser_name: Optional[str] = None,
+    answers: Answers | None = None,
+    parser_name: str | None = None,
 ) -> MutableAnswers:
     """
     Parse command line argument for the given interactions.
@@ -74,7 +69,7 @@ def parse_args(
 
 
 def format_cli_help(
-    interactions: Collection[Interaction], parser_name: Optional[str] = None
+    interactions: Collection[Interaction], parser_name: str | None = None
 ) -> str:
     """
     Produce CLI help text for a given set of interactions.
@@ -89,7 +84,7 @@ def format_cli_help(
 
 
 def create_parser(
-    interactions: Collection[Interaction], parser_name: Optional[str] = None
+    interactions: Collection[Interaction], parser_name: str | None = None
 ) -> ArgumentParser:
     parser = ArgumentParser(prog=parser_name, add_help=False)
     for interaction in interactions:
@@ -123,7 +118,7 @@ def _add_argument_for(question: object, _: ArgumentParser) -> None:
 @_add_argument_for.register(Acknowledge)
 @_add_argument_for.register(Echo)
 def _add_argument_for_noop(
-    question: Union[Acknowledge, Echo], parser: ArgumentParser
+    question: Acknowledge | Echo, parser: ArgumentParser
 ) -> None:
     pass
 
@@ -155,7 +150,7 @@ def _add_argument_for_choice(question: Choice, parser: ArgumentParser) -> None:
 def to_answers(
     interactions: Collection[Interaction],
     result: Namespace,
-    answers: Optional[Answers] = None,
+    answers: Answers | None = None,
 ) -> MutableAnswers:
     cli_values: CliResults = vars(result)
     resultant_answers = {} if answers is None else dict(answers)
@@ -176,7 +171,7 @@ def _update_answers(
 @_update_answers.register(Acknowledge)
 @_update_answers.register(Echo)
 def _update_answers_noop(
-    question: Union[Acknowledge, Echo], cli_values: CliResults, answers: MutableAnswers
+    question: Acknowledge | Echo, cli_values: CliResults, answers: MutableAnswers
 ) -> None:
     pass
 
@@ -184,13 +179,13 @@ def _update_answers_noop(
 @_update_answers.register(BasicQuestion)
 @_update_answers.register(Choice)
 def _update_answers_validate(
-    question: Union[BasicQuestion, Choice],
+    question: BasicQuestion | Choice,
     cli_values: CliResults,
     answers: MutableAnswers,
 ) -> None:
     if not question.should_ask(answers):
         return
-    value = cast(Optional[str], cli_values.get(question.name))
+    value = cast(str | None, cli_values.get(question.name))
     if value is None:
         value = to_value(question.default, answers, str)
     result = question.validate(value, answers)
@@ -221,11 +216,11 @@ class _AddArgumentArgs(TypedDict, total=False):
 def _add_argument(
     parser: ArgumentParser,
     name: str,
-    cli_help: Optional[str],
-    dest: Optional[str] = None,
+    cli_help: str | None,
+    dest: str | None = None,
     action: str = "store",
-    choices: Optional[Iterable[str]] = None,
-    const: Optional[bool] = None,
+    choices: Iterable[str] | None = None,
+    const: bool | None = None,
 ) -> None:
     kwargs: _AddArgumentArgs = {}
     if choices is not None:
@@ -244,7 +239,7 @@ def _add_argument(
 def _add_flag(
     parser: ArgumentParser,
     name: str,
-    cli_help: Optional[str],
+    cli_help: str | None,
     active: bool = True,
 ) -> None:
     # store_const is used for boolean values because store_true/store_false automatically set a default for the

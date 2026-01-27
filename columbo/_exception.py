@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class ColumboException(Exception):
     """Base exception for exceptions raised by Columbo"""
 
@@ -14,7 +11,7 @@ class CliException(ColumboException):
 
     @classmethod
     def invalid_value(
-        cls, value: str, argument_name: str, error_message: Optional[str] = None
+        cls, value: str, argument_name: str, error_message: str | None = None
     ) -> "CliException":
         formatted_error_message = f": {error_message}" if error_message else ""
         return cls(
