@@ -1,11 +1,3 @@
-version: '3.4'
-
-x-mount-app-and-user-git-config: &mount-app-and-user-git-config
-  volumes:
-    - ./:/app
-    - ~/.gitconfig:/home/columbo/.gitconfig # allow script to commit as user
-
-
 services:
 
   # a fully loaded development environment to test new code
@@ -18,7 +10,7 @@ services:
       - ./:/app
 
   # run all the tests and linting locally
-  # - black & isort will format code to address issues
+  # - ruff will format code to address issues
   check:
     <<: *devbox
     command: ["hatch", "run", "check"]
@@ -37,5 +29,5 @@ services:
     command: ["hatch", "run", "docs:serve"]
 
   mike:
-    <<: [*mkdocs, *mount-app-and-user-git-config]
+    <<: *mkdocs
     entrypoint: ["hatch", "run", "docs:mike"]

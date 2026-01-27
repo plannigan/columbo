@@ -1,3 +1,5 @@
 # The project dependencies & environments are managed by hatch.
-# This requirements file can be used to do the initial install of hatch.
-hatch==1.16.2
+# uv is used as the installer for faster package installation.
+# This requirements file can be used to do the initial install.
+hatch==1.16.3
+uv==0.9.27

@@ -1,5 +1,5 @@
 name: "Initialize Hatch"
-description: "Install hatch & create an environment"
+description: "Install hatch & uv, then create an environment"
 inputs:
   environment-name:
     description: "Which environment to create"
@@ -12,7 +12,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: "Install hatch"
+    - name: "Install hatch and uv"
       run: "pip install -r requirements-bootstrap.txt"
       shell: "bash"
     - name: "Create environment"

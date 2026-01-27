@@ -1,12 +1,9 @@
 import re
 from abc import ABC, abstractmethod
+from collections.abc import Collection, Mapping
 from enum import Enum
 from typing import (
-    Collection,
     Generic,
-    Mapping,
-    Optional,
-    Type,
     TypeGuard,
     TypeVar,
     Union,
@@ -51,7 +48,7 @@ def _or_default(value: object, default: T) -> T:
     return default if isinstance(value, _Sentinel) else cast(T, value)
 
 
-def _should_ask_or_display(should_ask: Optional[ShouldAsk], answers: Answers) -> bool:
+def _should_ask_or_display(should_ask: ShouldAsk | None, answers: Answers) -> bool:
     if should_ask is None:
         return True
     if callable(should_ask):
@@ -65,7 +62,7 @@ class Displayable(ABC):
     """
 
     def __init__(
-        self, message: StaticOrDynamicValue[str], should_ask: Optional[ShouldAsk] = None
+        self, message: StaticOrDynamicValue[str], should_ask: ShouldAsk | None = None
     ) -> None:
         """
         Initialize an instance.
@@ -106,7 +103,7 @@ class Echo(Displayable):
     """Display a message to the user."""
 
     def __init__(
-        self, message: StaticOrDynamicValue[str], should_ask: Optional[ShouldAsk] = None
+        self, message: StaticOrDynamicValue[str], should_ask: ShouldAsk | None = None
     ) -> None:
         """
         Initialize an instance.
@@ -132,7 +129,7 @@ class Echo(Displayable):
         self,
         *,
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
-        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
+        should_ask: Possible[ShouldAsk | None] = _NOT_GIVEN,
     ) -> "Echo":
         """
         Create a new instance like this one, potentially with different values.
@@ -153,7 +150,7 @@ class Acknowledge(Displayable):
     """Display a message to the user and require the user to press ENTER to continue."""
 
     def __init__(
-        self, message: StaticOrDynamicValue[str], should_ask: Optional[ShouldAsk] = None
+        self, message: StaticOrDynamicValue[str], should_ask: ShouldAsk | None = None
     ) -> None:
         """
         Initialize an instance.
@@ -182,7 +179,7 @@ class Acknowledge(Displayable):
         self,
         *,
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
-        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
+        should_ask: Possible[ShouldAsk | None] = _NOT_GIVEN,
     ) -> "Acknowledge":
         """
         Create a new instance like this one, potentially with different values.
@@ -208,9 +205,9 @@ class Question(ABC, Generic[QuestionValue]):
         self,
         name: str,
         message: StaticOrDynamicValue[str],
-        cli_help: Optional[str] = None,
-        should_ask: Optional[ShouldAsk] = None,
-        value_if_not_asked: Optional[QuestionValue] = None,
+        cli_help: str | None = None,
+        should_ask: ShouldAsk | None = None,
+        value_if_not_asked: QuestionValue | None = None,
     ) -> None:
         """
         Initialize an instance.
@@ -236,18 +233,18 @@ class Question(ABC, Generic[QuestionValue]):
             )
 
         self._should_ask = should_ask
-        self._value_if_not_asked: Optional[QuestionValue] = value_if_not_asked
+        self._value_if_not_asked: QuestionValue | None = value_if_not_asked
 
     @property
     def name(self) -> str:
         return self._name
 
     @property
-    def cli_help(self) -> Optional[str]:
+    def cli_help(self) -> str | None:
         return self._cli_help
 
     @property
-    def value_if_not_asked(self) -> Optional[QuestionValue]:
+    def value_if_not_asked(self) -> QuestionValue | None:
         return self._value_if_not_asked
 
     @abstractmethod
@@ -285,9 +282,9 @@ class Confirm(Question[bool]):
         name: str,
         message: StaticOrDynamicValue[str],
         default: StaticOrDynamicValue[bool] = False,
-        cli_help: Optional[str] = None,
-        should_ask: Optional[ShouldAsk] = None,
-        value_if_not_asked: Optional[bool] = None,
+        cli_help: str | None = None,
+        should_ask: ShouldAsk | None = None,
+        value_if_not_asked: bool | None = None,
     ) -> None:
         """
         Initialize an instance.
@@ -342,9 +339,9 @@ class Confirm(Question[bool]):
         name: Possible[str] = _NOT_GIVEN,
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
         default: Possible[StaticOrDynamicValue[bool]] = _NOT_GIVEN,
-        cli_help: Possible[Optional[str]] = _NOT_GIVEN,
-        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
-        value_if_not_asked: Possible[Optional[bool]] = _NOT_GIVEN,
+        cli_help: Possible[str | None] = _NOT_GIVEN,
+        should_ask: Possible[ShouldAsk | None] = _NOT_GIVEN,
+        value_if_not_asked: Possible[bool | None] = _NOT_GIVEN,
     ) -> "Confirm":
         """
         Create a new instance like this one, potentially with different values.
@@ -384,9 +381,9 @@ class Choice(Question[str]):
         message: StaticOrDynamicValue[str],
         options: StaticOrDynamicValue[Options],
         default: StaticOrDynamicValue[str],
-        cli_help: Optional[str] = None,
-        should_ask: Optional[ShouldAsk] = None,
-        value_if_not_asked: Optional[str] = None,
+        cli_help: str | None = None,
+        should_ask: ShouldAsk | None = None,
+        value_if_not_asked: str | None = None,
     ) -> None:
         """
         Initialize an instance.
@@ -464,9 +461,9 @@ class Choice(Question[str]):
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
         options: Possible[StaticOrDynamicValue[Options]] = _NOT_GIVEN,
         default: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
-        cli_help: Possible[Optional[str]] = _NOT_GIVEN,
-        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
-        value_if_not_asked: Possible[Optional[str]] = _NOT_GIVEN,
+        cli_help: Possible[str | None] = _NOT_GIVEN,
+        should_ask: Possible[ShouldAsk | None] = _NOT_GIVEN,
+        value_if_not_asked: Possible[str | None] = _NOT_GIVEN,
     ) -> "Choice":
         """
         Create a new instance like this one, potentially with different values.
@@ -508,10 +505,10 @@ class BasicQuestion(Question[str]):
         name: str,
         message: StaticOrDynamicValue[str],
         default: StaticOrDynamicValue[str],
-        cli_help: Optional[str] = None,
-        should_ask: Optional[ShouldAsk] = None,
-        validator: Optional[Validator] = None,
-        value_if_not_asked: Optional[str] = None,
+        cli_help: str | None = None,
+        should_ask: ShouldAsk | None = None,
+        validator: Validator | None = None,
+        value_if_not_asked: str | None = None,
     ) -> None:
         """
         Initialize an instance.
@@ -604,10 +601,10 @@ class BasicQuestion(Question[str]):
         name: Possible[str] = _NOT_GIVEN,
         message: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
         default: Possible[StaticOrDynamicValue[str]] = _NOT_GIVEN,
-        cli_help: Possible[Optional[str]] = _NOT_GIVEN,
-        should_ask: Possible[Optional[ShouldAsk]] = _NOT_GIVEN,
-        validator: Possible[Optional[Validator]] = _NOT_GIVEN,
-        value_if_not_asked: Possible[Optional[str]] = _NOT_GIVEN,
+        cli_help: Possible[str | None] = _NOT_GIVEN,
+        should_ask: Possible[ShouldAsk | None] = _NOT_GIVEN,
+        validator: Possible[Validator | None] = _NOT_GIVEN,
+        value_if_not_asked: Possible[str | None] = _NOT_GIVEN,
     ) -> "BasicQuestion":
         """
         Create a new instance like this one, potentially with different values.
@@ -641,7 +638,7 @@ class BasicQuestion(Question[str]):
 
 
 def to_value(
-    value: StaticOrDynamicValue[V], answers: Answers, value_type: Type[V]
+    value: StaticOrDynamicValue[V], answers: Answers, value_type: type[V]
 ) -> V:
     if isinstance(value, value_type):
         return value
@@ -666,7 +663,7 @@ def to_labeled_options(
 
 def get_answers(
     interactions: Collection[Interaction],
-    answers: Optional[Answers] = None,
+    answers: Answers | None = None,
     no_user_input: bool = False,
 ) -> MutableAnswers:
     """
@@ -702,7 +699,7 @@ def get_answers(
 
 
 def _is_question(
-    value: Union[Question[QuestionValue], object],
+    value: Question[QuestionValue] | object,
 ) -> TypeGuard[Question[QuestionValue]]:
     # preserve generic type information
     return isinstance(value, Question)
@@ -728,7 +725,7 @@ def canonical_arg_name(name: str) -> str:
 
 
 def validate_duplicate_question_names(
-    interactions: Collection[Interaction], answers: Optional[Answers] = None
+    interactions: Collection[Interaction], answers: Answers | None = None
 ) -> None:
     """
     Ensure that multiple questions don't use the same name.
