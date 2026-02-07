@@ -1,7 +1,8 @@
 """Type aliases used by the public API"""
 
+from collections.abc import Callable, Mapping, MutableMapping
 from dataclasses import dataclass
-from typing import Callable, List, Literal, Mapping, MutableMapping, TypeVar, Union
+from typing import Literal, TypeVar, Union
 
 
 @dataclass
@@ -15,13 +16,13 @@ class ValidationFailure:
     valid: Literal[False] = False
 
 
-Answer = Union[bool, str]
+Answer = bool | str
 Answers = Mapping[str, Answer]
 MutableAnswers = MutableMapping[str, Answer]
-OptionList = List[str]
-Options = Union[List[str], Mapping[str, str]]
+OptionList = list[str]
+Options = list[str] | Mapping[str, str]
 V = TypeVar("V")
 StaticOrDynamicValue = Union[V, Callable[[Answers], V]]
 ShouldAsk = Callable[[Answers], bool]
-ValidationResponse = Union[ValidationSuccess, ValidationFailure]
+ValidationResponse = ValidationSuccess | ValidationFailure
 Validator = Callable[[str, Answers], ValidationResponse]

@@ -2,7 +2,7 @@
 Helpful wrappers for prompt-toolkit functionality.
 """
 
-from typing import Mapping, Optional
+from collections.abc import Mapping
 
 from prompt_toolkit import shortcuts
 from prompt_toolkit.formatted_text import merge_formatted_text
@@ -43,7 +43,7 @@ def ask(
     question: str,
     default: str,
     no_user_input: bool = False,
-    validator: Optional[Validator] = None,
+    validator: Validator | None = None,
 ) -> str:
     if no_user_input:
         return default
@@ -87,7 +87,7 @@ def multiple_choice(
     user_choice = ask(
         "\n".join(prompt_lines),
         validator=Validator.from_callable(
-            lambda text: text == _NO_INPUT or text in choice_map.keys()
+            lambda text: text == _NO_INPUT or text in choice_map
         ),
         default=default_choice,
         no_user_input=no_user_input,

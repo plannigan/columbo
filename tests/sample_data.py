@@ -1,5 +1,6 @@
 from argparse import Namespace
-from typing import List, Mapping, NoReturn, Optional
+from collections.abc import Mapping
+from typing import NoReturn
 
 from columbo import Answers, ShouldAsk, ValidationFailure
 from columbo._interaction import (
@@ -32,7 +33,7 @@ def some_dynamic_string(answers: Answers) -> str:
     return f"--{answers['a']}--"
 
 
-def some_dynamic_options(answers: Answers) -> List[str]:
+def some_dynamic_options(answers: Answers) -> list[str]:
     return [f"--{x}--" for x in answers.values()]
 
 
@@ -70,7 +71,7 @@ class SampleQuestion(Question[str]):
 class SampleDisplayable(Displayable):
     """Displayable for testing base class functionality"""
 
-    def __init__(self, message: str, should_ask: Optional[ShouldAsk] = None) -> None:
+    def __init__(self, message: str, should_ask: ShouldAsk | None = None) -> None:
         super().__init__(message, should_ask)
         self._display_called = False
 

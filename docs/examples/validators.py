@@ -1,5 +1,4 @@
 import re
-from typing import List
 
 import columbo
 
@@ -12,7 +11,7 @@ def is_email_address(value: str, _: columbo.Answers) -> columbo.ValidationRespon
     return columbo.ValidationSuccess()
 
 
-interactions: List[columbo.Interaction] = [
+interactions: list[columbo.Interaction] = [
     columbo.BasicQuestion(
         "user_email_address",
         "What email address should be used to contact you?",
