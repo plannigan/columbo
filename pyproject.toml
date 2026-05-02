@@ -47,7 +47,7 @@ dependencies = [
     "isort==7.0.0",
     "mypy==1.20.2",
     "pytest==9.0.3",
-    "pytest-cov==7.0.0",
+    "pytest-cov==7.1.0",
     "pytest-mock==3.15.1",
     "pdbpp==0.12.1",
 ]
