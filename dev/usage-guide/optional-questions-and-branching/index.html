@@ -855,26 +855,26 @@ question. It also has an optional message that is only displayed based on the an
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">"has_dog"</span><span class="p">]</span>
 
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">"has_dog"</span><span class="p">,</span> <span class="s2">"Do you have a dog?"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
-        <span class="s2">&quot;Because you have have a dog, we want to ask you some more questions.&quot;</span><span class="p">,</span>
+        <span class="s2">"Because you have have a dog, we want to ask you some more questions."</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
-        <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
+        <span class="s2">"dog_name"</span><span class="p">,</span>
+        <span class="s2">"What is the name of the dog?"</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">"Kaylee"</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
-        <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
+        <span class="s2">"dog_breed"</span><span class="p">,</span>
+        <span class="s2">"What is the breed of the dog?"</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">"Basset Hound"</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
 
@@ -882,10 +882,10 @@ question. It also has an optional message that is only displayed based on the an
 <span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
 </code></pre></div>
 <p>If the user accepts the default answers for each of these questions, the output will be:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">&quot;has_dog&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;dog_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span> <span class="s2">&quot;dog_breed&quot;</span><span class="p">:</span> <span class="s2">&quot;Basset Hound&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">"has_dog"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"dog_name"</span><span class="p">:</span> <span class="s2">"Kaylee"</span><span class="p">,</span> <span class="s2">"dog_breed"</span><span class="p">:</span> <span class="s2">"Basset Hound"</span><span class="p">}</span>
 </code></pre></div>
 <p>However, when the user answers the first question with "no", the output will be:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">&quot;has_dog&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">"has_dog"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
 </code></pre></div>
 <p>Note that the <code>Answers</code> dictionary in the previous example has an answer to only the first question (there are no answers for the skipped questions).
 The next section shows how to provide an answer for a skipped question.</p>
@@ -895,28 +895,28 @@ The next section shows how to provide an answer for a skipped question.</p>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">user_has_dog</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;has_dog&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">"has_dog"</span><span class="p">]</span>
 
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">&quot;has_dog&quot;</span><span class="p">,</span> <span class="s2">&quot;Do you have a dog?&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span><span class="s2">"has_dog"</span><span class="p">,</span> <span class="s2">"Do you have a dog?"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
-        <span class="s2">&quot;Because you have have a dog, we want to ask you some more questions.&quot;</span><span class="p">,</span>
+        <span class="s2">"Because you have have a dog, we want to ask you some more questions."</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="hll">    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
-</span>        <span class="s2">&quot;dog_name&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;What is the name of the dog?&quot;</span><span class="p">,</span>
+</span>        <span class="s2">"dog_name"</span><span class="p">,</span>
+        <span class="s2">"What is the name of the dog?"</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Kaylee&quot;</span><span class="p">,</span>
+        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">"n/a"</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">"Kaylee"</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="hll">    <span class="n">columbo</span><span class="o">.</span><span class="n">BasicQuestion</span><span class="p">(</span>
-</span>        <span class="s2">&quot;dog_breed&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;What is the breed of the dog?&quot;</span><span class="p">,</span>
+</span>        <span class="s2">"dog_breed"</span><span class="p">,</span>
+        <span class="s2">"What is the breed of the dog?"</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">user_has_dog</span><span class="p">,</span>
-        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">,</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Basset Hound&quot;</span><span class="p">,</span>
+        <span class="n">value_if_not_asked</span><span class="o">=</span><span class="s2">"n/a"</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">"Basset Hound"</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">]</span>
 
@@ -924,7 +924,7 @@ The next section shows how to provide an answer for a skipped question.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">user_answers</span><span class="p">)</span>
 </code></pre></div>
 <p>If the user answers the first question with "no", the output will now be:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">&quot;has_dog&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;dog_name&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">,</span> <span class="s2">&quot;dog_breed&quot;</span><span class="p">:</span> <span class="s2">&quot;n/a&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="s2">"has_dog"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"dog_name"</span><span class="p">:</span> <span class="s2">"n/a"</span><span class="p">,</span> <span class="s2">"dog_breed"</span><span class="p">:</span> <span class="s2">"n/a"</span><span class="p">}</span>
 </code></pre></div>
 <p>Columbo will not ask the user for a dog name or breed, but the answers will have the values provided with the <code>value_if_not_asked</code> kwarg.</p>
 <h3 id="branching-paths">Branching Paths</h3>
@@ -939,62 +939,62 @@ branching paths by supplying different <code>should_ask</code> values that will 
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">went_left</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;left&quot;</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">"which_door"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"left"</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">went_right</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">&quot;which_door&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;right&quot;</span>
+    <span class="k">return</span> <span class="n">answers</span><span class="p">[</span><span class="s2">"which_door"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"right"</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">outcome</span><span class="p">(</span><span class="n">answers</span><span class="p">:</span> <span class="n">columbo</span><span class="o">.</span><span class="n">Answers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_key&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;You try the the key on the lock. With a little jiggling, it finally opens. You open the gate and leave.&quot;</span>
-    <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;You hit the lock with the hammer and it falls to the ground. You open the gate and leave.&quot;</span>
+    <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"has_key"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"You try the the key on the lock. With a little jiggling, it finally opens. You open the gate and leave."</span>
+    <span class="k">if</span> <span class="n">answers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"has_hammer"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"You hit the lock with the hammer and it falls to the ground. You open the gate and leave."</span>
     <span class="k">return</span> <span class="p">(</span>
-        <span class="s2">&quot;Unable to open the gate yourself, you yell for help. A farmer in the nearby field hears you. &quot;</span>
-        <span class="s2">&quot;He reaches into his pocket and pulls out a key to unlock the gate and open it. &quot;</span>
-        <span class="s2">&quot;As you walk through the archway he says, &quot;</span>
-        <span class="s1">&#39;&quot;What I don</span><span class="se">\&#39;</span><span class="s1">t understand is how you got in there. This is the only key.&quot;&#39;</span>
+        <span class="s2">"Unable to open the gate yourself, you yell for help. A farmer in the nearby field hears you. "</span>
+        <span class="s2">"He reaches into his pocket and pulls out a key to unlock the gate and open it. "</span>
+        <span class="s2">"As you walk through the archway he says, "</span>
+        <span class="s1">'"What I don</span><span class="se">\'</span><span class="s1">t understand is how you got in there. This is the only key."'</span>
     <span class="p">)</span>
 
 
 <span class="n">interactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
-        <span class="s2">&quot;You wake up in a room that you do not recognize. &quot;</span>
-        <span class="s2">&quot;In the dim light, you can see a large door to the left and a small door to the right.&quot;</span>
+        <span class="s2">"You wake up in a room that you do not recognize. "</span>
+        <span class="s2">"In the dim light, you can see a large door to the left and a small door to the right."</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Choice</span><span class="p">(</span>
-        <span class="s2">&quot;which_door&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Which door do you walk through?&quot;</span><span class="p">,</span>
-        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">],</span>
-        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="s2">"which_door"</span><span class="p">,</span>
+        <span class="s2">"Which door do you walk through?"</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">"left"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">],</span>
+        <span class="n">default</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
-        <span class="s2">&quot;You step into a short hallway and the door closes behind you, refusing to open again. &quot;</span>
-        <span class="s2">&quot;As you walk down the hallway, there is a small side table with a key on it.&quot;</span><span class="p">,</span>
+        <span class="s2">"You step into a short hallway and the door closes behind you, refusing to open again. "</span>
+        <span class="s2">"As you walk down the hallway, there is a small side table with a key on it."</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_left</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
-        <span class="s2">&quot;has_key&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Do you pick up the key before going through the door at the other end?&quot;</span><span class="p">,</span>
+        <span class="s2">"has_key"</span><span class="p">,</span>
+        <span class="s2">"Do you pick up the key before going through the door at the other end?"</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_left</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
-        <span class="s2">&quot;You step into smaller room and the door closes behind, refusing to open again. &quot;</span>
-        <span class="s2">&quot;The room has a single door on the opposite side of the room and a work bench with a hammer on it.&quot;</span><span class="p">,</span>
+        <span class="s2">"You step into smaller room and the door closes behind, refusing to open again. "</span>
+        <span class="s2">"The room has a single door on the opposite side of the room and a work bench with a hammer on it."</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_right</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Confirm</span><span class="p">(</span>
-        <span class="s2">&quot;has_hammer&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Do you pick up the hammer before going through the door at the other side?&quot;</span><span class="p">,</span>
+        <span class="s2">"has_hammer"</span><span class="p">,</span>
+        <span class="s2">"Do you pick up the hammer before going through the door at the other side?"</span><span class="p">,</span>
         <span class="n">should_ask</span><span class="o">=</span><span class="n">went_right</span><span class="p">,</span>
         <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span>
-        <span class="s2">&quot;You enter a small courtyard with high walls. There is an archway that would allow you to go free, &quot;</span>
-        <span class="s2">&quot;but the gate is locked.&quot;</span>
+        <span class="s2">"You enter a small courtyard with high walls. There is an archway that would allow you to go free, "</span>
+        <span class="s2">"but the gate is locked."</span>
     <span class="p">),</span>
     <span class="n">columbo</span><span class="o">.</span><span class="n">Echo</span><span class="p">(</span><span class="n">outcome</span><span class="p">),</span>
 <span class="p">]</span>
