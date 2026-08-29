@@ -3,6 +3,6 @@ set -euo pipefail
 echo "Ensuring pip is up to date"
 python -m pip install --upgrade pip==26.2.1
 echo "Installing the latest version of pypa/build"
-pip install build==1.5.0
+pip install build==1.6.0
 
 python -m build --outdir dist/ .
